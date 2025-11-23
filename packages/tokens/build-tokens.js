@@ -2921,34 +2921,34 @@ ${cardTextAlignmentCSS}
   text-overflow: ellipsis !important;
 }
 
-/* 🎯 CARDS LIVE PREVIEW DYNAMIC BACKGROUNDS - USING CSS VARIABLES */
-/* Card Primary Live Background */
-html[data-layera-card-primary="active"] .layera-card[data-variant="primary"] {
+/* 🎯 CARDS LIVE PREVIEW DYNAMIC BACKGROUNDS - ULTRA SPECIFIC TARGETING */
+/* Card Primary Live Background - ONLY when data-layera-element-type="cards" */
+html[data-layera-card-primary="active"][data-layera-element-type="cards"] .layera-card[data-variant="primary"] {
   background-color: var(--layera-live-card-primary, var(--layera-color-primary-main)) !important;
 }
 
-/* Card Secondary Live Background */
-html[data-layera-card-secondary="active"] .layera-card[data-variant="secondary"] {
+/* Card Secondary Live Background - ONLY when data-layera-element-type="cards" */
+html[data-layera-card-secondary="active"][data-layera-element-type="cards"] .layera-card[data-variant="secondary"] {
   background-color: var(--layera-live-card-secondary, var(--layera-color-secondary-main)) !important;
 }
 
-/* Card Success Live Background */
-html[data-layera-card-success="active"] .layera-card[data-variant="success"] {
+/* Card Success Live Background - ONLY when data-layera-element-type="cards" */
+html[data-layera-card-success="active"][data-layera-element-type="cards"] .layera-card[data-variant="success"] {
   background-color: var(--layera-live-card-success, var(--layera-color-success-main)) !important;
 }
 
-/* Card Warning Live Background */
-html[data-layera-card-warning="active"] .layera-card[data-variant="warning"] {
+/* Card Warning Live Background - ONLY when data-layera-element-type="cards" */
+html[data-layera-card-warning="active"][data-layera-element-type="cards"] .layera-card[data-variant="warning"] {
   background-color: var(--layera-live-card-warning, var(--layera-color-warning-main)) !important;
 }
 
-/* Card Danger Live Background */
-html[data-layera-card-danger="active"] .layera-card[data-variant="error"] {
+/* Card Danger Live Background - ONLY when data-layera-element-type="cards" */
+html[data-layera-card-danger="active"][data-layera-element-type="cards"] .layera-card[data-variant="error"] {
   background-color: var(--layera-live-card-danger, var(--layera-color-error-main)) !important;
 }
 
-/* Card Info Live Background */
-html[data-layera-card-info="active"] .layera-card[data-variant="info"] {
+/* Card Info Live Background - ONLY when data-layera-element-type="cards" */
+html[data-layera-card-info="active"][data-layera-element-type="cards"] .layera-card[data-variant="info"] {
   background-color: var(--layera-live-card-info, var(--layera-color-info-main)) !important;
 }
 
@@ -2983,34 +2983,34 @@ html[data-layera-layout-info="active"] .layera-card[data-variant="info"] {
   background-color: var(--layera-live-layout-info, var(--layera-color-info-main)) !important;
 }
 
-/* 🎯 MODALS LIVE PREVIEW DYNAMIC COLORS - USING CSS VARIABLES */
-/* Modal Primary Live Background */
-html[data-layera-modal-primary="active"] .layera-card[data-variant="primary"] {
+/* 🎯 MODALS LIVE PREVIEW DYNAMIC COLORS - ULTRA SPECIFIC TARGETING */
+/* Modal Primary Live Background - ONLY when data-layera-element-type="modals" */
+html[data-layera-modal-primary="active"][data-layera-element-type="modals"] .layera-card[data-variant="primary"] {
   background-color: var(--layera-live-modal-primary, var(--layera-color-primary-main)) !important;
 }
 
-/* Modal Secondary Live Background */
-html[data-layera-modal-secondary="active"] .layera-card[data-variant="secondary"] {
+/* Modal Secondary Live Background - ONLY when data-layera-element-type="modals" */
+html[data-layera-modal-secondary="active"][data-layera-element-type="modals"] .layera-card[data-variant="secondary"] {
   background-color: var(--layera-live-modal-secondary, var(--layera-color-secondary-main)) !important;
 }
 
-/* Modal Success Live Background */
-html[data-layera-modal-success="active"] .layera-card[data-variant="success"] {
+/* Modal Success Live Background - ONLY when data-layera-element-type="modals" */
+html[data-layera-modal-success="active"][data-layera-element-type="modals"] .layera-card[data-variant="success"] {
   background-color: var(--layera-live-modal-success, var(--layera-color-success-main)) !important;
 }
 
-/* Modal Warning Live Background */
-html[data-layera-modal-warning="active"] .layera-card[data-variant="warning"] {
+/* Modal Warning Live Background - ONLY when data-layera-element-type="modals" */
+html[data-layera-modal-warning="active"][data-layera-element-type="modals"] .layera-card[data-variant="warning"] {
   background-color: var(--layera-live-modal-warning, var(--layera-color-warning-main)) !important;
 }
 
-/* Modal Danger Live Background */
-html[data-layera-modal-danger="active"] .layera-card[data-variant="error"] {
+/* Modal Danger Live Background - ONLY when data-layera-element-type="modals" */
+html[data-layera-modal-danger="active"][data-layera-element-type="modals"] .layera-card[data-variant="error"] {
   background-color: var(--layera-live-modal-danger, var(--layera-color-error-main)) !important;
 }
 
-/* Modal Info Live Background */
-html[data-layera-modal-info="active"] .layera-card[data-variant="info"] {
+/* Modal Info Live Background - ONLY when data-layera-element-type="modals" */
+html[data-layera-modal-info="active"][data-layera-element-type="modals"] .layera-card[data-variant="info"] {
   background-color: var(--layera-live-modal-info, var(--layera-color-info-main)) !important;
 }
 

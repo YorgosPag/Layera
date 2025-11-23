@@ -43,7 +43,6 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   throttleMs = 16,
   variant,
   colorVariant,
-  showVariantInfo = false,
   elementType: _elementType
 }) => {
   // Flag για να ξέρουμε αν ο χρήστης αλλάζει το slider

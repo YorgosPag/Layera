@@ -16,7 +16,6 @@ import type { ColorState } from '../../hooks/useColorState.js';
 
 interface SettingsDisplayProps {
   colorHookState: ColorState;
-  currentColors: Record<string, string>;
   buttonState?: {
     variant: string;
     size: string;
@@ -27,7 +26,6 @@ interface SettingsDisplayProps {
 
 export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
   colorHookState,
-  currentColors,
   buttonState
 }) => {
   return (

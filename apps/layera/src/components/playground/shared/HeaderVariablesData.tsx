@@ -189,8 +189,7 @@ export const createHeaderVariablesData = (
           selector: '.layera-header-grid',
           htmlAttribute: 'data-grid-center="250px"',
           currentValue: '250px',
-          borderColor: 'primary',
-          icon: <LayersIcon size="xs" />
+          borderColor: 'primary'
         },
         {
           category: 'Grid Template',
@@ -198,8 +197,7 @@ export const createHeaderVariablesData = (
           selector: '.layera-header-grid',
           htmlAttribute: 'data-grid="1fr 250px 1fr"',
           currentValue: '1fr var(--layera-header-center-column) 1fr',
-          borderColor: 'info',
-          icon: <PolygonIcon size="xs" />
+          borderColor: 'info'
         },
         {
           category: 'Grid Gap',
@@ -207,8 +205,7 @@ export const createHeaderVariablesData = (
           selector: '.layera-header-grid',
           htmlAttribute: 'data-gap="8px"',
           currentValue: 'var(--layera-spacing-spacing-2)',
-          borderColor: 'success',
-          icon: <LocationIcon size="xs" />
+          borderColor: 'success'
         }
       ]
     },

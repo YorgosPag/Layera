@@ -97,7 +97,7 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
   // NO style.setProperty() - ZERO DOM manipulation - ZERO inline styles
 
   return (
-    <Box>
+    <Box className="layera-playground-cards">
       {/* Live Preview Area - 6 χρωματιστές κάρτες */}
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
         <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">

@@ -296,7 +296,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
           if (colorValue && typeof colorValue === 'object' && 'hex' in colorValue) {
             const simplifiedKey = colorKey.replace('Color', '').toLowerCase();
             console.log('🔄 Simplified key:', simplifiedKey);
-            handleColorChangeWithHighlight(simplifiedKey, colorValue.hex);
+            handleColorChangeWithHighlight(simplifiedKey, colorValue.hex as string);
           }
         });
       }
@@ -781,7 +781,7 @@ HTML Attribute: ${row.htmlAttribute}
                   activeEffect
                 )}
                 defaultExpandedCategory="backgroundColors"
-                highlightedVariable={highlightedVariable}
+                highlightedVariable={highlightedVariable || undefined}
               />
             </Box>
 

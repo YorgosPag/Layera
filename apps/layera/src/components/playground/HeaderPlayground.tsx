@@ -173,7 +173,6 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                   marginLeft: "var(--layera-spacing-2)", // Αριστερά με tokens
                   marginRight: "var(--layera-spacing-2)", // Δεξιά με tokens
                   marginTop: "var(--layera-spacing-0)", // Μηδέν πάνω με tokens
-                  marginBottom: "var(--layera-spacing-0)", // Μηδέν κάτω με tokens
                   ...(key === 'primary' ? {
                     display: "grid",
                     gridTemplateColumns: "var(--layera-grid-template-columns--header)",

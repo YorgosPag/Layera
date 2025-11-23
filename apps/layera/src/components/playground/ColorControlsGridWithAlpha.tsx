@@ -165,10 +165,25 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
       // Trigger preview
       startPreview(colorKey, stringValue);
 
-      // ✅ REAL-TIME BUTTONS UPDATE: Ενημέρωση πλήκτρων όταν είμαστε σε buttons κατηγορία
-      if (colorCategory === 'buttons') {
+      // ✅ ENSURE ELEMENT TYPE CONTEXT: Set the correct data-layera-element-type first
+      applyColorsToApp();
+
+      // ✅ REAL-TIME UPDATES: Ενημέρωση μόνο του επιλεγμένου element type για πλήρη αυτονομία
+      if (elementType === 'buttons' && colorCategory === 'backgrounds') {
         const capitalizedKey = `${colorKey}Color`;
         actions.applySpecificButtonColor(capitalizedKey, stringValue);
+      } else if (elementType === 'cards' && colorCategory === 'backgrounds') {
+        const capitalizedKey = `${colorKey}Color`;
+        actions.applySpecificCardColor(capitalizedKey, stringValue);
+      } else if (elementType === 'modals' && colorCategory === 'backgrounds') {
+        const capitalizedKey = `${colorKey}Color`;
+        actions.applySpecificModalColor(capitalizedKey, stringValue);
+      } else if (elementType === 'layout' && colorCategory === 'backgrounds') {
+        const capitalizedKey = `${colorKey}Color`;
+        actions.applySpecificLayoutColor(capitalizedKey, stringValue);
+      } else if (elementType === 'headers' && colorCategory === 'backgrounds') {
+        const capitalizedKey = `${colorKey}Color`;
+        actions.applySpecificHeaderColor(capitalizedKey, stringValue);
       }
 
       // 🌟 HIGHLIGHT VARIABLE: Φώτισμα της αντίστοιχης γραμμής στο accordion
@@ -226,10 +241,25 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                   const previewVal = localAlphaEnabled ? previewValue.rgba : previewValue.hex;
                   startPreview(colorKey, previewVal);
 
-                  // ✅ LIVE BUTTONS PREVIEW: Real-time ενημέρωση πλήκτρων κατά τη κίνηση του slider
-                  if (colorCategory === 'buttons') {
+                  // ✅ ENSURE ELEMENT TYPE CONTEXT: Set the correct data-layera-element-type first
+                  applyColorsToApp();
+
+                  // ✅ LIVE PREVIEW: Real-time ενημέρωση μόνο του επιλεγμένου element type
+                  if (elementType === 'buttons' && colorCategory === 'backgrounds') {
                     const capitalizedKey = `${colorKey}Color`;
                     actions.applySpecificButtonColor(capitalizedKey, previewVal);
+                  } else if (elementType === 'cards' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificCardColor(capitalizedKey, previewVal);
+                  } else if (elementType === 'modals' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificModalColor(capitalizedKey, previewVal);
+                  } else if (elementType === 'layout' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificLayoutColor(capitalizedKey, previewVal);
+                  } else if (elementType === 'headers' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificHeaderColor(capitalizedKey, previewVal);
                   }
                 }}
                 className="layera-height--auto layera-text--align-center layera-width--auto"
@@ -253,10 +283,25 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                   // Real-time preview χωρίς αλλαγή state
                   startPreview(colorKey, previewValue.hex);
 
-                  // ✅ LIVE BUTTONS PREVIEW: Real-time ενημέρωση πλήκτρων κατά τη κίνηση του slider
-                  if (colorCategory === 'buttons') {
+                  // ✅ ENSURE ELEMENT TYPE CONTEXT: Set the correct data-layera-element-type first
+                  applyColorsToApp();
+
+                  // ✅ LIVE PREVIEW: Real-time ενημέρωση μόνο του επιλεγμένου element type
+                  if (elementType === 'buttons' && colorCategory === 'backgrounds') {
                     const capitalizedKey = `${colorKey}Color`;
                     actions.applySpecificButtonColor(capitalizedKey, previewValue.hex);
+                  } else if (elementType === 'cards' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificCardColor(capitalizedKey, previewValue.hex);
+                  } else if (elementType === 'modals' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificModalColor(capitalizedKey, previewValue.hex);
+                  } else if (elementType === 'layout' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificLayoutColor(capitalizedKey, previewValue.hex);
+                  } else if (elementType === 'headers' && colorCategory === 'backgrounds') {
+                    const capitalizedKey = `${colorKey}Color`;
+                    actions.applySpecificHeaderColor(capitalizedKey, previewValue.hex);
                   }
                 }}
                 className="layera-height--auto layera-text--align-center"

@@ -200,14 +200,246 @@ const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
   }
 };
 
+// ✅ ΠΛΉΡΗΣ ΑΥΤΟΝΟΜΊΑ: Κάθε element type έχει δική του ανεξάρτητη παλέτα χρωμάτων
 const DEFAULT_ELEMENT_TYPE_PALETTES: ElementTypeColorPalettes = {
-  buttons: DEFAULT_CATEGORY_PALETTES,
-  cards: DEFAULT_CATEGORY_PALETTES,
-  modals: DEFAULT_CATEGORY_PALETTES,
-  inputs: DEFAULT_CATEGORY_PALETTES,
-  layout: DEFAULT_CATEGORY_PALETTES,
-  tables: DEFAULT_CATEGORY_PALETTES,
-  headers: DEFAULT_CATEGORY_PALETTES
+  buttons: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  },
+  cards: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  },
+  modals: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  },
+  inputs: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  },
+  layout: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  },
+  tables: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  },
+  headers: {
+    buttons: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    backgrounds: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    text: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    },
+    borders: {
+      primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+      secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+      successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+      warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+      dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+      infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+    }
+  }
 };
 
 const DEFAULT_COLOR_STATE: ColorState = {

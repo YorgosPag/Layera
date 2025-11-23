@@ -64,7 +64,6 @@ export interface PlaygroundControlsProps {
 
   // Functions
   getElementColors: (elementType: string, category: ColorCategory) => ColorPaletteWithAlpha;
-  convertColorPaletteWithAlphaToLegacy: (palette: ColorPaletteWithAlpha) => any;
   handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: string, colorCategory: string, startPreview: any) => void;
   startPreview: any;
   applyColorsToApp: () => Promise<void>;
@@ -104,13 +103,18 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
   tableSize,
   alphaEnabled,
   getElementColors,
-  convertColorPaletteWithAlphaToLegacy,
   handleElementPreview,
   startPreview,
   applyColorsToApp,
   applySquareColorsToHeader,
   user
 }) => {
+
+  // ✅ ENSURE INITIAL CONTEXT: Set initial data-layera-element-type on mount
+  React.useEffect(() => {
+    console.log('🚀 PLAYGROUND CONTROLS MOUNTED - Setting initial context');
+    applyColorsToApp();
+  }, [applyColorsToApp]);
 
   return (
     <>
@@ -241,7 +245,6 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
         {/* Current Settings Display */}
         <SettingsDisplay
           colorHookState={colorHookState}
-          currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors(colorHookState.elementType, colorHookState.colorCategory))}
           buttonState={buttonState}
         />
       </Box>

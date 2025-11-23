@@ -140,7 +140,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             tableSize={tableSize}
             alphaEnabled={alphaEnabled}
             getElementColors={getElementColors}
-            convertColorPaletteWithAlphaToLegacy={convertColorPaletteWithAlphaToLegacy}
             handleElementPreview={handleElementPreview}
             startPreview={startPreview}
             applyColorsToApp={applyColorsToApp}
