@@ -10,7 +10,10 @@ import { FactorySettingsPanel } from './FactorySettingsPanel';
 import { SettingsDisplay } from './SettingsDisplay';
 import type { ColorWithAlpha } from './shared/ColorPickerWithAlpha';
 import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
-import { ColorCategory, ColorPaletteWithAlpha, ElementType } from '../../hooks/useColorState';
+import { ColorCategory, ColorPaletteWithAlpha, ElementType, ColorState, ColorStateActions } from '../../hooks/useColorState';
+import type { ButtonState, ButtonStateActions } from '../../hooks/useButtonState';
+import type { PlaygroundStateActions } from '../../hooks/usePlaygroundState';
+import type { BaseSize } from '../../types/sizes';
 
 /**
  * ARXES COMPLIANT Playground Controls Component
@@ -31,16 +34,16 @@ import { ColorCategory, ColorPaletteWithAlpha, ElementType } from '../../hooks/u
 
 export interface PlaygroundControlsProps {
   // State objects
-  colorHookState: any;
-  buttonState: any;
+  colorHookState: ColorState;
+  buttonState: ButtonState;
 
   // Actions objects
-  colorActions: any;
-  playgroundActions: any;
-  buttonActions: any;
+  colorActions: ColorStateActions;
+  playgroundActions: PlaygroundStateActions;
+  buttonActions: ButtonStateActions;
 
   // Size options
-  buttonSizes: any;
+  buttonSizes: readonly BaseSize[];
 
   // State values
   borderWidth: number;
@@ -54,23 +57,23 @@ export interface PlaygroundControlsProps {
   headerRadius: string;
   hoverEffect: string;
   activeEffect: string;
-  fontSize: any;
-  cardSize: any;
-  modalSize: any;
+  fontSize: string;
+  cardSize: BaseSize;
+  modalSize: string;
   modalTextAlign: ModalTextAlignValue;
-  inputSize: any;
-  tableSize: any;
+  inputSize: string;
+  tableSize: BaseSize;
   alphaEnabled: boolean;
 
   // Functions
   getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
-  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: any) => void;
-  startPreview: any;
+  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: (key: string, value: string) => void) => void;
+  startPreview: (key: string, value: string) => void;
   applyColorsToApp: () => Promise<void>;
   applySquareColorsToHeader: () => void;
 
   // User
-  user?: any;
+  user?: unknown;
 }
 
 /**

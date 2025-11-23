@@ -141,7 +141,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             tableSize={tableSize}
             alphaEnabled={alphaEnabled}
             getElementColors={getElementColors as (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha}
-            handleElementPreview={handleElementPreview as (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: any) => void}
+            handleElementPreview={handleElementPreview as (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: (key: string, value: string) => void) => void}
             startPreview={startPreview}
             applyColorsToApp={applyColorsToApp}
             applySquareColorsToHeader={applySquareColorsToHeader}

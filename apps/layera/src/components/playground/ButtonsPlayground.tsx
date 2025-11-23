@@ -646,9 +646,9 @@ HTML Attribute: ${row.htmlAttribute}
         .layera-table-compact th,
         .layera-table-compact td {
           vertical-align: middle;
-          padding-top: 0px !important;
-          padding-bottom: 0px !important;
-          height: 20px;
+          padding-top: var(--layera-global-spacing-0) !important;
+          padding-bottom: var(--layera-global-spacing-0) !important;
+          height: var(--layera-global-spacing-5);
         }
 
         .layera-table-compact .layera-typography {

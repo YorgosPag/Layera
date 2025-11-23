@@ -42,11 +42,13 @@ export const useControlThrottle = ({
   const [isChanging, setIsChanging] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastUpdateRef = useRef<number>(0);
+  const prevInitialValueRef = useRef(initialValue);
 
   // Sync local value με external value όταν δεν κάνουμε changes
   useEffect(() => {
-    if (!isChanging) {
+    if (!isChanging && prevInitialValueRef.current !== initialValue) {
       setLocalValue(initialValue);
+      prevInitialValueRef.current = initialValue;
     }
   }, [initialValue, isChanging]);
 

@@ -10,6 +10,7 @@ import { HeaderPlayground } from './HeaderPlayground';
 import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue } from '../../types/sizes';
 import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
 import { ColorCategory, ElementType, ColorPaletteWithAlpha } from '../../hooks/useColorState';
+import type { ButtonState } from '../../hooks/useButtonState';
 
 /**
  * ARXES COMPLIANT Playground Renderer Component
@@ -54,10 +55,10 @@ export interface PlaygroundRendererProps {
   tableRadius: string;
 
   // Button state
-  buttonState: any;
+  buttonState: ButtonState;
 
   // Functions
-  convertColorPaletteWithAlphaToLegacy: (palette: any) => any;
+  convertColorPaletteWithAlphaToLegacy: (palette: ColorPaletteWithAlpha) => Record<string, string>;
   getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
 }
 

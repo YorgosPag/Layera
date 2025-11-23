@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -46,7 +46,7 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
   const [expandedCategories, setExpandedCategories] = useState(initialState);
 
   // Helper function για να ελέγχει αν μια γραμμή πρέπει να φωτίζεται
-  const isRowHighlighted = (variable: VariableInfo) => {
+  const isRowHighlighted = useCallback((variable: VariableInfo) => {
     if (!highlightedVariable) return false;
 
     const isMatch = variable.cssVariable === highlightedVariable.cssVariable ||
@@ -55,7 +55,7 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
     // Φωτισμός για 1 λεπτό μετά την αλλαγή
     const timeSinceHighlight = Date.now() - highlightedVariable.timestamp;
     return isMatch && timeSinceHighlight < 60000;
-  };
+  }, [highlightedVariable]);
 
   // Toggle individual category
   const toggleCategory = (categoryId: string) => {
@@ -96,7 +96,7 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
       await navigator.clipboard.writeText(allTablesText);
 
     } catch (err) {
-
+      console.warn('Failed to copy to clipboard:', err);
     }
   };
 
@@ -112,9 +112,9 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
         .layera-table-compact th,
         .layera-table-compact td {
           vertical-align: middle;
-          padding-top: 0px !important;
-          padding-bottom: 0px !important;
-          height: 20px;
+          padding-top: var(--layera-global-spacing-0) !important;
+          padding-bottom: var(--layera-global-spacing-0) !important;
+          height: var(--layera-global-spacing-5);
         }
 
         .layera-table-compact .layera-typography {
@@ -124,27 +124,27 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
 
         /* Highlight styling για τις γραμμές που αλλάζουν */
         .layera-row-highlighted {
-          background-color: rgba(255, 215, 0, 0.25) !important;
-          animation: highlightPulse 60s ease-out;
-          border-left: 4px solid #FFD700 !important;
-          box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+          background-color: var(--layera-color-warning-alpha-25) !important;
+          animation: highlightPulse var(--layera-animation-duration-slow) ease-out;
+          border-left: var(--layera-global-spacing-1) solid var(--layera-color-warning-primary) !important;
+          box-shadow: var(--layera-shadow-sm);
         }
 
         @keyframes highlightPulse {
           0% {
-            background-color: rgba(255, 215, 0, 0.5);
-            border-left-color: #FFD700;
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+            background-color: var(--layera-color-warning-alpha-50);
+            border-left-color: var(--layera-color-warning-primary);
+            box-shadow: var(--layera-shadow-md);
           }
           10% {
-            background-color: rgba(255, 215, 0, 0.35);
-            border-left-color: #FFA500;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+            background-color: var(--layera-color-warning-alpha-35);
+            border-left-color: var(--layera-color-warning-secondary);
+            box-shadow: var(--layera-shadow-sm);
           }
           100% {
-            background-color: rgba(255, 215, 0, 0.15);
-            border-left-color: #DAA520;
-            box-shadow: 0 0 4px rgba(255, 215, 0, 0.2);
+            background-color: var(--layera-color-warning-alpha-15);
+            border-left-color: var(--layera-color-warning-muted);
+            box-shadow: var(--layera-shadow-xs);
           }
         }
       `}</style>
