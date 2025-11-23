@@ -101,54 +101,6 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
   };
 
   return (
-    <>
-      {/* CSS Styles για το compact table */}
-      <style>{`
-        .layera-width--80 { width: var(--layera-spacing-80); }
-        .layera-table-compact {
-          line-height: 0.9;
-        }
-
-        .layera-table-compact th,
-        .layera-table-compact td {
-          vertical-align: middle;
-          padding-top: var(--layera-global-spacing-0) !important;
-          padding-bottom: var(--layera-global-spacing-0) !important;
-          height: var(--layera-global-spacing-5);
-        }
-
-        .layera-table-compact .layera-typography {
-          line-height: 0.9;
-          margin: 0 !important;
-        }
-
-        /* Highlight styling για τις γραμμές που αλλάζουν */
-        .layera-row-highlighted {
-          background-color: var(--layera-color-warning-alpha-25) !important;
-          animation: highlightPulse var(--layera-animation-duration-slow) ease-out;
-          border-left: var(--layera-global-spacing-1) solid var(--layera-color-warning-primary) !important;
-          box-shadow: var(--layera-shadow-sm);
-        }
-
-        @keyframes highlightPulse {
-          0% {
-            background-color: var(--layera-color-warning-alpha-50);
-            border-left-color: var(--layera-color-warning-primary);
-            box-shadow: var(--layera-shadow-md);
-          }
-          10% {
-            background-color: var(--layera-color-warning-alpha-35);
-            border-left-color: var(--layera-color-warning-secondary);
-            box-shadow: var(--layera-shadow-sm);
-          }
-          100% {
-            background-color: var(--layera-color-warning-alpha-15);
-            border-left-color: var(--layera-color-warning-muted);
-            box-shadow: var(--layera-shadow-xs);
-          }
-        }
-      `}</style>
-
     <Box className="layera-space-y--md">
       {/* Toggle All Button */}
       <Box className="layera-display--flex layera-justify-end">
@@ -186,13 +138,13 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
           {expandedCategories[category.id] && (
             <Box className="layera-padding--md">
               <Box className="layera-overflow--auto">
-                <table className="layera-table layera-table-compact layera-width--full layera-border--solid layera-border-width--1 layera-border-color--secondary layera-border-radius--md">
+                <table className="layera-table layera-width--full layera-border--solid layera-border-width--1 layera-border-color--secondary layera-border-radius--md" data-leading="tight">
                   <colgroup>
-                    <col className="layera-width--80" />
-                    <col className="layera-width--80" />
-                    <col className="layera-width--80" />
-                    <col className="layera-width--80" />
-                    <col className="layera-width--80" />
+                    <col />
+                    <col />
+                    <col />
+                    <col />
+                    <col />
                   </colgroup>
                   <thead className="layera-bg--surface-secondary">
                     <tr className="layera-bg--surface-secondary">
@@ -217,10 +169,10 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
                     {category.variables.map((variable, index) => (
                       <tr
                         key={index}
-                        className={isRowHighlighted(variable) ? 'layera-row-highlighted' : ''}
+                        className={isRowHighlighted(variable) ? 'layera-bg--warning-alpha layera-border-left--4 layera-border-color--warning' : ''}
                       >
                         <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                          <Text className="layera-typography" data-size="sm" data-color="secondary">{variable.category}</Text>
+                          <Text className="layera-typography" data-size="sm" data-color="secondary" data-leading="tight">{variable.category}</Text>
                         </td>
                         <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                           <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">{variable.cssVariable}</Text>
@@ -260,6 +212,5 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
         </Button>
       </Box>
     </Box>
-    </>
   );
 };

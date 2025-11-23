@@ -635,29 +635,7 @@ HTML Attribute: ${row.htmlAttribute}
 
   return (
     <>
-      {/* Custom CSS για table styling */}
-      <style>{`
-        .layera-width--80 { width: var(--layera-spacing-80); }
-
-        .layera-table-compact {
-          line-height: 0.9;
-        }
-
-        .layera-table-compact th,
-        .layera-table-compact td {
-          vertical-align: middle;
-          padding-top: var(--layera-global-spacing-0) !important;
-          padding-bottom: var(--layera-global-spacing-0) !important;
-          height: var(--layera-global-spacing-5);
-        }
-
-        .layera-table-compact .layera-typography {
-          line-height: 0.9;
-          margin: 0 !important;
-        }
-      `}</style>
-
-      <Box>
+    <Box>
       {/* Live Preview Area - Ενοποιημένο με 6 χρωματιστά buttons */}
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
         <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
