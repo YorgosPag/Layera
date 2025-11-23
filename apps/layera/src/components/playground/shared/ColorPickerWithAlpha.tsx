@@ -135,33 +135,20 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
   // PERFORMANCE: Helper functions moved outside component για zero recreations
 
-  // Sync με external value και αρχικοποίηση preview (μόνο αν δεν αλλάζει ο χρήστης το slider)
+  // FIXED: Simplified sync με external value χωρίς infinite loop
   useEffect(() => {
     // Αν ο χρήστης αλλάζει το slider ή μόλις τέλειωσε, μην κάνεις sync
     if (isUserInteracting || recentlyInteracted) {
       return;
     }
 
-    const newValue = parseValue(value, true); // Διατήρηση alpha
+    const newValue = parseValue(value, false); // ΔΕΝ διατηρούμε alpha για να αποφύγουμε loop
 
-    // Μόνο αν το HEX έχει πραγματικά αλλάξει εξωτερικά (IGNORE alpha changes)
+    // Μόνο αν το HEX έχει πραγματικά αλλάξει εξωτερικά
     if (!internalValue || newValue.hex !== internalValue.hex) {
-      setInternalValue({
-        ...newValue,
-        alpha: internalValue?.alpha || newValue.alpha // Διατήρηση της τρέχουσας alpha
-      });
+      setInternalValue(newValue); // Simple assignment - όχι spread με conditional
     }
-
-    // ✅ ΕΝΗΜΕΡΩΣΗ CSS: Μόνο αν αλλάξει το HEX (όχι η alpha) ή δεν υπάρχει internalValue
-    if (typeof document !== 'undefined' && (!internalValue || newValue.hex !== internalValue.hex)) {
-      const root = document.documentElement;
-      // Διατήρηση της τρέχουσας alpha αντί της newValue.alpha
-      const currentHex = newValue.hex?.startsWith('#') ? newValue.hex : extractHexFromValue(newValue.hex || 'var(--layera-colors-text-primary)');
-      const preservedAlpha = internalValue?.alpha || newValue.alpha || 1.0; // Διατήρηση της τρέχουσας alpha
-      const rgbaValue = hexToRgba(currentHex, preservedAlpha);
-      root.style.setProperty(cssVariableName, rgbaValue);
-    }
-  }, [value, parseValue, internalValue, isUserInteracting, recentlyInteracted, cssVariableName]);
+  }, [value, isUserInteracting, recentlyInteracted, parseValue]);
 
   // Global event listener για το mouseup/touchend (αν ο χρήστης αφήσει το mouse έξω από το slider)
   useEffect(() => {
@@ -193,21 +180,29 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     };
   }, [isUserInteracting]);
 
-  // ✅ ΒΕΛΤΙΩΜΕΝΟ: Ενημέρωση preview μόνο όταν δεν αλλάζει ο χρήστης το slider
+  // ✅ ΒΕΛΤΙΩΜΕΝΟ: CSS update με throttling για performance
   useEffect(() => {
-    // Αν ο χρήστης αλλάζει το slider, μην κάνεις override την alpha που επέλεξε
-    if (isUserInteracting || recentlyInteracted) {
+    // Αν ο χρήστης αλλάζει το slider, μην κάνεις override
+    if (isUserInteracting || recentlyInteracted || !internalValue) {
       return;
     }
 
-    if (typeof document !== 'undefined' && internalValue) {
-      const root = document.documentElement;
-      const currentHex = internalValue.hex?.startsWith('#') ? internalValue.hex : extractHexFromValue(internalValue.hex || 'var(--layera-colors-text-primary)');
-      const currentAlpha = internalValue.alpha || 1.0;
-      const rgbaValue = hexToRgba(currentHex, currentAlpha);
-      root.style.setProperty(cssVariableName, rgbaValue);
+    // THROTTLED CSS update για αποφυγή spam
+    if (throttledCSSUpdate.current) {
+      clearTimeout(throttledCSSUpdate.current);
     }
-  }, [internalValue, cssVariableName, isUserInteracting, recentlyInteracted]);
+
+    throttledCSSUpdate.current = window.setTimeout(() => {
+      if (typeof document !== 'undefined' && internalValue) {
+        const root = document.documentElement;
+        const currentHex = internalValue.hex?.startsWith('#') ? internalValue.hex : extractHexFromValue(internalValue.hex || 'var(--layera-colors-text-primary)');
+        const currentAlpha = internalValue.alpha || 1.0;
+        const rgbaValue = hexToRgba(currentHex, currentAlpha);
+        root.style.setProperty(cssVariableName, rgbaValue);
+      }
+      throttledCSSUpdate.current = null;
+    }, 16); // 60fps throttling
+  }, [internalValue?.hex, internalValue?.alpha, cssVariableName, isUserInteracting, recentlyInteracted]);
 
   // Enhanced handlers με safety checks
   const handleHexChange = useCallback((newHex: string) => {
