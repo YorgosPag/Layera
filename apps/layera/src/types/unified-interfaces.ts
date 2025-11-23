@@ -12,7 +12,7 @@
  * - State Management Props (hooks)
  */
 
-import { ColorWithAlpha, ColorCategory } from '../hooks/useColorState';
+import { ColorWithAlpha, ColorCategory, ColorPaletteWithAlpha, ColorStateActions } from '../hooks/useColorState';
 import { ButtonVariant } from '../components/playground/shared/types';
 
 // ============================================================================
@@ -141,8 +141,8 @@ export interface BaseColorPickerProps extends BaseComponentProps {
  * Props για color control components
  */
 export interface ColorControlsProps extends BaseComponentProps {
-  currentColors: any; // Accept both Record<string, string> and ColorPaletteWithAlpha
-  currentSetters?: any; // Accept both Record<string, (value: string) => void> and ColorStateActions
+  currentColors: Record<string, string> | ColorPaletteWithAlpha; // Accept both Record<string, string> and ColorPaletteWithAlpha
+  currentSetters?: Record<string, (value: string) => void> | ColorStateActions; // Accept both Record<string, (value: string) => void> and ColorStateActions
   onColorChange?: (key: string, value: ColorWithAlpha | string) => void;
   startPreview?: (key: string, value: string) => void;
   colorCategory?: string;
@@ -176,11 +176,11 @@ export interface ColorActionsProps extends BaseComponentProps {
 /**
  * Props για storage hooks
  */
-export interface StorageHookProps {
+export interface StorageHookProps<T = unknown> {
   key: string;
-  defaultValue?: any;
-  serialize?: (value: any) => string;
-  deserialize?: (value: string) => any;
+  defaultValue?: T;
+  serialize?: (value: T) => string;
+  deserialize?: (value: string) => T;
 }
 
 /**
@@ -188,7 +188,7 @@ export interface StorageHookProps {
  */
 export interface DataFetchProps<T> {
   url?: string;
-  params?: Record<string, any>;
+  params?: Record<string, string | number | boolean>;
   onSuccess?: (data: T) => void;
   onError?: (error: Error) => void;
   enabled?: boolean;
@@ -251,10 +251,20 @@ export interface PropertyTypeDrawerProps extends BaseDrawerProps {
 }
 
 /**
+ * Pipeline State interface
+ */
+export interface AppPipelineState {
+  selectedCategory?: string | null;
+  currentStepId?: string;
+  currentStepIndex?: number;
+  totalSteps?: number;
+}
+
+/**
  * Props για Pipeline Debug Info
  */
 export interface PipelineDebugInfoProps extends BaseComponentProps {
-  pipelineState: any | null; // Accepts PipelineState from @layera/pipelines
+  pipelineState: AppPipelineState | Record<string, unknown> | null;
   showDetails?: boolean;
 }
 
@@ -336,7 +346,7 @@ export interface TablesPlaygroundProps extends BasePlaygroundProps {
 /**
  * Base props για όλα τα control components
  */
-export interface BaseControlProps<T = any> extends BaseComponentProps {
+export interface BaseControlProps<T = unknown> extends BaseComponentProps {
   /** Current value */
   value: T;
   /** Callback when value changes */

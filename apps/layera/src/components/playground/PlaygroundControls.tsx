@@ -10,7 +10,7 @@ import { FactorySettingsPanel } from './FactorySettingsPanel';
 import { SettingsDisplay } from './SettingsDisplay';
 import type { ColorWithAlpha } from './shared/ColorPickerWithAlpha';
 import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
-import { ColorCategory, ColorPaletteWithAlpha } from '../../hooks/useColorState';
+import { ColorCategory, ColorPaletteWithAlpha, ElementType } from '../../hooks/useColorState';
 
 /**
  * ARXES COMPLIANT Playground Controls Component
@@ -63,8 +63,8 @@ export interface PlaygroundControlsProps {
   alphaEnabled: boolean;
 
   // Functions
-  getElementColors: (elementType: string, category: ColorCategory) => ColorPaletteWithAlpha;
-  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: string, colorCategory: string, startPreview: any) => void;
+  getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
+  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: any) => void;
   startPreview: any;
   applyColorsToApp: () => Promise<void>;
   applySquareColorsToHeader: () => void;

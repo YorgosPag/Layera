@@ -39,7 +39,6 @@ export async function saveTheme(
   buttonShape?: string,
   userId: string = 'default'
 ): Promise<void> {
-  try {
     const db = getDb();
     if (!db) {
       // Firebase not initialized - using localStorage only
@@ -68,10 +67,6 @@ export async function saveTheme(
     };
 
     await setDoc(doc(db, 'themes', themeId), theme);
-  } catch (error) {
-    // PRODUCTION ERROR HANDLING - No console logs
-    throw error;
-  }
 }
 
 

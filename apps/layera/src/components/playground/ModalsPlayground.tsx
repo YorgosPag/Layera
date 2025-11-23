@@ -8,6 +8,7 @@ import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
 import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
 import { createModalsVariablesData } from './shared/ModalsVariablesData';
+import { getTextColor, getBackgroundColor, getBorderStyle, type ColorCategory } from './shared/types';
 
 /**
  * ModalsPlayground Component
@@ -100,26 +101,6 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   };
 
   // Helper functions same as CardsPlayground
-  const getTextColor = (colorValue: string) => {
-    if (colorCategory === 'text') return colorValue;
-    if (colorCategory === 'backgrounds') {
-      return colorValue === 'var(--layera-colors-primary-warning)' ? 'var(--layera-colors-text-primary)' : 'var(--layera-colors-text-primary)';
-    }
-    return 'var(--layera-colors-text-secondary)';
-  };
-
-  const getBackgroundColor = (colorValue: string) => {
-    if (colorCategory === 'backgrounds') return colorValue;
-    return 'var(--layera-colors-surface-light)';
-  };
-
-  const getBorderStyle = (colorValue: string) => {
-    if (colorCategory === 'borders') {
-      const borderWidthToken = `var(--layera-spacing-scale-${borderWidth})`;
-      return `${borderWidthToken} solid ${colorValue}`;
-    }
-    return 'var(--layera-spacing-scale-1) solid var(--layera-color-border-primary)';
-  };
 
 
   // Debug logging

@@ -154,7 +154,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   const colorDescriptions = getColorDescriptions();
 
   const handleColorChange = (colorKey: string, newValue: ColorWithAlpha | string) => {
-    const setter = currentSetters[colorKey];
+    const setter = (currentSetters as any)[colorKey];
     if (setter) {
       // Convert to string for compatibility
       const stringValue = typeof newValue === 'string' ? newValue :

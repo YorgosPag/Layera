@@ -6,6 +6,7 @@ import { CheckIcon, PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, Se
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
 import { createHeaderVariablesData } from './shared/HeaderVariablesData';
+import { getTextColor, getBackgroundColor, getBorderStyle, type ColorCategory } from './shared/types';
 
 /**
  * HeaderPlayground Component
@@ -92,29 +93,6 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   };
 
   // Helper to get text color based on category and color
-  const getTextColor = (colorValue: string) => {
-    if (colorCategory === 'text') return colorValue;
-    if (colorCategory === 'backgrounds') {
-      // Dark backgrounds need white text, light backgrounds need black text
-      return colorValue === 'var(--layera-colors-primary-warning)' ? 'var(--layera-colors-text-primary)' : 'var(--layera-colors-text-primary)'; // warning is light, others dark
-    }
-    return 'var(--layera-colors-text-secondary)'; // default for borders
-  };
-
-  // Helper to get background color
-  const getBackgroundColor = (colorValue: string) => {
-    if (colorCategory === 'backgrounds') return colorValue;
-    return 'var(--layera-color-surface-primary)'; // white background for text and borders
-  };
-
-  // Helper to get border style
-  const getBorderStyle = (colorValue: string) => {
-    if (colorCategory === 'borders') {
-      const borderWidthToken = `var(--layera-spacing-scale-${borderWidth})`;
-      return `${borderWidthToken} solid ${colorValue}`;
-    }
-    return 'var(--layera-spacing-scale-1) solid var(--layera-color-border-primary)'; // subtle border for others
-  };
 
   // ENTERPRISE: Helper to render flexible header sections
   const renderHeaderSection = (
@@ -172,9 +150,9 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                 key={key}
                 data-header-key={key}
                 className="layera-padding-y--1 layera-padding-x--2 layera-margin-x--2 layera-margin-top--0 layera-flex layera-flex--align-center layera-flex--justify-space-between layera-margin-bottom--0 layera-border-radius--md layera-bg--surface-primary layera-position--relative layera-width--full"
-                data-background-color={getBackgroundColor(colorValue)}
-                data-text-color={getTextColor(colorValue)}
-                data-border-style={getBorderStyle(colorValue)}
+                data-background-color={getBackgroundColor(colorValue, colorCategory as ColorCategory)}
+                data-text-color={getTextColor(colorValue, colorCategory as ColorCategory)}
+                data-border-style={getBorderStyle(colorValue, colorCategory as ColorCategory, borderWidth.toString())}
                 data-border-radius={getRadiusToken(headerRadius)}
               >
                 {/* ENTERPRISE: 3-Zone Header Structure */}

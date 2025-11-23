@@ -28,3 +28,37 @@ export interface ButtonState {
   text: string;
   withIcon: boolean;
 }
+
+/**
+ * Κοινές utility functions για playground components
+ */
+
+/**
+ * Επιστρέφει το κατάλληλο χρώμα κειμένου βάσει του color category
+ */
+export const getTextColor = (colorValue: string, colorCategory: ColorCategory) => {
+  if (colorCategory === 'text') return colorValue;
+  if (colorCategory === 'backgrounds') {
+    return colorValue === 'var(--layera-colors-primary-warning)' ? 'var(--layera-colors-text-primary)' : 'var(--layera-colors-text-primary)';
+  }
+  return 'var(--layera-colors-text-secondary)';
+};
+
+/**
+ * Επιστρέφει το κατάλληλο χρώμα φόντου βάσει του color category
+ */
+export const getBackgroundColor = (colorValue: string, colorCategory: ColorCategory) => {
+  if (colorCategory === 'backgrounds') return colorValue;
+  return 'var(--layera-color-surface-primary)'; // white background for text and borders
+};
+
+/**
+ * Επιστρέφει το κατάλληλο border style βάσει του color category
+ */
+export const getBorderStyle = (colorValue: string, colorCategory: ColorCategory, borderWidth?: string) => {
+  if (colorCategory === 'borders') {
+    const borderWidthToken = borderWidth ? `var(--layera-spacing-scale-${borderWidth})` : 'var(--layera-spacing-scale-1)';
+    return `${borderWidthToken} solid ${colorValue}`;
+  }
+  return 'var(--layera-spacing-scale-1) solid var(--layera-color-border-primary)'; // subtle border for others
+};

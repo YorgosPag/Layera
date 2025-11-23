@@ -53,20 +53,14 @@ export async function saveColorTheme(
   user?: LayeraUser,
   themeName?: string
 ): Promise<string> {
-  try {
-    const userId = user?.uid || 'anonymous';
-    const themeId = generateThemeId(colorState.colorCategory, themeName, userId);
-    const colors = colorStateToThemeColors(colorState);
+  const userId = user?.uid || 'anonymous';
+  const themeId = generateThemeId(colorState.colorCategory, themeName, userId);
+  const colors = colorStateToThemeColors(colorState);
 
-    // Αποθήκευση με το existing theme service
-    await saveTheme(themeId, colors, colorState.colorCategory, themeName, userId);
+  // Αποθήκευση με το existing theme service
+  await saveTheme(themeId, colors, colorState.colorCategory, themeName, userId);
 
-    return themeId;
-
-  } catch (error) {
-    // PRODUCTION ERROR HANDLING - No console logs
-    throw error;
-  }
+  return themeId;
 }
 
 

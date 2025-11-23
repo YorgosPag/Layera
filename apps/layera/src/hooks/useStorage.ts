@@ -104,7 +104,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
     } catch (error) {
       // PRODUCTION ERROR HANDLING - No console logs
     }
-  }, []);
+  }, [colorActions, colorState.colorButtonShape, colorState.colorCategory]);
 
   /**
    * Αποθήκευση theme σε localStorage και Firebase
@@ -133,7 +133,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
   // Auto-load on mount
   useEffect(() => {
     loadFromStorage();
-  }, []);
+  }, [loadFromStorage]);
 
   const actions: StorageActions = {
     loadFromStorage,

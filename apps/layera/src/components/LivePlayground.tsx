@@ -8,8 +8,9 @@ import { PlaygroundRenderer } from './playground/PlaygroundRenderer';
 import { PlaygroundControls } from './playground/PlaygroundControls';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { ModalTextAlignValue } from './playground/shared/ModalTextAlignControl';
+import type { BaseSize, ModalSizeValue, InputSizeValue } from '../types/sizes';
 import { usePlaygroundHooks } from '../hooks/usePlaygroundHooks';
-import { ColorPaletteWithAlpha, ColorCategory } from '../hooks/useColorState';
+import { ColorPaletteWithAlpha, ColorCategory, ElementType } from '../hooks/useColorState';
 // useColorHelpers functionality merged into other hooks
 
 /**
@@ -91,16 +92,16 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       />
           {/* Dynamic Content Based on Element Type Selection */}
           <PlaygroundRenderer
-            elementType={colorHookState.elementType}
-            colorCategory={colorHookState.colorCategory}
+            elementType={colorHookState.elementType as string}
+            colorCategory={colorHookState.colorCategory as ColorCategory}
             borderWidth={borderWidth}
             hoverEffect={hoverEffect}
             activeEffect={activeEffect}
-            cardSize={cardSize}
-            modalSize={modalSize}
-            modalTextAlign={modalTextAlign}
-            inputSize={inputSize}
-            tableSize={tableSize}
+            cardSize={cardSize as BaseSize}
+            modalSize={modalSize as ModalSizeValue}
+            modalTextAlign={modalTextAlign as ModalTextAlignValue}
+            inputSize={inputSize as InputSizeValue}
+            tableSize={tableSize as BaseSize}
             buttonRadius={buttonRadius}
             cardRadius={cardRadius}
             modalRadius={modalRadius}
@@ -135,12 +136,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             fontSize={fontSize}
             cardSize={cardSize}
             modalSize={modalSize}
-            modalTextAlign={modalTextAlign}
+            modalTextAlign={modalTextAlign as ModalTextAlignValue}
             inputSize={inputSize}
             tableSize={tableSize}
             alphaEnabled={alphaEnabled}
-            getElementColors={getElementColors}
-            handleElementPreview={handleElementPreview}
+            getElementColors={getElementColors as (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha}
+            handleElementPreview={handleElementPreview as (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: any) => void}
             startPreview={startPreview}
             applyColorsToApp={applyColorsToApp}
             applySquareColorsToHeader={applySquareColorsToHeader}

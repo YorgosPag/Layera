@@ -9,7 +9,7 @@ import { TablesPlayground } from './TablesPlayground';
 import { HeaderPlayground } from './HeaderPlayground';
 import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue } from '../../types/sizes';
 import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
-import { ColorCategory } from '../../hooks/useColorState';
+import { ColorCategory, ElementType, ColorPaletteWithAlpha } from '../../hooks/useColorState';
 
 /**
  * ARXES COMPLIANT Playground Renderer Component
@@ -58,7 +58,7 @@ export interface PlaygroundRendererProps {
 
   // Functions
   convertColorPaletteWithAlphaToLegacy: (palette: any) => any;
-  getElementColors: (elementType: string, category: ColorCategory) => any;
+  getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
 }
 
 /**

@@ -62,7 +62,6 @@ export class FactorySettingsService {
    * Αρχικοποιεί τη Firebase με τις εργοστασιακές ρυθμίσεις
    */
   static async initializeFactorySettings(): Promise<void> {
-    try {
       // Αρχικοποίηση εργοστασιακών ρυθμίσεων
 
       // Έλεγχος αν έχουμε Firebase database
@@ -124,10 +123,6 @@ export class FactorySettingsService {
       }
 
       //console.log('✅ Εργοστασιακές ρυθμίσεις αποθηκεύτηκαν επιτυχώς');
-    } catch (error) {
-      //console.error('❌ Σφάλμα κατά την αρχικοποίηση εργοστασιακών ρυθμίσεων:', error);
-      throw error;
-    }
   }
 
   /**
@@ -188,7 +183,6 @@ export class FactorySettingsService {
    * Αποθηκεύει τις ρυθμίσεις χρήστη
    */
   static async saveUserSettings(userId: string, settings: UserColorSettings['settings'], paletteType?: PaletteType): Promise<void> {
-    try {
       const db = getDb();
       if (!db) {
         throw new Error('Firebase δεν είναι διαθέσιμο');
@@ -214,10 +208,6 @@ export class FactorySettingsService {
       }
 
       //console.log('✅ Ρυθμίσεις χρήστη αποθηκεύτηκαν επιτυχώς');
-    } catch (error) {
-      //console.error('❌ Σφάλμα κατά την αποθήκευση ρυθμίσεων χρήστη:', error);
-      throw error;
-    }
   }
 
   /**
@@ -249,22 +239,17 @@ export class FactorySettingsService {
    * Διαγράφει όλες τις αποθηκευμένες ρυθμίσεις χρηστών (admin function)
    */
   static async deleteAllUserSettings(): Promise<void> {
-    try {
-      //console.log('🗑️ Διαγραφή όλων των ρυθμίσεων χρηστών...');
-      const db = getDb();
-      if (!db) {
-        throw new Error('Firebase δεν είναι διαθέσιμο');
-      }
-      const querySnapshot = await getDocs(collection(db, USER_SETTINGS_COLLECTION));
-
-      const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
-      await Promise.all(deletePromises);
-
-      //console.log(`✅ Διαγράφηκαν ${querySnapshot.size} ρυθμίσεις χρηστών`);
-    } catch (error) {
-      //console.error('❌ Σφάλμα κατά τη διαγραφή όλων των ρυθμίσεων χρηστών:', error);
-      throw error;
+    //console.log('🗑️ Διαγραφή όλων των ρυθμίσεων χρηστών...');
+    const db = getDb();
+    if (!db) {
+      throw new Error('Firebase δεν είναι διαθέσιμο');
     }
+    const querySnapshot = await getDocs(collection(db, USER_SETTINGS_COLLECTION));
+
+    const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
+    await Promise.all(deletePromises);
+
+    //console.log(`✅ Διαγράφηκαν ${querySnapshot.size} ρυθμίσεις χρηστών`);
   }
 
   /**

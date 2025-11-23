@@ -1,4 +1,6 @@
-import { ColorPaletteWithAlpha, ColorCategory } from './useColorState';
+import { ColorPaletteWithAlpha, ColorCategory, ColorState, ColorStateActions, ElementType } from './useColorState';
+import { CSSVariablesActions } from './useCSSVariables';
+import { StorageActions } from './useStorage';
 import { ColorWithAlpha } from '../components/playground/shared/ColorPickerWithAlpha';
 
 /**
@@ -18,26 +20,26 @@ import { ColorWithAlpha } from '../components/playground/shared/ColorPickerWithA
  */
 
 export interface PlaygroundActionsConfig {
-  colorHookState: any;
-  colorActions: any;
-  cssActions: any;
-  storageActions: any;
+  colorHookState: ColorState;
+  colorActions: ColorStateActions;
+  cssActions: CSSVariablesActions;
+  storageActions: StorageActions;
   getCategoryPalette: (category: ColorCategory) => ColorPaletteWithAlpha;
-  getElementColors: (elementType: any, category: ColorCategory) => ColorPaletteWithAlpha;
-  user?: any;
+  getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
+  user?: unknown;
 }
 
 export interface PlaygroundActionsReturn {
   // Helper functions
   getColorsForCategory: (category: string) => ColorPaletteWithAlpha;
-  convertColorPaletteWithAlphaToLegacy: (palette: ColorPaletteWithAlpha) => any;
+  convertColorPaletteWithAlphaToLegacy: (palette: ColorPaletteWithAlpha) => Record<string, string>;
 
   // CSS Actions
   applyColorsToApp: () => Promise<void>;
   applySquareColorsToHeader: () => void;
 
   // Real-time preview handlers
-  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: string, colorCategory: string, startPreview: any) => void;
+  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: (key: string, value: string) => void) => void;
 }
 
 /**
@@ -136,7 +138,7 @@ export const usePlaygroundActions = (config: PlaygroundActionsConfig): Playgroun
       infoColor: categoryColors.infoColor.hex
     };
 
-    await storageActions.saveToStorage(themeData, user || undefined);
+    await storageActions.saveToStorage(themeData, user as unknown);
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
       detail: { category: colorHookState.colorCategory, ...categoryColors }
@@ -162,9 +164,9 @@ export const usePlaygroundActions = (config: PlaygroundActionsConfig): Playgroun
   const handleElementPreview = (
     key: string,
     value: string | ColorWithAlpha,
-    elementType: string,
-    colorCategory: string,
-    startPreview: any
+    elementType: ElementType,
+    colorCategory: ColorCategory,
+    startPreview: (key: string, value: string) => void
   ) => {
     const previewValue = typeof value === 'string' ? value : value.rgba;
 
@@ -200,7 +202,7 @@ export const usePlaygroundActions = (config: PlaygroundActionsConfig): Playgroun
     }
 
     // Call the global preview function
-    startPreview(key, previewValue, colorCategory, elementType);
+    startPreview(key, previewValue);
   };
 
   return {

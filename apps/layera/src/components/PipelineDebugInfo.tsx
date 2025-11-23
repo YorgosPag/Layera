@@ -21,9 +21,9 @@ export const PipelineDebugInfo: React.FC<PipelineDebugInfoProps> = ({
 
   return (
     <Box className="layera-layout layera-debug-container">
-      <Text size="sm">🚀 Pipeline: {pipelineState.selectedCategory}</Text>
-      <Text size="sm">📍 Step: {pipelineState.currentStepId}</Text>
-      <Text size="sm">📊 Progress: {pipelineState.currentStepIndex + 1}/{pipelineState.totalSteps}</Text>
+      <Text size="sm">🚀 Pipeline: {String(pipelineState?.selectedCategory || 'N/A')}</Text>
+      <Text size="sm">📍 Step: {String(pipelineState?.currentStepId || 'N/A')}</Text>
+      <Text size="sm">📊 Progress: {Number(pipelineState?.currentStepIndex ?? 0) + 1}/{Number(pipelineState?.totalSteps ?? 1)}</Text>
     </Box>
   );
 };

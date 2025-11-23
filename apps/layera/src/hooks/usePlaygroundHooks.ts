@@ -1,11 +1,12 @@
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from './useRealTimePreview';
-import { useButtonState } from './useButtonState';
-import { useColorState } from './useColorState';
-import { useCSSVariables } from './useCSSVariables';
-import { useStorage } from './useStorage';
-import { usePlaygroundState } from './usePlaygroundState';
+import { useButtonState, type ButtonState, type ButtonStateActions } from './useButtonState';
+import { useColorState, type ColorState, type ColorStateActions, type ColorCategory, type ElementType, type ColorPaletteWithAlpha, type ColorWithAlpha } from './useColorState';
+import { useCSSVariables, type CSSVariablesActions } from './useCSSVariables';
+import { useStorage, type StorageActions } from './useStorage';
+import { usePlaygroundState, type PlaygroundStateActions } from './usePlaygroundState';
 import { usePlaygroundActions } from './usePlaygroundActions';
+import type { BaseSize } from '../types/sizes';
 
 /**
  * ARXES COMPLIANT Centralized Playground Hooks Management Hook
@@ -29,29 +30,29 @@ import { usePlaygroundActions } from './usePlaygroundActions';
 
 export interface PlaygroundHooksReturn {
   // Authentication
-  user?: any;
+  user?: unknown;
 
   // Button Management
-  buttonState: any;
-  buttonActions: any;
-  buttonSizes: any;
+  buttonState: ButtonState;
+  buttonActions: ButtonStateActions;
+  buttonSizes: readonly BaseSize[];
 
   // Color Management
-  colorHookState: any;
-  colorActions: any;
-  getCategoryPalette: (category: any) => any;
-  getElementColors: (elementType: any, category: any) => any;
+  colorHookState: ColorState;
+  colorActions: ColorStateActions;
+  getCategoryPalette: (category: ColorCategory) => ColorPaletteWithAlpha;
+  getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
 
   // CSS Variables Management
-  cssActions: any;
+  cssActions: CSSVariablesActions;
 
   // Storage Management
-  storageActions: any;
+  storageActions: StorageActions;
 
   // Playground State Management
-  playgroundActions: any;
+  playgroundActions: PlaygroundStateActions;
   borderWidth: number;
-  fontSize: any;
+  fontSize: string;
   alphaEnabled: boolean;
   borderRadius: string;
   buttonRadius: string;
@@ -63,21 +64,21 @@ export interface PlaygroundHooksReturn {
   headerRadius: string;
   hoverEffect: string;
   activeEffect: string;
-  cardSize: any;
-  modalSize: any;
-  inputSize: any;
-  tableSize: any;
-  modalTextAlign: any;
+  cardSize: string;
+  modalSize: string;
+  inputSize: string;
+  tableSize: string;
+  modalTextAlign: string;
 
   // Playground Actions Management
-  getColorsForCategory: (category: string) => any;
-  convertColorPaletteWithAlphaToLegacy: (palette: any) => any;
+  getColorsForCategory: (category: string) => ColorPaletteWithAlpha;
+  convertColorPaletteWithAlphaToLegacy: (palette: ColorPaletteWithAlpha) => Record<string, string>;
   applyColorsToApp: () => Promise<void>;
   applySquareColorsToHeader: () => void;
-  handleElementPreview: (key: string, value: string | any, elementType: string, colorCategory: string, startPreview: any) => void;
+  handleElementPreview: (key: string, value: string | ColorWithAlpha, elementType: ElementType, colorCategory: ColorCategory, startPreview: (key: string, value: string) => void) => void;
 
   // Real-time Preview
-  startPreview: any;
+  startPreview: (key: string, value: string) => void;
 }
 
 /**
