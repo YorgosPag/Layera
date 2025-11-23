@@ -112,11 +112,20 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   const applySpecificButtonColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
+    // Normalize colorKey (remove 'Color' suffix if present)
+    const normalizedKey = colorKey.replace('Color', '');
+
+    // 🧹 CLEANUP: Αφαιρούμε παλιά attributes από άλλα element types
+    const elementTypes = ['card', 'modal', 'layout', 'header'];
+    elementTypes.forEach(type => {
+      root.removeAttribute(`data-layera-${type}-${normalizedKey}`);
+    });
+
     // ✅ ARXES COMPLIANT: Data attribute για button state
-    root.setAttribute(`data-layera-button-${colorKey.replace('Color', '')}`, 'active');
+    root.setAttribute(`data-layera-button-${normalizedKey}`, 'active');
 
     // ✅ ARXES COMPLIANT: CSS custom property για live preview
-    const cssVariableName = `--layera-live-button-${colorKey.replace('Color', '')}`;
+    const cssVariableName = `--layera-live-button-${normalizedKey}`;
     root.style.setProperty(cssVariableName, colorValue);
   };
 
@@ -129,6 +138,12 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
 
     // Normalize colorKey (remove 'Color' suffix if present)
     const normalizedKey = colorKey.replace('Color', '');
+
+    // 🧹 CLEANUP: Αφαιρούμε παλιά attributes από άλλα element types
+    const elementTypes = ['modal', 'layout', 'button', 'header'];
+    elementTypes.forEach(type => {
+      root.removeAttribute(`data-layera-${type}-${normalizedKey}`);
+    });
 
     // ✅ ARXES COMPLIANT: Data attribute για card state
     root.setAttribute(`data-layera-card-${normalizedKey}`, 'active');
@@ -147,6 +162,12 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     // Normalize colorKey (remove 'Color' suffix if present)
     const normalizedKey = colorKey.replace('Color', '');
 
+    // 🧹 CLEANUP: Αφαιρούμε παλιά attributes από άλλα element types
+    const elementTypes = ['card', 'layout', 'button', 'header'];
+    elementTypes.forEach(type => {
+      root.removeAttribute(`data-layera-${type}-${normalizedKey}`);
+    });
+
     // ✅ ARXES COMPLIANT: Data attribute για modal state
     root.setAttribute(`data-layera-modal-${normalizedKey}`, 'active');
 
@@ -164,6 +185,12 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     // Normalize colorKey (remove 'Color' suffix if present)
     const normalizedKey = colorKey.replace('Color', '');
 
+    // 🧹 CLEANUP: Αφαιρούμε παλιά attributes από άλλα element types
+    const elementTypes = ['card', 'modal', 'button', 'header'];
+    elementTypes.forEach(type => {
+      root.removeAttribute(`data-layera-${type}-${normalizedKey}`);
+    });
+
     // ✅ ARXES COMPLIANT: Data attribute για layout state
     root.setAttribute(`data-layera-layout-${normalizedKey}`, 'active');
 
@@ -178,9 +205,18 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   const applySpecificHeaderColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
+    // Normalize colorKey (remove 'Color' suffix if present)
+    const normalizedKey = colorKey.replace('Color', '');
+
+    // 🧹 CLEANUP: Αφαιρούμε παλιά attributes από άλλα element types
+    const elementTypes = ['card', 'modal', 'layout', 'button'];
+    elementTypes.forEach(type => {
+      root.removeAttribute(`data-layera-${type}-${normalizedKey}`);
+    });
+
     // ✅ ARXES COMPLIANT: Data attribute για header state και value
-    root.setAttribute(`data-layera-header-${colorKey.replace('Color', '')}`, 'active');
-    root.setAttribute(`data-layera-header-${colorKey.replace('Color', '')}-value`, colorValue);
+    root.setAttribute(`data-layera-header-${normalizedKey}`, 'active');
+    root.setAttribute(`data-layera-header-${normalizedKey}-value`, colorValue);
   };
 
 
