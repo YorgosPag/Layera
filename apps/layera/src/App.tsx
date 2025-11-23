@@ -20,30 +20,30 @@ const firebaseConfig = {
 if (firebaseConfig.apiKey && firebaseConfig.projectId) {
   try {
     initializeFirebaseApp(firebaseConfig);
-    console.log('✅ Firebase αρχικοποιήθηκε επιτυχώς');
+    // Firebase αρχικοποιήθηκε επιτυχώς
 
     // Αρχικοποίηση εργοστασιακών ρυθμίσεων
     setTimeout(async () => {
       try {
-        console.log('🚀 Αρχικοποίηση εργοστασιακών ρυθμίσεων στο Firebase...');
+        // Αρχικοποίηση εργοστασιακών ρυθμίσεων
 
         await FactorySettingsService.initializeFactorySettings();
-        console.log('✅ Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν επιτυχώς');
+        // Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν επιτυχώς
 
         await FactorySettingsService.deleteAllUserSettings();
-        console.log('✅ Παλιές ρυθμίσεις χρηστών διαγράφηκαν');
+        // Παλιές ρυθμίσεις χρηστών διαγράφηκαν
 
       } catch (error: unknown) {
         const errorMessage = error instanceof Error
           ? (('code' in error ? (error as Error & { code?: string }).code : undefined) || error.message)
           : String(error);
-        console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', errorMessage);
-        console.log('💡 Χρήση τοπικών εργοστασιακών ρυθμίσεων');
+        // Σφάλμα εργοστασιακών ρυθμίσεων
+        // Χρήση τοπικών εργοστασιακών ρυθμίσεων
       }
     }, 1000);
 
   } catch (error) {
-    console.error('❌ Firebase αρχικοποίηση απέτυχε:', error);
+    // Firebase αρχικοποίηση απέτυχε
   }
 } else {
   // Demo mode - δεν υπάρχουν Firebase credentials

@@ -81,7 +81,7 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
-    console.log('🔧 InputRadiusControl: Sending preview', { key: 'inputRadius', value: newValue });
+
     if (onPreview) {
       onPreview('inputRadius', newValue);
     }

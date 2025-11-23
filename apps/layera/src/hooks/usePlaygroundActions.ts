@@ -103,7 +103,7 @@ export const usePlaygroundActions = (config: PlaygroundActionsConfig): Playgroun
     );
 
     if (hasNullColors) {
-      console.warn('Warning: Some colors may not be properly set:', converted);
+      // Warning: Some colors may not be properly set
     }
 
     return converted;

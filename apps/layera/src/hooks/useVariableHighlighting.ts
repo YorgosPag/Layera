@@ -26,7 +26,7 @@ export const useVariableHighlighting = (): VariableHighlightingReturn => {
     // Καθαρίζω το προηγούμενο timeout αν υπάρχει
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
-      console.log('🔄 Clearing previous highlight timeout');
+      //console.log('🔄 Clearing previous highlight timeout');
     }
 
     // Ορίζω το νέο highlighting
@@ -36,11 +36,11 @@ export const useVariableHighlighting = (): VariableHighlightingReturn => {
       timestamp: Date.now()
     });
 
-    console.log('⏰ Setting new highlight for 1 minute:', { category, cssVariable });
+    //console.log('⏰ Setting new highlight for 1 minute:', { category, cssVariable });
 
     // Αυτόματο καθάρισμα μετά από 1 λεπτό (60000ms)
     timeoutRef.current = setTimeout(() => {
-      console.log('⏰ 1 minute timeout - clearing highlight');
+      //console.log('⏰ 1 minute timeout - clearing highlight');
       setHighlightedVariable(prev => {
         if (prev && prev.cssVariable === cssVariable) {
           return null;

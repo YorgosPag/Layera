@@ -63,7 +63,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
       // Ενεργοποιεί το useColorPersistence να εφαρμόσει τα χρώματα
       // Δημιουργεί custom event για local storage changes
-      console.log('🚀 Dispatching theme change event with colors:', colorState);
+
       window.dispatchEvent(new CustomEvent('layera-theme-changed', {
         detail: {
           key: 'layera-current-theme',
@@ -80,9 +80,9 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       setResetSuccess(true);
       setTimeout(() => setResetSuccess(false), 2000);
 
-      console.log('✅ Επιτυχής επιστροφή στις εργοστασιακές ρυθμίσεις');
+
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την επιστροφή στις εργοστασιακές ρυθμίσεις:', error);
+
     } finally {
       setIsResetting(false);
     }
@@ -104,7 +104,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           onPreview(key, value);
         });
       } catch (error) {
-        console.error('❌ Σφάλμα κατά το preview palette:', error);
+
       } finally {
         setIsLoading(false);
       }
@@ -116,7 +116,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
    */
   const handleLoadUserSettings = useCallback(async () => {
     if (!currentUserId) {
-      console.warn('⚠️ Δεν υπάρχει userId για φόρτωση ρυθμίσεων');
+
       return;
     }
 
@@ -131,7 +131,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
         if (userSettings.paletteType) {
           setSelectedPalette(userSettings.paletteType);
         }
-        console.log('✅ Ρυθμίσεις χρήστη φορτώθηκαν από Firebase');
+
         return;
       }
 
@@ -139,12 +139,12 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       const localSettings = FactorySettingsService.loadFromLocalStorage();
       if (localSettings) {
         onSettingsChange(localSettings);
-        console.log('✅ Ρυθμίσεις χρήστη φορτώθηκαν από local storage');
+
       } else {
-        console.log('ℹ️ Δεν βρέθηκαν αποθηκευμένες ρυθμίσεις χρήστη');
+
       }
     } catch (error) {
-      console.error('❌ Σφάλμα κατά τη φόρτωση ρυθμίσεων χρήστη:', error);
+
     } finally {
       setIsLoading(false);
     }

@@ -94,9 +94,9 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
       });
 
       await navigator.clipboard.writeText(allTablesText);
-      console.log('Αντιγραφή όλων των πινάκων ολοκληρώθηκε επιτυχώς!');
+
     } catch (err) {
-      console.error('Αποτυχία αντιγραφής πινάκων:', err);
+
     }
   };
 

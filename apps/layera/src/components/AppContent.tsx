@@ -52,11 +52,11 @@ export const AppContent: React.FC = () => {
         try {
           await navigator.clipboard.writeText(command);
         } catch (clipboardError) {
-          console.warn('Could not copy to clipboard:', clipboardError);
+          // Could not copy to clipboard
         }
       }
     } catch (error) {
-      console.error('Error in changeTestColor:', error);
+      // Error in changeTestColor
     }
   };
 
@@ -73,7 +73,7 @@ export const AppContent: React.FC = () => {
         // Εκτέλεση των script για αλλαγή
         await changeTestColor(newColor);
       } catch (error) {
-        console.error('Error in color change:', error);
+        // Error in color change
       }
     };
 

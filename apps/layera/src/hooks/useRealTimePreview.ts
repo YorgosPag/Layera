@@ -152,47 +152,47 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   const applySpecialEffects = useCallback((key: string, value: string) => {
     switch (key) {
       case 'hoverEffect':
-        console.log('🎯 useRealTimePreview: Processing hoverEffect', { value });
+        //console.log('🎯 useRealTimePreview: Processing hoverEffect', { value });
         applyHoverEffect(value);
         break;
       case 'activeEffect':
-        console.log('🎯 useRealTimePreview: Processing activeEffect', { value });
+        //console.log('🎯 useRealTimePreview: Processing activeEffect', { value });
         applyActiveEffect(value);
         break;
       case 'borderWidth':
-        console.log('🎯 useRealTimePreview: Processing borderWidth', { value });
+        //console.log('🎯 useRealTimePreview: Processing borderWidth', { value });
         applyBorderWidth(value);
         break;
       case 'cardRadius':
-        console.log('🎯 useRealTimePreview: Processing cardRadius', { value });
+        //console.log('🎯 useRealTimePreview: Processing cardRadius', { value });
         applyCardRadius(value);
         break;
       case 'modalRadius':
-        console.log('🎯 useRealTimePreview: Processing modalRadius', { value });
+        //console.log('🎯 useRealTimePreview: Processing modalRadius', { value });
         applyModalRadius(value);
         break;
       case 'layoutRadius':
-        console.log('🎯 useRealTimePreview: Processing layoutRadius', { value });
+        //console.log('🎯 useRealTimePreview: Processing layoutRadius', { value });
         applyLayoutRadius(value);
         break;
       case 'headerRadius':
-        console.log('🎯 useRealTimePreview: Processing headerRadius', { value });
+        //console.log('🎯 useRealTimePreview: Processing headerRadius', { value });
         applyHeaderRadius(value);
         break;
       case 'buttonRadius':
-        console.log('🎯 useRealTimePreview: Processing buttonRadius', { value });
+        //console.log('🎯 useRealTimePreview: Processing buttonRadius', { value });
         applyButtonRadius(value);
         break;
       case 'inputRadius':
-        console.log('🎯 useRealTimePreview: Processing inputRadius', { value });
+        //console.log('🎯 useRealTimePreview: Processing inputRadius', { value });
         applyInputRadius(value);
         break;
       case 'borderRadius':
-        console.log('🎯 useRealTimePreview: Processing borderRadius (generic)', { value });
+        //console.log('🎯 useRealTimePreview: Processing borderRadius (generic)', { value });
         applyBorderRadius(value);
         break;
       case 'fontSize':
-        console.log('🎯 useRealTimePreview: Processing fontSize', { value });
+        //console.log('🎯 useRealTimePreview: Processing fontSize', { value });
         applyFontSize(value);
         break;
     }
@@ -268,9 +268,9 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
         }
       } else if (category === 'buttons' && elementType === 'buttons') {
         // ✅ ARXES COMPLIANT: Button colors μέσω data attributes
-        console.log('🎯 useRealTimePreview buttons category logic:', { category, elementType, key, value });
+        //console.log('🎯 useRealTimePreview buttons category logic:', { category, elementType, key, value });
         root.setAttribute(`data-layera-preview-button-${key}`, value);
-        console.log('🎩 Calling applyHeaderButtonPreview from buttons logic');
+        //console.log('🎩 Calling applyHeaderButtonPreview from buttons logic');
         applyHeaderButtonPreview(value);
       }
     } else {

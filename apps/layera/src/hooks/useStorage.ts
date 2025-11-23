@@ -102,7 +102,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
         }
       }
     } catch (error) {
-      console.error('WARNING:Σφάλμα φόρτωσης χρωμάτων:', error);
+      // PRODUCTION ERROR HANDLING - No console logs
     }
   }, []);
 
@@ -114,7 +114,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
     try {
       localStorage.setItem('layera-current-theme', JSON.stringify(themeData));
     } catch (error) {
-      console.warn('WARNING:Σφάλμα αποθήκευσης στο localStorage:', error);
+      // localStorage error handled silently
     }
 
     // Αποθήκευση στο Firebase (μόνο αν είναι διαθέσιμο)
@@ -123,14 +123,10 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
 
     if (hasRealFirebaseConfig) {
       try {
-        const themeId = await saveColorTheme(themeData, user ?? undefined, `${themeData.colorCategory}-theme-${Date.now()}`);
-        console.log('Theme saved to Firebase with ID:', themeId);
+        await saveColorTheme(themeData, user ?? undefined, `${themeData.colorCategory}-theme-${Date.now()}`);
       } catch (error) {
-        console.error('WARNING:Σφάλμα αποθήκευσης στο Firebase:', error);
+        // Firebase error handled silently
       }
-    } else {
-      // Firebase disabled (demo credentials), χρησιμοποιούμε μόνο localStorage
-      console.log('Firebase disabled, using localStorage only');
     }
   };
 

@@ -81,7 +81,7 @@ export const HeaderRadiusControl: React.FC<HeaderRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
-    console.log('🔧 HeaderRadiusControl: Sending preview', { key: 'headerRadius', value: newValue });
+
     if (onPreview) {
       onPreview('headerRadius', newValue);
     }

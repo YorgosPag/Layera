@@ -180,6 +180,22 @@ export const UTILITIES_VARIABLES = {
 
   // Spacing utilities (από LivePlayground)
   'margin-bottom-xl': SPACING_VARIABLES['spacing-8'],
+
+  // ENTERPRISE POSITIONING UTILITIES - Για enterprise layout patterns
+  'layera-position--absolute': GLOBAL_POSITION.absolute,
+  'layera-position--relative': GLOBAL_POSITION.relative,
+  'layera-left--50': '50%',
+  'layera-transform--translateX-neg-50': 'translateX(-50%)',
+
+  // ENTERPRISE FLEX UTILITIES - Για advanced flexbox control
+  'layera-flex--shrink-0': '0',
+  'layera-flex--grow-1': '1',
+  'layera-min-width--12': SPACING_VARIABLES['spacing-12'], // 48px
+  'layera-min-width--24': SPACING_VARIABLES['spacing-24'], // 96px
+  'layera-width--full': '100%',
+
+  // ENTERPRISE HEADER WIDTH - Συμφωνεί με το container των εργοστασιακών ρυθμίσεων
+  'layera-enterprise-header-width': '1200px', // Standard container max-width
 } as const;
 
 // HEADER GRID VARIABLES - Γεννώνται ως CSS custom properties

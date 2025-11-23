@@ -112,7 +112,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
 
   // ✅ ENSURE INITIAL CONTEXT: Set initial data-layera-element-type on mount
   React.useEffect(() => {
-    console.log('🚀 PLAYGROUND CONTROLS MOUNTED - Setting initial context');
+
     applyColorsToApp();
   }, [applyColorsToApp]);
 

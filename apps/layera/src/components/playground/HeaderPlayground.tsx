@@ -153,9 +153,6 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   // Headers use predefined CSS classes with data attributes for theming
   // NO style.setProperty() - ZERO DOM manipulation
 
-  // Debug CSS κλάσης playground-fullscreen-width
-  console.warn('🚨 Checking if playground-fullscreen-width CSS exists...');
-
   return (
     <Box>
       <Box className="layera-padding--lg layera-text--align-center layera-margin-top--2xl layera-margin-bottom--xl">
@@ -168,32 +165,6 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
 
         <Box className="layera-flex layera-flex--direction-column layera-space-y--md layera-padding-top--lg layera-padding-bottom--lg">
           {headerConfigs.map(({ key, title, description: _description, colorValue }) => {
-            // Debug logging για width issue
-            console.log('🔍 HeaderPlayground Debug:', {
-              key,
-              headerRadius,
-              borderRadius: getRadiusToken(headerRadius),
-              className: "playground-fullscreen-width layera-height--6xl layera-flex layera-flex--align-center layera-flex--justify-space-between layera-padding--md layera-header--dynamic",
-              background: getBackgroundColor(colorValue),
-              text: getTextColor(colorValue),
-              border: getBorderStyle(colorValue)
-            });
-
-            console.log('🎯 CSS Classes applied to header:', "playground-fullscreen-width layera-height--6xl");
-
-            // Debug computed styles μετά από render
-            setTimeout(() => {
-              const headerEl = document.querySelector(`[data-header-key="${key}"]`);
-              if (headerEl) {
-                const computedStyle = window.getComputedStyle(headerEl);
-                console.log(`🎨 Computed styles for ${key} header:`, {
-                  width: computedStyle.width,
-                  maxWidth: computedStyle.maxWidth,
-                  display: computedStyle.display,
-                  position: computedStyle.position
-                });
-              }
-            }, 100);
 
 
             return (
@@ -207,7 +178,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                   border: getBorderStyle(colorValue),
                   borderRadius: getRadiusToken(headerRadius),
                   minHeight: "var(--layera-spacing-10)", // 40px - ENTERPRISE STANDARD
-                  width: "100%",
+                  width: "var(--layera-enterprise-header-width)",
+                  maxWidth: "100%", // Fallback για μικρές οθόνες
                   position: "relative",
                   display: "flex",
                   alignItems: "center"

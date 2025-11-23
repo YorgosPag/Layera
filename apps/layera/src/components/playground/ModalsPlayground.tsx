@@ -123,10 +123,10 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
 
 
   // Debug logging
-  console.log('🔲 ModalsPlayground: modalRadius prop =', modalRadius);
-  console.log('🔲 ModalsPlayground: Final borderRadius =', getRadiusToken(modalRadius));
-  console.log('🔲 ModalsPlayground: modalTextAlign =', modalTextAlign);
-  console.log('🔲 ModalsPlayground: CSS class =', getModalTextAlignClass(modalTextAlign));
+
+
+
+
 
   const modalConfigs = [
     { key: 'primary', title: 'Primary Modal', description: 'Κύριο modal', colorValue: currentColors.primary },
@@ -137,13 +137,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     { key: 'info', title: 'Info Modal', description: 'Modal πληροφοριών', colorValue: currentColors.info }
   ];
 
-  // 🚨 DEBUG: Modal configs και sizes
-  console.log('🚨 DEBUG Modal Configs:', modalConfigs.map(({key, title}) => ({
-    key,
-    title,
-    dataVariant: key === 'danger' ? 'error' : key,
-    className: `layera-card-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`
-  })));
+  // Modal configs for rendering
 
   // ✅ NO INLINE STYLES - Using useCSSVariables hook
   const { actions } = useCSSVariables();

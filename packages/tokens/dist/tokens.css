@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-23T20:37:31.696Z
+ * Generated: 2025-11-23T21:03:59.213Z
  */
 
 :root {
@@ -1329,6 +1329,16 @@
 .layera-flex--wrap-nowrap { flex-wrap: nowrap; }
 .layera-flex--wrap-wrap { flex-wrap: wrap; }
 .margin-bottom-xl { margin-bottom: var(--layera-spacing-8); }
+.layera-position--absolute { /* layera-position--absolute: GLOBAL_POSITION.absolute; */ }
+.layera-position--relative { /* layera-position--relative: GLOBAL_POSITION.relative; */ }
+.layera-left--50 { /* layera-left--50: 50%; */ }
+.layera-transform--translateX-neg-50 { /* layera-transform--translateX-neg-50: translateX(-50%); */ }
+.layera-flex--shrink-0 { /* layera-flex--shrink-0: 0; */ }
+.layera-flex--grow-1 { /* layera-flex--grow-1: 1; */ }
+.layera-min-width--12 { /* layera-min-width--12: var(--layera-spacing-12); */ }
+.layera-min-width--24 { /* layera-min-width--24: var(--layera-spacing-24); */ }
+.layera-width--full { width: 100%; }
+.layera-enterprise-header-width { /* layera-enterprise-header-width: 1200px', // Standard container max-width; */ }
   --layera-header-center-column: 250px;
   --layera-grid-template-columns--header: 1fr var(--layera-header-center-column) 1fr;
   --layera-gap--2: SPACING_VARIABLES[spacing-2];

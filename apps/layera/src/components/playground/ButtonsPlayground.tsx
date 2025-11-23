@@ -96,7 +96,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   const { highlightedVariable, highlightVariable } = useVariableHighlighting();
 
   // Συνδέσω το highlighting με τις αλλαγές στα χρώματα
-  const handleColorChangeWithHighlight = (key: string, value: string) => {
+  const handleColorChangeWithHighlight = (key: string, _value: string) => {
     // Βασική λογική για το mapping των color keys σε CSS variables
     let cssVariable = '';
     let category = '';
@@ -113,7 +113,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
     }
 
     if (cssVariable && category) {
-      console.log('🌟 Highlighting:', { key, value, cssVariable, category });
+
       highlightVariable(category, cssVariable);
     }
   };
@@ -194,32 +194,32 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
       alphaEnabled
     };
 
-    console.log('🔍 Checking for changes:', { prev, current });
+
 
     // Ελέγχω κάθε τιμή ξεχωριστά για πραγματικές αλλαγές
     if (prev.activeEffect !== current.activeEffect) {
-      console.log('🎯 REAL CHANGE: Active Effect changed from', prev.activeEffect, 'to', current.activeEffect);
+
       const cssVariable = `var(--layera-button-active-${colorCategory})`;
       const category = '🎯 Active Effect';
       highlightVariable(category, cssVariable);
     }
 
     if (prev.hoverEffect !== current.hoverEffect) {
-      console.log('🎭 REAL CHANGE: Hover Effect changed from', prev.hoverEffect, 'to', current.hoverEffect);
+
       const cssVariable = `var(--layera-button-hover-${colorCategory})`;
       const category = '🎭 Hover Effect';
       highlightVariable(category, cssVariable);
     }
 
     if (prev.buttonRadius !== current.buttonRadius) {
-      console.log('🌊 REAL CHANGE: Button Radius changed from', prev.buttonRadius, 'to', current.buttonRadius);
+
       const cssVariable = `var(--layera-button-borderRadius-${buttonRadius})`;
       const category = '🌊 Border Radius';
       highlightVariable(category, cssVariable);
     }
 
     if (prev.borderWidth !== current.borderWidth) {
-      console.log('🔧 REAL CHANGE: Border Width changed from', prev.borderWidth, 'to', current.borderWidth);
+
       const cssVariable = 'var(--layera-button-borderWidth)';
       const category = '🔧 Border Width';
       highlightVariable(category, cssVariable);
@@ -227,7 +227,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
     // Button Shape changes
     if (prev.buttonShape !== current.buttonShape) {
-      console.log('📐 REAL CHANGE: Button Shape changed from', prev.buttonShape, 'to', current.buttonShape);
+
       const cssVariable = `var(--layera-button-shape-${current.buttonShape})`;
       const category = '📐 Shape';
       highlightVariable(category, cssVariable);
@@ -235,7 +235,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
     // Button Size changes
     if (prev.buttonSize !== current.buttonSize) {
-      console.log('📏 REAL CHANGE: Button Size changed from', prev.buttonSize, 'to', current.buttonSize);
+
       const cssVariable = `var(--layera-button-size-${current.buttonSize})`;
       const category = '📏 Size';
       highlightVariable(category, cssVariable);
@@ -243,7 +243,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
     // Button Text changes
     if (prev.buttonText !== current.buttonText) {
-      console.log('📝 REAL CHANGE: Button Text changed from', prev.buttonText, 'to', current.buttonText);
+
       const cssVariable = 'Dynamic Content';
       const category = '📝 Text Content';
       highlightVariable(category, cssVariable);
@@ -251,7 +251,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
     // Button Icon toggle changes
     if (prev.buttonWithIcon !== current.buttonWithIcon) {
-      console.log('🎨 REAL CHANGE: Button Icon changed from', prev.buttonWithIcon, 'to', current.buttonWithIcon);
+
       const cssVariable = `var(--layera-button-iconSize-${current.buttonSize})`;
       const category = '📐 Icon Size';
       highlightVariable(category, cssVariable);
@@ -259,7 +259,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
     // Button Variant changes
     if (prev.buttonVariant !== current.buttonVariant) {
-      console.log('🎨 REAL CHANGE: Button Variant changed from', prev.buttonVariant, 'to', current.buttonVariant);
+
       const cssVariable = `var(--layera-button-variant-${current.buttonVariant})`;
       const category = `🎨 ${current.buttonVariant.charAt(0).toUpperCase() + current.buttonVariant.slice(1)} Φόντο`;
       highlightVariable(category, cssVariable);
@@ -275,7 +275,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
     if (currentColors && Object.keys(currentColors).length > 0) {
       Object.entries(currentColors).forEach(([colorKey, colorValue]) => {
         if (colorValue && prev.currentColors?.[colorKey as keyof typeof currentColors] !== colorValue) {
-          console.log('🎨 REAL COLOR CHANGE:', colorKey, 'from', prev.currentColors?.[colorKey as keyof typeof currentColors], 'to', colorValue);
+
           handleColorChangeWithHighlight(colorKey, colorValue);
         }
       });
@@ -283,19 +283,19 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
     // Backup: Event listener για colorsUpdate
     const handleColorsUpdate = (event: CustomEvent) => {
-      console.log('🔥 colorsUpdate event received:', event.detail);
+
       const { detail } = event;
       const { category, ...colors } = detail;
 
-      console.log('📊 Event category:', category, 'Current colorCategory:', colorCategory);
+
 
       if (category === colorCategory) {
-        console.log('✅ Category match! Processing colors:', colors);
+
         Object.entries(colors).forEach(([colorKey, colorValue]) => {
-          console.log('🎨 Processing color from event:', colorKey, colorValue);
+
           if (colorValue && typeof colorValue === 'object' && 'hex' in colorValue) {
             const simplifiedKey = colorKey.replace('Color', '').toLowerCase();
-            console.log('🔄 Simplified key:', simplifiedKey);
+
             handleColorChangeWithHighlight(simplifiedKey, colorValue.hex as string);
           }
         });
@@ -409,9 +409,9 @@ HTML Attribute: ${rowData.htmlAttribute}
       await navigator.clipboard.writeText(textToCopy);
 
       // Εδώ θα μπορούσες να προσθέσεις ένα toast notification
-      console.log('Η γραμμή αντιγράφηκε στο clipboard!');
+
     } catch (err) {
-      console.error('Αποτυχία αντιγραφής:', err);
+
     }
   };
 
@@ -435,9 +435,9 @@ HTML Attribute: ${row.htmlAttribute}
 
       const textToCopy = header + rows;
       await navigator.clipboard.writeText(textToCopy);
-      console.log(`Ολόκληρος ο πίνακας "${tableTitle}" αντιγράφηκε στο clipboard!`);
+
     } catch (err) {
-      console.error('Αποτυχία αντιγραφής πίνακα:', err);
+
     }
   };
 
@@ -536,9 +536,9 @@ HTML Attribute: ${row.htmlAttribute}
 
       // Αντιγραφή στο clipboard
       await navigator.clipboard.writeText(fullContent);
-      console.log('Όλοι οι πίνακες αντιγράφηκαν στο clipboard!');
+
     } catch (err) {
-      console.error('Αποτυχία αντιγραφής όλων των πινάκων:', err);
+
     }
   };
 

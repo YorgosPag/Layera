@@ -81,7 +81,7 @@ export const ModalRadiusControl: React.FC<ModalRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
-    console.log('🔧 ModalRadiusControl: Sending preview', { key: 'modalRadius', value: newValue });
+
     if (onPreview) {
       onPreview('modalRadius', newValue);
     }

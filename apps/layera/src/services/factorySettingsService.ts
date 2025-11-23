@@ -63,31 +63,31 @@ export class FactorySettingsService {
    */
   static async initializeFactorySettings(): Promise<void> {
     try {
-      console.log('🏭 Αρχικοποίηση εργοστασιακών ρυθμίσεων...');
+      // Αρχικοποίηση εργοστασιακών ρυθμίσεων
 
       // Έλεγχος αν έχουμε Firebase database
       const db = getDb();
       if (!db) {
-        console.log('⚠️ Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        //console.log('⚠️ Firebase δεν είναι διαθέσιμο - χρήση local settings');
         return;
       }
 
-      console.log('🔐 Έλεγχος Firebase permissions...');
+      //console.log('🔐 Έλεγχος Firebase permissions...');
 
       // Έλεγχος authentication
       const currentUser = getAuthCurrentUser();
       if (currentUser) {
-        console.log('👤 Χρήστης συνδεδεμένος:', currentUser.email);
+        //console.log('👤 Χρήστης συνδεδεμένος:', currentUser.email);
         // Μπορείς να ελέγξεις εδώ τον ρόλο του χρήστη αν χρειάζεται
       } else {
-        console.log('🚫 Χρήστης δεν είναι συνδεδεμένος - απαιτείται authentication για Firebase write operations');
+        //console.log('🚫 Χρήστης δεν είναι συνδεδεμένος - απαιτείται authentication για Firebase write operations');
         // Δοκιμάζουμε παρόλα αυτά - ίσως έχουν δημόσια read permissions
       }
 
       // Ελέγχουμε αν υπάρχουν ήδη
       const existingSettings = await this.getFactorySettings();
       if (existingSettings.length > 0) {
-        console.log('✅ Εργοστασιακές ρυθμίσεις υπάρχουν ήδη');
+        //console.log('✅ Εργοστασιακές ρυθμίσεις υπάρχουν ήδη');
         return;
       }
 
@@ -123,9 +123,9 @@ export class FactorySettingsService {
         });
       }
 
-      console.log('✅ Εργοστασιακές ρυθμίσεις αποθηκεύτηκαν επιτυχώς');
+      //console.log('✅ Εργοστασιακές ρυθμίσεις αποθηκεύτηκαν επιτυχώς');
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την αρχικοποίηση εργοστασιακών ρυθμίσεων:', error);
+      //console.error('❌ Σφάλμα κατά την αρχικοποίηση εργοστασιακών ρυθμίσεων:', error);
       throw error;
     }
   }
@@ -137,7 +137,7 @@ export class FactorySettingsService {
     try {
       const db = getDb();
       if (!db) {
-        console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        //console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
         return [];
       }
 
@@ -147,7 +147,7 @@ export class FactorySettingsService {
         id: doc.id
       })) as StoredFactorySettings[];
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την ανάκτηση εργοστασιακών ρυθμίσεων:', error);
+      //console.error('❌ Σφάλμα κατά την ανάκτηση εργοστασιακών ρυθμίσεων:', error);
       // Fallback σε local settings
       return [];
     }
@@ -160,7 +160,7 @@ export class FactorySettingsService {
     try {
       const db = getDb();
       if (!db) {
-        console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        //console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
         return null;
       }
       const docRef = doc(db, FACTORY_SETTINGS_COLLECTION, id);
@@ -175,7 +175,7 @@ export class FactorySettingsService {
 
       return null;
     } catch (error) {
-      console.error(`❌ Σφάλμα κατά την ανάκτηση factory setting ${id}:`, error);
+      //console.error(`❌ Σφάλμα κατά την ανάκτηση factory setting ${id}:`, error);
       return null;
     }
   }
@@ -213,9 +213,9 @@ export class FactorySettingsService {
         });
       }
 
-      console.log('✅ Ρυθμίσεις χρήστη αποθηκεύτηκαν επιτυχώς');
+      //console.log('✅ Ρυθμίσεις χρήστη αποθηκεύτηκαν επιτυχώς');
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την αποθήκευση ρυθμίσεων χρήστη:', error);
+      //console.error('❌ Σφάλμα κατά την αποθήκευση ρυθμίσεων χρήστη:', error);
       throw error;
     }
   }
@@ -227,7 +227,7 @@ export class FactorySettingsService {
     try {
       const db = getDb();
       if (!db) {
-        console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        //console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
         return null;
       }
       const docRef = doc(db, USER_SETTINGS_COLLECTION, userId);
@@ -239,7 +239,7 @@ export class FactorySettingsService {
 
       return null;
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την ανάκτηση ρυθμίσεων χρήστη:', error);
+      //console.error('❌ Σφάλμα κατά την ανάκτηση ρυθμίσεων χρήστη:', error);
       return null;
     }
   }
@@ -250,7 +250,7 @@ export class FactorySettingsService {
    */
   static async deleteAllUserSettings(): Promise<void> {
     try {
-      console.log('🗑️ Διαγραφή όλων των ρυθμίσεων χρηστών...');
+      //console.log('🗑️ Διαγραφή όλων των ρυθμίσεων χρηστών...');
       const db = getDb();
       if (!db) {
         throw new Error('Firebase δεν είναι διαθέσιμο');
@@ -260,9 +260,9 @@ export class FactorySettingsService {
       const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
       await Promise.all(deletePromises);
 
-      console.log(`✅ Διαγράφηκαν ${querySnapshot.size} ρυθμίσεις χρηστών`);
+      //console.log(`✅ Διαγράφηκαν ${querySnapshot.size} ρυθμίσεις χρηστών`);
     } catch (error) {
-      console.error('❌ Σφάλμα κατά τη διαγραφή όλων των ρυθμίσεων χρηστών:', error);
+      //console.error('❌ Σφάλμα κατά τη διαγραφή όλων των ρυθμίσεων χρηστών:', error);
       throw error;
     }
   }
@@ -278,11 +278,11 @@ export class FactorySettingsService {
     try {
       const firebaseSettings = await this.getFactorySettingById(paletteType);
       if (firebaseSettings) {
-        console.log('✅ Φόρτωση factory settings από Firebase επιτυχής');
+        //console.log('✅ Φόρτωση factory settings από Firebase επιτυχής');
         return convertPaletteToAppFormat(firebaseSettings.palette);
       }
     } catch (error) {
-      console.warn('⚠️ Fallback σε local factory settings:', error);
+      //console.warn('⚠️ Fallback σε local factory settings:', error);
     }
 
     // Fallback σε local settings
@@ -301,7 +301,7 @@ export class FactorySettingsService {
       localStorage.setItem('layera-color-settings', JSON.stringify(settings));
       localStorage.setItem('layera-color-settings-timestamp', Date.now().toString());
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την αποθήκευση στο local storage:', error);
+      //console.error('❌ Σφάλμα κατά την αποθήκευση στο local storage:', error);
     }
   }
 
@@ -313,7 +313,7 @@ export class FactorySettingsService {
       const settings = localStorage.getItem('layera-color-settings');
       return settings ? JSON.parse(settings) : null;
     } catch (error) {
-      console.error('❌ Σφάλμα κατά την ανάκτηση από το local storage:', error);
+      //console.error('❌ Σφάλμα κατά την ανάκτηση από το local storage:', error);
       return null;
     }
   }

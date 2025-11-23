@@ -42,7 +42,7 @@ export async function saveTheme(
   try {
     const db = getDb();
     if (!db) {
-      console.warn('🔧 Firebase not initialized - using localStorage only');
+      // Firebase not initialized - using localStorage only
       return;
     }
 
@@ -68,9 +68,8 @@ export async function saveTheme(
     };
 
     await setDoc(doc(db, 'themes', themeId), theme);
-    console.log('🎨 Theme saved to Firestore:', themeId);
   } catch (error) {
-    console.error('❌ Error saving theme:', error);
+    // PRODUCTION ERROR HANDLING - No console logs
     throw error;
   }
 }

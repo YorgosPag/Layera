@@ -9,7 +9,7 @@ export const getApp = () => {
   try {
     return getFirebaseApp();
   } catch (error) {
-    console.warn('Firebase app not available:', error);
+    // Firebase app not available
     return null;
   }
 };
@@ -18,7 +18,7 @@ export const getAuth = () => {
   try {
     return getFirebaseAuth();
   } catch (error) {
-    console.warn('Firebase auth not available:', error);
+    // Firebase auth not available
     return null;
   }
 };
@@ -28,7 +28,7 @@ export const getAuthCurrentUser = () => {
     const auth = getFirebaseAuth();
     return auth?.currentUser || null;
   } catch (error) {
-    console.warn('Firebase auth current user not available:', error);
+    // Firebase auth current user not available
     return null;
   }
 };
@@ -38,7 +38,7 @@ export const getDb = () => {
     const app = getApp();
     return app ? getFirestore(app) : null;
   } catch (error) {
-    console.warn('Firebase firestore not available:', error);
+    // Firebase firestore not available
     return null;
   }
 };

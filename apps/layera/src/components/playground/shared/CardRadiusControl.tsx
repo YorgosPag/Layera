@@ -81,7 +81,7 @@ export const CardRadiusControl: React.FC<CardRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
-    console.log('🔧 CardRadiusControl: Sending preview', { key: 'cardRadius', value: newValue });
+
     if (onPreview) {
       onPreview('cardRadius', newValue);
     }

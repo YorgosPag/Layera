@@ -83,18 +83,9 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType: string = 'buttons') => {
     const root = document.documentElement;
 
-    // ✅ DEBUGGING: Log what we're setting
-    console.log('🎯 APPLYING COLORS TO APP:', { colorCategory, elementType });
-
     // ✅ ARXES COMPLIANT: Data attributes για semantic state management
     root.setAttribute('data-layera-color-category', colorCategory);
     root.setAttribute('data-layera-element-type', elementType);
-
-    // ✅ DEBUGGING: Log what we actually set
-    console.log('🔍 HTML ATTRIBUTES SET:', {
-      'data-layera-color-category': root.getAttribute('data-layera-color-category'),
-      'data-layera-element-type': root.getAttribute('data-layera-element-type')
-    });
 
     // ✅ ARXES COMPLIANT: ΜΟΝΟ data attributes για preview state
     if (currentColors.primaryColor.hex !== 'var(--layera-color-semantic-info-primary)') {
@@ -139,20 +130,11 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     // Normalize colorKey (remove 'Color' suffix if present)
     const normalizedKey = colorKey.replace('Color', '');
 
-    // ✅ DEBUGGING: Log what we're setting for cards
-    console.log('🎯 APPLYING CARD COLOR:', { colorKey, normalizedKey, colorValue });
-
     // ✅ ARXES COMPLIANT: Data attribute για card state
     root.setAttribute(`data-layera-card-${normalizedKey}`, 'active');
 
     // ✅ ARXES COMPLIANT: CSS custom property για live preview
     root.style.setProperty(`--layera-live-card-${normalizedKey}`, colorValue);
-
-    // ✅ DEBUGGING: Log what attributes we actually set
-    console.log('🔍 CARD ATTRIBUTES SET:', {
-      [`data-layera-card-${normalizedKey}`]: root.getAttribute(`data-layera-card-${normalizedKey}`),
-      [`--layera-live-card-${normalizedKey}`]: colorValue
-    });
   };
 
   /**
@@ -165,20 +147,11 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     // Normalize colorKey (remove 'Color' suffix if present)
     const normalizedKey = colorKey.replace('Color', '');
 
-    // ✅ DEBUGGING: Log what we're setting for modals
-    console.log('🎯 APPLYING MODAL COLOR:', { colorKey, normalizedKey, colorValue });
-
     // ✅ ARXES COMPLIANT: Data attribute για modal state
     root.setAttribute(`data-layera-modal-${normalizedKey}`, 'active');
 
     // ✅ ARXES COMPLIANT: CSS custom property για live preview
     root.style.setProperty(`--layera-live-modal-${normalizedKey}`, colorValue);
-
-    // ✅ DEBUGGING: Log what attributes we actually set
-    console.log('🔍 MODAL ATTRIBUTES SET:', {
-      [`data-layera-modal-${normalizedKey}`]: root.getAttribute(`data-layera-modal-${normalizedKey}`),
-      [`--layera-live-modal-${normalizedKey}`]: colorValue
-    });
   };
 
   /**

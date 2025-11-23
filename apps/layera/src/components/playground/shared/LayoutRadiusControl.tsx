@@ -81,7 +81,7 @@ export const LayoutRadiusControl: React.FC<LayoutRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
-    console.log('🔧 LayoutRadiusControl: Sending preview', { key: 'layoutRadius', value: newValue });
+
     if (onPreview) {
       onPreview('layoutRadius', newValue);
     }

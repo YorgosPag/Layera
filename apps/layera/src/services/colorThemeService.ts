@@ -61,11 +61,10 @@ export async function saveColorTheme(
     // Αποθήκευση με το existing theme service
     await saveTheme(themeId, colors, colorState.colorCategory, themeName, userId);
 
-    console.log(`🎨 Color theme saved successfully: ${themeId}`);
     return themeId;
 
   } catch (error) {
-    console.error('❌ Error saving color theme:', error);
+    // PRODUCTION ERROR HANDLING - No console logs
     throw error;
   }
 }
