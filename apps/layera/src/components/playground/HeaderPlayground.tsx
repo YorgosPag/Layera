@@ -171,46 +171,42 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
               <Box
                 key={key}
                 data-header-key={key}
-                className="layera-padding-y--1 layera-padding-x--2 layera-margin-x--2 layera-margin-top--0 layera-flex layera-flex--align-center layera-margin-bottom--0 layera-border-radius--md layera-bg--surface-primary"
-                style={{
-                  backgroundColor: getBackgroundColor(colorValue),
-                  color: getTextColor(colorValue),
-                  border: getBorderStyle(colorValue),
-                  borderRadius: getRadiusToken(headerRadius),
-                  minHeight: "var(--layera-spacing-10)", // 40px - ENTERPRISE STANDARD
-                  width: "var(--layera-enterprise-header-width)",
-                  maxWidth: "100%", // Fallback για μικρές οθόνες
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "center"
-                }}
+                className="layera-padding-y--1 layera-padding-x--2 layera-margin-x--2 layera-margin-top--0 layera-flex layera-flex--align-center layera-flex--justify-space-between layera-margin-bottom--0 layera-border-radius--md layera-bg--surface-primary layera-position--relative layera-width--full"
+                data-background-color={getBackgroundColor(colorValue)}
+                data-text-color={getTextColor(colorValue)}
+                data-border-style={getBorderStyle(colorValue)}
+                data-border-radius={getRadiusToken(headerRadius)}
               >
-                {/* START SECTION - Fixed width left */}
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-1" style={{ flex: "0 0 auto", minWidth: "var(--layera-spacing-24)" }}>
-                  <SquareButton icon={<PlusIcon size="xs" />} size="xs" aria-label="Add" />
-                  <Text className="layera-typography" data-size="xs" data-weight="bold">{title}</Text>
-                </Box>
+                {/* ENTERPRISE: 3-Zone Header Structure */}
+                {renderHeaderSection(
+                  'start',
+                  _dynamicStartItems,
+                  <>
+                    <SquareButton icon={<PlusIcon size="xs" />} size="xs" aria-label="Add" />
+                    <Text className="layera-typography" data-size="xs" data-weight="bold">{title}</Text>
+                  </>,
+                  'layera-flex--shrink-0 layera-min-width--24'
+                )}
 
-                {/* CENTER SECTION - Absolute positioned center */}
-                <Box
-                  className="layera-flex layera-flex--align-center layera-flex--gap-1"
-                  style={{
-                    position: "absolute",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    display: "flex",
-                    alignItems: "center"
-                  }}
-                >
-                  <SquareButton icon={<SearchIcon size="xs" />} size="xs" aria-label="Search" />
-                  <SquareButton icon={<LocationIcon size="xs" />} size="xs" aria-label="Location" />
-                  <SquareButton icon={key === 'primary' ? <MenuIcon size="xs" /> : <BellIcon size="xs" />} size="xs" aria-label={key === 'primary' ? 'Menu' : 'Notifications'} />
-                </Box>
+                {renderHeaderSection(
+                  'center',
+                  _dynamicCenterItems,
+                  <>
+                    <SquareButton icon={<SearchIcon size="xs" />} size="xs" aria-label="Search" />
+                    <SquareButton icon={<LocationIcon size="xs" />} size="xs" aria-label="Location" />
+                    <SquareButton icon={key === 'primary' ? <MenuIcon size="xs" /> : <BellIcon size="xs" />} size="xs" aria-label={key === 'primary' ? 'Menu' : 'Notifications'} />
+                  </>,
+                  'layera-position--absolute layera-left--50 layera-transform--translateX-neg-50'
+                )}
 
-                {/* END SECTION - Fixed width right */}
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-1" style={{ marginLeft: "auto", flex: "0 0 auto", minWidth: "var(--layera-spacing-12)" }}>
-                  <SquareButton icon={<UserIcon size="xs" />} size="xs" aria-label="User" />
-                </Box>
+                {renderHeaderSection(
+                  'end',
+                  _dynamicEndItems,
+                  <>
+                    <SquareButton icon={<UserIcon size="xs" />} size="xs" aria-label="User" />
+                  </>,
+                  'layera-flex--shrink-0 layera-min-width--12'
+                )}
               </Box>
             );
           })}
@@ -305,17 +301,8 @@ export const createHeaderInput = (
   <input
     type={type}
     placeholder={placeholder}
-    className="layera-input layera-input--sm"
+    className="layera-input layera-input--sm layera-min-width--20 layera-max-width--32 layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md layera-padding-y--1 layera-padding-x--2 layera-font-size--sm layera-bg--surface-primary"
     onChange={(e) => onChange?.(e.target.value)}
-    style={{
-      minWidth: "var(--layera-spacing-20)",
-      maxWidth: "var(--layera-spacing-32)",
-      border: "var(--layera-border-width--1) solid var(--layera-color-border-primary)",
-      borderRadius: "var(--layera-border-radius--md)",
-      padding: "var(--layera-spacing-1) var(--layera-spacing-2)",
-      fontSize: "var(--layera-font-size--sm)",
-      backgroundColor: "var(--layera-color-surface-primary)"
-    }}
   />
 );
 
