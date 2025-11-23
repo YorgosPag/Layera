@@ -135,12 +135,25 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
   // PERFORMANCE: Helper functions moved outside component για zero recreations
 
-  // FIXED: Simplified sync με external value χωρίς infinite loop
+  // ✅ FINAL FIX: External value sync με ref-based tracking για αποφυγή infinite loop
+  const lastExternalValueRef = useRef<string>('');
+
   useEffect(() => {
     // Αν ο χρήστης αλλάζει το slider ή μόλις τέλειωσε, μην κάνεις sync
     if (isUserInteracting || recentlyInteracted) {
       return;
     }
+
+    // Convert value to string για comparison
+    const valueStr = typeof value === 'string' ? value : JSON.stringify(value);
+
+    // SKIP αν δεν έχει αλλάξει η external value (prevent infinite sync)
+    if (lastExternalValueRef.current === valueStr) {
+      return;
+    }
+
+    // Update το ref ΠΡΙΝ από το state update
+    lastExternalValueRef.current = valueStr;
 
     // Direct inline parsing αντί για parseValue call για αποφυγή dependency changes
     let newValue: ColorWithAlpha;
@@ -182,11 +195,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       newValue = value;
     }
 
-    // Μόνο αν το HEX έχει πραγματικά αλλάξει εξωτερικά
-    if (!internalValue || newValue.hex !== internalValue.hex) {
-      setInternalValue(newValue);
-    }
-  }, [value, isUserInteracting, recentlyInteracted, internalValue?.hex]);
+    // State update χωρίς conditional logic
+    setInternalValue(newValue);
+  }, [value, isUserInteracting, recentlyInteracted]); // FINAL FIX: Αφαίρεση internalValue?.hex dependency
 
   // Global event listener για το mouseup/touchend (αν ο χρήστης αφήσει το mouse έξω από το slider)
   useEffect(() => {
@@ -354,23 +365,28 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     }, 500); // Μεγαλύτερη καθυστέρηση για σιγουριά
   }, [onPreview, onChange]); // Αφαιρέθηκε η internalValue dependency
 
-  // Lightweight input handler με memoization
+  // Lightweight input handler με memoization - STABLE DEPENDENCIES
   const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     const newHex = (e.target as HTMLInputElement).value;
     // Fast validation with early returns
     if (!newHex?.startsWith('#') || newHex.length !== 7) return;
 
-    const safeAlpha = internalValue?.alpha ?? 1.0;
+    // Get alpha from current state without dependency
+    setInternalValue(prevValue => {
+      const safeAlpha = prevValue?.alpha ?? 1.0;
 
-    // Throttled preview call για smooth performance
-    if (onPreview) {
-      onPreview({
-        hex: newHex,
-        alpha: safeAlpha,
-        rgba: hexToRgba(newHex, safeAlpha)
-      });
-    }
-  }, [internalValue?.alpha, onPreview]);
+      // Throttled preview call για smooth performance
+      if (onPreview) {
+        onPreview({
+          hex: newHex,
+          alpha: safeAlpha,
+          rgba: hexToRgba(newHex, safeAlpha)
+        });
+      }
+
+      return prevValue; // No state change, just preview
+    });
+  }, [onPreview]); // Αφαιρέθηκε η internalValue?.alpha dependency
 
   // Real-time mouse tracking για color picker (browser limitations workaround)
   const colorInputRef = useRef<HTMLInputElement>(null);
@@ -379,7 +395,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || 'var(--layera-colors-text-primary)'), [internalValue?.hex]);
   const alphaPercentage = useMemo(() => Math.round((internalValue?.alpha ?? 1.0) * 100), [internalValue?.alpha]);
 
-  // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling
+  // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling - STABLE DEPENDENCIES
   useEffect(() => {
     const input = colorInputRef.current;
     if (!input || !onPreview) return;
@@ -398,15 +414,20 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       if (newHex === lastCheckedColor) return;
       lastCheckedColor = newHex;
 
-      const safeAlpha = internalValue?.alpha ?? 1.0;
-      const previewValue = {
-        hex: newHex,
-        alpha: safeAlpha,
-        rgba: hexToRgba(newHex, safeAlpha)
-      };
+      // Get current alpha from state ref instead of dependency
+      setInternalValue(currentValue => {
+        const safeAlpha = currentValue?.alpha ?? 1.0;
+        const previewValue = {
+          hex: newHex,
+          alpha: safeAlpha,
+          rgba: hexToRgba(newHex, safeAlpha)
+        };
 
-      // CRITICAL FIX: Μόνο onPreview, ΌΧΙ setInternalValue για smooth cursor movement
-      onPreview(previewValue);
+        // CRITICAL FIX: Μόνο onPreview, ΌΧΙ setInternalValue για smooth cursor movement
+        onPreview(previewValue);
+
+        return currentValue; // No state change, just preview
+      });
     };
 
     const handleMouseDown = () => {
@@ -437,9 +458,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       input.removeEventListener('input', handleChange);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [internalValue?.alpha, onPreview]);
+  }, [onPreview]); // Αφαιρέθηκε η internalValue?.alpha dependency
 
-  // OPTIMIZED Mouse enter handler - debounced για performance
+  // OPTIMIZED Mouse enter handler - debounced για performance - STABLE DEPENDENCIES
   const handleMouseEnter = useCallback(() => {
     // ✅ SKIP HOVER PREVIEW για buttons category - αποφεύγει στιγμιαία εμφάνιση
     // Η hover preview προκαλεί unintended RGBA εφαρμογή στα buttons
@@ -449,11 +470,16 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       return;
     }
 
-    if (onPreview && internalValue) {
-      // Immediate preview χωρίς throttling για responsive UX
-      onPreview(internalValue);
+    if (onPreview) {
+      setInternalValue(currentValue => {
+        if (currentValue) {
+          // Immediate preview χωρίς throttling για responsive UX
+          onPreview(currentValue);
+        }
+        return currentValue; // No state change, just preview
+      });
     }
-  }, [onPreview, internalValue, label]);
+  }, [onPreview, label]); // Αφαιρέθηκε η internalValue dependency
 
   // Mouse leave handler για να διατηρήσει το χρώμα αντί για fallback
   const handleMouseLeave = useCallback(() => {
