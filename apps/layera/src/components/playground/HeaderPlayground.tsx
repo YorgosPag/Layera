@@ -52,9 +52,9 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   headerSize = 'md',
   hoverEffect = 'normal',
   activeEffect = 'scale',
-  dynamicStartItems,
-  dynamicCenterItems,
-  dynamicEndItems
+  dynamicStartItems: _dynamicStartItems,
+  dynamicCenterItems: _dynamicCenterItems,
+  dynamicEndItems: _dynamicEndItems
 }) => {
   // State για το Variables Info Popup
   const [showVariablesPopup, setShowVariablesPopup] = useState(false);
@@ -159,15 +159,15 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   return (
     <Box>
       <Box className="layera-padding--lg layera-text--align-center layera-margin-top--2xl layera-margin-bottom--xl">
-        <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
+        <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="xs" data-weight="bold" data-color="primary">
           <CheckIcon size="sm" /> Live Preview: Headers
         </h3>
-        <p className="layera-typography layera-margin-bottom--md layera-text--align-center" data-size="sm" data-color="secondary">
+        <p className="layera-typography layera-margin-bottom--md layera-text--align-center" data-size="xs" data-color="secondary">
           {generateFullDescription()}
         </p>
 
         <Box className="layera-flex layera-flex--direction-column layera-space-y--md layera-padding-top--lg layera-padding-bottom--lg">
-          {headerConfigs.map(({ key, title, description, colorValue }) => {
+          {headerConfigs.map(({ key, title, description: _description, colorValue }) => {
             // Debug logging για width issue
             console.log('🔍 HeaderPlayground Debug:', {
               key,
@@ -200,220 +200,45 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
               <Box
                 key={key}
                 data-header-key={key}
-                className="layera-card layera-card-box-border layera-margin-x--2 layera-margin-top--0 layera-grid layera-grid--gap-2 layera-grid--align-center layera-margin-bottom--0"
+                className="layera-padding-y--1 layera-padding-x--2 layera-margin-x--2 layera-margin-top--0 layera-flex layera-flex--align-center layera-margin-bottom--0 layera-border-radius--md layera-bg--surface-primary"
                 style={{
                   backgroundColor: getBackgroundColor(colorValue),
                   color: getTextColor(colorValue),
                   border: getBorderStyle(colorValue),
                   borderRadius: getRadiusToken(headerRadius),
-                  gridTemplateColumns: "var(--layera-grid-template-columns--header)"
+                  minHeight: "var(--layera-spacing-10)", // 40px - ENTERPRISE STANDARD
+                  width: "100%",
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center"
                 }}
               >
-                {key === 'primary' ? (
-                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Primary Header με ENTERPRISE FLEXIBILITY
-                  <>
-                    {/* ENTERPRISE START SECTION - Αριστερή στήλη */}
-                    {renderHeaderSection(
-                      'start',
-                      dynamicStartItems,
-                      <>
-                        <SquareButton
-                          icon={<PlusIcon size="sm" />}
-                          aria-label="Προσθήκη"
-                          size="md"
-                        />
-                        <Text
-                          className="layera-typography"
-                          data-size="sm"
-                          data-weight="bold"
-                        >
-                          {title}
-                        </Text>
-                      </>,
-                      'layera-flex--justify-start'
-                    )}
+                {/* START SECTION - Fixed width left */}
+                <Box className="layera-flex layera-flex--align-center layera-flex--gap-1" style={{ flex: "0 0 auto", minWidth: "var(--layera-spacing-24)" }}>
+                  <SquareButton icon={<PlusIcon size="xs" />} size="xs" aria-label="Add" />
+                  <Text className="layera-typography" data-size="xs" data-weight="bold">{title}</Text>
+                </Box>
 
-                    {/* ENTERPRISE CENTER SECTION - Κεντρική στήλη */}
-                    {renderHeaderSection(
-                      'center',
-                      dynamicCenterItems,
-                      <>
-                        <SquareButton
-                          icon={<SearchIcon size="md" />}
-                          aria-label="Αναζήτηση"
-                          size="md"
-                        />
-                        <SquareButton
-                          icon={<LocationIcon size="md" />}
-                          aria-label="Τοποθεσία"
-                          size="md"
-                        />
-                        <SquareButton
-                          icon={<MenuIcon size="md" />}
-                          aria-label="Μενού"
-                          size="md"
-                        />
-                      </>,
-                      'layera-flex--justify-center'
-                    )}
+                {/* CENTER SECTION - Absolute positioned center */}
+                <Box
+                  className="layera-flex layera-flex--align-center layera-flex--gap-1"
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    display: "flex",
+                    alignItems: "center"
+                  }}
+                >
+                  <SquareButton icon={<SearchIcon size="xs" />} size="xs" aria-label="Search" />
+                  <SquareButton icon={<LocationIcon size="xs" />} size="xs" aria-label="Location" />
+                  <SquareButton icon={key === 'primary' ? <MenuIcon size="xs" /> : <BellIcon size="xs" />} size="xs" aria-label={key === 'primary' ? 'Menu' : 'Notifications'} />
+                </Box>
 
-                    {/* ENTERPRISE END SECTION - Δεξιά στήλη */}
-                    {renderHeaderSection(
-                      'end',
-                      dynamicEndItems,
-                      <>
-                        <Text
-                          className="layera-typography layera-opacity--80"
-                          data-size="xs"
-                        >
-                          {description}
-                        </Text>
-                        <SquareButton
-                          icon={<UserIcon size="md" />}
-                          aria-label="Χρήστης"
-                          size="md"
-                        />
-                      </>,
-                      'layera-flex--justify-end'
-                    )}
-                  </>
-                ) : key === 'secondary' ? (
-                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Secondary Header με ENTERPRISE FLEXIBILITY
-                  <>
-                    {/* ENTERPRISE START SECTION - Αριστερή στήλη */}
-                    {renderHeaderSection(
-                      'start',
-                      dynamicStartItems,
-                      <>
-                        <SquareButton
-                          icon={<PlusIcon size="sm" />}
-                          aria-label="Προσθήκη"
-                          size="md"
-                        />
-                        <Text
-                          className="layera-typography"
-                          data-size="lg"
-                          data-weight="bold"
-                        >
-                          {title}
-                        </Text>
-                      </>,
-                      'layera-flex--justify-start'
-                    )}
-
-                    {/* ENTERPRISE CENTER SECTION - Κεντρική στήλη */}
-                    {renderHeaderSection(
-                      'center',
-                      dynamicCenterItems,
-                      <>
-                        <SquareButton
-                          icon={<SearchIcon size="md" />}
-                          aria-label="Αναζήτηση"
-                          size="md"
-                        />
-                        <SquareButton
-                          icon={<LocationIcon size="md" />}
-                          aria-label="Τοποθεσία"
-                          size="md"
-                        />
-                        <SquareButton
-                          icon={<MenuIcon size="md" />}
-                          aria-label="Μενού"
-                          size="md"
-                        />
-                      </>,
-                      'layera-flex--justify-center'
-                    )}
-
-                    {/* ENTERPRISE END SECTION - Δεξιά στήλη */}
-                    {renderHeaderSection(
-                      'end',
-                      dynamicEndItems,
-                      <>
-                        <Text
-                          className="layera-typography layera-opacity--80"
-                          data-size="xs"
-                        >
-                          {description}
-                        </Text>
-                        <SquareButton
-                          icon={<UserIcon size="md" />}
-                          aria-label="Χρήστης"
-                          size="md"
-                        />
-                      </>,
-                      'layera-flex--justify-end'
-                    )}
-                  </>
-                ) : (
-                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Υπόλοιπα headers με ENTERPRISE FLEXIBILITY
-                  <>
-                    {/* ENTERPRISE START SECTION - Αριστερή στήλη */}
-                    {renderHeaderSection(
-                      'start',
-                      dynamicStartItems,
-                      <>
-                        <SquareButton
-                          icon={<PlusIcon size="sm" />}
-                          aria-label="Προσθήκη"
-                          size="md"
-                        />
-                        <Text
-                          className="layera-typography"
-                          data-size="sm"
-                          data-weight="bold"
-                        >
-                          {title}
-                        </Text>
-                      </>,
-                      'layera-flex--justify-start'
-                    )}
-
-                    {/* ENTERPRISE CENTER SECTION - Κεντρική στήλη */}
-                    {renderHeaderSection(
-                      'center',
-                      dynamicCenterItems,
-                      <>
-                        <SquareButton
-                          icon={<SearchIcon size="md" />}
-                          aria-label="Αναζήτηση"
-                          size="md"
-                        />
-                        <SquareButton
-                          icon={<LocationIcon size="md" />}
-                          aria-label="Τοποθεσία"
-                          size="md"
-                        />
-                        <SquareButton
-                          icon={<MenuIcon size="md" />}
-                          aria-label="Μενού"
-                          size="md"
-                        />
-                      </>,
-                      'layera-flex--justify-center'
-                    )}
-
-                    {/* ENTERPRISE END SECTION - Δεξιά στήλη */}
-                    {renderHeaderSection(
-                      'end',
-                      dynamicEndItems,
-                      <>
-                        <Text
-                          className="layera-typography layera-opacity--80"
-                          data-size="xs"
-                        >
-                          {description}
-                        </Text>
-                        <SquareButton
-                          icon={<UserIcon size="md" />}
-                          aria-label="Χρήστης"
-                          size="md"
-                        />
-                      </>,
-                      'layera-flex--justify-end'
-                    )}
-                  </>
-                )}
+                {/* END SECTION - Fixed width right */}
+                <Box className="layera-flex layera-flex--align-center layera-flex--gap-1" style={{ marginLeft: "auto", flex: "0 0 auto", minWidth: "var(--layera-spacing-12)" }}>
+                  <SquareButton icon={<UserIcon size="xs" />} size="xs" aria-label="User" />
+                </Box>
               </Box>
             );
           })}
@@ -423,7 +248,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
         <Box className="layera-text-center layera-margin-top--md">
           <Button
             variant="ghost"
-            size="sm"
+            size="xs"
             icon={<SettingsIcon size="sm" />}
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
@@ -439,12 +264,12 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
             {/* Header */}
             <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
               <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
-                <LocationIcon size="sm" /> Όλες οι Μεταβλητές Headers
+                <LocationIcon size="xs" /> Όλες οι Μεταβλητές Headers
               </Text>
               <Button
                 variant="ghost"
-                size="sm"
-                icon={<CloseIcon size="sm" />}
+                size="xs"
+                icon={<CloseIcon size="xs" />}
                 onClick={() => setShowVariablesPopup(false)}
                 className="layera-opacity--70 layera-hover--opacity-100"
               >
@@ -483,7 +308,7 @@ export const createHeaderIcon = (icon: React.ReactNode, ariaLabel: string, onCli
   <SquareButton
     icon={icon}
     onClick={onClick}
-    size="md"
+    size="xs"
     aria-label={ariaLabel}
   />
 );

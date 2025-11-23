@@ -166,7 +166,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
       startPreview(colorKey, stringValue);
 
       // ✅ ENSURE ELEMENT TYPE CONTEXT: Set the correct data-layera-element-type first
-      applyColorsToApp();
+      // Χρησιμοποιούμε το useCSSVariables hook για CSS operations
 
       // ✅ REAL-TIME UPDATES: Ενημέρωση μόνο του επιλεγμένου element type για πλήρη αυτονομία
       if (elementType === 'buttons' && colorCategory === 'backgrounds') {
@@ -242,7 +242,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                   startPreview(colorKey, previewVal);
 
                   // ✅ ENSURE ELEMENT TYPE CONTEXT: Set the correct data-layera-element-type first
-                  applyColorsToApp();
+                  // Χρησιμοποιούμε το useCSSVariables hook για CSS operations
 
                   // ✅ LIVE PREVIEW: Real-time ενημέρωση μόνο του επιλεγμένου element type
                   if (elementType === 'buttons' && colorCategory === 'backgrounds') {
@@ -284,7 +284,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                   startPreview(colorKey, previewValue.hex);
 
                   // ✅ ENSURE ELEMENT TYPE CONTEXT: Set the correct data-layera-element-type first
-                  applyColorsToApp();
+                  // Χρησιμοποιούμε το useCSSVariables hook για CSS operations
 
                   // ✅ LIVE PREVIEW: Real-time ενημέρωση μόνο του επιλεγμένου element type
                   if (elementType === 'buttons' && colorCategory === 'backgrounds') {
