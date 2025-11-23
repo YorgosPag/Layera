@@ -85,12 +85,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     return value;
   });
 
-  // Optimized parse function with caching - τώρα μπορεί να χρησιμοποιηθεί safely
+  // Optimized parse function with caching - NO DEPENDENCIES για αποφυγή infinite loop
   const parseValue = useCallback((val: ColorWithAlpha | string, preserveAlpha = false): ColorWithAlpha => {
     if (typeof val === 'string') {
       // Fast path for HEX colors (most common case)
       if (val.startsWith('#') && val.length === 7) {
-        const alphaToUse = preserveAlpha ? (internalValue?.alpha ?? 1.0) : 1.0;
+        const alphaToUse = preserveAlpha ? 1.0 : 1.0; // Αφαιρέθηκε η εξάρτηση από internalValue
         return {
           hex: val,
           alpha: alphaToUse,
@@ -115,7 +115,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         }
       }
       // Fallback
-      const alphaToUse = preserveAlpha ? (internalValue?.alpha ?? 1.0) : 1.0;
+      const alphaToUse = preserveAlpha ? 1.0 : 1.0; // Αφαιρέθηκε η εξάρτηση από internalValue
       return {
         hex: 'var(--layera-colors-text-primary)',
         alpha: alphaToUse,
@@ -123,7 +123,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       };
     }
     return val;
-  }, [internalValue?.alpha]);
+  }, []); // EMPTY DEPENDENCIES ARRAY - no external dependencies
 
   // Note: throttleMs parameter preserved for future performance optimizations
   void throttleMs;
@@ -142,13 +142,51 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       return;
     }
 
-    const newValue = parseValue(value, false); // ΔΕΝ διατηρούμε alpha για να αποφύγουμε loop
+    // Direct inline parsing αντί για parseValue call για αποφυγή dependency changes
+    let newValue: ColorWithAlpha;
+    if (typeof value === 'string') {
+      if (value.startsWith('#') && value.length === 7) {
+        newValue = {
+          hex: value,
+          alpha: 1.0,
+          rgba: hexToRgba(value, 1.0)
+        };
+      } else if (value.startsWith('rgba')) {
+        const rgbaMatch = value.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+        if (rgbaMatch) {
+          const [, r, g, b, a] = rgbaMatch;
+          const hex = '#' +
+            parseInt(r).toString(16).padStart(2, '0') +
+            parseInt(g).toString(16).padStart(2, '0') +
+            parseInt(b).toString(16).padStart(2, '0');
+          newValue = {
+            hex,
+            alpha: parseFloat(a),
+            rgba: value
+          };
+        } else {
+          newValue = {
+            hex: 'var(--layera-colors-text-primary)',
+            alpha: 1.0,
+            rgba: hexToRgba('var(--layera-colors-text-primary)', 1.0)
+          };
+        }
+      } else {
+        newValue = {
+          hex: 'var(--layera-colors-text-primary)',
+          alpha: 1.0,
+          rgba: hexToRgba('var(--layera-colors-text-primary)', 1.0)
+        };
+      }
+    } else {
+      newValue = value;
+    }
 
     // Μόνο αν το HEX έχει πραγματικά αλλάξει εξωτερικά
     if (!internalValue || newValue.hex !== internalValue.hex) {
-      setInternalValue(newValue); // Simple assignment - όχι spread με conditional
+      setInternalValue(newValue);
     }
-  }, [value, isUserInteracting, recentlyInteracted, parseValue]);
+  }, [value, isUserInteracting, recentlyInteracted, internalValue?.hex]);
 
   // Global event listener για το mouseup/touchend (αν ο χρήστης αφήσει το mouse έξω από το slider)
   useEffect(() => {
@@ -180,12 +218,27 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     };
   }, [isUserInteracting]);
 
-  // ✅ ΒΕΛΤΙΩΜΕΝΟ: CSS update με throttling για performance
+  // ✅ FINAL FIX: CSS update με ref-based tracking για αποφυγή infinite loop
+  const lastCSSValueRef = useRef<string>('');
+
   useEffect(() => {
     // Αν ο χρήστης αλλάζει το slider, μην κάνεις override
     if (isUserInteracting || recentlyInteracted || !internalValue) {
       return;
     }
+
+    // Υπολόγισε το τελικό RGBA value
+    const currentHex = internalValue.hex?.startsWith('#') ? internalValue.hex : extractHexFromValue(internalValue.hex || 'var(--layera-colors-text-primary)');
+    const currentAlpha = internalValue.alpha || 1.0;
+    const rgbaValue = hexToRgba(currentHex, currentAlpha);
+
+    // SKIP αν το CSS value δεν έχει αλλάξει (prevent duplicate updates)
+    if (lastCSSValueRef.current === rgbaValue) {
+      return;
+    }
+
+    // Update το ref ΠΡΙΝ από το CSS update
+    lastCSSValueRef.current = rgbaValue;
 
     // THROTTLED CSS update για αποφυγή spam
     if (throttledCSSUpdate.current) {
@@ -193,30 +246,33 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     }
 
     throttledCSSUpdate.current = window.setTimeout(() => {
-      if (typeof document !== 'undefined' && internalValue) {
+      if (typeof document !== 'undefined') {
         const root = document.documentElement;
-        const currentHex = internalValue.hex?.startsWith('#') ? internalValue.hex : extractHexFromValue(internalValue.hex || 'var(--layera-colors-text-primary)');
-        const currentAlpha = internalValue.alpha || 1.0;
-        const rgbaValue = hexToRgba(currentHex, currentAlpha);
         root.style.setProperty(cssVariableName, rgbaValue);
       }
       throttledCSSUpdate.current = null;
     }, 16); // 60fps throttling
-  }, [internalValue?.hex, internalValue?.alpha, cssVariableName, isUserInteracting, recentlyInteracted]);
+  }, [
+    cssVariableName,
+    isUserInteracting,
+    recentlyInteracted
+  ]); // FIXED: Αφαιρέθηκαν οι internalValue properties για αποφυγή infinite loop
 
-  // Enhanced handlers με safety checks
+  // Enhanced handlers με safety checks - STABLE DEPENDENCIES
   const handleHexChange = useCallback((newHex: string) => {
     if (!newHex || !newHex.startsWith('#')) return;
 
-    const safeAlpha = internalValue?.alpha ?? 1.0; // ✅ Επαναφορά default alpha
-    const newValue = {
-      hex: newHex,
-      alpha: safeAlpha,
-      rgba: hexToRgba(newHex, safeAlpha)
-    };
-    setInternalValue(newValue);
-    onChange(newValue);
-  }, [internalValue?.alpha, onChange]);
+    setInternalValue(prevValue => {
+      const safeAlpha = prevValue?.alpha ?? 1.0;
+      const newValue = {
+        hex: newHex,
+        alpha: safeAlpha,
+        rgba: hexToRgba(newHex, safeAlpha)
+      };
+      onChange(newValue);
+      return newValue;
+    });
+  }, [onChange]); // Αφαιρέθηκε η internalValue?.alpha dependency
 
   // ✅ PERFORMANCE: Throttled CSS update για smooth slider
   const throttledCSSUpdate = useRef<number | null>(null);
@@ -226,64 +282,67 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     const newAlpha = parseFloat(e.target.value) / 100;
     if (isNaN(newAlpha)) return;
 
-    const safeHex = internalValue?.hex || 'var(--layera-colors-text-primary)';
-    const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
+    setInternalValue(prevValue => {
+      const safeHex = prevValue?.hex || 'var(--layera-colors-text-primary)';
+      const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
 
-    // ✅ ΑΜΕΣΗ CSS ΕΝΗΜΕΡΩΣΗ: Μόνο CSS update για instant preview - όχι state!
-    if (typeof document !== 'undefined') {
-      const root = document.documentElement;
-      const rgbaValue = hexToRgba(actualHex, newAlpha);
-      root.style.setProperty(cssVariableName, rgbaValue);
-    }
+      // ✅ ΑΜΕΣΗ CSS ΕΝΗΜΕΡΩΣΗ: Μόνο CSS update για instant preview - όχι state!
+      if (typeof document !== 'undefined') {
+        const root = document.documentElement;
+        const rgbaValue = hexToRgba(actualHex, newAlpha);
+        root.style.setProperty(cssVariableName, rgbaValue);
+      }
 
-    // ✅ ΕΝΗΜΕΡΩΣΗ SLIDER POSITION: Πάντα ενημερώνουμε το internalValue για το slider position
-    const newValue = {
-      hex: safeHex,
-      alpha: newAlpha,
-      rgba: hexToRgba(actualHex, newAlpha)
-    };
+      // ✅ ΕΝΗΜΕΡΩΣΗ SLIDER POSITION: Πάντα ενημερώνουμε το internalValue για το slider position
+      const newValue = {
+        hex: safeHex,
+        alpha: newAlpha,
+        rgba: hexToRgba(actualHex, newAlpha)
+      };
 
-    setInternalValue(newValue);
+      // ✅ LIVE PREVIEW: Πάντα καλούμε onPreview για real-time αλλαγές
+      if (onPreview) {
+        onPreview(newValue);
+      }
 
-    // ✅ LIVE PREVIEW: Πάντα καλούμε onPreview για real-time αλλαγές
-    if (onPreview) {
-      onPreview(newValue);
-    }
+      // ✅ PERFORMANCE: onChange μόνο στο τέλος (mouseup) - όχι κατά τη κίνηση
+      if (!isUserInteracting) {
+        // Κανονικό onChange μόνο όταν δεν αλλάζει ο χρήστης
+        onChange(newValue);
+      }
 
-    // ✅ PERFORMANCE: onChange μόνο στο τέλος (mouseup) - όχι κατά τη κίνηση
-    if (isUserInteracting) {
-      // Κατά τη διάρκεια της κίνησης, μόνο CSS update, slider position και preview
-      return;
-    }
-
-    // Κανονικό onChange μόνο όταν δεν αλλάζει ο χρήστης
-    onChange(newValue);
-  }, [internalValue?.hex, onPreview, onChange, cssVariableName, isUserInteracting]);
+      return newValue;
+    });
+  }, [onPreview, onChange, cssVariableName, isUserInteracting]); // Αφαιρέθηκε η internalValue?.hex dependency
 
   // Handler για το mousedown event του slider
   const handleSliderMouseDown = useCallback(() => {
     setIsUserInteracting(true);
   }, []);
 
-  // Handler για το mouseup event του slider
+  // Handler για το mouseup event του slider - STABLE DEPENDENCIES
   const handleSliderMouseUp = useCallback(() => {
     // ✅ ΒΕΛΤΙΩΣΗ: Τελική ενημέρωση state με την τρέχουσα alpha από το slider
-    if (alphaSliderRef.current && internalValue) {
+    if (alphaSliderRef.current) {
       const finalAlpha = parseFloat(alphaSliderRef.current.value) / 100;
-      const safeHex = internalValue.hex || 'var(--layera-colors-text-primary)';
-      const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
 
-      const finalValue = {
-        hex: safeHex,
-        alpha: finalAlpha,
-        rgba: hexToRgba(actualHex, finalAlpha)
-      };
+      setInternalValue(prevValue => {
+        const safeHex = prevValue?.hex || 'var(--layera-colors-text-primary)';
+        const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
 
-      setInternalValue(finalValue);
-      if (onPreview) {
-        onPreview(finalValue);
-      }
-      onChange(finalValue);
+        const finalValue = {
+          hex: safeHex,
+          alpha: finalAlpha,
+          rgba: hexToRgba(actualHex, finalAlpha)
+        };
+
+        if (onPreview) {
+          onPreview(finalValue);
+        }
+        onChange(finalValue);
+
+        return finalValue;
+      });
     }
 
     setIsUserInteracting(false);
@@ -293,7 +352,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     setTimeout(() => {
       setRecentlyInteracted(false);
     }, 500); // Μεγαλύτερη καθυστέρηση για σιγουριά
-  }, [internalValue, onPreview, onChange]);
+  }, [onPreview, onChange]); // Αφαιρέθηκε η internalValue dependency
 
   // Lightweight input handler με memoization
   const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
