@@ -3014,6 +3014,37 @@ html[data-layera-modal-info="active"][data-layera-element-type="modals"] .layera
   background-color: var(--layera-live-modal-info, var(--layera-color-info-main)) !important;
 }
 
+/* 🎯 CARDS LIVE PREVIEW - HEADERS CONTEXT (No element-type requirement) */
+/* Card Primary Live Background - For headers context */
+html[data-layera-card-primary="active"] .layera-card[data-variant="primary"] {
+  background-color: var(--layera-live-card-primary, var(--layera-color-primary-main)) !important;
+}
+
+/* Card Secondary Live Background - For headers context */
+html[data-layera-card-secondary="active"] .layera-card[data-variant="secondary"] {
+  background-color: var(--layera-live-card-secondary, var(--layera-color-secondary-main)) !important;
+}
+
+/* Card Success Live Background - For headers context */
+html[data-layera-card-success="active"] .layera-card[data-variant="success"] {
+  background-color: var(--layera-live-card-success, var(--layera-color-success-main)) !important;
+}
+
+/* Card Warning Live Background - For headers context */
+html[data-layera-card-warning="active"] .layera-card[data-variant="warning"] {
+  background-color: var(--layera-live-card-warning, var(--layera-color-warning-main)) !important;
+}
+
+/* Card Danger Live Background - For headers context */
+html[data-layera-card-danger="active"] .layera-card[data-variant="error"] {
+  background-color: var(--layera-live-card-danger, var(--layera-color-error-main)) !important;
+}
+
+/* Card Info Live Background - For headers context */
+html[data-layera-card-info="active"] .layera-card[data-variant="info"] {
+  background-color: var(--layera-live-card-info, var(--layera-color-info-main)) !important;
+}
+
 /* 🎯 BUTTONS LIVE PREVIEW DYNAMIC COLORS - USING CSS VARIABLES */
 /* Button Primary Live Colors */
 html[data-layera-button-primary="active"] .layera-button[data-variant="primary"] {

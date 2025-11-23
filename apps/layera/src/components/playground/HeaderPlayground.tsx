@@ -95,7 +95,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   // Helper to get background color
   const getBackgroundColor = (colorValue: string) => {
     if (colorCategory === 'backgrounds') return colorValue;
-    return 'var(--layera-colors-surface-light)'; // white background for text and borders
+    return 'var(--layera-color-surface-primary)'; // white background for text and borders
   };
 
   // Helper to get border style
@@ -173,6 +173,10 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                   marginLeft: "var(--layera-spacing-2)", // Αριστερά με tokens
                   marginRight: "var(--layera-spacing-2)", // Δεξιά με tokens
                   marginTop: "var(--layera-spacing-0)", // Μηδέν πάνω με tokens
+                  backgroundColor: getBackgroundColor(colorValue), // ✅ ΠΡΟΣΘΗΚΗ: Χρωματισμός φόντου
+                  color: getTextColor(colorValue), // ✅ ΠΡΟΣΘΗΚΗ: Χρωματισμός κειμένου
+                  border: getBorderStyle(colorValue), // ✅ ΠΡΟΣΘΗΚΗ: Χρωματισμός border
+                  borderRadius: getRadiusToken(headerRadius), // ✅ ΠΡΟΣΘΗΚΗ: Border radius
                   ...(key === 'primary' ? {
                     display: "grid",
                     gridTemplateColumns: "var(--layera-grid-template-columns--header)",
@@ -193,10 +197,6 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                     marginBottom: "0"
                   })
                 }}
-                data-dynamic-bg={getBackgroundColor(colorValue)}
-                data-dynamic-text={getTextColor(colorValue)}
-                data-dynamic-border={getBorderStyle(colorValue)}
-                data-dynamic-radius={getRadiusToken(headerRadius)}
               >
                 {key === 'primary' ? (
                   // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Primary Header με 3 στήλες

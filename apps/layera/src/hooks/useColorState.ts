@@ -462,7 +462,7 @@ const COLOR_BUTTON_SHAPES: readonly ColorButtonShape[] = [
 ] as const;
 
 const ELEMENT_TYPES: readonly ElementType[] = [
-  'buttons', 'cards', 'modals', 'inputs', 'layout', 'tables'
+  'buttons', 'cards', 'modals', 'inputs', 'layout', 'tables', 'headers'
 ] as const;
 
 /**
