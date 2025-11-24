@@ -24,7 +24,8 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
 
   // Geo-Canvas Mode Props
   onAddContentClick,
-  onTestPanelClick
+  onTestPanelClick,
+  onFullAppPreviewClick
 }) => {
 
   // Geo-Canvas Mode Rendering
@@ -46,6 +47,13 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
             onClick={onTestPanelClick}
             aria-label="Πάνελ δοκιμών"
             tooltip="Άνοιγμα πάνελ δοκιμών"
+            size="md"
+          />
+          <SquareButton
+            icon={<MenuIcon size="md" />}
+            onClick={onFullAppPreviewClick}
+            aria-label="Full App Preview"
+            tooltip="Προεπισκόπηση πλήρους εφαρμογής"
             size="md"
           />
         </Box>

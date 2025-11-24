@@ -36,13 +36,10 @@ export const hexToRgba = (hex: string, alpha: number): string => {
   return `rgba(${r}, ${g}, ${b}, ${clampedAlpha})`;
 };
 
-// Import υπάρχουσων HEX τιμών από το token system
+// Import υπάρχουσων HEX τιμών από το νέο token system
 import {
-  SEMANTIC_COLORS,
-  SURFACE_COLORS,
-  TEXT_COLORS,
-  PRIMARY_COLORS,
-  SECONDARY_COLORS
+  LAYERA_CORE_COLORS,
+  getLayeraColor
 } from '../../../../packages/tokens/src/core/colors';
 
 /**
@@ -51,22 +48,18 @@ import {
  * @returns Clean hex color string - χρησιμοποιεί ΜΟΝΟ υπάρχουσες token τιμές
  */
 export const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return TEXT_COLORS.primary;
+  if (!colorValue) return getLayeraColor('primary');
   if (colorValue.startsWith('#')) return colorValue;
 
-  // Χρησιμοποίηση υπαρχόντων token HEX τιμών
-  if (colorValue.includes('surface-primary')) return SURFACE_COLORS.primary;
-  if (colorValue.includes('surface-secondary')) return SURFACE_COLORS.secondary;
-  if (colorValue.includes('text-primary')) return TEXT_COLORS.primary;
-  if (colorValue.includes('text-secondary')) return TEXT_COLORS.secondary;
-  if (colorValue.includes('semantic-success')) return SEMANTIC_COLORS.success.main;
-  if (colorValue.includes('semantic-warning')) return SEMANTIC_COLORS.warning.main;
-  if (colorValue.includes('semantic-error')) return SEMANTIC_COLORS.error.main;
-  if (colorValue.includes('semantic-info')) return SEMANTIC_COLORS.info.main;
-  if (colorValue.includes('color-primary')) return PRIMARY_COLORS[500];
-  if (colorValue.includes('color-secondary')) return SECONDARY_COLORS[500];
+  // Χρησιμοποίηση νέου token system
+  if (colorValue.includes('primary')) return getLayeraColor('primary');
+  if (colorValue.includes('secondary')) return getLayeraColor('secondary');
+  if (colorValue.includes('success')) return getLayeraColor('success');
+  if (colorValue.includes('warning')) return getLayeraColor('warning');
+  if (colorValue.includes('danger')) return getLayeraColor('danger');
+  if (colorValue.includes('info')) return getLayeraColor('info');
 
   // CSS variable fallback with real HEX extraction
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : TEXT_COLORS.primary;
+  return match ? match[1] : getLayeraColor('primary');
 };

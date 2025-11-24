@@ -1,0 +1,71 @@
+{
+  "name": "@layera/tokens",
+  "version": "2.0.0",
+  "description": "Dynamic Token System για live theming & Design Control Panel integration",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./css": {
+      "import": "./dist/tokens.css"
+    },
+    "./dynamic": {
+      "types": "./dist/dynamic/index.d.ts",
+      "import": "./dist/dynamic/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts && npm run build:css",
+    "build:css": "node scripts/build-css.js",
+    "dev": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0"
+  },
+  "keywords": [
+    "tokens",
+    "design-system",
+    "theming",
+    "dynamic",
+    "live-preview",
+    "layera",
+    "enterprise",
+    "css-variables",
+    "control-panel"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.0.0",
+    "@eslint/js": "^9.0.0",
+    "globals": "^15.0.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.0",
+    "eslint-plugin-react": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layera/layera.git",
+    "directory": "packages/tokens"
+  }
+}

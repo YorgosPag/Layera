@@ -34,6 +34,7 @@ export interface LayeraHeaderProps {
   // Geo-Canvas Mode Props (για backward compatibility)
   onAddContentClick?: () => void;
   onTestPanelClick?: () => void;
+  onFullAppPreviewClick?: () => void;
 }
 
 

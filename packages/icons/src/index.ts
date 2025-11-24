@@ -1,7 +1,7 @@
 // Layera Icons - Main Export File
 // Enterprise pattern: Centralized exports για όλο το icon system
 
-import '@layera/tokens/css';
+// CSS tokens are loaded via main.tsx - no need for module import
 
 // Core Components
 export { Icon } from './Icon';
