@@ -3014,6 +3014,67 @@ html[data-layera-modal-info="active"][data-layera-element-type="modals"] .layera
   background-color: var(--layera-live-modal-info, var(--layera-color-info-main)) !important;
 }
 
+/* 🎯 HEADERS LIVE PREVIEW DYNAMIC BACKGROUNDS - ULTRA SPECIFIC TARGETING */
+/* Header Primary Live Background - ONLY when data-layera-element-type="headers" */
+html[data-layera-header-primary="active"][data-layera-element-type="headers"] [data-header-key="primary"],
+html[data-layera-header-primary="active"][data-layera-element-type="headers"] header[data-header-key="primary"],
+html[data-layera-header-primary="active"][data-layera-element-type="headers"] h1[data-header-key="primary"],
+html[data-layera-header-primary="active"][data-layera-element-type="headers"] h2[data-header-key="primary"],
+html[data-layera-header-primary="active"][data-layera-element-type="headers"] h3[data-header-key="primary"],
+html[data-layera-header-primary="active"][data-layera-element-type="headers"] h4[data-header-key="primary"] {
+  background-color: var(--layera-live-header-primary, var(--layera-color-primary-main)) !important;
+}
+
+/* Header Secondary Live Background - ONLY when data-layera-element-type="headers" */
+html[data-layera-header-secondary="active"][data-layera-element-type="headers"] [data-header-key="secondary"],
+html[data-layera-header-secondary="active"][data-layera-element-type="headers"] header[data-header-key="secondary"],
+html[data-layera-header-secondary="active"][data-layera-element-type="headers"] h1[data-header-key="secondary"],
+html[data-layera-header-secondary="active"][data-layera-element-type="headers"] h2[data-header-key="secondary"],
+html[data-layera-header-secondary="active"][data-layera-element-type="headers"] h3[data-header-key="secondary"],
+html[data-layera-header-secondary="active"][data-layera-element-type="headers"] h4[data-header-key="secondary"] {
+  background-color: var(--layera-live-header-secondary, var(--layera-color-secondary-main)) !important;
+}
+
+/* Header Success Live Background - ONLY when data-layera-element-type="headers" */
+html[data-layera-header-success="active"][data-layera-element-type="headers"] [data-header-key="success"],
+html[data-layera-header-success="active"][data-layera-element-type="headers"] header[data-header-key="success"],
+html[data-layera-header-success="active"][data-layera-element-type="headers"] h1[data-header-key="success"],
+html[data-layera-header-success="active"][data-layera-element-type="headers"] h2[data-header-key="success"],
+html[data-layera-header-success="active"][data-layera-element-type="headers"] h3[data-header-key="success"],
+html[data-layera-header-success="active"][data-layera-element-type="headers"] h4[data-header-key="success"] {
+  background-color: var(--layera-live-header-success, var(--layera-color-success-main)) !important;
+}
+
+/* Header Warning Live Background - ONLY when data-layera-element-type="headers" */
+html[data-layera-header-warning="active"][data-layera-element-type="headers"] [data-header-key="warning"],
+html[data-layera-header-warning="active"][data-layera-element-type="headers"] header[data-header-key="warning"],
+html[data-layera-header-warning="active"][data-layera-element-type="headers"] h1[data-header-key="warning"],
+html[data-layera-header-warning="active"][data-layera-element-type="headers"] h2[data-header-key="warning"],
+html[data-layera-header-warning="active"][data-layera-element-type="headers"] h3[data-header-key="warning"],
+html[data-layera-header-warning="active"][data-layera-element-type="headers"] h4[data-header-key="warning"] {
+  background-color: var(--layera-live-header-warning, var(--layera-color-warning-main)) !important;
+}
+
+/* Header Danger Live Background - ONLY when data-layera-element-type="headers" */
+html[data-layera-header-danger="active"][data-layera-element-type="headers"] [data-header-key="danger"],
+html[data-layera-header-danger="active"][data-layera-element-type="headers"] header[data-header-key="danger"],
+html[data-layera-header-danger="active"][data-layera-element-type="headers"] h1[data-header-key="danger"],
+html[data-layera-header-danger="active"][data-layera-element-type="headers"] h2[data-header-key="danger"],
+html[data-layera-header-danger="active"][data-layera-element-type="headers"] h3[data-header-key="danger"],
+html[data-layera-header-danger="active"][data-layera-element-type="headers"] h4[data-header-key="danger"] {
+  background-color: var(--layera-live-header-danger, var(--layera-color-danger-main)) !important;
+}
+
+/* Header Info Live Background - ONLY when data-layera-element-type="headers" */
+html[data-layera-header-info="active"][data-layera-element-type="headers"] [data-header-key="info"],
+html[data-layera-header-info="active"][data-layera-element-type="headers"] header[data-header-key="info"],
+html[data-layera-header-info="active"][data-layera-element-type="headers"] h1[data-header-key="info"],
+html[data-layera-header-info="active"][data-layera-element-type="headers"] h2[data-header-key="info"],
+html[data-layera-header-info="active"][data-layera-element-type="headers"] h3[data-header-key="info"],
+html[data-layera-header-info="active"][data-layera-element-type="headers"] h4[data-header-key="info"] {
+  background-color: var(--layera-live-header-info, var(--layera-color-info-main)) !important;
+}
+
 /* 🎯 CARDS LIVE PREVIEW - HEADERS CONTEXT (No element-type requirement) */
 /* Card Primary Live Background - For headers context */
 html[data-layera-card-primary="active"] .layera-card[data-variant="primary"] {

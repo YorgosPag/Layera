@@ -331,6 +331,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
 
   /**
    * Ξεκινάει live preview για ένα συγκεκριμένο χρώμα
+   * CRITICAL FIX: Async state update για αποφυγή "Cannot update component while rendering"
    */
   const startPreview = useCallback((key: string, value: string, category?: string, elementType?: string) => {
     // Clear previous debounce timer
@@ -338,12 +339,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       clearTimeout(debounceTimerRef.current);
     }
 
-    // Update preview state
-    setPreviewState(prev => ({
-      previewColors: { ...prev.previewColors, [key]: value },
-      isPreviewActive: true,
-      previewKey: key
-    }));
+    // ✅ CRITICAL FIX: Async state update μέσω setTimeout για αποφυγή setState during render
+    setTimeout(() => {
+      setPreviewState(prev => ({
+        previewColors: { ...prev.previewColors, [key]: value },
+        isPreviewActive: true,
+        previewKey: key
+      }));
+    }, 0);
 
     // Apply live preview to DOM με throttling για καλύτερη performance
     throttledDOMUpdate(key, value, category, elementType);

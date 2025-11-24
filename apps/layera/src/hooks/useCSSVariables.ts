@@ -199,7 +199,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
-   * Εφαρμόζει συγκεκριμένο χρώμα σε header element για real-time preview
+   * ✅ ARXES COMPLIANT: Header color theming μέσω data attributes + CSS variables για live preview
    * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificHeaderColor = (colorKey: string, colorValue: string) => {
@@ -214,9 +214,15 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
       root.removeAttribute(`data-layera-${type}-${normalizedKey}`);
     });
 
-    // ✅ ARXES COMPLIANT: Data attribute για header state και value
+    // ✅ ARXES COMPLIANT: Data attribute για header state
     root.setAttribute(`data-layera-header-${normalizedKey}`, 'active');
-    root.setAttribute(`data-layera-header-${normalizedKey}-value`, colorValue);
+
+    // ✅ CRITICAL FIX: CSS custom property για live preview
+    root.style.setProperty(`--layera-live-header-${normalizedKey}`, colorValue);
+
+    // 🎯 ΓΙΩΡΓΟΣ FIX: Όταν είμαστε στα headers, τα header colors πρέπει να επηρεάζουν ΚΑΙ τις κάρτες!
+    // Συνδέουμε το header color με το card color για unified theming
+    root.style.setProperty(`--layera-live-card-${normalizedKey}`, colorValue);
   };
 
 

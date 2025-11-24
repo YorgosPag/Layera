@@ -150,9 +150,11 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                 key={key}
                 data-header-key={key}
                 className="layera-padding-y--1 layera-padding-x--2 layera-margin-x--2 layera-margin-top--0 layera-flex layera-flex--align-center layera-flex--justify-space-between layera-margin-bottom--0 layera-border-radius--md layera-bg--surface-primary layera-position--relative layera-width--full"
-                data-background-color={getBackgroundColor(colorValue, colorCategory as ColorCategory)}
-                data-text-color={getTextColor(colorValue, colorCategory as ColorCategory)}
-                data-border-style={getBorderStyle(colorValue, colorCategory as ColorCategory, borderWidth.toString())}
+                style={{
+                  backgroundColor: colorCategory === 'backgrounds' ? `var(--layera-live-header-${key}, ${colorValue})` : getBackgroundColor(colorValue, colorCategory as ColorCategory),
+                  color: getTextColor(colorValue, colorCategory as ColorCategory),
+                  border: getBorderStyle(colorValue, colorCategory as ColorCategory, borderWidth.toString())
+                }}
                 data-border-radius={getRadiusToken(headerRadius)}
               >
                 {/* ENTERPRISE: 3-Zone Header Structure */}

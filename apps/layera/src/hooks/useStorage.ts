@@ -130,10 +130,10 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
     }
   };
 
-  // Auto-load on mount
+  // Auto-load on mount - FIXED: Empty dependencies για αποφυγή infinite loop
   useEffect(() => {
     loadFromStorage();
-  }, [loadFromStorage]);
+  }, []); // CRITICAL FIX: Empty dependency array
 
   const actions: StorageActions = {
     loadFromStorage,

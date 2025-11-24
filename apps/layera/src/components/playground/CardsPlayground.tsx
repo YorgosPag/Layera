@@ -108,12 +108,12 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
         </p>
 
         <Box className="global-display-flex global-justifyContent-center global-alignItems-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg">
-          {cardConfigs.map(({ key, title, variant }) => (
+          {cardConfigs.map(({ key, title, variant, colorValue }) => (
             <Box
               key={key}
               className="layera-card-uniform layera-card layera-card-text-vertical-middle"
               data-variant={variant}
-              data-dynamic-color={cardConfigs.find(config => config.key === key)?.colorValue}
+              data-live-color={colorCategory === 'backgrounds' ? key : undefined}
             >
               <Text
                 className="layera-typography"
