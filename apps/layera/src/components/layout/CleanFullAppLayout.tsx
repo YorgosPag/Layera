@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Flex } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
+import { LayoutThemesSection } from './LayoutThemesSection';
 
 /**
  * 🎯 100% ARXES COMPLIANT FullAppLayout
@@ -214,9 +215,9 @@ export const CleanFullAppLayout: React.FC = () => {
         {/* Main Content Area */}
         <Box as="main" className="layera-main-content layera-main-scrollable">
           <Box className="layera-main-content-inner">
-          <Heading data-size="lg" data-weight="semibold">
-            📋 Κάρτες με Tabs (6 χρώματα)
-          </Heading>
+
+          {/* Layout Themes Section - 100% ARXES Compliant Component */}
+          <LayoutThemesSection />
 
           {/* Tab Navigation */}
           <Flex className="layera-tabs">

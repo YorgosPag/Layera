@@ -32,5 +32,33 @@ export const LAYERA_LAYOUT_UTILITY_CLASSES = {
 
   'layera-layout-margin-md': {
     margin: 'var(--layera-space-4)'
+  },
+
+  // Text alignment utilities - ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ
+  'layera-center-text': {
+    textAlign: 'center'
+  },
+
+  // Flexbox center utilities - ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ
+  'layera-center-flex': {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  'layera-center-flex-column': {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  // Layout center utilities - ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ
+  'layera-center-content': {
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 } as const;
