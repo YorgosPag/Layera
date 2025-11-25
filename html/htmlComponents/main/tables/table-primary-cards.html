@@ -1,0 +1,84 @@
+<!-- Primary Tables Content -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: nowrap; align-items: center;">
+    <input type="search" placeholder="🔍 Search..." style="padding: 0.4rem; border: 1px solid #4A90E2; border-radius: 4px; width: 150px; flex-shrink: 1; font-size: 0.9rem;">
+    <select style="padding: 0.4rem; border: 1px solid #4A90E2; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+        <option>📊 All</option>
+        <option>✅ Active</option>
+        <option>⏳ Pending</option>
+        <option>❌ Inactive</option>
+    </select>
+    <input type="date" style="padding: 0.4rem; border: 1px solid #4A90E2; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+    <button class="btn primary-btn" style="padding: 0.4rem 0.6rem; font-size: 0.9rem; height: auto; width: auto; flex-shrink: 0;">➕ Add User</button>
+</div>
+
+<table class="simple-table" id="mainTable">
+    <thead>
+        <tr style="background: #4A90E2;">
+            <th><input type="checkbox"> Όνομα</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Γιάννης Παπαδόπουλος</td>
+            <td style="padding: 0.3rem 0.5rem;">yannis@example.com</td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option selected>✅ Active</option>
+                    <option>⏳ Pending</option>
+                    <option>❌ Inactive</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;">15/01/2024</td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <div style="display: flex; gap: 0.25rem; align-items: center;">
+                    <button class="btn primary-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem;">✏️ Edit</button>
+                    <button class="btn" style="background: #dc3545; color: white; padding: 0.2rem 0.4rem; font-size: 0.8rem;">🗑️</button>
+                </div>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Μαρία Δημητρίου</td>
+            <td style="padding: 0.3rem 0.5rem;">maria@example.com</td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option>✅ Active</option>
+                    <option selected>⏳ Pending</option>
+                    <option>❌ Inactive</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;">20/01/2024</td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <div style="display: flex; gap: 0.25rem; align-items: center;">
+                    <button class="btn primary-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem;">✏️ Edit</button>
+                    <button class="btn" style="background: #dc3545; color: white; padding: 0.2rem 0.4rem; font-size: 0.8rem;">🗑️</button>
+                </div>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Κώστας Αντωνίου</td>
+            <td style="padding: 0.3rem 0.5rem;">kostas@example.com</td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option>✅ Active</option>
+                    <option>⏳ Pending</option>
+                    <option selected>❌ Inactive</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;">10/01/2024</td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <div style="display: flex; gap: 0.25rem; align-items: center;">
+                    <button class="btn primary-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem;">✏️ Edit</button>
+                    <button class="btn" style="background: #dc3545; color: white; padding: 0.2rem 0.4rem; font-size: 0.8rem;">🗑️</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 1rem; text-align: center; color: #666; font-size: 0.9rem;">
+    📊 Showing 3 of 127 users • Page 1 of 43
+</div>

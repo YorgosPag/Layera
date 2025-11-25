@@ -1,0 +1,96 @@
+<script>
+    // 🌈 6-Color System Functionality
+
+    let currentTarget = 'all';
+
+    function setTargetComponent(target) {
+        currentTarget = target;
+        document.querySelectorAll('.target-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.background = 'transparent';
+            btn.style.borderColor = '#666';
+            btn.style.color = '#ccc';
+        });
+        const activeBtn = document.querySelector('[data-target="' + target + '"]');
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+            activeBtn.style.background = '#4A90E2';
+            activeBtn.style.borderColor = '#4A90E2';
+            activeBtn.style.color = 'white';
+        }
+    }
+
+    function updateAdvancedColor(colorType, newColor) {
+        console.log('Updating ' + colorType + ' to ' + newColor);
+        const targetSelectors = getTargetSelectors(currentTarget, colorType);
+        targetSelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                applyColorToElement(el, colorType, newColor, currentTarget);
+            });
+        });
+    }
+
+    function getTargetSelectors(target, colorType) {
+        const selectors = [];
+        if (target === 'all' || target === 'cards') {
+            selectors.push('.card-item');
+        }
+        if (target === 'all' || target === 'buttons') {
+            selectors.push('.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn');
+        }
+        if (target === 'all' || target === 'header') {
+            selectors.push('.app-header');
+        }
+        return selectors;
+    }
+
+    function applyColorToElement(element, colorType, color, target) {
+        if (element.classList.contains('card-item')) {
+            element.style.borderColor = color;
+            element.style.backgroundColor = color + '15';
+        }
+        if (element.classList.contains('btn')) {
+            element.style.backgroundColor = color;
+            element.style.borderColor = color;
+            element.style.color = '#ffffff';
+        }
+        if (element.classList.contains('app-header')) {
+            element.style.background = color;
+        }
+    }
+
+    function setup6ColorSystem() {
+        document.querySelectorAll('[data-color-type]').forEach(input => {
+            input.addEventListener('input', function() {
+                const colorType = this.getAttribute('data-color-type');
+                const newColor = this.value;
+                updateAdvancedColor(colorType, newColor);
+                const textInput = document.querySelector('[data-color-input="' + colorType + '"]');
+                if (textInput) textInput.value = newColor;
+            });
+        });
+
+        document.querySelectorAll('[data-color-input]').forEach(input => {
+            input.addEventListener('input', function() {
+                const colorType = this.getAttribute('data-color-input');
+                const newColor = this.value;
+                updateAdvancedColor(colorType, newColor);
+                const colorPicker = document.querySelector('[data-color-type="' + colorType + '"]');
+                if (colorPicker) colorPicker.value = newColor;
+            });
+        });
+
+        document.querySelectorAll('.target-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                setTargetComponent(target);
+            });
+        });
+    }
+
+    // Make functions global
+    window.updateAdvancedColor = updateAdvancedColor;
+    window.setTargetComponent = setTargetComponent;
+    window.setup6ColorSystem = setup6ColorSystem;
+</script>

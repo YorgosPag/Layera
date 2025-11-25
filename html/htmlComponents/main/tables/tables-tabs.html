@@ -1,0 +1,210 @@
+<style>
+    /* Tables Section Styles */
+    .tables-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        overflow-x: auto;
+    }
+
+    .section-title {
+        color: #2c3e50;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .tabs-container {
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
+
+    .tabs-nav {
+        display: flex;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f8f9fa;
+    }
+
+    .tab-button {
+        padding: 0.75rem 1rem;
+        background: transparent;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        white-space: nowrap;
+        flex: 1;
+        min-width: 120px;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+    .tab-button:hover {
+        background: rgba(74,144,226,0.1);
+        color: #4A90E2;
+    }
+
+    .tab-button.active-tab {
+        background: rgba(74,144,226,0.1);
+        color: #4A90E2;
+        border-bottom-color: #4A90E2;
+    }
+
+    .tab-button.tab-primary.active-tab { border-bottom-color: #4A90E2; }
+    .tab-button.tab-secondary.active-tab { border-bottom-color: #9013FE; }
+    .tab-button.tab-success.active-tab { border-bottom-color: #4CAF50; }
+    .tab-button.tab-warning.active-tab { border-bottom-color: #FF9800; }
+    .tab-button.tab-danger.active-tab { border-bottom-color: #F44336; }
+    .tab-button.tab-info.active-tab { border-bottom-color: #2196F3; }
+
+    .tab-content {
+        padding: 1rem;
+        background: white;
+    }
+
+    .tab-pane {
+        display: none;
+    }
+
+    .tab-pane.active-pane {
+        display: block;
+    }
+
+    .simple-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .simple-table th,
+    .simple-table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .simple-table th {
+        color: white;
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    .simple-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .simple-table tbody tr:hover {
+        background: rgba(0,0,0,0.05);
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+        margin: 0.2rem;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .primary-btn { background: #4A90E2; color: white; }
+    .primary-btn:hover { background: #357ABD; }
+
+    .secondary-btn { background: #9013FE; color: white; }
+    .secondary-btn:hover { background: #7B1FA2; }
+
+    .success-btn { background: #4CAF50; color: white; }
+    .success-btn:hover { background: #45A049; }
+
+    .warning-btn { background: #FF9800; color: white; }
+    .warning-btn:hover { background: #F57C00; }
+
+    .danger-btn { background: #F44336; color: white; }
+    .danger-btn:hover { background: #D32F2F; }
+
+    .info-btn { background: #2196F3; color: white; }
+    .info-btn:hover { background: #1976D2; }
+
+    .table-actions-container {
+        margin-bottom: 1rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .table-actions-container input,
+    .table-actions-container select {
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        min-width: 150px;
+    }
+</style>
+
+<div class="tables-section">
+    <h3 class="section-title">📊 Tables με Tabs (6 χρώματα)</h3>
+
+    <div class="tabs-container">
+        <div class="tabs-nav">
+            <button class="tab-button tab-primary active-tab" onclick="switchTableTab('primary', this)">📋 Primary Tables</button>
+            <button class="tab-button tab-secondary" onclick="switchTableTab('secondary', this)">🗂️ Secondary Tables</button>
+            <button class="tab-button tab-success" onclick="switchTableTab('success', this)">✅ Success Tables</button>
+            <button class="tab-button tab-warning" onclick="switchTableTab('warning', this)">⚠️ Warning Tables</button>
+            <button class="tab-button tab-danger" onclick="switchTableTab('danger', this)">🚨 Danger Tables</button>
+            <button class="tab-button tab-info" onclick="switchTableTab('info', this)">ℹ️ Info Tables</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Primary Tables Tab -->
+            <div class="tab-pane active-pane" id="tables-primary">
+                <div id="table-primary-content-container"></div>
+            </div>
+
+            <!-- Secondary Tables Tab -->
+            <div class="tab-pane" id="tables-secondary">
+                <div id="table-secondary-content-container"></div>
+            </div>
+
+            <!-- Success Tables Tab -->
+            <div class="tab-pane" id="tables-success">
+                <div id="table-success-content-container"></div>
+            </div>
+
+            <!-- Warning Tables Tab -->
+            <div class="tab-pane" id="tables-warning">
+                <div id="table-warning-content-container"></div>
+            </div>
+
+            <!-- Danger Tables Tab -->
+            <div class="tab-pane" id="tables-danger">
+                <div id="table-danger-content-container"></div>
+            </div>
+
+            <!-- Info Tables Tab -->
+            <div class="tab-pane" id="tables-info">
+                <div id="table-info-content-container"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<script>
+    // 📝 Typography Functionality
+
+    function updateAdvancedTypography(property, value) {
+        const targetElements = getTypographyTargets(currentTarget);
+
+        targetElements.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                switch(property) {
+                    case 'font-family':
+                        el.style.fontFamily = value;
+                        break;
+                    case 'font-size':
+                        el.style.fontSize = value + 'px';
+                        break;
+                    case 'font-weight':
+                        el.style.fontWeight = value;
+                        break;
+                    case 'line-height':
+                        el.style.lineHeight = value;
+                        break;
+                    case 'text-color':
+                        el.style.color = value;
+                        break;
+                    case 'header-size':
+                        if (el.tagName && el.tagName.match(/^H[1-6]$/)) {
+                            el.style.fontSize = value + 'px';
+                        }
+                        break;
+                }
+            });
+        });
+
+        // Update display value
+        const displayElement = document.querySelector('[data-display="' + property + '"]');
+        if (displayElement) {
+            if (property === 'font-size' || property === 'header-size') {
+                displayElement.textContent = value + 'px';
+            } else if (property === 'line-height') {
+                displayElement.textContent = value;
+            } else {
+                displayElement.textContent = value;
+            }
+        }
+    }
+
+    function getTypographyTargets(target) {
+        const targets = [];
+
+        switch(target) {
+            case 'all':
+                targets.push(
+                    'body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div',
+                    '.card-item', '.card-item h3', '.card-item p', '.card-item span',
+                    '.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn',
+                    '.modal-item', '.modal-item h3', '.modal-item p',
+                    '.app-header', '.app-header h1'
+                );
+                break;
+            case 'cards':
+                targets.push(
+                    '.card-item', '.card-item h3', '.card-item p', '.card-item span'
+                );
+                break;
+            case 'buttons':
+                targets.push(
+                    '.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn'
+                );
+                break;
+            case 'header':
+                targets.push(
+                    '.app-header', '.app-header h1', '.app-header span', '.app-header p'
+                );
+                break;
+            default:
+                targets.push('body');
+        }
+
+        return targets;
+    }
+
+    function setupTypographyControls() {
+        document.querySelectorAll('[data-control]').forEach(control => {
+            const property = control.getAttribute('data-control');
+
+            // Typography Properties
+            const typographyProps = ['font-family', 'font-size', 'font-weight', 'line-height', 'text-color', 'header-size'];
+            if (typographyProps.includes(property)) {
+                control.addEventListener('input', function() {
+                    updateAdvancedTypography(property, this.value);
+                });
+                control.addEventListener('change', function() {
+                    updateAdvancedTypography(property, this.value);
+                });
+            }
+        });
+
+        // Text color input sync
+        document.querySelectorAll('[data-control-input]').forEach(input => {
+            input.addEventListener('input', function() {
+                const property = this.getAttribute('data-control-input');
+                if (property === 'text-color') {
+                    updateAdvancedTypography('text-color', this.value);
+                    const colorPicker = document.querySelector('[data-control="text-color"]');
+                    if (colorPicker) colorPicker.value = this.value;
+                }
+            });
+        });
+    }
+
+    // Make functions global
+    window.updateAdvancedTypography = updateAdvancedTypography;
+    window.setupTypographyControls = setupTypographyControls;
+</script>

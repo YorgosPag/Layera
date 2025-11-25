@@ -1,0 +1,156 @@
+<script>
+    // 🚀 App Core Functions
+
+    // Συνάρτηση για φόρτωση HTML component
+    async function loadComponent(url, containerId) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const html = await response.text();
+            document.getElementById(containerId).innerHTML = html;
+        } catch (error) {
+            console.error(`Error loading ${url}:`, error);
+            document.getElementById(containerId).innerHTML = `<div style="color: red;">Error loading ${url}</div>`;
+        }
+    }
+
+    // Φόρτωση των right sidebar components
+    async function loadRightSidebarComponents() {
+        try {
+            // Φορτώνουμε το 6-Color System
+            await loadComponent('sidebar/right-sidebar/6-color-system.html', 'color-system-container');
+            console.log('✅ 6-Color System component loaded successfully!');
+
+            // Φορτώνουμε το Apply To Selector
+            await loadComponent('sidebar/right-sidebar/apply-to-selector.html', 'apply-to-container');
+            console.log('✅ Apply To Selector component loaded successfully!');
+
+            // Φορτώνουμε το Typography
+            await loadComponent('sidebar/right-sidebar/typography.html', 'typography-container');
+            console.log('✅ Typography component loaded successfully!');
+
+            // Φορτώνουμε το Component Sizes
+            await loadComponent('sidebar/right-sidebar/component-sizes.html', 'component-sizes-container');
+            console.log('✅ Component Sizes component loaded successfully!');
+
+            // Φορτώνουμε το Border Radius
+            await loadComponent('sidebar/right-sidebar/border-radius.html', 'border-radius-container');
+            console.log('✅ Border Radius component loaded successfully!');
+
+            // Φορτώνουμε το Quick Radius Presets
+            await loadComponent('sidebar/right-sidebar/quick-radius-presets.html', 'quick-radius-presets-container');
+            console.log('✅ Quick Radius Presets component loaded successfully!');
+
+            // Φορτώνουμε το Spacing Layout
+            await loadComponent('sidebar/right-sidebar/spacing-layout.html', 'spacing-layout-container');
+            console.log('✅ Spacing Layout component loaded successfully!');
+
+            // Φορτώνουμε το Components
+            await loadComponent('sidebar/right-sidebar/components.html', 'components-container');
+            console.log('✅ Components component loaded successfully!');
+
+            // Φορτώνουμε το Preset Themes
+            await loadComponent('sidebar/right-sidebar/preset-themes.html', 'preset-themes-container');
+            console.log('✅ Preset Themes component loaded successfully!');
+
+            // Φορτώνουμε το Layout Tabs στο main content
+            await loadComponent('main/layout/layout-tabs.html', 'layout-controls-container');
+            console.log('✅ Layout Tabs component loaded successfully!');
+
+            // Φορτώνουμε τα Layout Cards
+            await loadComponent('main/layout/layout-primary-cards.html', 'layout-primary-content-container');
+            await loadComponent('main/layout/layout-secondary-cards.html', 'layout-secondary-content-container');
+            await loadComponent('main/layout/layout-success-cards.html', 'layout-success-content-container');
+            await loadComponent('main/layout/layout-warning-cards.html', 'layout-warning-content-container');
+            await loadComponent('main/layout/layout-danger-cards.html', 'layout-danger-content-container');
+            await loadComponent('main/layout/layout-info-cards.html', 'layout-info-content-container');
+            console.log('✅ All Layout Cards loaded successfully!');
+
+            // Φορτώνουμε το Modals Section
+            await loadComponent('main/modals/modals-tabs.html', 'modals-section-container');
+            console.log('✅ Modals Section component loaded successfully!');
+
+            // Φορτώνουμε τα Modal Cards
+            await loadComponent('main/modals/modal-primary-cards.html', 'modal-primary-cards-container');
+            await loadComponent('main/modals/modal-secondary-cards.html', 'modal-secondary-cards-container');
+            await loadComponent('main/modals/modal-success-cards.html', 'modal-success-cards-container');
+            await loadComponent('main/modals/modal-warning-cards.html', 'modal-warning-cards-container');
+            await loadComponent('main/modals/modal-danger-cards.html', 'modal-danger-cards-container');
+            await loadComponent('main/modals/modal-info-cards.html', 'modal-info-cards-container');
+            console.log('✅ All Modal Cards loaded successfully!');
+
+            // Φορτώνουμε το Tables Section
+            console.log('🔄 About to load Tables Section...');
+            await loadComponent('main/tables/tables-tabs.html', 'tables-section-container');
+            console.log('✅ Tables Section component loaded successfully!');
+
+            // Φορτώνουμε τα Table Cards
+            await loadComponent('main/tables/table-primary-cards.html', 'table-primary-content-container');
+            await loadComponent('main/tables/table-secondary-cards.html', 'table-secondary-content-container');
+            console.log('✅ Table Cards loaded successfully!');
+
+            // Φορτώνουμε το Cards Section
+            await loadComponent('main/cards/cards-tabs.html', 'cards-section-container');
+            console.log('✅ Cards Section component loaded successfully!');
+
+            // Φορτώνουμε τα Card Cards
+            await loadComponent('main/cards/card-primary-cards.html', 'card-primary-content-container');
+            await loadComponent('main/cards/card-secondary-cards.html', 'card-secondary-content-container');
+            await loadComponent('main/cards/card-success-cards.html', 'card-success-content-container');
+            await loadComponent('main/cards/card-warning-cards.html', 'card-warning-content-container');
+            await loadComponent('main/cards/card-danger-cards.html', 'card-danger-content-container');
+            await loadComponent('main/cards/card-info-cards.html', 'card-info-content-container');
+            console.log('✅ All Card Cards loaded successfully!');
+
+        } catch (error) {
+            console.error('❌ Error loading right sidebar components:', error);
+        }
+    }
+
+    // Sidebar Toggle Functions
+    function toggleSidebar(position) {
+        const leftSidebar = document.getElementById('leftSidebar');
+        const rightSidebar = document.getElementById('rightSidebar');
+
+        if (position === 'left') {
+            const isOpen = leftSidebar.classList.contains('open');
+            if (isOpen) {
+                leftSidebar.classList.remove('open');
+                updateToggleButton('left', false);
+            } else {
+                leftSidebar.classList.add('open');
+                updateToggleButton('left', true);
+            }
+        } else if (position === 'right') {
+            const isOpen = rightSidebar.classList.contains('open');
+            if (isOpen) {
+                rightSidebar.classList.remove('open');
+                updateToggleButton('right', false);
+            } else {
+                rightSidebar.classList.add('open');
+                updateToggleButton('right', true);
+            }
+        }
+    }
+
+    function updateToggleButton(position, isOpen) {
+        const button = document.querySelector(`button[onclick="toggleSidebar('${position}')"]`);
+        if (button) {
+            if (isOpen) {
+                button.style.background = 'rgba(255,255,255,0.3)';
+                button.style.borderColor = 'rgba(255,255,255,0.5)';
+            } else {
+                button.style.background = 'rgba(255,255,255,0.15)';
+                button.style.borderColor = 'rgba(255,255,255,0.3)';
+            }
+        }
+    }
+
+    // Make functions global
+    window.loadComponent = loadComponent;
+    window.loadRightSidebarComponents = loadRightSidebarComponents;
+    window.toggleSidebar = toggleSidebar;
+    window.updateToggleButton = updateToggleButton;
+</script>

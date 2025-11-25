@@ -1,0 +1,205 @@
+<script>
+    // 🧭 Navigation Functions
+
+    // Layout Tab Switching Function
+    function showTab(tabName, clickedButton) {
+        console.log('showTab called:', tabName);
+
+        try {
+            // Βρες το layout container
+            const layoutContainer = document.querySelector('.layout-controls');
+            if (!layoutContainer) {
+                alert('Layout container not found!');
+                return;
+            }
+
+            // Κρύψε όλα τα tabs
+            const allTabs = layoutContainer.querySelectorAll('.tab-pane');
+            console.log('Found tabs:', allTabs.length);
+            allTabs.forEach(tab => {
+                tab.classList.remove('active-pane');
+                console.log('Hiding:', tab.id);
+            });
+
+            // Δείξε το επιλεγμένο tab
+            const targetTab = document.getElementById('layout-' + tabName);
+            if (targetTab) {
+                targetTab.classList.add('active-pane');
+                console.log('Showing:', targetTab.id);
+            } else {
+                alert('Tab not found: layout-' + tabName);
+                return;
+            }
+
+            // Ενημέρωσε τα buttons
+            const allButtons = layoutContainer.querySelectorAll('.tab-button');
+            allButtons.forEach(btn => btn.classList.remove('active-tab'));
+            clickedButton.classList.add('active-tab');
+
+            console.log('Tab switching complete');
+        } catch (error) {
+            console.error('Error in showTab:', error);
+            alert('Error: ' + error.message);
+        }
+    }
+
+    // Modal Tab Switching Function
+    function showModalTab(tabName, clickedButton) {
+        console.log('showModalTab called:', tabName);
+
+        try {
+            // Βρες το modals container
+            const modalsContainer = document.querySelector('.modals-section');
+            if (!modalsContainer) {
+                alert('Modals container not found!');
+                return;
+            }
+
+            // Κρύψε όλα τα modal tabs
+            const allTabs = modalsContainer.querySelectorAll('.tab-pane');
+            console.log('Found modal tabs:', allTabs.length);
+            allTabs.forEach(tab => {
+                tab.classList.remove('active-pane');
+                console.log('Hiding modal tab:', tab.id);
+            });
+
+            // Δείξε το επιλεγμένο modal tab
+            const targetTab = document.getElementById('modals-' + tabName);
+            if (targetTab) {
+                targetTab.classList.add('active-pane');
+                console.log('Showing modal tab:', targetTab.id);
+            } else {
+                alert('Modal tab not found: modals-' + tabName);
+                return;
+            }
+
+            // Ενημέρωσε τα buttons
+            const allButtons = modalsContainer.querySelectorAll('.tab-button');
+            allButtons.forEach(btn => btn.classList.remove('active-tab'));
+            clickedButton.classList.add('active-tab');
+
+            console.log('Modal tab switching complete');
+        } catch (error) {
+            console.error('Error in showModalTab:', error);
+            alert('Error: ' + error.message);
+        }
+    }
+
+    // Cards Tab Switching Function
+    function switchCardTab(tabName, clickedButton) {
+        console.log('switchCardTab called:', tabName);
+
+        try {
+            // Βρες το cards container
+            const cardsContainer = document.querySelector('.cards-section');
+            if (!cardsContainer) {
+                console.error('Cards container not found!');
+                return;
+            }
+
+            // Απόκρυψη όλων των card tabs
+            const allTabs = cardsContainer.querySelectorAll('.tab-pane');
+            console.log('Found card tabs:', allTabs.length);
+            allTabs.forEach(tab => {
+                tab.classList.remove('active-pane');
+                console.log('Hiding card tab:', tab.id);
+            });
+
+            // Εμφάνιση επιλεγμένης καρτέλας
+            const targetTab = document.getElementById('cards-' + tabName);
+            if (targetTab) {
+                targetTab.classList.add('active-pane');
+                console.log('Showing card tab:', targetTab.id);
+            } else {
+                console.error('Card tab not found: cards-' + tabName);
+                return;
+            }
+
+            // Ενημέρωση tab buttons
+            const allButtons = cardsContainer.querySelectorAll('.tab-button');
+            allButtons.forEach(btn => btn.classList.remove('active-tab'));
+
+            // Βρες το clicked button
+            const buttonToActivate = clickedButton || event.target;
+            buttonToActivate.classList.add('active-tab');
+
+            console.log('Card tab switching complete');
+        } catch (error) {
+            console.error('Error in switchCardTab:', error);
+        }
+    }
+
+    // Tables Tab Navigation
+    function switchTableTab(tabName, clickedButton) {
+        console.log("switchTableTab called:", tabName);
+
+        try {
+            // Βρες το tables container
+            const tablesContainer = document.querySelector(".tables-section");
+            if (!tablesContainer) {
+                console.error("Tables container not found!");
+                return;
+            }
+
+            // Απόκρυψη όλων των table tabs
+            const allTabs = tablesContainer.querySelectorAll(".tab-pane");
+            console.log("Found table tabs:", allTabs.length);
+            allTabs.forEach(tab => {
+                tab.classList.remove("active-pane");
+                console.log("Hiding table tab:", tab.id);
+            });
+
+            // Εμφάνιση επιλεγμένης καρτέλας
+            const targetTab = document.getElementById("tables-" + tabName);
+            if (targetTab) {
+                targetTab.classList.add("active-pane");
+                console.log("Showing table tab:", targetTab.id);
+            } else {
+                console.error("Table tab not found: tables-" + tabName);
+                return;
+            }
+
+            // Ενημέρωση tab buttons
+            const allButtons = tablesContainer.querySelectorAll(".tab-button");
+            allButtons.forEach(btn => btn.classList.remove("active-tab"));
+
+            // Βρες το clicked button
+            const buttonToActivate = clickedButton || event.target;
+            buttonToActivate.classList.add("active-tab");
+
+            console.log("Table tab switching complete");
+        } catch (error) {
+            console.error("Error in switchTableTab:", error);
+        }
+    }
+
+    // Color mapping object για header buttons
+    const colors = {
+        primary: '#4A90E2',
+        secondary: '#9013FE',
+        success: '#4CAF50',
+        warning: '#FF9800',
+        danger: '#F44336',
+        info: '#2196F3'
+    };
+
+    // Header Color Change Function
+    function changeHeaderColor(colorName) {
+        const header = document.querySelector('.app-header');
+        header.style.background = colors[colorName];
+
+        // Update active state for header buttons
+        document.querySelectorAll('.header-buttons .color-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+    }
+
+    // Make functions global
+    window.showTab = showTab;
+    window.showModalTab = showModalTab;
+    window.switchCardTab = switchCardTab;
+    window.switchTableTab = switchTableTab;
+    window.changeHeaderColor = changeHeaderColor;
+    window.colors = colors;
+</script>

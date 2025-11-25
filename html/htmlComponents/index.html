@@ -58,9 +58,12 @@
 
 
 
-                <!-- Placeholder για άλλα main content components -->
+                <!-- Φόρτωση Tables Section -->
+                <div id="tables-section-container"></div>
+
+                <!-- Future sections placeholder -->
                 <div style="text-align: center; color: #888; font-size: 0.9rem; margin-top: 2rem;">
-                    📝 Υπόλοιπα sections (Tables) θα προστεθούν σταδιακά...
+                    📝 Περισσότερα sections θα προστεθούν σταδιακά...
                 </div>
             </main>
         </div>
@@ -181,6 +184,24 @@
                 await loadComponent('main/modals/modal-info-cards.html', 'modal-info-cards-container');
                 console.log('✅ Modal Info Cards component loaded successfully!');
 
+                // Φορτώνουμε το Tables Section στο main content
+                console.log('🔄 About to load Tables Section...');
+                console.log('📍 Tables container exists:', !!document.getElementById('tables-section-container'));
+                await loadComponent('main/tables/tables-tabs.html', 'tables-section-container');
+                console.log('✅ Tables Section component loaded successfully!');
+                console.log('📊 Tables section HTML after load:', document.getElementById('tables-section-container').innerHTML.substring(0, 100));
+
+                // Φορτώνουμε το Table Primary Cards στο tables section
+                await loadComponent('main/tables/table-primary-cards.html', 'table-primary-content-container');
+                console.log('✅ Table Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Table Secondary Cards στο tables section
+                await loadComponent("main/tables/table-secondary-cards.html", "table-secondary-content-container");
+                console.log("✅ Table Secondary Cards component loaded successfully!");
+
+                // Φορτώνουμε το Table Secondary Cards στο tables section
+
+
                 // Φορτώνουμε το Cards Section στο main content
                 await loadComponent('main/cards/cards-tabs.html', 'cards-section-container');
                 console.log('✅ Cards Section component loaded successfully!');
@@ -208,6 +229,8 @@
                 // Φορτώνουμε το Card Info Cards στο cards section
                 await loadComponent('main/cards/card-info-cards.html', 'card-info-content-container');
                 console.log('✅ Card Info Cards component loaded successfully!');
+
+
 
             } catch (error) {
                 console.error('❌ Error loading right sidebar components:', error);
@@ -258,6 +281,19 @@
                             console.log('🎯 Activating default Modals tab...');
                             primaryModalBtn.click();
                         }
+                    }
+
+
+                    // Tables default to primary
+                    const tablesContainer = document.querySelector('.tables-section .tabs-container');
+                    if (tablesContainer) {
+                        const primaryTableBtn = tablesContainer.querySelector('.tab-button');
+                        if (primaryTableBtn) {
+                            console.log('🎯 Activating default Tables tab...');
+                            primaryTableBtn.click();
+                        }
+                    } else {
+                        console.log('❌ Tables container not found for auto-activation');
                     }
                 }, 1000); // Περίμένουμε 1 δευτερόλεπτο για να φορτωθούν όλα τα components
 
@@ -451,6 +487,50 @@
             }
         }
 
+// Tables Tab Navigation
+        function switchTableTab(tabName, clickedButton) {
+            console.log("switchTableTab called:", tabName);
+
+            try {
+                // Βρες το tables container
+                const tablesContainer = document.querySelector(".tables-section");
+                if (!tablesContainer) {
+                    console.error("Tables container not found!");
+                    return;
+                }
+
+                // Απόκρυψη όλων των table tabs
+                const allTabs = tablesContainer.querySelectorAll(".tab-pane");
+                console.log("Found table tabs:", allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove("active-pane");
+                    console.log("Hiding table tab:", tab.id);
+                });
+
+                // Εμφάνιση επιλεγμένης καρτέλας
+                const targetTab = document.getElementById("tables-" + tabName);
+                if (targetTab) {
+                    targetTab.classList.add("active-pane");
+                    console.log("Showing table tab:", targetTab.id);
+                } else {
+                    console.error("Table tab not found: tables-" + tabName);
+                    return;
+                }
+
+                // Ενημέρωση tab buttons
+                const allButtons = tablesContainer.querySelectorAll(".tab-button");
+                allButtons.forEach(btn => btn.classList.remove("active-tab"));
+
+                // Βρες το clicked button
+                const buttonToActivate = clickedButton || event.target;
+                buttonToActivate.classList.add("active-tab");
+
+                console.log("Table tab switching complete");
+            } catch (error) {
+                console.error("Error in switchTableTab:", error);
+            }
+        }
+
         // Color mapping object για header buttons
         const colors = {
             primary: '#4A90E2',
@@ -477,6 +557,7 @@
         window.showTab = showTab;
         window.showModalTab = showModalTab;
         window.switchCardTab = switchCardTab;
+        window.switchTableTab = switchTableTab;
         window.changeHeaderColor = changeHeaderColor;
         
         // 🌈 6-Color System Functionality

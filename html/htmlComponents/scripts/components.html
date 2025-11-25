@@ -1,0 +1,133 @@
+<script>
+    // 📏 Component Sizes Functionality
+
+    function updateAdvancedLayout(property, value) {
+        console.log('🔧 Layout property:', property, 'New value:', value);
+
+        // Update display element
+        const display = document.querySelector('[data-display="' + property + '"]');
+        if (display) {
+            display.textContent = value + 'px';
+            console.log('✅ Updated display for:', property);
+        } else {
+            console.log('❌ Display element not found for:', property);
+        }
+
+        // Get all elements that should be affected
+        const targetElements = document.querySelectorAll('.card-item, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
+        console.log('🎯 Found', targetElements.length, 'elements for', property);
+
+        targetElements.forEach(el => {
+            switch(property) {
+                case 'button-height':
+                    if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                        el.style.height = value + 'px';
+                        el.style.minHeight = value + 'px';
+                    }
+                    break;
+                case 'button-padding':
+                    if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                        el.style.padding = '0 ' + value + 'px';
+                    }
+                    break;
+                case 'button-font-size':
+                    if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                        el.style.fontSize = value + 'px';
+                    }
+                    break;
+                case 'card-height':
+                    if (el.classList.contains('card-item')) {
+                        el.style.setProperty('height', value + 'px', 'important');
+                        el.style.setProperty('min-height', value + 'px', 'important');
+                        el.style.setProperty('overflow', 'hidden', 'important');
+                        console.log('✅ Updated card height for element:', el.className, 'to', value + 'px (with overflow hidden)');
+                    }
+                    break;
+                case 'modal-width':
+                    if (el.classList.contains('modal-item')) {
+                        el.style.width = value + 'px';
+                        el.style.maxWidth = value + 'px';
+                        el.style.minWidth = Math.min(value, 300) + 'px';
+                        el.style.flex = '0 0 auto';
+                        el.style.boxSizing = 'border-box';
+                    }
+                    break;
+                case 'cards-border-radius':
+                    if (el.classList.contains('card-item')) {
+                        el.style.borderRadius = value + 'px';
+                        console.log('✅ Updated cards border-radius for element:', el.className, 'to', value + 'px');
+                    }
+                    break;
+                case 'buttons-border-radius':
+                    if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                        el.style.borderRadius = value + 'px';
+                        console.log('✅ Updated buttons border-radius for element:', el.className, 'to', value + 'px');
+                    }
+                    break;
+                case 'modals-border-radius':
+                    if (el.classList.contains('modal-item') || el.classList.contains('modal-header')) {
+                        el.style.borderRadius = value + 'px';
+                        console.log('✅ Updated modals border-radius for element:', el.className, 'to', value + 'px');
+                    }
+                    break;
+                case 'tables-border-radius':
+                    if (el.classList.contains('simple-table') || el.tagName === 'TABLE') {
+                        el.style.borderRadius = value + 'px';
+                        console.log('✅ Updated tables border-radius for element:', el.className, 'to', value + 'px');
+                    }
+                    break;
+                case 'header-border-radius':
+                    if (el.classList.contains('app-header') || el.classList.contains('header-section')) {
+                        el.style.borderRadius = value + 'px';
+                        console.log('✅ Updated header border-radius for element:', el.className, 'to', value + 'px');
+                    }
+                    break;
+            }
+        });
+    }
+
+    function setupComponentSizes() {
+        console.log('🔧 Setting up Component Sizes controls...');
+
+        // Check if cards exist at this time
+        const allCards = document.querySelectorAll('.card-item');
+        console.log('🃏 Found', allCards.length, 'card elements at setup time');
+        allCards.forEach((card, index) => {
+            console.log(`🃏 Card ${index}:`, card.className);
+        });
+
+        // Component Sizes event listeners
+        const controls = document.querySelectorAll('[data-control]');
+        console.log('🎛️ Found', controls.length, 'controls total');
+
+        controls.forEach(control => {
+            const property = control.getAttribute('data-control');
+
+            // Component Size Properties
+            const layoutProps = ['component-gap', 'padding', 'border-radius', 'border-width', 'border-style', 'box-shadow', 'button-height', 'button-padding', 'button-font-size', 'card-height', 'modal-width', 'cards-border-radius', 'buttons-border-radius', 'modals-border-radius', 'tables-border-radius', 'header-border-radius'];
+            if (layoutProps.includes(property)) {
+                console.log('✅ Setting up event listeners for:', property);
+                control.addEventListener('input', function() {
+                    console.log('📤 Input event triggered for:', property, 'value:', this.value);
+                    updateAdvancedLayout(property, this.value);
+                });
+                control.addEventListener('change', function() {
+                    console.log('📤 Change event triggered for:', property, 'value:', this.value);
+                    updateAdvancedLayout(property, this.value);
+                });
+            }
+        });
+
+        console.log('🔧 Component Sizes setup complete!');
+    }
+
+    // Manual test function for Card Height
+    window.testCardHeight = function() {
+        console.log('🧪 Testing card height manually...');
+        updateAdvancedLayout('card-height', '150');
+    };
+
+    // Make functions global
+    window.updateAdvancedLayout = updateAdvancedLayout;
+    window.setupComponentSizes = setupComponentSizes;
+</script>
