@@ -11,7 +11,7 @@ import { Button } from '@layera/buttons';
  * ΜΟΝΟ @layera/* imports με semantic props | ΜΟΝΟ tokens
  */
 
-export const InfoTabContent: React.FC = () => {
+export const InfoCardTab: React.FC = () => {
   return (
     <Box>
       {/* Section Title για Info Cards */}

@@ -20,6 +20,7 @@ export const CleanFullAppLayout: React.FC = () => {
   const [rightSidebarOpen, setRightSidebarOpen] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState<'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'>('primary');
   const [activeColor, setActiveColor] = React.useState<'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'>('primary');
+  const [activeSection, setActiveSection] = React.useState<'cards' | 'layout' | 'tables' | 'modals'>('cards');
 
   return (
     <Box className="layera-layout-main-container">
@@ -32,7 +33,7 @@ export const CleanFullAppLayout: React.FC = () => {
               data-size="xl"
               data-weight="semibold"
             >
-              🎨 Layera Design System Preview
+              🎨 Layera Design System Preview - Tables Ready
             </Heading>
 
             <ColorButtonGroup
@@ -58,6 +59,8 @@ export const CleanFullAppLayout: React.FC = () => {
         <MainContent
           activeTab={activeTab}
           onTabChange={setActiveTab}
+          activeSection={activeSection}
+          onSectionChange={setActiveSection}
         />
 
         <RightSidebar rightSidebarOpen={rightSidebarOpen} />

@@ -11,7 +11,7 @@ import { Button } from '@layera/buttons';
  * ΜΟΝΟ @layera/* imports με semantic props | ΜΟΝΟ tokens
  */
 
-export const PrimaryTabContent: React.FC = () => {
+export const PrimaryCardTab: React.FC = () => {
   return (
     <Box className="layera-cards-grid">
       {/* PRIMARY CARD */}

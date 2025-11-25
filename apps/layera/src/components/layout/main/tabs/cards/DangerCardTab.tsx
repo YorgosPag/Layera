@@ -1,32 +1,25 @@
 import React from 'react';
 import { Box, Flex } from '@layera/layout';
-import { Text, Heading } from '@layera/typography';
+import { Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 
 /**
- * 🎯 WarningTabContent Component
+ * 🎯 DangerTabContent Component
  * 100% ARXES COMPLIANT
  *
  * ZERO inline styles | ZERO σκληρές τιμές | ZERO div elements
  * ΜΟΝΟ @layera/* imports με semantic props | ΜΟΝΟ tokens
  */
 
-export const WarningTabContent: React.FC = () => {
+export const DangerCardTab: React.FC = () => {
   return (
     <Box>
-      {/* Section Title για Warning Cards */}
-      <Heading data-size="lg" data-weight="semibold" className="layera-warning-cards-title">
-        Warning Cards
+      {/* Section Title για Danger Cards */}
+      <Heading data-size="lg" data-weight="semibold" className="layera-danger-cards-title">
+        Danger Cards
       </Heading>
 
-      {/* Warning Layout Message */}
-      <Box className="layera-warning-message">
-        <Text data-size="sm">
-          ⚠️ Warning layout με διαφορετική διάταξη των καρτών
-        </Text>
-      </Box>
-
-      {/* Warning Cards Grid – όλες οι 6 κάρτες */}
+      {/* Danger Cards Grid – όλες οι 6 κάρτες */}
       <Box className="layera-cards-grid">
         {/* PRIMARY CARD */}
         <Box className="layera-card layera-card--primary">
@@ -55,7 +48,7 @@ export const WarningTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--primary"
             >
-              💾 Save
+              🔵 Save
             </Button>
           </Box>
         </Box>
@@ -71,15 +64,13 @@ export const WarningTabContent: React.FC = () => {
             <Flex className="layera-card-inputs">
               <input
                 type="text"
-                placeholder="🔍 Search terms..."
+                placeholder="Search terms..."
                 className="layera-card-input layera-card-input--secondary"
               />
               <select className="layera-card-input layera-card-input--secondary">
-                <option>📁 Select category</option>
-                <option>Documents</option>
-                <option>Images</option>
-                <option>Videos</option>
-                <option>Other</option>
+                <option>Select category</option>
+                <option>Analytics</option>
+                <option>Settings</option>
               </select>
             </Flex>
           </Box>
@@ -105,12 +96,12 @@ export const WarningTabContent: React.FC = () => {
             <Flex className="layera-card-inputs">
               <input
                 type="number"
-                placeholder="💰 Amount"
+                placeholder="Amount"
                 className="layera-card-input layera-card-input--success"
               />
               <input
-                type="date"
-                placeholder="ηη/μμ/εεεε"
+                type="text"
+                placeholder="Prize details"
                 className="layera-card-input layera-card-input--success"
               />
             </Flex>
@@ -121,7 +112,7 @@ export const WarningTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--success"
             >
-              ✅ Submit
+              🏆 Award Prize
             </Button>
           </Box>
         </Box>
@@ -135,10 +126,14 @@ export const WarningTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
+              <label className="layera-card-checkbox">
+                <input type="checkbox" />
+                ⚠️ Mark as urgent
+              </label>
               <textarea
-                placeholder="⚠️ Warning details..."
+                placeholder="Warning details..."
                 className="layera-card-textarea layera-card-textarea--warning"
-                rows={4}
+                rows={3}
               />
             </Flex>
           </Box>

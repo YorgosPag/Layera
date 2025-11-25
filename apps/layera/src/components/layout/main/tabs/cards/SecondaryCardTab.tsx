@@ -4,22 +4,22 @@ import { Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 
 /**
- * 🎯 DangerTabContent Component
+ * 🎯 SecondaryTabContent Component
  * 100% ARXES COMPLIANT
  *
  * ZERO inline styles | ZERO σκληρές τιμές | ZERO div elements
  * ΜΟΝΟ @layera/* imports με semantic props | ΜΟΝΟ tokens
  */
 
-export const DangerTabContent: React.FC = () => {
+export const SecondaryCardTab: React.FC = () => {
   return (
     <Box>
-      {/* Section Title για Danger Cards */}
-      <Heading data-size="lg" data-weight="semibold" className="layera-danger-cards-title">
-        Danger Cards
+      {/* Section Title – όπως στο HTML για Cards Tab */}
+      <Heading data-size="lg" data-weight="semibold" className="layera-secondary-cards-title">
+        Secondary Cards
       </Heading>
 
-      {/* Danger Cards Grid – όλες οι 6 κάρτες */}
+      {/* Secondary Cards Grid – όλες οι 6 κάρτες */}
       <Box className="layera-cards-grid">
         {/* PRIMARY CARD */}
         <Box className="layera-card layera-card--primary">
@@ -32,12 +32,12 @@ export const DangerTabContent: React.FC = () => {
             <Flex className="layera-card-inputs">
               <input
                 type="text"
-                placeholder="Enter name..."
+                placeholder="Company name"
                 className="layera-card-input layera-card-input--primary"
               />
               <input
-                type="email"
-                placeholder="Email address"
+                type="tel"
+                placeholder="Phone"
                 className="layera-card-input layera-card-input--primary"
               />
             </Flex>
@@ -48,7 +48,7 @@ export const DangerTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--primary"
             >
-              🔵 Save
+              📞 Contact
             </Button>
           </Box>
         </Box>
@@ -63,14 +63,18 @@ export const DangerTabContent: React.FC = () => {
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
               <input
-                type="text"
-                placeholder="Search terms..."
-                className="layera-card-input layera-card-input--secondary"
+                type="range"
+                min="0"
+                max="100"
+                defaultValue="60"
+                className="layera-card-input layera-card-slider"
               />
               <select className="layera-card-input layera-card-input--secondary">
-                <option>Select category</option>
-                <option>Analytics</option>
-                <option>Settings</option>
+                <option>🚨 Priority Level</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Critical</option>
               </select>
             </Flex>
           </Box>
@@ -80,7 +84,7 @@ export const DangerTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--secondary"
             >
-              🔍 Search
+              🔧 Configure
             </Button>
           </Box>
         </Box>
@@ -94,14 +98,13 @@ export const DangerTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <input
-                type="number"
-                placeholder="Amount"
-                className="layera-card-input layera-card-input--success"
-              />
+              <label className="layera-card-checkbox">
+                <input type="checkbox" defaultChecked />
+                ✅ Task completed
+              </label>
               <input
                 type="text"
-                placeholder="Prize details"
+                placeholder="⭐ Achievement note"
                 className="layera-card-input layera-card-input--success"
               />
             </Flex>
@@ -112,7 +115,7 @@ export const DangerTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--success"
             >
-              🏆 Award Prize
+              🎉 Celebrate
             </Button>
           </Box>
         </Box>
@@ -126,14 +129,17 @@ export const DangerTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <label className="layera-card-checkbox">
-                <input type="checkbox" />
-                ⚠️ Mark as urgent
-              </label>
-              <textarea
-                placeholder="Warning details..."
-                className="layera-card-textarea layera-card-textarea--warning"
-                rows={3}
+              <select className="layera-card-input layera-card-input--warning">
+                <option>⚠️ Warning type</option>
+                <option>System Error</option>
+                <option>Network Issue</option>
+                <option>Performance</option>
+                <option>Security</option>
+              </select>
+              <input
+                type="text"
+                placeholder="📍 Location"
+                className="layera-card-input layera-card-input--warning"
               />
             </Flex>
           </Box>
@@ -143,7 +149,7 @@ export const DangerTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--warning"
             >
-              ⚠️ Report Issue
+              🏢 Report Location
             </Button>
           </Box>
         </Box>
@@ -158,14 +164,16 @@ export const DangerTabContent: React.FC = () => {
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
               <input
-                type="password"
-                placeholder="🔒 Confirm password"
+                type="text"
+                placeholder="Type 'DELETE' to confirm"
                 className="layera-card-input layera-card-input--danger"
               />
-              <label className="layera-card-checkbox">
-                <input type="checkbox" />
-                I understand the risks
-              </label>
+              <select className="layera-card-input layera-card-input--danger">
+                <option>🗑️ Deletion scope</option>
+                <option>Current Item</option>
+                <option>All Items</option>
+                <option>Permanent</option>
+              </select>
             </Flex>
           </Box>
           <Box className="layera-card-footer">
@@ -174,7 +182,7 @@ export const DangerTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--danger"
             >
-              🗑️ Delete
+              🔥 Permanently Delete
             </Button>
           </Box>
         </Box>
@@ -188,14 +196,16 @@ export const DangerTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
+              <select className="layera-card-input layera-card-input--info">
+                <option>📚 Help category</option>
+                <option>Getting Started</option>
+                <option>API Documentation</option>
+                <option>Troubleshooting</option>
+                <option>Best Practices</option>
+              </select>
               <input
-                type="url"
-                placeholder="🌐 Website URL"
-                className="layera-card-input layera-card-input--info"
-              />
-              <input
-                type="tel"
-                placeholder="📞 Phone number"
+                type="text"
+                placeholder="🔍 Search help..."
                 className="layera-card-input layera-card-input--info"
               />
             </Flex>
@@ -206,7 +216,7 @@ export const DangerTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--info"
             >
-              ℹ️ Get Info
+              📖 Get Help
             </Button>
           </Box>
         </Box>

@@ -4,22 +4,22 @@ import { Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 
 /**
- * 🎯 SecondaryTabContent Component
+ * 🎯 SuccessTabContent Component
  * 100% ARXES COMPLIANT
  *
  * ZERO inline styles | ZERO σκληρές τιμές | ZERO div elements
  * ΜΟΝΟ @layera/* imports με semantic props | ΜΟΝΟ tokens
  */
 
-export const SecondaryTabContent: React.FC = () => {
+export const SuccessCardTab: React.FC = () => {
   return (
     <Box>
-      {/* Section Title – όπως στο HTML για Cards Tab */}
-      <Heading data-size="lg" data-weight="semibold" className="layera-secondary-cards-title">
-        Secondary Cards
+      {/* Section Title για Success Cards */}
+      <Heading data-size="lg" data-weight="semibold" className="layera-success-cards-title">
+        Success Cards
       </Heading>
 
-      {/* Secondary Cards Grid – όλες οι 6 κάρτες */}
+      {/* Success Cards Grid – όλες οι 6 κάρτες */}
       <Box className="layera-cards-grid">
         {/* PRIMARY CARD */}
         <Box className="layera-card layera-card--primary">
@@ -30,15 +30,10 @@ export const SecondaryTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <input
-                type="text"
-                placeholder="Company name"
-                className="layera-card-input layera-card-input--primary"
-              />
-              <input
-                type="tel"
-                placeholder="Phone"
-                className="layera-card-input layera-card-input--primary"
+              <textarea
+                placeholder="Description..."
+                className="layera-card-textarea layera-card-textarea--primary"
+                rows={3}
               />
             </Flex>
           </Box>
@@ -48,7 +43,7 @@ export const SecondaryTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--primary"
             >
-              📞 Contact
+              📄 Submit
             </Button>
           </Box>
         </Box>
@@ -63,19 +58,15 @@ export const SecondaryTabContent: React.FC = () => {
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
               <input
-                type="range"
-                min="0"
-                max="100"
-                defaultValue="60"
-                className="layera-card-input layera-card-slider"
+                type="date"
+                placeholder="ηη/μμ/εεεε"
+                className="layera-card-input layera-card-input--secondary"
               />
-              <select className="layera-card-input layera-card-input--secondary">
-                <option>🚨 Priority Level</option>
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-                <option>Critical</option>
-              </select>
+              <input
+                type="time"
+                placeholder="--:--"
+                className="layera-card-input layera-card-input--secondary"
+              />
             </Flex>
           </Box>
           <Box className="layera-card-footer">
@@ -84,7 +75,7 @@ export const SecondaryTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--secondary"
             >
-              🔧 Configure
+              📅 Schedule
             </Button>
           </Box>
         </Box>
@@ -98,13 +89,14 @@ export const SecondaryTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <label className="layera-card-checkbox">
-                <input type="checkbox" defaultChecked />
-                ✅ Task completed
-              </label>
+              <input
+                type="email"
+                placeholder="✉️ Winner email"
+                className="layera-card-input layera-card-input--success"
+              />
               <input
                 type="text"
-                placeholder="⭐ Achievement note"
+                placeholder="🏆 Prize details"
                 className="layera-card-input layera-card-input--success"
               />
             </Flex>
@@ -115,7 +107,7 @@ export const SecondaryTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--success"
             >
-              🎉 Celebrate
+              🏆 Award Prize
             </Button>
           </Box>
         </Box>
@@ -129,16 +121,13 @@ export const SecondaryTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <select className="layera-card-input layera-card-input--warning">
-                <option>⚠️ Warning type</option>
-                <option>System Error</option>
-                <option>Network Issue</option>
-                <option>Performance</option>
-                <option>Security</option>
-              </select>
+              <label className="layera-card-checkbox">
+                <input type="checkbox" />
+                ⚠️ Mark as urgent
+              </label>
               <input
-                type="text"
-                placeholder="📍 Location"
+                type="datetime-local"
+                placeholder="ηη/μμ/εεεε --:--"
                 className="layera-card-input layera-card-input--warning"
               />
             </Flex>
@@ -149,7 +138,7 @@ export const SecondaryTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--warning"
             >
-              🏢 Report Location
+              ⏰ Set Reminder
             </Button>
           </Box>
         </Box>
@@ -163,17 +152,11 @@ export const SecondaryTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <input
-                type="text"
-                placeholder="Type 'DELETE' to confirm"
-                className="layera-card-input layera-card-input--danger"
+              <textarea
+                placeholder="☠️ Reason for termination..."
+                className="layera-card-textarea layera-card-textarea--danger"
+                rows={4}
               />
-              <select className="layera-card-input layera-card-input--danger">
-                <option>🗑️ Deletion scope</option>
-                <option>Current Item</option>
-                <option>All Items</option>
-                <option>Permanent</option>
-              </select>
             </Flex>
           </Box>
           <Box className="layera-card-footer">
@@ -182,7 +165,7 @@ export const SecondaryTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--danger"
             >
-              🔥 Permanently Delete
+              ❌ Terminate Account
             </Button>
           </Box>
         </Box>
@@ -196,17 +179,15 @@ export const SecondaryTabContent: React.FC = () => {
           </Box>
           <Box className="layera-card-content">
             <Flex className="layera-card-inputs">
-              <select className="layera-card-input layera-card-input--info">
-                <option>📚 Help category</option>
-                <option>Getting Started</option>
-                <option>API Documentation</option>
-                <option>Troubleshooting</option>
-                <option>Best Practices</option>
-              </select>
               <input
-                type="text"
-                placeholder="🔍 Search help..."
+                type="email"
+                placeholder="📧 Contact email"
                 className="layera-card-input layera-card-input--info"
+              />
+              <textarea
+                placeholder="💬 Your message..."
+                className="layera-card-textarea layera-card-textarea--info"
+                rows={3}
               />
             </Flex>
           </Box>
@@ -216,7 +197,7 @@ export const SecondaryTabContent: React.FC = () => {
               size="sm"
               className="layera-card-button layera-card-button--info"
             >
-              📖 Get Help
+              📨 Send Message
             </Button>
           </Box>
         </Box>
