@@ -259,7 +259,25 @@
                             primaryModalBtn.click();
                         }
                     }
-                }, 1000); // Περιμένουμε 1 δευτερόλεπτο για να φορτωθούν όλα τα components
+                }, 1000); // Περίμένουμε 1 δευτερόλεπτο για να φορτωθούν όλα τα components
+
+                // Setup 6-Color System μετά τη φόρτωση των components
+                setTimeout(() => {
+                    setup6ColorSystem();
+                    console.log('🌈 6-Color System setup complete!');
+                }, 1200);
+
+                // Setup Typography Controls μετά τη φόρτωση των components
+                setTimeout(() => {
+                    setupTypographyControls();
+                    console.log('📝 Typography Controls setup complete!');
+                }, 1300);
+
+                // Setup Component Sizes μετά τη φόρτωση των components
+                setTimeout(() => {
+                    setupComponentSizes();
+                    console.log('📏 Component Sizes setup complete!');
+                }, 1400);
 
             } catch (error) {
                 console.error('❌ Error loading components:', error);
@@ -433,10 +451,309 @@
             }
         }
 
+        // Color mapping object για header buttons
+        const colors = {
+            primary: '#4A90E2',
+            secondary: '#9013FE',
+            success: '#4CAF50',
+            warning: '#FF9800',
+            danger: '#F44336',
+            info: '#2196F3'
+        };
+
+        // Header Color Change Function
+        function changeHeaderColor(colorName) {
+            const header = document.querySelector('.app-header');
+            header.style.background = colors[colorName];
+
+            // Update active state for header buttons
+            document.querySelectorAll('.header-buttons .color-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
         // Κάνε τις functions global
         window.showTab = showTab;
         window.showModalTab = showModalTab;
         window.switchCardTab = switchCardTab;
+        window.changeHeaderColor = changeHeaderColor;
+        
+        // 🌈 6-Color System Functionality
+        let currentTarget = 'all';
+        
+        function setTargetComponent(target) {
+            currentTarget = target;
+            document.querySelectorAll('.target-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.borderColor = '#666';
+                btn.style.color = '#ccc';
+            });
+            const activeBtn = document.querySelector('[data-target="' + target + '"]');
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.style.background = '#4A90E2';
+                activeBtn.style.borderColor = '#4A90E2';
+                activeBtn.style.color = 'white';
+            }
+        }
+        
+        function updateAdvancedColor(colorType, newColor) {
+            console.log('Updating ' + colorType + ' to ' + newColor);
+            const targetSelectors = getTargetSelectors(currentTarget, colorType);
+            targetSelectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    applyColorToElement(el, colorType, newColor, currentTarget);
+                });
+            });
+        }
+        
+        function getTargetSelectors(target, colorType) {
+            const selectors = [];
+            if (target === 'all' || target === 'cards') {
+                selectors.push('.card-item');
+            }
+            if (target === 'all' || target === 'buttons') {
+                selectors.push('.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn');
+            }
+            if (target === 'all' || target === 'header') {
+                selectors.push('.app-header');
+            }
+            return selectors;
+        }
+        
+        function applyColorToElement(element, colorType, color, target) {
+            if (element.classList.contains('card-item')) {
+                element.style.borderColor = color;
+                element.style.backgroundColor = color + '15';
+            }
+            if (element.classList.contains('btn')) {
+                element.style.backgroundColor = color;
+                element.style.borderColor = color;
+                element.style.color = '#ffffff';
+            }
+            if (element.classList.contains('app-header')) {
+                element.style.background = color;
+            }
+        }
+        
+        function setup6ColorSystem() {
+            document.querySelectorAll('[data-color-type]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const colorType = this.getAttribute('data-color-type');
+                    const newColor = this.value;
+                    updateAdvancedColor(colorType, newColor);
+                    const textInput = document.querySelector('[data-color-input="' + colorType + '"]');
+                    if (textInput) textInput.value = newColor;
+                });
+            });
+            
+            document.querySelectorAll('[data-color-input]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const colorType = this.getAttribute('data-color-input');
+                    const newColor = this.value;
+                    updateAdvancedColor(colorType, newColor);
+                    const colorPicker = document.querySelector('[data-color-type="' + colorType + '"]');
+                    if (colorPicker) colorPicker.value = newColor;
+                });
+            });
+            
+            document.querySelectorAll('.target-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    setTargetComponent(target);
+                });
+            });
+        }
+        
+        window.updateAdvancedColor = updateAdvancedColor;
+        window.setTargetComponent = setTargetComponent;
+        window.setup6ColorSystem = setup6ColorSystem;
+        
+        // 📝 Typography Functionality
+        function updateAdvancedTypography(property, value) {
+            const targetElements = getTypographyTargets(currentTarget);
+            
+            targetElements.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    switch(property) {
+                        case 'font-family':
+                            el.style.fontFamily = value;
+                            break;
+                        case 'font-size':
+                            el.style.fontSize = value + 'px';
+                            break;
+                        case 'font-weight':
+                            el.style.fontWeight = value;
+                            break;
+                        case 'line-height':
+                            el.style.lineHeight = value;
+                            break;
+                        case 'text-color':
+                            el.style.color = value;
+                            break;
+                        case 'header-size':
+                            if (el.tagName && el.tagName.match(/^H[1-6]$/)) {
+                                el.style.fontSize = value + 'px';
+                            }
+                            break;
+                    }
+                });
+            });
+            
+            // Update display value
+            const displayElement = document.querySelector('[data-display="' + property + '"]');
+            if (displayElement) {
+                if (property === 'font-size' || property === 'header-size') {
+                    displayElement.textContent = value + 'px';
+                } else if (property === 'line-height') {
+                    displayElement.textContent = value;
+                } else {
+                    displayElement.textContent = value;
+                }
+            }
+        }
+        
+        function getTypographyTargets(target) {
+            const targets = [];
+            
+            switch(target) {
+                case 'all':
+                    targets.push(
+                        'body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div',
+                        '.card-item', '.card-item h3', '.card-item p', '.card-item span',
+                        '.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn',
+                        '.modal-item', '.modal-item h3', '.modal-item p',
+                        '.app-header', '.app-header h1'
+                    );
+                    break;
+                case 'cards':
+                    targets.push(
+                        '.card-item', '.card-item h3', '.card-item p', '.card-item span'
+                    );
+                    break;
+                case 'buttons':
+                    targets.push(
+                        '.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn'
+                    );
+                    break;
+                case 'header':
+                    targets.push(
+                        '.app-header', '.app-header h1', '.app-header span', '.app-header p'
+                    );
+                    break;
+                default:
+                    targets.push('body');
+            }
+            
+            return targets;
+        }
+        
+        function setupTypographyControls() {
+            document.querySelectorAll('[data-control]').forEach(control => {
+                const property = control.getAttribute('data-control');
+                
+                // Typography Properties
+                const typographyProps = ['font-family', 'font-size', 'font-weight', 'line-height', 'text-color', 'header-size'];
+                if (typographyProps.includes(property)) {
+                    control.addEventListener('input', function() {
+                        updateAdvancedTypography(property, this.value);
+                    });
+                    control.addEventListener('change', function() {
+                        updateAdvancedTypography(property, this.value);
+                    });
+                }
+            });
+            
+            // Text color input sync
+            document.querySelectorAll('[data-control-input]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const property = this.getAttribute('data-control-input');
+                    if (property === 'text-color') {
+                        updateAdvancedTypography('text-color', this.value);
+                        const colorPicker = document.querySelector('[data-control="text-color"]');
+                        if (colorPicker) colorPicker.value = this.value;
+                    }
+                });
+            });
+        }
+        
+        window.updateAdvancedTypography = updateAdvancedTypography;
+        window.setupTypographyControls = setupTypographyControls;
+    
+        // 📏 Component Sizes Functionality
+        function updateAdvancedLayout(property, value) {
+            console.log('Layout property:', property, 'New value:', value);
+
+            // Update display element
+            const display = document.querySelector('[data-display="' + property + '"]');
+            if (display) {
+                display.textContent = value + 'px';
+            }
+
+            // Get all elements that should be affected
+            const targetElements = document.querySelectorAll('.card-item, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
+
+            targetElements.forEach(el => {
+                switch(property) {
+                    case 'button-height':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.height = value + 'px';
+                            el.style.minHeight = value + 'px';
+                        }
+                        break;
+                    case 'button-padding':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.padding = '0 ' + value + 'px';
+                        }
+                        break;
+                    case 'button-font-size':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.fontSize = value + 'px';
+                        }
+                        break;
+                    case 'card-height':
+                        if (el.classList.contains('card-item')) {
+                            el.style.minHeight = value + 'px';
+                        }
+                        break;
+                    case 'modal-width':
+                        if (el.classList.contains('modal-item')) {
+                            el.style.width = value + 'px';
+                            el.style.maxWidth = value + 'px';
+                            el.style.minWidth = Math.min(value, 300) + 'px';
+                            el.style.flex = '0 0 auto';
+                            el.style.boxSizing = 'border-box';
+                        }
+                        break;
+                }
+            });
+        }
+
+        function setupComponentSizes() {
+            // Component Sizes event listeners
+            document.querySelectorAll('[data-control]').forEach(control => {
+                const property = control.getAttribute('data-control');
+
+                // Component Size Properties
+                const layoutProps = ['button-height', 'button-padding', 'button-font-size', 'card-height', 'modal-width'];
+                if (layoutProps.includes(property)) {
+                    control.addEventListener('input', function() {
+                        updateAdvancedLayout(property, this.value);
+                    });
+                    control.addEventListener('change', function() {
+                        updateAdvancedLayout(property, this.value);
+                    });
+                }
+            });
+        }
+
+        window.updateAdvancedLayout = updateAdvancedLayout;
+        window.setupComponentSizes = setupComponentSizes;
+
     </script>
 </body>
 </html>

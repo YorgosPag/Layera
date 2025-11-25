@@ -1,0 +1,165 @@
+        
+        // 🌈 6-Color System Functionality
+        let currentTarget = 'all';
+        
+        function setTargetComponent(target) {
+            currentTarget = target;
+            
+            // Update active state για target buttons
+            document.querySelectorAll('.target-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.borderColor = '#666';
+                btn.style.color = '#ccc';
+            });
+            
+            const activeBtn = document.querySelector(`[data-target="${target}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.style.background = '#4A90E2';
+                activeBtn.style.borderColor = '#4A90E2';
+                activeBtn.style.color = 'white';
+            }
+            
+            console.log(`Target set to: ${target}`);
+        }
+        
+        function updateAdvancedColor(colorType, newColor) {
+            console.log(`Updating ${colorType} to ${newColor} for target: ${currentTarget}`);
+            
+            const targetSelectors = getTargetSelectors(currentTarget, colorType);
+            
+            targetSelectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    applyColorToElement(el, colorType, newColor, currentTarget);
+                });
+            });
+            
+            // Update CSS variables
+            const root = document.documentElement;
+            root.style.setProperty(`--live-${colorType}-color`, newColor);
+        }
+        
+        function getTargetSelectors(target, colorType) {
+            const selectors = [];
+            
+            if (target === 'all' || target === 'cards') {
+                selectors.push('.card-item', '.card-primary', '.card-secondary', '.card-success', '.card-warning', '.card-danger', '.card-info');
+            }
+            
+            if (target === 'all' || target === 'buttons') {
+                selectors.push('.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn');
+            }
+            
+            if (target === 'all' || target === 'modals') {
+                selectors.push('.modal-item', '.modal-header');
+            }
+            
+            if (target === 'all' || target === 'tables') {
+                selectors.push('.simple-table th', '.simple-table td');
+            }
+            
+            if (target === 'all' || target === 'header') {
+                selectors.push('.app-header', '.header-section');
+            }
+            
+            return selectors;
+        }
+        
+        function applyColorToElement(element, colorType, color, target) {
+            // Cards color support
+            if (element.classList.contains('card-item') || 
+                element.classList.contains('card-primary') || element.classList.contains('card-secondary') ||
+                element.classList.contains('card-success') || element.classList.contains('card-warning') ||
+                element.classList.contains('card-danger') || element.classList.contains('card-info')) {
+                
+                switch(colorType) {
+                    case 'primary':
+                        element.style.borderColor = color;
+                        element.style.backgroundColor = color + '15';
+                        break;
+                    case 'secondary':
+                        element.style.borderColor = color;
+                        element.style.boxShadow = `0 2px 4px ${color}40`;
+                        break;
+                    case 'success':
+                        element.style.borderColor = color;
+                        element.style.backgroundColor = color + '10';
+                        break;
+                    case 'warning':
+                        element.style.borderColor = color;
+                        element.style.backgroundColor = color + '15';
+                        break;
+                    case 'danger':
+                        element.style.borderColor = color;
+                        element.style.backgroundColor = color + '10';
+                        break;
+                    case 'info':
+                        element.style.borderColor = color;
+                        element.style.backgroundColor = color + '12';
+                        break;
+                }
+            }
+            
+            // Buttons color support
+            if (element.classList.contains('btn') || element.classList.contains('primary-btn') ||
+                element.classList.contains('secondary-btn') || element.classList.contains('success-btn') ||
+                element.classList.contains('warning-btn') || element.classList.contains('danger-btn') ||
+                element.classList.contains('info-btn')) {
+                
+                switch(colorType) {
+                    case 'primary':
+                    case 'success':
+                    case 'warning':
+                    case 'danger':
+                    case 'info':
+                        element.style.backgroundColor = color;
+                        element.style.borderColor = color;
+                        element.style.color = '#ffffff';
+                        break;
+                    case 'secondary':
+                        element.style.backgroundColor = 'transparent';
+                        element.style.borderColor = color;
+                        element.style.color = color;
+                        break;
+                }
+            }
+            
+            // Header color support
+            if (element.classList.contains('app-header')) {
+                element.style.background = color;
+            }
+        }
+        
+        // Event Listeners Setup
+        function setup6ColorSystem() {
+            // Color Picker Event Listeners
+            document.querySelectorAll('[data-color-type]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const colorType = this.getAttribute('data-color-type');
+                    const newColor = this.value;
+                    updateAdvancedColor(colorType, newColor);
+                    
+                    // Sync με text input
+                    const textInput = document.querySelector(`[data-color-input="${colorType}"]`);
+                    if (textInput) textInput.value = newColor;
+                });
+            });
+            
+            // Text Input Event Listeners
+            document.querySelectorAll('[data-color-input]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const colorType = this.getAttribute('data-color-input');
+                    const newColor = this.value;
+                    updateAdvancedColor(colorType, newColor);
+                    
+                    // Sync με color picker
+                    const colorPicker = document.querySelector(`[data-color-type="${colorType}"]`);
+                    if (colorPicker) colorPicker.value = newColor;
+                });
+            });
+            
+            // Target Button Event Listeners
+            document.querySelectorAll('.target-btn').forEach(btn => {
+                btn.addEventListener(

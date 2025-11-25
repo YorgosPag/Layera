@@ -496,7 +496,22 @@
     </header>
 
     <div class="app-container">
-        <!-- Primary Sidebar - REMOVED: Now loaded from sidebar/primary-sidebar.html -->
+        <!-- Primary Sidebar - Πάντα Πρώτος -->
+        <aside class="sidebar">
+            <h3>📂 Navigation</h3>
+            <input type="text" placeholder="🔍 Filter menu..." style="width: 100%; padding: 0.5rem; border: none; border-radius: 4px; margin-bottom: 1rem;">
+            <div class="menu-item">🏠 Dashboard</div>
+            <div class="menu-item">📊 Analytics</div>
+            <div class="menu-item">⚙️ Settings</div>
+            <div class="menu-item">👥 Users</div>
+            <div class="menu-item">📋 Reports</div>
+            <div class="menu-item">🔧 Tools</div>
+
+            <h3 style="margin-top: 2rem;">⚙️ Quick Actions</h3>
+            <input type="email" placeholder="📧 Email address" style="width: 100%; padding: 0.5rem; border: none; border-radius: 4px; margin-bottom: 0.5rem;">
+            <input type="password" placeholder="🔒 Password" style="width: 100%; padding: 0.5rem; border: none; border-radius: 4px; margin-bottom: 0.5rem;">
+            <button class="btn primary-btn" style="width: 100%;">🔑 Login</button>
+        </aside>
 
         <!-- Left Secondary Sidebar (Settings) - Ανάμεσα σε Primary & Main Content -->
         <aside class="sidebar-secondary left" id="leftSidebar">
@@ -551,6 +566,80 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Layout Controls με Tabs -->
+            <div class="layout-controls">
+                <h3>🎯 Layout Themes με Tabs</h3>
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="🔍 Search layouts..." style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 1rem;">
+                    <input type="number" placeholder="Grid columns" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 120px;">
+                </div>
+
+                <!-- Layout Tabs -->
+                <div class="tabs-container">
+                    <div class="tabs-nav">
+                        <button class="tab-button tab-primary active-tab" onclick="switchLayoutTab('primary')">📋 Primary Layout</button>
+                        <button class="tab-button tab-secondary" onclick="switchLayoutTab('secondary')">🗂️ Secondary Layout</button>
+                        <button class="tab-button tab-success" onclick="switchLayoutTab('success')">✅ Success Layout</button>
+                        <button class="tab-button tab-warning" onclick="switchLayoutTab('warning')">⚠️ Warning Layout</button>
+                        <button class="tab-button tab-danger" onclick="switchLayoutTab('danger')">🚨 Danger Layout</button>
+                        <button class="tab-button tab-info" onclick="switchLayoutTab('info')">ℹ️ Info Layout</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <!-- Primary Layout Tab -->
+                        <div class="tab-pane active-pane" id="layout-primary">
+                            <h4>📋 Primary Layout Content</h4>
+                            <p>Κύριο layout για βασικές λειτουργίες</p>
+                            <input type="text" placeholder="🔍 Primary search..." style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                            <button class="btn primary-btn">🎯 Activate Primary</button>
+                        </div>
+
+                        <!-- Secondary Layout Tab -->
+                        <div class="tab-pane" id="layout-secondary">
+                            <h4>🗂️ Secondary Layout Content</h4>
+                            <p>Δευτερεύον layout για επιπλέον λειτουργίες</p>
+                            <select style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                <option>📂 Select secondary option</option>
+                                <option>📊 Analytics View</option>
+                                <option>⚙️ Settings Panel</option>
+                            </select>
+                            <button class="btn secondary-btn">🎯 Activate Secondary</button>
+                        </div>
+
+                        <!-- Success Layout Tab -->
+                        <div class="tab-pane" id="layout-success">
+                            <h4>✅ Success Layout Content</h4>
+                            <p>Layout για επιτυχείς ενέργειες</p>
+                            <input type="number" placeholder="💰 Success value" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                            <button class="btn success-btn">🎯 Activate Success</button>
+                        </div>
+
+                        <!-- Warning Layout Tab -->
+                        <div class="tab-pane" id="layout-warning">
+                            <h4>⚠️ Warning Layout Content</h4>
+                            <p>Layout για προειδοποιήσεις</p>
+                            <textarea placeholder="⚠️ Warning details..." style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                            <button class="btn warning-btn">🎯 Activate Warning</button>
+                        </div>
+
+                        <!-- Danger Layout Tab -->
+                        <div class="tab-pane" id="layout-danger">
+                            <h4>🚨 Danger Layout Content</h4>
+                            <p>Layout για επικίνδυνες ενέργειες</p>
+                            <input type="password" placeholder="🔒 Confirm action" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                            <button class="btn danger-btn">🎯 Activate Danger</button>
+                        </div>
+
+                        <!-- Info Layout Tab -->
+                        <div class="tab-pane" id="layout-info">
+                            <h4>ℹ️ Info Layout Content</h4>
+                            <p>Layout για πληροφοριακό περιεχόμενο</p>
+                            <input type="url" placeholder="🌐 Info URL" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                            <button class="btn info-btn">🎯 Activate Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Cards Section με Tabs -->
             <div class="component-section">
@@ -868,12 +957,400 @@
                 </div>
             </div>
 
+            <!-- Modals Section με Tabs -->
+            <div class="component-section">
+                <h3 class="section-title">🪟 Modals με Tabs (6 χρώματα)</h3>
 
+                <!-- Modal Tabs -->
+                <div class="tabs-container">
+                    <div class="tabs-nav">
+                        <button class="tab-button tab-primary active-tab" onclick="switchModalTab('primary')">📋 Primary Modals</button>
+                        <button class="tab-button tab-secondary" onclick="switchModalTab('secondary')">🗂️ Secondary Modals</button>
+                        <button class="tab-button tab-success" onclick="switchModalTab('success')">✅ Success Modals</button>
+                        <button class="tab-button tab-warning" onclick="switchModalTab('warning')">⚠️ Warning Modals</button>
+                        <button class="tab-button tab-danger" onclick="switchModalTab('danger')">🚨 Danger Modals</button>
+                        <button class="tab-button tab-info" onclick="switchModalTab('info')">ℹ️ Info Modals</button>
+                    </div>
 
+                    <div class="tab-content">
+                        <!-- Primary Modal Tab -->
+                        <div class="tab-pane active-pane" id="modals-primary">
+                            <div class="components-grid">
+                                <div class="modal-item modal-primary">
+                                    <h4>Primary Modal</h4>
+                                    <input type="text" placeholder="👤 Full Name" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="email" placeholder="📧 Email" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn primary-btn">✓ Create Account</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-secondary">
+                                    <h4>Secondary Modal</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🏢 Select Department</option>
+                                        <option>💼 Sales</option>
+                                        <option>🔧 Engineering</option>
+                                        <option>📊 Marketing</option>
+                                    </select>
+                                    <input type="range" min="1" max="10" style="width: 100%; margin-bottom: 0.5rem;">
+                                    <button class="btn secondary-btn">✓ Assign</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-success">
+                                    <h4>Success Modal</h4>
+                                    <input type="number" placeholder="💸 Payment Amount" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="text" placeholder="💳 Card Number" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn success-btn">✓ Process Payment</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-warning">
+                                    <h4>Warning Modal</h4>
+                                    <textarea placeholder="⚠️ Describe the issue..." style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                        <input type="checkbox" style="margin-right: 0.5rem;"> Mark as urgent
+                                    </label>
+                                    <button class="btn warning-btn">⚠ Submit Report</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-danger">
+                                    <h4>Danger Modal</h4>
+                                    <p style="color: #F44336; font-weight: bold;">⚠️ This action cannot be undone!</p>
+                                    <input type="text" placeholder="Type 'DELETE' to confirm" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                        <input type="checkbox" style="margin-right: 0.5rem;"> I understand the consequences
+                                    </label>
+                                    <button class="btn danger-btn">🗑 Permanently Delete</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-info">
+                                    <h4>Info Modal</h4>
+                                    <input type="search" placeholder="🔍 Search knowledge base..." style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>📚 Help Topic</option>
+                                        <option>🔧 Technical Support</option>
+                                        <option>💡 Feature Request</option>
+                                    </select>
+                                    <button class="btn info-btn">ℹ Get Help</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Secondary Modal Tab -->
+                        <div class="tab-pane" id="modals-secondary">
+                            <div class="components-grid">
+                                <div class="modal-item modal-primary">
+                                    <h4>Primary Modal - Workflow</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>⚙️ Workflow Type</option>
+                                        <option>📈 Approval</option>
+                                        <option>🔄 Review</option>
+                                        <option>✅ Final</option>
+                                    </select>
+                                    <input type="date" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn primary-btn">📋 Start Workflow</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-secondary">
+                                    <h4>Secondary Modal - Configuration</h4>
+                                    <input type="number" placeholder="📊 Max Users" style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <textarea placeholder="📝 Configuration notes..." style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <button class="btn secondary-btn">⚙️ Configure</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-success">
+                                    <h4>Success Modal - Celebration</h4>
+                                    <input type="text" placeholder="🎉 Achievement title" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="email" placeholder="🏆 Winner email" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn success-btn">🎉 Announce</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-warning">
+                                    <h4>Warning Modal - System Alert</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>⚠️ Alert Level</option>
+                                        <option>🔴 Critical</option>
+                                        <option>🟡 High</option>
+                                        <option>🟢 Medium</option>
+                                    </select>
+                                    <input type="datetime-local" style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn warning-btn">🚨 Send Alert</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-danger">
+                                    <h4>Danger Modal - System Maintenance</h4>
+                                    <textarea placeholder="💀 Maintenance reason..." style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <input type="password" placeholder="🔒 Admin confirmation" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn danger-btn">🔧 Start Maintenance</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-info">
+                                    <h4>Info Modal - Tutorial</h4>
+                                    <input type="url" placeholder="🔗 Tutorial URL" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="number" placeholder="⏱️ Duration (minutes)" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn info-btn">📚 Start Tutorial</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Success Modal Tab -->
+                        <div class="tab-pane" id="modals-success">
+                            <p style="text-align: center; color: #4CAF50; margin-bottom: 1rem;">✅ Success layout με διαφορετική διάταξη των modals</p>
+                            <div class="components-grid">
+                                <div class="modal-item modal-primary">
+                                    <h4>Primary Modal - Reward</h4>
+                                    <input type="text" placeholder="🎁 Reward title" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="number" placeholder="💰 Points earned" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn primary-btn">🎁 Claim Reward</button>
+                                    <button class="btn" style="background: #ccc;">✕ Later</button>
+                                </div>
+                                <div class="modal-item modal-secondary">
+                                    <h4>Secondary Modal - Badge</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🏆 Badge Type</option>
+                                        <option>🥇 Gold Star</option>
+                                        <option>🥈 Silver Star</option>
+                                        <option>🥉 Bronze Star</option>
+                                    </select>
+                                    <input type="text" placeholder="📝 Badge reason" style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn secondary-btn">🏆 Award Badge</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-success">
+                                    <h4>Success Modal - Completion</h4>
+                                    <input type="text" placeholder="📊 Task completed" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="time" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn success-btn">✅ Mark Complete</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                                <div class="modal-item modal-warning">
+                                    <h4>Warning Modal - Reminder</h4>
+                                    <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                        <input type="checkbox" style="margin-right: 0.5rem;"> 📅 Set daily reminder
+                                    </label>
+                                    <input type="email" placeholder="📧 Notification email" style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn warning-btn">⏰ Set Reminder</button>
+                                    <button class="btn" style="background: #ccc;">✕ Skip</button>
+                                </div>
+                                <div class="modal-item modal-danger">
+                                    <h4>Danger Modal - Backup</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>💾 Backup Type</option>
+                                        <option>🔄 Full Backup</option>
+                                        <option>📂 Incremental</option>
+                                        <option>📊 Database Only</option>
+                                    </select>
+                                    <input type="text" placeholder="📍 Backup location" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn danger-btn">💾 Start Backup</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-info">
+                                    <h4>Info Modal - Statistics</h4>
+                                    <input type="date" placeholder="📊 Report date" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>📈 Report Type</option>
+                                        <option>👥 User Activity</option>
+                                        <option>💰 Revenue</option>
+                                        <option>⚡ Performance</option>
+                                    </select>
+                                    <button class="btn info-btn">📊 Generate Report</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Warning Modal Tab -->
+                        <div class="tab-pane" id="modals-warning">
+                            <p style="text-align: center; color: #FF9800; margin-bottom: 1rem;">⚠️ Warning layout με διαφορετική διάταξη των modals</p>
+                            <div class="components-grid">
+                                <div class="modal-item modal-primary">
+                                    <h4>Primary Modal - Review</h4>
+                                    <textarea placeholder="📝 Review comments..." style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>⭐ Rating</option>
+                                        <option>⭐⭐⭐⭐⭐ Excellent</option>
+                                        <option>⭐⭐⭐⭐ Good</option>
+                                        <option>⭐⭐⭐ Average</option>
+                                    </select>
+                                    <button class="btn primary-btn">📝 Submit Review</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-secondary">
+                                    <h4>Secondary Modal - Assignment</h4>
+                                    <input type="email" placeholder="👤 Assign to user" style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="date" placeholder="📅 Due date" style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn secondary-btn">👤 Assign Task</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-success">
+                                    <h4>Success Modal - Promotion</h4>
+                                    <input type="text" placeholder="🎯 New position" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="number" placeholder="💰 New salary" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn success-btn">🎉 Promote</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-warning">
+                                    <h4>Warning Modal - Performance</h4>
+                                    <input type="text" placeholder="📊 Performance metric" style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <textarea placeholder="⚠️ Improvement areas..." style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <button class="btn warning-btn">📈 Create Plan</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-danger">
+                                    <h4>Danger Modal - Suspension</h4>
+                                    <input type="text" placeholder="📝 Suspension reason" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="number" placeholder="📅 Duration (days)" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn danger-btn">⏸️ Suspend</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-info">
+                                    <h4>Info Modal - Training</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🎓 Training Type</option>
+                                        <option>💻 Technical Skills</option>
+                                        <option>👥 Soft Skills</option>
+                                        <option>🔒 Security Training</option>
+                                    </select>
+                                    <input type="url" placeholder="🔗 Training URL" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn info-btn">🎓 Enroll</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Danger Modal Tab -->
+                        <div class="tab-pane" id="modals-danger">
+                            <p style="text-align: center; color: #F44336; margin-bottom: 1rem;">🚨 Danger layout με διαφορετική διάταξη των modals</p>
+                            <div class="components-grid">
+                                <div class="modal-item modal-primary">
+                                    <h4>Primary Modal - Archive</h4>
+                                    <input type="text" placeholder="📦 Archive name" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <textarea placeholder="📝 Archive reason..." style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <button class="btn primary-btn">📦 Archive</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-secondary">
+                                    <h4>Secondary Modal - Transfer</h4>
+                                    <input type="email" placeholder="👤 Transfer to user" style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🔄 Transfer Type</option>
+                                        <option>📂 Files Only</option>
+                                        <option>👥 Full Ownership</option>
+                                        <option>📊 Permissions Only</option>
+                                    </select>
+                                    <button class="btn secondary-btn">🔄 Transfer</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-success">
+                                    <h4>Success Modal - Recovery</h4>
+                                    <input type="text" placeholder="🔄 Recovery point" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="datetime-local" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn success-btn">🔄 Restore</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-warning">
+                                    <h4>Warning Modal - Migration</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🚚 Migration Type</option>
+                                        <option>🗄️ Database</option>
+                                        <option>📁 Files</option>
+                                        <option>⚙️ Settings</option>
+                                    </select>
+                                    <input type="url" placeholder="🎯 Target server" style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn warning-btn">🚚 Migrate</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-danger">
+                                    <h4>Danger Modal - Termination</h4>
+                                    <p style="color: #F44336; font-weight: bold; margin-bottom: 0.5rem;">💀 PERMANENT ACTION - CANNOT BE UNDONE!</p>
+                                    <input type="text" placeholder="Type 'TERMINATE' to confirm" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="password" placeholder="🔒 Admin password" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn danger-btn">💀 TERMINATE</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-info">
+                                    <h4>Info Modal - Export</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>📤 Export Format</option>
+                                        <option>📊 CSV</option>
+                                        <option>📄 PDF</option>
+                                        <option>📋 JSON</option>
+                                    </select>
+                                    <input type="email" placeholder="📧 Send to email" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn info-btn">📤 Export</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Modal Tab -->
+                        <div class="tab-pane" id="modals-info">
+                            <p style="text-align: center; color: #2196F3; margin-bottom: 1rem;">ℹ️ Info layout με διαφορετική διάταξη των modals</p>
+                            <div class="components-grid">
+                                <div class="modal-item modal-primary">
+                                    <h4>Primary Modal - Documentation</h4>
+                                    <input type="text" placeholder="📚 Document title" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="url" placeholder="🔗 Document URL" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn primary-btn">📚 Add Document</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-secondary">
+                                    <h4>Secondary Modal - Feedback</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>💭 Feedback Type</option>
+                                        <option>🐛 Bug Report</option>
+                                        <option>💡 Feature Request</option>
+                                        <option>👍 Compliment</option>
+                                    </select>
+                                    <textarea placeholder="💭 Your feedback..." style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+                                    <button class="btn secondary-btn">💭 Submit</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-success">
+                                    <h4>Success Modal - Newsletter</h4>
+                                    <input type="email" placeholder="📧 Your email" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                        <input type="checkbox" style="margin-right: 0.5rem;"> 📮 Weekly updates
+                                    </label>
+                                    <button class="btn success-btn">📮 Subscribe</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-warning">
+                                    <h4>Warning Modal - Notification</h4>
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🔔 Notification Type</option>
+                                        <option>📧 Email</option>
+                                        <option>📱 Push</option>
+                                        <option>💬 SMS</option>
+                                    </select>
+                                    <input type="text" placeholder="💬 Message" style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn warning-btn">🔔 Send</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-danger">
+                                    <h4>Danger Modal - Privacy</h4>
+                                    <input type="text" placeholder="🔒 Data type" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+                                        <option>🔒 Privacy Level</option>
+                                        <option>🔴 Private</option>
+                                        <option>🟡 Internal</option>
+                                        <option>🟢 Public</option>
+                                    </select>
+                                    <button class="btn danger-btn">🔒 Set Privacy</button>
+                                    <button class="btn" style="background: #ccc;">✕ Cancel</button>
+                                </div>
+                                <div class="modal-item modal-info">
+                                    <h4>Info Modal - Contact</h4>
+                                    <input type="text" placeholder="👤 Contact name" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <input type="tel" placeholder="📞 Phone number" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+                                    <button class="btn info-btn">👤 Add Contact</button>
+                                    <button class="btn" style="background: #ccc;">✕ Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Tables Section με Tabs -->
             <div class="component-section">
