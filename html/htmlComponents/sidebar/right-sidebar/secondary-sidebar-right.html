@@ -1,0 +1,99 @@
+<style>
+/* Right Secondary Sidebar Styles */
+.sidebar-secondary {
+    width: 0;
+    background: #34495e;
+    color: white;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-left: 1px solid #4a5568;
+    box-sizing: border-box;
+    height: 100vh; /* Πλήρες ύψος οθόνης */
+}
+
+.sidebar-secondary.open {
+    width: 280px;
+    padding: 1rem;
+    overflow-y: auto; /* Επιτρέπει vertical scrolling */
+    overflow-x: hidden; /* Κρύβει horizontal scrolling */
+}
+
+/* Custom Scrollbar για τα sidebars */
+.sidebar-secondary::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-secondary::-webkit-scrollbar-track {
+    background: #2c3e50;
+    border-radius: 4px;
+}
+
+.sidebar-secondary::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 4px;
+    border: 1px solid #34495e;
+}
+
+.sidebar-secondary::-webkit-scrollbar-thumb:hover {
+    background: #5a6578;
+}
+
+.sidebar-secondary:not(.left) {
+    order: 3; /* Τελευταίος δεξιά */
+}
+
+.sidebar-secondary h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #ecf0f1;
+    font-size: 1rem;
+    border-bottom: 1px solid #4a5568;
+    padding-bottom: 0.5rem;
+}
+
+.target-btn.active {
+    background: #4A90E2 !important;
+    color: white !important;
+    border-color: #4A90E2 !important;
+}
+</style>
+
+<!-- Right Secondary Sidebar (Style Controls) -->
+<aside class="sidebar-secondary" id="rightSidebar">
+    <h3>🎨 Style Controls</h3>
+
+    <!-- Φόρτωση 6-Color System Component -->
+    <div id="color-system-container"></div>
+
+    <!-- Φόρτωση Apply To Selector Component -->
+    <div id="apply-to-container"></div>
+
+    <!-- Φόρτωση Typography Component -->
+    <div id="typography-container"></div>
+
+    <!-- Φόρτωση Component Sizes Component -->
+    <div id="component-sizes-container"></div>
+
+    <!-- Φόρτωση Border Radius Component -->
+    <div id="border-radius-container"></div>
+
+    <!-- Φόρτωση Quick Radius Presets Component -->
+    <div id="quick-radius-presets-container"></div>
+
+    <!-- Φόρτωση Spacing Layout Component -->
+    <div id="spacing-layout-container"></div>
+
+    <!-- Φόρτωση Components Component -->
+    <div id="components-container"></div>
+
+    <!-- Φόρτωση Preset Themes Component -->
+    <div id="preset-themes-container"></div>
+
+    <!-- Placeholder για περισσότερα controls που θα προστεθούν σταδιακά -->
+    <div style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 1rem;">
+        📝 Περισσότερα controls θα προστεθούν σταδιακά...
+    </div>
+
+</aside>
+

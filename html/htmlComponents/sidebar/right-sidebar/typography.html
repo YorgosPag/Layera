@@ -1,0 +1,64 @@
+<!-- 📝 Typography Component -->
+<div class="control-group" style="margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.75rem 0; font-size: 0.9rem; color: #bbb;">📝 Typography</h4>
+
+    <!-- Font Family -->
+    <div style="margin-bottom: 0.5rem;">
+        <label style="display: block; margin-bottom: 0.25rem; font-size: 0.8rem;">Font Family</label>
+        <select data-control="font-family" style="width: 100%; padding: 0.3rem; border: none; border-radius: 3px; background: #4a5568; color: white; font-size: 0.75rem;">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="'Segoe UI', sans-serif">Segoe UI</option>
+            <option value="'Roboto', sans-serif">Roboto</option>
+            <option value="'Helvetica Neue', sans-serif">Helvetica Neue</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Times New Roman', serif">Times New Roman</option>
+        </select>
+    </div>
+
+    <!-- Base Font Size -->
+    <div style="margin-bottom: 0.5rem;">
+        <label style="display: block; margin-bottom: 0.25rem; font-size: 0.8rem;">Base Font Size</label>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="range" min="12" max="24" value="16" data-control="font-size" style="flex: 1;">
+            <span data-display="font-size" style="color: #bbb; font-size: 0.7rem; min-width: 35px;">16px</span>
+        </div>
+    </div>
+
+    <!-- Header Size -->
+    <div style="margin-bottom: 0.5rem;">
+        <label style="display: block; margin-bottom: 0.25rem; font-size: 0.8rem;">Header Size</label>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="range" min="18" max="36" value="24" data-control="header-size" style="flex: 1;">
+            <span data-display="header-size" style="color: #bbb; font-size: 0.7rem; min-width: 35px;">24px</span>
+        </div>
+    </div>
+
+    <!-- Font Weight -->
+    <div style="margin-bottom: 0.5rem;">
+        <label style="display: block; margin-bottom: 0.25rem; font-size: 0.8rem;">Font Weight</label>
+        <select data-control="font-weight" style="width: 100%; padding: 0.3rem; border: none; border-radius: 3px; background: #4a5568; color: white; font-size: 0.75rem;">
+            <option value="300">Light (300)</option>
+            <option value="400">Normal (400)</option>
+            <option value="600">Semi-Bold (600)</option>
+            <option value="700">Bold (700)</option>
+        </select>
+    </div>
+
+    <!-- Line Height -->
+    <div style="margin-bottom: 0.5rem;">
+        <label style="display: block; margin-bottom: 0.25rem; font-size: 0.8rem;">Line Height</label>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="range" min="1" max="2" step="0.1" value="1.5" data-control="line-height" style="flex: 1;">
+            <span data-display="line-height" style="color: #bbb; font-size: 0.7rem; min-width: 30px;">1.5</span>
+        </div>
+    </div>
+
+    <!-- Text Color -->
+    <div style="margin-bottom: 0.75rem;">
+        <label style="display: block; margin-bottom: 0.25rem; font-size: 0.8rem;">Text Color</label>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="color" value="#2c3e50" data-control="text-color" style="width: 30px; height: 25px; border: none; border-radius: 3px; cursor: pointer;">
+            <input type="text" value="#2c3e50" data-control-input="text-color" style="flex: 1; padding: 0.25rem; border: none; border-radius: 3px; background: #4a5568; color: white; font-size: 0.75rem;">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,197 @@
+<style>
+    /* Cards Section Styles */
+    .cards-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border: 1px solid #e0e0e0;
+    }
+
+    .section-title {
+        color: #2c3e50;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .tabs-container {
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
+
+    .tabs-nav {
+        display: flex;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f8f9fa;
+    }
+
+    .tab-button {
+        padding: 0.75rem 1rem;
+        background: transparent;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        white-space: nowrap;
+        flex: 1;
+        min-width: 120px;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+    .tab-button:hover {
+        background: rgba(74,144,226,0.1);
+        color: #4A90E2;
+    }
+
+    .tab-button.active-tab {
+        background: rgba(74,144,226,0.1);
+        color: #4A90E2;
+        border-bottom-color: #4A90E2;
+    }
+
+    .tab-button.tab-primary.active-tab { border-bottom-color: #4A90E2; }
+    .tab-button.tab-secondary.active-tab { border-bottom-color: #9013FE; }
+    .tab-button.tab-success.active-tab { border-bottom-color: #4CAF50; }
+    .tab-button.tab-warning.active-tab { border-bottom-color: #FF9800; }
+    .tab-button.tab-danger.active-tab { border-bottom-color: #F44336; }
+    .tab-button.tab-info.active-tab { border-bottom-color: #2196F3; }
+
+    .tab-content {
+        padding: 1rem;
+        background: white;
+    }
+
+    .tab-pane {
+        display: none;
+    }
+
+    .tab-pane.active-pane {
+        display: block;
+    }
+
+    .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-item {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-left: 3px solid #666;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .card-item h4 {
+        color: #2c3e50;
+        margin: 0 0 0.75rem 0;
+        font-size: 0.95rem;
+    }
+
+    .card-item.card-primary { border-color: #4A90E2; background: #E3F2FD; border-left-color: #4A90E2; }
+    .card-item.card-secondary { border-color: #9013FE; background: #F3E5F5; border-left-color: #9013FE; }
+    .card-item.card-success { border-color: #4CAF50; background: #E8F5E8; border-left-color: #4CAF50; }
+    .card-item.card-warning { border-color: #FF9800; background: #FFF3E0; border-left-color: #FF9800; }
+    .card-item.card-danger { border-color: #F44336; background: #FFEBEE; border-left-color: #F44336; }
+    .card-item.card-info { border-color: #2196F3; background: #E1F5FE; border-left-color: #2196F3; }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .primary-btn { background: #4A90E2; color: white; }
+    .primary-btn:hover { background: #357ABD; }
+
+    .secondary-btn { background: #9013FE; color: white; }
+    .secondary-btn:hover { background: #7B1FA2; }
+
+    .success-btn { background: #4CAF50; color: white; }
+    .success-btn:hover { background: #45A049; }
+
+    .warning-btn { background: #FF9800; color: white; }
+    .warning-btn:hover { background: #F57C00; }
+
+    .danger-btn { background: #F44336; color: white; }
+    .danger-btn:hover { background: #D32F2F; }
+
+    .info-btn { background: #2196F3; color: white; }
+    .info-btn:hover { background: #1976D2; }
+</style>
+
+<div class="cards-section">
+    <h3 class="section-title">🃏 Κάρτες με Tabs (6 χρώματα)</h3>
+
+    <div class="tabs-container">
+        <div class="tabs-nav">
+            <button class="tab-button tab-primary active-tab" onclick="switchCardTab('primary', this)">📋 Primary Cards</button>
+            <button class="tab-button tab-secondary" onclick="switchCardTab('secondary', this)">🗂️ Secondary Cards</button>
+            <button class="tab-button tab-success" onclick="switchCardTab('success', this)">✅ Success Cards</button>
+            <button class="tab-button tab-warning" onclick="switchCardTab('warning', this)">⚠️ Warning Cards</button>
+            <button class="tab-button tab-danger" onclick="switchCardTab('danger', this)">🚨 Danger Cards</button>
+            <button class="tab-button tab-info" onclick="switchCardTab('info', this)">ℹ️ Info Cards</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Primary Cards Tab -->
+            <div class="tab-pane active-pane" id="cards-primary">
+                <div id="card-primary-content-container"></div>
+            </div>
+
+            <!-- Secondary Cards Tab -->
+            <div class="tab-pane" id="cards-secondary">
+                <div id="card-secondary-content-container"></div>
+            </div>
+
+            <!-- Success Cards Tab -->
+            <div class="tab-pane" id="cards-success">
+                <div id="card-success-content-container"></div>
+            </div>
+
+            <!-- Warning Cards Tab -->
+            <div class="tab-pane" id="cards-warning">
+                <div id="card-warning-content-container"></div>
+            </div>
+
+            <!-- Danger Cards Tab -->
+            <div class="tab-pane" id="cards-danger">
+                <div id="card-danger-content-container"></div>
+            </div>
+
+            <!-- Info Cards Tab -->
+            <div class="tab-pane" id="cards-info">
+                <div id="card-info-content-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

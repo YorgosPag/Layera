@@ -1,0 +1,90 @@
+<style>
+/* Header Styles */
+.app-header {
+    background: #4A90E2;
+    color: white;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: auto;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.header-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.color-btn {
+    padding: 0.2rem 0.4rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 500;
+    min-width: 24px;
+}
+
+.primary-btn { background: #4A90E2; }
+.secondary-btn { background: #9013FE; }
+.success-btn { background: #4CAF50; }
+.warning-btn { background: #FF9800; }
+.danger-btn { background: #F44336; }
+.info-btn { background: #2196F3; }
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+</style>
+
+<!-- Header με 6 Header Color Buttons δεξιά από τον τίτλο -->
+<header class="app-header">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <h1>🎨 Layera Design System Preview</h1>
+        <div class="header-buttons">
+            <button class="color-btn primary-btn active" onclick="changeHeaderColor('primary')">P</button>
+            <button class="color-btn secondary-btn" onclick="changeHeaderColor('secondary')">S</button>
+            <button class="color-btn success-btn" onclick="changeHeaderColor('success')">Su</button>
+            <button class="color-btn warning-btn" onclick="changeHeaderColor('warning')">W</button>
+            <button class="color-btn danger-btn" onclick="changeHeaderColor('danger')">D</button>
+            <button class="color-btn info-btn" onclick="changeHeaderColor('info')">I</button>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <!-- Toggle Controls για Sidebars -->
+        <div class="sidebar-toggles" style="display: flex; gap: 0.5rem; margin-right: 1rem;">
+            <button class="btn toggle-btn" onclick="toggleSidebar('left')" style="background: rgba(255,255,255,0.15); color: white; padding: 0.4rem; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.3);" title="Toggle Left Sidebar">
+                ⚙️
+            </button>
+            <button class="btn toggle-btn" onclick="toggleSidebar('right')" style="background: rgba(255,255,255,0.15); color: white; padding: 0.4rem; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.3);" title="Toggle Right Sidebar">
+                🎨
+            </button>
+        </div>
+        <input type="search" placeholder="🔍 Search..." style="padding: 0.4rem; border: none; border-radius: 3px; margin-right: 0.75rem; font-size: 0.85rem;">
+        <input type="text" placeholder="📍 Location" style="padding: 0.4rem; border: none; border-radius: 3px; margin-right: 0.75rem; font-size: 0.85rem;">
+        <button class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.4rem 0.8rem; font-size: 0.85rem;">👤 Profile</button>
+    </nav>
+</header>

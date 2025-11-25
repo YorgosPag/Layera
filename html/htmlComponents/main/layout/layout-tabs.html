@@ -1,0 +1,173 @@
+<style>
+.layout-controls {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.layout-controls h3 {
+    margin-bottom: 0.5rem;
+}
+
+.layout-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Tabs System */
+.tabs-container {
+    margin-bottom: 1rem;
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 0.75rem 1rem;
+    border: none;
+    background: #ecf0f1;
+    color: #2c3e50;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    background: #d5dbdb;
+}
+
+.tab-button.active-tab {
+    background: white;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.tab-button.tab-primary.active-tab {
+    border-bottom-color: #4A90E2;
+    color: #4A90E2;
+}
+
+.tab-button.tab-secondary.active-tab {
+    border-bottom-color: #9013FE;
+    color: #9013FE;
+}
+
+.tab-button.tab-success.active-tab {
+    border-bottom-color: #4CAF50;
+    color: #4CAF50;
+}
+
+.tab-button.tab-warning.active-tab {
+    border-bottom-color: #FF9800;
+    color: #FF9800;
+}
+
+.tab-button.tab-danger.active-tab {
+    border-bottom-color: #F44336;
+    color: #F44336;
+}
+
+.tab-button.tab-info.active-tab {
+    border-bottom-color: #2196F3;
+    color: #2196F3;
+}
+
+.tab-content {
+    background: white;
+    border-radius: 0 8px 8px 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active-pane {
+    display: block;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.primary-btn { background: #4A90E2; color: white; }
+.secondary-btn { background: #9013FE; color: white; }
+.success-btn { background: #4CAF50; color: white; }
+.warning-btn { background: #FF9800; color: white; }
+.danger-btn { background: #F44336; color: white; }
+.info-btn { background: #2196F3; color: white; }
+</style>
+
+<!-- 🎯 Layout Controls με Tabs -->
+<div class="layout-controls">
+    <h3>🎯 Layout Themes με Tabs</h3>
+    <div style="margin-bottom: 1rem;">
+        <input type="text" placeholder="🔍 Search layouts..." style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 1rem;">
+        <input type="number" placeholder="Grid columns" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 120px;">
+    </div>
+
+    <!-- Layout Tabs -->
+    <div class="tabs-container">
+        <div class="tabs-nav">
+            <button class="tab-button tab-primary active-tab" data-tab="primary" onclick="showTab('primary', this)">📋 Primary Layout</button>
+            <button class="tab-button tab-secondary" data-tab="secondary" onclick="showTab('secondary', this)">🗂️ Secondary Layout</button>
+            <button class="tab-button tab-success" data-tab="success" onclick="showTab('success', this)">✅ Success Layout</button>
+            <button class="tab-button tab-warning" data-tab="warning" onclick="showTab('warning', this)">⚠️ Warning Layout</button>
+            <button class="tab-button tab-danger" data-tab="danger" onclick="showTab('danger', this)">🚨 Danger Layout</button>
+            <button class="tab-button tab-info" data-tab="info" onclick="showTab('info', this)">ℹ️ Info Layout</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Primary Layout Tab -->
+            <div class="tab-pane active-pane" id="layout-primary">
+                <div id="layout-primary-content-container"></div>
+            </div>
+
+            <!-- Secondary Layout Tab -->
+            <div class="tab-pane" id="layout-secondary">
+                <div id="layout-secondary-content-container"></div>
+            </div>
+
+            <!-- Success Layout Tab -->
+            <div class="tab-pane" id="layout-success">
+                <div id="layout-success-content-container"></div>
+            </div>
+
+            <!-- Warning Layout Tab -->
+            <div class="tab-pane" id="layout-warning">
+                <div id="layout-warning-content-container"></div>
+            </div>
+
+            <!-- Danger Layout Tab -->
+            <div class="tab-pane" id="layout-danger">
+                <div id="layout-danger-content-container"></div>
+            </div>
+
+            <!-- Info Layout Tab -->
+            <div class="tab-pane" id="layout-info">
+                <div id="layout-info-content-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

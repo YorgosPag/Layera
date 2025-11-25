@@ -1,0 +1,61 @@
+<p style="text-align: center; color: #F44336; margin-bottom: 1rem;">🚨 Danger layout με διαφορετική διάταξη των modals</p>
+<div class="components-grid">
+    <div class="modal-item modal-primary">
+        <h4>Primary Modal - Archive</h4>
+        <input type="text" placeholder="📦 Archive name" style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem;">
+        <textarea placeholder="📝 Archive reason..." style="width: 100%; padding: 0.5rem; border: 1px solid #4A90E2; border-radius: 4px; margin-bottom: 0.5rem; height: 60px; resize: none;"></textarea>
+        <button class="btn primary-btn">📦 Archive</button>
+        <button class="btn" style="background: #ccc;">✕ Cancel</button>
+    </div>
+    <div class="modal-item modal-secondary">
+        <h4>Secondary Modal - Transfer</h4>
+        <input type="email" placeholder="👤 Transfer to user" style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+        <select style="width: 100%; padding: 0.5rem; border: 1px solid #9013FE; border-radius: 4px; margin-bottom: 0.5rem;">
+            <option>🔄 Transfer Type</option>
+            <option>📂 Files Only</option>
+            <option>👥 Full Ownership</option>
+            <option>📊 Permissions Only</option>
+        </select>
+        <button class="btn secondary-btn">🔄 Transfer</button>
+        <button class="btn" style="background: #ccc;">✕ Cancel</button>
+    </div>
+    <div class="modal-item modal-success">
+        <h4>Success Modal - Recovery</h4>
+        <input type="text" placeholder="🔄 Recovery point" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+        <input type="datetime-local" style="width: 100%; padding: 0.5rem; border: 1px solid #4CAF50; border-radius: 4px; margin-bottom: 0.5rem;">
+        <button class="btn success-btn">🔄 Restore</button>
+        <button class="btn" style="background: #ccc;">✕ Cancel</button>
+    </div>
+    <div class="modal-item modal-warning">
+        <h4>Warning Modal - Migration</h4>
+        <select style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+            <option>🚚 Migration Type</option>
+            <option>🗄️ Database</option>
+            <option>📁 Files</option>
+            <option>⚙️ Settings</option>
+        </select>
+        <input type="url" placeholder="🎯 Target server" style="width: 100%; padding: 0.5rem; border: 1px solid #FF9800; border-radius: 4px; margin-bottom: 0.5rem;">
+        <button class="btn warning-btn">🚚 Migrate</button>
+        <button class="btn" style="background: #ccc;">✕ Cancel</button>
+    </div>
+    <div class="modal-item modal-danger">
+        <h4>Danger Modal - Termination</h4>
+        <p style="color: #F44336; font-weight: bold; margin-bottom: 0.5rem;">💀 PERMANENT ACTION - CANNOT BE UNDONE!</p>
+        <input type="text" placeholder="Type 'TERMINATE' to confirm" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+        <input type="password" placeholder="🔒 Admin password" style="width: 100%; padding: 0.5rem; border: 1px solid #F44336; border-radius: 4px; margin-bottom: 0.5rem;">
+        <button class="btn danger-btn">💀 TERMINATE</button>
+        <button class="btn" style="background: #ccc;">✕ Cancel</button>
+    </div>
+    <div class="modal-item modal-info">
+        <h4>Info Modal - Export</h4>
+        <select style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+            <option>📤 Export Format</option>
+            <option>📊 CSV</option>
+            <option>📄 PDF</option>
+            <option>📋 JSON</option>
+        </select>
+        <input type="email" placeholder="📧 Send to email" style="width: 100%; padding: 0.5rem; border: 1px solid #2196F3; border-radius: 4px; margin-bottom: 0.5rem;">
+        <button class="btn info-btn">📤 Export</button>
+        <button class="btn" style="background: #ccc;">✕ Close</button>
+    </div>
+</div>

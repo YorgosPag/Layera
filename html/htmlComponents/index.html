@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullAppPreview - Mockup για Συζήτηση</title>
+
+    <!-- CSS -->
+    <style>
+        /* Minimal base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+
+        /* Main Container */
+        .app-container {
+            display: flex;
+            height: calc(100vh - 65px);
+            min-height: calc(100vh - 65px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Φόρτωση Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Container για την κύρια εφαρμογή -->
+    <div class="app-container">
+        <!-- Φόρτωση Primary Sidebar (αριστερά) -->
+        <div id="primary-sidebar-container"></div>
+
+        <!-- Φόρτωση Left Secondary Sidebar (αριστερά) -->
+        <div id="secondary-sidebar-left-container"></div>
+
+        <!-- Φόρτωση Main Content Area (κέντρο) -->
+        <div id="main-content-container" style="flex: 1; display: flex;">
+            <main class="main-content" style="flex: 1; padding: 1rem; overflow-y: auto; width: 100%; box-sizing: border-box;">
+                <!-- Φόρτωση Layout Controls -->
+                <div id="layout-controls-container"></div>
+
+                <!-- Φόρτωση Cards Section -->
+                <div id="cards-section-container"></div>
+
+                <!-- Φόρτωση Modals Section -->
+                <div id="modals-section-container"></div>
+
+
+
+
+
+
+
+                <!-- Placeholder για άλλα main content components -->
+                <div style="text-align: center; color: #888; font-size: 0.9rem; margin-top: 2rem;">
+                    📝 Υπόλοιπα sections (Tables) θα προστεθούν σταδιακά...
+                </div>
+            </main>
+        </div>
+
+        <!-- Φόρτωση Right Secondary Sidebar (δεξιά) -->
+        <div id="secondary-sidebar-right-container"></div>
+    </div>
+
+    <!-- JavaScript για φόρτωση των components -->
+    <script>
+        // Συνάρτηση για φόρτωση HTML component
+        async function loadComponent(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading ${url}:`, error);
+                document.getElementById(containerId).innerHTML = `<div style="color: red;">Error loading ${url}</div>`;
+            }
+        }
+
+        // Φόρτωση των right sidebar components
+        async function loadRightSidebarComponents() {
+            try {
+                // Φορτώνουμε το 6-Color System
+                await loadComponent('sidebar/right-sidebar/6-color-system.html', 'color-system-container');
+                console.log('✅ 6-Color System component loaded successfully!');
+
+                // Φορτώνουμε το Apply To Selector
+                await loadComponent('sidebar/right-sidebar/apply-to-selector.html', 'apply-to-container');
+                console.log('✅ Apply To Selector component loaded successfully!');
+
+                // Φορτώνουμε το Typography
+                await loadComponent('sidebar/right-sidebar/typography.html', 'typography-container');
+                console.log('✅ Typography component loaded successfully!');
+
+                // Φορτώνουμε το Component Sizes
+                await loadComponent('sidebar/right-sidebar/component-sizes.html', 'component-sizes-container');
+                console.log('✅ Component Sizes component loaded successfully!');
+
+                // Φορτώνουμε το Border Radius
+                await loadComponent('sidebar/right-sidebar/border-radius.html', 'border-radius-container');
+                console.log('✅ Border Radius component loaded successfully!');
+
+                // Φορτώνουμε το Quick Radius Presets
+                await loadComponent('sidebar/right-sidebar/quick-radius-presets.html', 'quick-radius-presets-container');
+                console.log('✅ Quick Radius Presets component loaded successfully!');
+
+                // Φορτώνουμε το Spacing Layout
+                await loadComponent('sidebar/right-sidebar/spacing-layout.html', 'spacing-layout-container');
+                console.log('✅ Spacing Layout component loaded successfully!');
+
+                // Φορτώνουμε το Components
+                await loadComponent('sidebar/right-sidebar/components.html', 'components-container');
+                console.log('✅ Components component loaded successfully!');
+
+                // Φορτώνουμε το Preset Themes
+                await loadComponent('sidebar/right-sidebar/preset-themes.html', 'preset-themes-container');
+                console.log('✅ Preset Themes component loaded successfully!');
+
+                // Φορτώνουμε το Layout Tabs στο main content
+                await loadComponent('main/layout/layout-tabs.html', 'layout-controls-container');
+                console.log('✅ Layout Tabs component loaded successfully!');
+
+                // Φορτώνουμε το Layout Primary Cards
+                await loadComponent('main/layout/layout-primary-cards.html', 'layout-primary-content-container');
+                console.log('✅ Layout Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Secondary Cards
+                await loadComponent('main/layout/layout-secondary-cards.html', 'layout-secondary-content-container');
+                console.log('✅ Layout Secondary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Success Cards
+                await loadComponent('main/layout/layout-success-cards.html', 'layout-success-content-container');
+                console.log('✅ Layout Success Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Warning Cards
+                await loadComponent('main/layout/layout-warning-cards.html', 'layout-warning-content-container');
+                console.log('✅ Layout Warning Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Danger Cards
+                await loadComponent('main/layout/layout-danger-cards.html', 'layout-danger-content-container');
+                console.log('✅ Layout Danger Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Info Cards
+                await loadComponent('main/layout/layout-info-cards.html', 'layout-info-content-container');
+                console.log('✅ Layout Info Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modals Section στο main content
+                await loadComponent('main/modals/modals-tabs.html', 'modals-section-container');
+                console.log('✅ Modals Section component loaded successfully!');
+
+                // Φορτώνουμε το Modal Primary Cards στο modals section
+                await loadComponent('main/modals/modal-primary-cards.html', 'modal-primary-cards-container');
+                console.log('✅ Modal Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Secondary Cards στο modals section
+                await loadComponent('main/modals/modal-secondary-cards.html', 'modal-secondary-cards-container');
+                console.log('✅ Modal Secondary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Success Cards στο modals section
+                await loadComponent('main/modals/modal-success-cards.html', 'modal-success-cards-container');
+                console.log('✅ Modal Success Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Warning Cards στο modals section
+                await loadComponent('main/modals/modal-warning-cards.html', 'modal-warning-cards-container');
+                console.log('✅ Modal Warning Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Danger Cards στο modals section
+                await loadComponent('main/modals/modal-danger-cards.html', 'modal-danger-cards-container');
+                console.log('✅ Modal Danger Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Info Cards στο modals section
+                await loadComponent('main/modals/modal-info-cards.html', 'modal-info-cards-container');
+                console.log('✅ Modal Info Cards component loaded successfully!');
+
+                // Φορτώνουμε το Cards Section στο main content
+                await loadComponent('main/cards/cards-tabs.html', 'cards-section-container');
+                console.log('✅ Cards Section component loaded successfully!');
+
+                // Φορτώνουμε το Card Primary Cards στο cards section
+                await loadComponent('main/cards/card-primary-cards.html', 'card-primary-content-container');
+                console.log('✅ Card Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Secondary Cards στο cards section
+                await loadComponent('main/cards/card-secondary-cards.html', 'card-secondary-content-container');
+                console.log('✅ Card Secondary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Success Cards στο cards section
+                await loadComponent('main/cards/card-success-cards.html', 'card-success-content-container');
+                console.log('✅ Card Success Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Warning Cards στο cards section
+                await loadComponent('main/cards/card-warning-cards.html', 'card-warning-content-container');
+                console.log('✅ Card Warning Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Danger Cards στο cards section
+                await loadComponent('main/cards/card-danger-cards.html', 'card-danger-content-container');
+                console.log('✅ Card Danger Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Info Cards στο cards section
+                await loadComponent('main/cards/card-info-cards.html', 'card-info-content-container');
+                console.log('✅ Card Info Cards component loaded successfully!');
+
+            } catch (error) {
+                console.error('❌ Error loading right sidebar components:', error);
+            }
+        }
+
+        // Φόρτωση όλων των components όταν φορτώσει η σελίδα
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Loading components...');
+
+            try {
+                // Φορτώνουμε το header πρώτα
+                await loadComponent('header/header.html', 'header-container');
+                console.log('✅ Header loaded successfully!');
+
+                // Φορτώνουμε το primary sidebar
+                await loadComponent('sidebar/primary-sidebar.html', 'primary-sidebar-container');
+                console.log('✅ Primary Sidebar loaded successfully!');
+
+                // Φορτώνουμε το left secondary sidebar
+                await loadComponent('sidebar/secondary-sidebar-left.html', 'secondary-sidebar-left-container');
+                console.log('✅ Left Secondary Sidebar loaded successfully!');
+
+                // Φορτώνουμε το right secondary sidebar
+                await loadComponent('sidebar/right-sidebar/secondary-sidebar-right.html', 'secondary-sidebar-right-container');
+                console.log('✅ Right Secondary Sidebar loaded successfully!');
+
+                // Φορτώνουμε τα components του right sidebar
+                await loadRightSidebarComponents();
+
+                // Αυτόματη ενεργοποίηση default tabs μετά τη φόρτωση
+                setTimeout(() => {
+                    // Cards default to primary
+                    const cardsContainer = document.querySelector('.cards-section .tabs-container');
+                    if (cardsContainer) {
+                        const primaryCardBtn = cardsContainer.querySelector('.tab-button');
+                        if (primaryCardBtn) {
+                            console.log('🎯 Activating default Cards tab...');
+                            primaryCardBtn.click();
+                        }
+                    }
+
+                    // Modals default to primary
+                    const modalsContainer = document.querySelector('.modals-section .tabs-container');
+                    if (modalsContainer) {
+                        const primaryModalBtn = modalsContainer.querySelector('.tab-button');
+                        if (primaryModalBtn) {
+                            console.log('🎯 Activating default Modals tab...');
+                            primaryModalBtn.click();
+                        }
+                    }
+                }, 1000); // Περιμένουμε 1 δευτερόλεπτο για να φορτωθούν όλα τα components
+
+            } catch (error) {
+                console.error('❌ Error loading components:', error);
+            }
+        });
+
+        // Sidebar Toggle Functions - Έξυπνο Dual System
+        function toggleSidebar(position) {
+            const leftSidebar = document.getElementById('leftSidebar');
+            const rightSidebar = document.getElementById('rightSidebar');
+
+            if (position === 'left') {
+                const isOpen = leftSidebar.classList.contains('open');
+                if (isOpen) {
+                    leftSidebar.classList.remove('open');
+                    updateToggleButton('left', false);
+                } else {
+                    leftSidebar.classList.add('open');
+                    updateToggleButton('left', true);
+                }
+            } else if (position === 'right') {
+                const isOpen = rightSidebar.classList.contains('open');
+                if (isOpen) {
+                    rightSidebar.classList.remove('open');
+                    updateToggleButton('right', false);
+                } else {
+                    rightSidebar.classList.add('open');
+                    updateToggleButton('right', true);
+                }
+            }
+        }
+
+        function updateToggleButton(position, isOpen) {
+            const button = document.querySelector(`button[onclick="toggleSidebar('${position}')"]`);
+            if (button) {
+                if (isOpen) {
+                    button.style.background = 'rgba(255,255,255,0.3)';
+                    button.style.borderColor = 'rgba(255,255,255,0.5)';
+                } else {
+                    button.style.background = 'rgba(255,255,255,0.15)';
+                    button.style.borderColor = 'rgba(255,255,255,0.3)';
+                }
+            }
+        }
+
+        // Layout Tab Switching Function
+        function showTab(tabName, clickedButton) {
+            console.log('showTab called:', tabName);
+
+            try {
+                // Βρες το layout container
+                const layoutContainer = document.querySelector('.layout-controls');
+                if (!layoutContainer) {
+                    alert('Layout container not found!');
+                    return;
+                }
+
+                // Κρύψε όλα τα tabs
+                const allTabs = layoutContainer.querySelectorAll('.tab-pane');
+                console.log('Found tabs:', allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active-pane');
+                    console.log('Hiding:', tab.id);
+                });
+
+                // Δείξε το επιλεγμένο tab
+                const targetTab = document.getElementById('layout-' + tabName);
+                if (targetTab) {
+                    targetTab.classList.add('active-pane');
+                    console.log('Showing:', targetTab.id);
+                } else {
+                    alert('Tab not found: layout-' + tabName);
+                    return;
+                }
+
+                // Ενημέρωσε τα buttons
+                const allButtons = layoutContainer.querySelectorAll('.tab-button');
+                allButtons.forEach(btn => btn.classList.remove('active-tab'));
+                clickedButton.classList.add('active-tab');
+
+                console.log('Tab switching complete');
+            } catch (error) {
+                console.error('Error in showTab:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Modal Tab Switching Function
+        function showModalTab(tabName, clickedButton) {
+            console.log('showModalTab called:', tabName);
+
+            try {
+                // Βρες το modals container
+                const modalsContainer = document.querySelector('.modals-section');
+                if (!modalsContainer) {
+                    alert('Modals container not found!');
+                    return;
+                }
+
+                // Κρύψε όλα τα modal tabs
+                const allTabs = modalsContainer.querySelectorAll('.tab-pane');
+                console.log('Found modal tabs:', allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active-pane');
+                    console.log('Hiding modal tab:', tab.id);
+                });
+
+                // Δείξε το επιλεγμένο modal tab
+                const targetTab = document.getElementById('modals-' + tabName);
+                if (targetTab) {
+                    targetTab.classList.add('active-pane');
+                    console.log('Showing modal tab:', targetTab.id);
+                } else {
+                    alert('Modal tab not found: modals-' + tabName);
+                    return;
+                }
+
+                // Ενημέρωσε τα buttons
+                const allButtons = modalsContainer.querySelectorAll('.tab-button');
+                allButtons.forEach(btn => btn.classList.remove('active-tab'));
+                clickedButton.classList.add('active-tab');
+
+                console.log('Modal tab switching complete');
+            } catch (error) {
+                console.error('Error in showModalTab:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Cards Tab Switching Function
+        function switchCardTab(tabName, clickedButton) {
+            console.log('switchCardTab called:', tabName);
+
+            try {
+                // Βρες το cards container
+                const cardsContainer = document.querySelector('.cards-section');
+                if (!cardsContainer) {
+                    console.error('Cards container not found!');
+                    return;
+                }
+
+                // Απόκρυψη όλων των card tabs
+                const allTabs = cardsContainer.querySelectorAll('.tab-pane');
+                console.log('Found card tabs:', allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active-pane');
+                    console.log('Hiding card tab:', tab.id);
+                });
+
+                // Εμφάνιση επιλεγμένης καρτέλας
+                const targetTab = document.getElementById('cards-' + tabName);
+                if (targetTab) {
+                    targetTab.classList.add('active-pane');
+                    console.log('Showing card tab:', targetTab.id);
+                } else {
+                    console.error('Card tab not found: cards-' + tabName);
+                    return;
+                }
+
+                // Ενημέρωση tab buttons
+                const allButtons = cardsContainer.querySelectorAll('.tab-button');
+                allButtons.forEach(btn => btn.classList.remove('active-tab'));
+
+                // Βρες το clicked button
+                const buttonToActivate = clickedButton || event.target;
+                buttonToActivate.classList.add('active-tab');
+
+                console.log('Card tab switching complete');
+            } catch (error) {
+                console.error('Error in switchCardTab:', error);
+            }
+        }
+
+        // Κάνε τις functions global
+        window.showTab = showTab;
+        window.showModalTab = showModalTab;
+        window.switchCardTab = switchCardTab;
+    </script>
+</body>
+</html>
