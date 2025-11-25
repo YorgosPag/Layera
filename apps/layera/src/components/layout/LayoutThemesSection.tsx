@@ -26,6 +26,48 @@ export const LayoutThemesSection: React.FC = () => {
         >
           🎯 Layout Themes με Tabs
         </Heading>
+
+        {/* Input fields - πανομοιότυπα με HTML mockup */}
+        <Flex className="layera-flex--gap-md layera-flex--justify-center layera-margin-top--lg">
+          <Box>
+            <input
+              type="text"
+              placeholder="🔍 Search layouts..."
+              className="layera-input--primary"
+            />
+          </Box>
+          <Box>
+            <input
+              type="number"
+              placeholder="Grid columns"
+              className="layera-input--primary"
+            />
+          </Box>
+        </Flex>
+
+        {/* Layout Tabs - πανομοιότυπα με HTML mockup */}
+        <Box className="layera-margin-top--lg">
+          <Flex className="layera-tabs layera-flex--justify-center layera-flex--wrap">
+            <button className="layera-tab layera-tab--primary layera-tab--primary--active">
+              📋 Primary Layout
+            </button>
+            <button className="layera-tab layera-tab--secondary">
+              🗂️ Secondary Layout
+            </button>
+            <button className="layera-tab layera-tab--success">
+              ✅ Success Layout
+            </button>
+            <button className="layera-tab layera-tab--warning">
+              ⚠️ Warning Layout
+            </button>
+            <button className="layera-tab layera-tab--danger">
+              🚨 Danger Layout
+            </button>
+            <button className="layera-tab layera-tab--info">
+              ℹ️ Info Layout
+            </button>
+          </Flex>
+        </Box>
       </Box>
 
       {/* 2. Primary Layout Content + περιγραφή */}
