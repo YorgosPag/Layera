@@ -107,26 +107,6 @@ export const LayoutThemesSection: React.FC = () => {
         </Box>
       </Box>
 
-      {/* 2. Primary Layout Content + περιγραφή */}
-      <Box className="layera-mb-10">
-        <Heading
-          as="h2"
-          size="2xl"
-          weight="bold"
-          color="primary"
-          className="layera-mb-4"
-        >
-          📋 Primary Layout Content
-        </Heading>
-
-        <Text
-          size="lg"
-          color="secondary"
-          lineHeight="relaxed"
-        >
-          Κύριο layout για βασικές λειτουργίες
-        </Text>
-      </Box>
 
       {/* 3. Κάρτες με Tabs (6 χρώματα) */}
       <Box className="layera-mb-10">
