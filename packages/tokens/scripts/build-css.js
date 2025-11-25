@@ -85,6 +85,41 @@ const LAYERA_LAYOUT_UTILITY_CLASSES = {
   },
   'layera-layout-margin-md': {
     margin: 'var(--layera-space-4)'
+  },
+  // ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ UTILITY CLASSES - ULTRA HIGH SPECIFICITY
+  'layera-center-text': {
+    textAlign: 'center !important'
+  },
+  'layera-force-center': {
+    textAlign: 'center !important',
+    display: 'block !important',
+    margin: '0 auto !important',
+    width: '100% !important'
+  },
+  'layera-ultra-center': {
+    textAlign: 'center !important',
+    display: 'block !important',
+    margin: '0 auto !important',
+    width: '100% !important',
+    position: 'relative !important'
+  },
+  'layera-center-flex': {
+    display: 'flex !important',
+    justifyContent: 'center !important',
+    alignItems: 'center !important'
+  },
+  'layera-center-flex-column': {
+    display: 'flex !important',
+    flexDirection: 'column !important',
+    justifyContent: 'center !important',
+    alignItems: 'center !important'
+  },
+  'layera-center-content': {
+    textAlign: 'center !important',
+    display: 'flex !important',
+    flexDirection: 'column !important',
+    justifyContent: 'center !important',
+    alignItems: 'center !important'
   }
 };
 
@@ -148,7 +183,10 @@ const tokens = {
     '--layera-font-size-2xl': '1.5rem',
     '--layera-font-weight-normal': '400',
     '--layera-font-weight-medium': '500',
-    '--layera-font-weight-semibold': '600'
+    '--layera-font-weight-semibold': '600',
+    '--layera-text-align-center': 'center',
+    '--layera-text-align-left': 'left',
+    '--layera-text-align-right': 'right'
   },
 
   radius: {
@@ -1370,6 +1408,63 @@ function generateCSS() {
     });
     css += '}\n\n';
   });
+
+  // ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ - CLEAN SOLUTION
+  css += `
+/* THEMES SECTION CENTER ALIGNMENT */
+.layera-content-section {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.layera-content-section * {
+  text-align: center !important;
+}
+
+/* TYPOGRAPHY CLASSES - ΓΙΑ @layera/typography COMPONENTS */
+.layera-text-4xl {
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
+}
+
+.layera-text-2xl {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.layera-text-lg {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+.layera-font-extrabold {
+  font-weight: 800 !important;
+}
+
+.layera-font-bold {
+  font-weight: 700 !important;
+}
+
+.layera-text-align-center {
+  text-align: center !important;
+}
+
+.layera-text-color-primary {
+  color: var(--layera-color-primary) !important;
+}
+
+.layera-text-color-secondary {
+  color: #6b7280 !important;
+}
+
+.layera-leading-relaxed {
+  line-height: 1.625 !important;
+}
+
+`;
 
   return css;
 }
