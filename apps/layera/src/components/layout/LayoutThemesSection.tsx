@@ -67,6 +67,43 @@ export const LayoutThemesSection: React.FC = () => {
               ℹ️ Info Layout
             </button>
           </Flex>
+
+          {/* Tab Content Container - πανομοιότυπο με HTML mockup */}
+          <Box className="layera-tab-panel layera-margin-top--lg">
+            <Box className="layera-width--full">
+              <Heading
+                as="h4"
+                size="lg"
+                weight="bold"
+                color="primary"
+                className="layera-mb-4"
+              >
+                📋 Primary Layout Content
+              </Heading>
+
+              <Text
+                size="base"
+                color="secondary"
+                className="layera-mb-4"
+              >
+                Κύριο layout για βασικές λειτουργίες
+              </Text>
+
+              <Box className="layera-mb-4">
+                <input
+                  type="text"
+                  placeholder="🔍 Primary search..."
+                  className="layera-input--primary layera-width--full"
+                />
+              </Box>
+
+              <Box>
+                <button className="layera-button--primary">
+                  🎯 Activate Primary
+                </button>
+              </Box>
+            </Box>
+          </Box>
         </Box>
       </Box>
 
