@@ -686,16 +686,20 @@
     
         // 📏 Component Sizes Functionality
         function updateAdvancedLayout(property, value) {
-            console.log('Layout property:', property, 'New value:', value);
+            console.log('🔧 Layout property:', property, 'New value:', value);
 
             // Update display element
             const display = document.querySelector('[data-display="' + property + '"]');
             if (display) {
                 display.textContent = value + 'px';
+                console.log('✅ Updated display for:', property);
+            } else {
+                console.log('❌ Display element not found for:', property);
             }
 
             // Get all elements that should be affected
             const targetElements = document.querySelectorAll('.card-item, .card-primary, .card-secondary, .card-success, .card-warning, .card-danger, .card-info, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
+            console.log('🎯 Found', targetElements.length, 'elements for', property);
 
             targetElements.forEach(el => {
                 switch(property) {
@@ -724,6 +728,7 @@
                             el.classList.contains('card-danger') ||
                             el.classList.contains('card-info')) {
                             el.style.minHeight = value + 'px';
+                            console.log('✅ Updated card height for element:', el.className, 'to', value + 'px');
                         }
                         break;
                     case 'modal-width':
@@ -740,21 +745,31 @@
         }
 
         function setupComponentSizes() {
+            console.log('🔧 Setting up Component Sizes controls...');
+
             // Component Sizes event listeners
-            document.querySelectorAll('[data-control]').forEach(control => {
+            const controls = document.querySelectorAll('[data-control]');
+            console.log('🎛️ Found', controls.length, 'controls total');
+
+            controls.forEach(control => {
                 const property = control.getAttribute('data-control');
 
                 // Component Size Properties
                 const layoutProps = ['button-height', 'button-padding', 'button-font-size', 'card-height', 'modal-width'];
                 if (layoutProps.includes(property)) {
+                    console.log('✅ Setting up event listeners for:', property);
                     control.addEventListener('input', function() {
+                        console.log('📤 Input event triggered for:', property, 'value:', this.value);
                         updateAdvancedLayout(property, this.value);
                     });
                     control.addEventListener('change', function() {
+                        console.log('📤 Change event triggered for:', property, 'value:', this.value);
                         updateAdvancedLayout(property, this.value);
                     });
                 }
             });
+
+            console.log('🔧 Component Sizes setup complete!');
         }
 
         window.updateAdvancedLayout = updateAdvancedLayout;
