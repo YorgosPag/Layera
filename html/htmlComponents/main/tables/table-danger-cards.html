@@ -1,0 +1,96 @@
+<!-- Danger Tables Content -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: nowrap; align-items: center;">
+    <input type="search" placeholder="🔍 Search incidents..." style="padding: 0.4rem; border: 1px solid #F44336; border-radius: 4px; width: 150px; flex-shrink: 1; font-size: 0.9rem;">
+    <select style="padding: 0.4rem; border: 1px solid #F44336; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+        <option>🚨 All Incidents</option>
+        <option>💥 Critical</option>
+        <option>🔴 Major</option>
+        <option>🟡 Minor</option>
+    </select>
+    <input type="datetime-local" style="padding: 0.4rem; border: 1px solid #F44336; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+    <button class="btn danger-btn" style="background: #F44336; color: white; padding: 0.4rem 0.6rem; font-size: 0.9rem; height: auto; width: auto; flex-shrink: 0; border: none; border-radius: 4px;">➕ Add Incident</button>
+</div>
+
+<table class="simple-table" id="dangerTable">
+    <thead>
+        <tr style="background: #F44336;">
+            <th style="color: white;"><input type="checkbox"> Incident ID</th>
+            <th style="color: white;">Description</th>
+            <th style="color: white;">Severity</th>
+            <th style="color: white;">Time</th>
+            <th style="color: white;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> INC-001</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Database Crash" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option selected>💥 Critical</option>
+                    <option>🔴 Major</option>
+                    <option>🟡 Minor</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="time" value="14:30" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn danger-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #F44336; border: none; border-radius: 3px; color: white;">🚨 Escalate</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> INC-002</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Security Breach" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option selected>💥 Critical</option>
+                    <option>🔴 Major</option>
+                    <option>🟡 Minor</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="time" value="09:15" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn danger-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #F44336; border: none; border-radius: 3px; color: white;">🔒 Secure</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> INC-003</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Service Outage" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option>💥 Critical</option>
+                    <option selected>🔴 Major</option>
+                    <option>🟡 Minor</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="time" value="11:45" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn danger-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #F44336; border: none; border-radius: 3px; color: white;">🔧 Restore</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> INC-004</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Data Corruption" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option>💥 Critical</option>
+                    <option selected>🔴 Major</option>
+                    <option>🟡 Minor</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="time" value="16:20" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn danger-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #F44336; border: none; border-radius: 3px; color: white;">💾 Backup</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 0.9rem; color: #666;">
+        🚨 4 incidents total • 2 critical • 2 major • 0 resolved
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">← Previous</button>
+        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Next →</button>
+    </div>
+</div>

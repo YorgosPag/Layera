@@ -126,6 +126,22 @@
             await loadComponent('main/tables/table-secondary-cards.html', 'table-secondary-content-container');
             console.log('✅ Table Secondary Cards component loaded successfully!');
 
+            // Φορτώνουμε το Table Success Cards στο tables section
+            await loadComponent('main/tables/table-success-cards.html', 'table-success-content-container');
+            console.log('✅ Table Success Cards component loaded successfully!');
+
+            // Φορτώνουμε το Table Warning Cards στο tables section
+            await loadComponent('main/tables/table-warning-cards.html', 'table-warning-content-container');
+            console.log('✅ Table Warning Cards component loaded successfully!');
+
+            // Φορτώνουμε το Table Danger Cards στο tables section
+            await loadComponent('main/tables/table-danger-cards.html', 'table-danger-content-container');
+            console.log('✅ Table Danger Cards component loaded successfully!');
+
+            // Φορτώνουμε το Table Info Cards στο tables section
+            await loadComponent('main/tables/table-info-cards.html', 'table-info-content-container');
+            console.log('✅ Table Info Cards component loaded successfully!');
+
             // Φορτώνουμε το Cards Section στο main content
             await loadComponent('main/cards/cards-tabs.html', 'cards-section-container');
             console.log('✅ Cards Section component loaded successfully!');
@@ -161,25 +177,33 @@
 
     // Sidebar Toggle Functions
     function toggleSidebar(position) {
-        const leftSidebar = document.getElementById('leftSidebar');
-        const rightSidebar = document.getElementById('rightSidebar');
+        const leftSidebar = document.getElementById('secondary-sidebar-left-container');
+        const rightSidebar = document.getElementById('secondary-sidebar-right-container');
 
         if (position === 'left') {
-            const isOpen = leftSidebar.classList.contains('open');
+            if (!leftSidebar) {
+                console.error('Left sidebar not found!');
+                return;
+            }
+            const isOpen = leftSidebar.style.display !== 'none';
             if (isOpen) {
-                leftSidebar.classList.remove('open');
+                leftSidebar.style.display = 'none';
                 updateToggleButton('left', false);
             } else {
-                leftSidebar.classList.add('open');
+                leftSidebar.style.display = 'block';
                 updateToggleButton('left', true);
             }
         } else if (position === 'right') {
-            const isOpen = rightSidebar.classList.contains('open');
+            if (!rightSidebar) {
+                console.error('Right sidebar not found!');
+                return;
+            }
+            const isOpen = rightSidebar.style.display !== 'none';
             if (isOpen) {
-                rightSidebar.classList.remove('open');
+                rightSidebar.style.display = 'none';
                 updateToggleButton('right', false);
             } else {
-                rightSidebar.classList.add('open');
+                rightSidebar.style.display = 'block';
                 updateToggleButton('right', true);
             }
         }

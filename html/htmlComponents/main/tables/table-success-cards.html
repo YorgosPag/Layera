@@ -1,0 +1,72 @@
+<!-- Success Tables Content -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: nowrap; align-items: center;">
+    <input type="search" placeholder="🔍 Search projects..." style="padding: 0.4rem; border: 1px solid #4CAF50; border-radius: 4px; width: 150px; flex-shrink: 1; font-size: 0.9rem;">
+    <select style="padding: 0.4rem; border: 1px solid #4CAF50; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+        <option>✅ All Projects</option>
+        <option>🚀 Active</option>
+        <option>✅ Completed</option>
+        <option>📋 Planning</option>
+    </select>
+    <input type="date" style="padding: 0.4rem; border: 1px solid #4CAF50; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+    <button class="btn success-btn" style="background: #4CAF50; color: white; padding: 0.4rem 0.6rem; font-size: 0.9rem; height: auto; width: auto; flex-shrink: 0; border: none; border-radius: 4px;">➕ Add Project</button>
+</div>
+
+<table class="simple-table" id="successTable">
+    <thead>
+        <tr style="background: #4CAF50;">
+            <th style="color: white;"><input type="checkbox"> Project Name</th>
+            <th style="color: white;">Manager</th>
+            <th style="color: white;">Progress</th>
+            <th style="color: white;">Deadline</th>
+            <th style="color: white;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Website Redesign</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Μαρία Π." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="range" value="85" min="0" max="100" style="width: 100%;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-12-15" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn success-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #4CAF50; border: none; border-radius: 3px; color: white;">✏️ Edit</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Mobile App</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Νίκος Κ." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="range" value="60" min="0" max="100" style="width: 100%;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-11-30" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn success-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #4CAF50; border: none; border-radius: 3px; color: white;">✏️ Edit</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> API Integration</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Άννα Γ." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="range" value="100" min="0" max="100" style="width: 100%;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-10-31" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn success-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #4CAF50; border: none; border-radius: 3px; color: white;">✅ Done</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Database Migration</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Κώστας Λ." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="range" value="75" min="0" max="100" style="width: 100%;"></td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-12-01" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn success-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #4CAF50; border: none; border-radius: 3px; color: white;">✏️ Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 0.9rem; color: #666;">
+        📊 4 projects total • 1 completed • 3 in progress
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">← Previous</button>
+        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Next →</button>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<!-- Info Tables Content -->
+<div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: nowrap; align-items: center;">
+    <input type="search" placeholder="🔍 Search documents..." style="padding: 0.4rem; border: 1px solid #2196F3; border-radius: 4px; width: 150px; flex-shrink: 1; font-size: 0.9rem;">
+    <select style="padding: 0.4rem; border: 1px solid #2196F3; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+        <option>📄 All Types</option>
+        <option>📋 Documentation</option>
+        <option>📊 Reports</option>
+        <option>📝 Guides</option>
+    </select>
+    <input type="text" placeholder="Category" style="padding: 0.4rem; border: 1px solid #2196F3; border-radius: 4px; flex-shrink: 1; font-size: 0.9rem;">
+    <button class="btn info-btn" style="background: #2196F3; color: white; padding: 0.4rem 0.6rem; font-size: 0.9rem; height: auto; width: auto; flex-shrink: 0; border: none; border-radius: 4px;">➕ Add Document</button>
+</div>
+
+<table class="simple-table" id="infoTable">
+    <thead>
+        <tr style="background: #2196F3;">
+            <th style="color: white;"><input type="checkbox"> Document Title</th>
+            <th style="color: white;">Author</th>
+            <th style="color: white;">Type</th>
+            <th style="color: white;">Last Updated</th>
+            <th style="color: white;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> User Manual v2.1</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Πέτρος Δ." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option selected>📋 Documentation</option>
+                    <option>📊 Reports</option>
+                    <option>📝 Guides</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-11-20" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn info-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #2196F3; border: none; border-radius: 3px; color: white;">👁️ View</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> API Documentation</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Χρήστος Ν." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option selected>📋 Documentation</option>
+                    <option>📊 Reports</option>
+                    <option>📝 Guides</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-11-18" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn info-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #2196F3; border: none; border-radius: 3px; color: white;">📥 Download</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Monthly Report</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Μαρίνα Σ." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option>📋 Documentation</option>
+                    <option selected>📊 Reports</option>
+                    <option>📝 Guides</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-11-01" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn info-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #2196F3; border: none; border-radius: 3px; color: white;">📊 Analyze</button>
+            </td>
+        </tr>
+        <tr style="height: 35px;">
+            <td style="padding: 0.3rem 0.5rem;"><input type="checkbox" style="margin-right: 0.5rem;"> Installation Guide</td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="text" value="Στέφανος Τ." style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <select style="border: none; background: transparent; padding: 0.2rem;">
+                    <option>📋 Documentation</option>
+                    <option>📊 Reports</option>
+                    <option selected>📝 Guides</option>
+                </select>
+            </td>
+            <td style="padding: 0.3rem 0.5rem;"><input type="date" value="2024-10-15" style="border: none; background: transparent; width: 100%; padding: 0.2rem;"></td>
+            <td style="padding: 0.3rem 0.5rem;">
+                <button class="btn info-btn" style="padding: 0.2rem 0.4rem; font-size: 0.8rem; background: #2196F3; border: none; border-radius: 3px; color: white;">✏️ Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 0.9rem; color: #666;">
+        📄 4 documents total • 2 documentation • 1 report • 1 guide
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">← Previous</button>
+        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Next →</button>
+    </div>
+</div>

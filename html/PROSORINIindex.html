@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullAppPreview - Mockup για Συζήτηση</title>
+
+    <!-- CSS -->
+    <style>
+        /* Minimal base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+
+        /* Main Container */
+        .app-container {
+            display: flex;
+            height: calc(100vh - 65px);
+            min-height: calc(100vh - 65px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Φόρτωση Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Container για την κύρια εφαρμογή -->
+    <div class="app-container">
+        <!-- Φόρτωση Primary Sidebar (αριστερά) -->
+        <div id="primary-sidebar-container"></div>
+
+        <!-- Φόρτωση Left Secondary Sidebar (αριστερά) -->
+        <div id="secondary-sidebar-left-container"></div>
+
+        <!-- Φόρτωση Main Content Area (κέντρο) -->
+        <div id="main-content-container" style="flex: 1; display: flex;">
+            <main class="main-content" style="flex: 1; padding: 1rem; overflow-y: auto; width: 100%; box-sizing: border-box;">
+                <!-- Φόρτωση Layout Controls -->
+                <div id="layout-controls-container"></div>
+
+                <!-- Φόρτωση Cards Section -->
+                <div id="cards-section-container"></div>
+
+                <!-- Φόρτωση Modals Section -->
+                <div id="modals-section-container"></div>
+
+
+
+
+
+
+
+                <!-- Φόρτωση Tables Section -->
+                <div id="tables-section-container"></div>
+
+                <!-- Future sections placeholder -->
+                <div style="text-align: center; color: #888; font-size: 0.9rem; margin-top: 2rem;">
+                    📝 Περισσότερα sections θα προστεθούν σταδιακά...
+                </div>
+            </main>
+        </div>
+
+        <!-- Φόρτωση Right Secondary Sidebar (δεξιά) -->
+        <div id="secondary-sidebar-right-container"></div>
+    </div>
+
+    <!-- JavaScript για φόρτωση των components -->
+    <script>
+        // Συνάρτηση για φόρτωση HTML component
+        async function loadComponent(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading ${url}:`, error);
+                document.getElementById(containerId).innerHTML = `<div style="color: red;">Error loading ${url}</div>`;
+            }
+        }
+
+        // Φόρτωση των right sidebar components
+        async function loadRightSidebarComponents() {
+            try {
+                // Φορτώνουμε το 6-Color System
+                await loadComponent('sidebar/right-sidebar/6-color-system.html', 'color-system-container');
+                console.log('✅ 6-Color System component loaded successfully!');
+
+                // Φορτώνουμε το Apply To Selector
+                await loadComponent('sidebar/right-sidebar/apply-to-selector.html', 'apply-to-container');
+                console.log('✅ Apply To Selector component loaded successfully!');
+
+                // Φορτώνουμε το Typography
+                await loadComponent('sidebar/right-sidebar/typography.html', 'typography-container');
+                console.log('✅ Typography component loaded successfully!');
+
+                // Φορτώνουμε το Component Sizes
+                await loadComponent('sidebar/right-sidebar/component-sizes.html', 'component-sizes-container');
+                console.log('✅ Component Sizes component loaded successfully!');
+
+                // Φορτώνουμε το Border Radius
+                await loadComponent('sidebar/right-sidebar/border-radius.html', 'border-radius-container');
+                console.log('✅ Border Radius component loaded successfully!');
+
+                // Φορτώνουμε το Quick Radius Presets
+                await loadComponent('sidebar/right-sidebar/quick-radius-presets.html', 'quick-radius-presets-container');
+                console.log('✅ Quick Radius Presets component loaded successfully!');
+
+                // Φορτώνουμε το Spacing Layout
+                await loadComponent('sidebar/right-sidebar/spacing-layout.html', 'spacing-layout-container');
+                console.log('✅ Spacing Layout component loaded successfully!');
+
+                // Φορτώνουμε το Components
+                await loadComponent('sidebar/right-sidebar/components.html', 'components-container');
+                console.log('✅ Components component loaded successfully!');
+
+                // Φορτώνουμε το Preset Themes
+                await loadComponent('sidebar/right-sidebar/preset-themes.html', 'preset-themes-container');
+                console.log('✅ Preset Themes component loaded successfully!');
+
+                // Φορτώνουμε το Layout Tabs στο main content
+                await loadComponent('main/layout/layout-tabs.html', 'layout-controls-container');
+                console.log('✅ Layout Tabs component loaded successfully!');
+
+                // Φορτώνουμε το Layout Primary Cards
+                await loadComponent('main/layout/layout-primary-cards.html', 'layout-primary-content-container');
+                console.log('✅ Layout Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Secondary Cards
+                await loadComponent('main/layout/layout-secondary-cards.html', 'layout-secondary-content-container');
+                console.log('✅ Layout Secondary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Success Cards
+                await loadComponent('main/layout/layout-success-cards.html', 'layout-success-content-container');
+                console.log('✅ Layout Success Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Warning Cards
+                await loadComponent('main/layout/layout-warning-cards.html', 'layout-warning-content-container');
+                console.log('✅ Layout Warning Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Danger Cards
+                await loadComponent('main/layout/layout-danger-cards.html', 'layout-danger-content-container');
+                console.log('✅ Layout Danger Cards component loaded successfully!');
+
+                // Φορτώνουμε το Layout Info Cards
+                await loadComponent('main/layout/layout-info-cards.html', 'layout-info-content-container');
+                console.log('✅ Layout Info Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modals Section στο main content
+                await loadComponent('main/modals/modals-tabs.html', 'modals-section-container');
+                console.log('✅ Modals Section component loaded successfully!');
+
+                // Φορτώνουμε το Modal Primary Cards στο modals section
+                await loadComponent('main/modals/modal-primary-cards.html', 'modal-primary-cards-container');
+                console.log('✅ Modal Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Secondary Cards στο modals section
+                await loadComponent('main/modals/modal-secondary-cards.html', 'modal-secondary-cards-container');
+                console.log('✅ Modal Secondary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Success Cards στο modals section
+                await loadComponent('main/modals/modal-success-cards.html', 'modal-success-cards-container');
+                console.log('✅ Modal Success Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Warning Cards στο modals section
+                await loadComponent('main/modals/modal-warning-cards.html', 'modal-warning-cards-container');
+                console.log('✅ Modal Warning Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Danger Cards στο modals section
+                await loadComponent('main/modals/modal-danger-cards.html', 'modal-danger-cards-container');
+                console.log('✅ Modal Danger Cards component loaded successfully!');
+
+                // Φορτώνουμε το Modal Info Cards στο modals section
+                await loadComponent('main/modals/modal-info-cards.html', 'modal-info-cards-container');
+                console.log('✅ Modal Info Cards component loaded successfully!');
+
+                // Φορτώνουμε το Tables Section στο main content
+                console.log('🔄 About to load Tables Section...');
+                console.log('📍 Tables container exists:', !!document.getElementById('tables-section-container'));
+                await loadComponent('main/tables/tables-tabs.html', 'tables-section-container');
+                console.log('✅ Tables Section component loaded successfully!');
+                console.log('📊 Tables section HTML after load:', document.getElementById('tables-section-container').innerHTML.substring(0, 100));
+
+                // Φορτώνουμε το Table Primary Cards στο tables section
+                await loadComponent('main/tables/table-primary-cards.html', 'table-primary-content-container');
+                console.log('✅ Table Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Table Secondary Cards στο tables section
+                await loadComponent("main/tables/table-secondary-cards.html", "table-secondary-content-container");
+                console.log("✅ Table Secondary Cards component loaded successfully!");
+
+                // Φορτώνουμε το Table Secondary Cards στο tables section
+
+
+                // Φορτώνουμε το Cards Section στο main content
+                await loadComponent('main/cards/cards-tabs.html', 'cards-section-container');
+                console.log('✅ Cards Section component loaded successfully!');
+
+                // Φορτώνουμε το Card Primary Cards στο cards section
+                await loadComponent('main/cards/card-primary-cards.html', 'card-primary-content-container');
+                console.log('✅ Card Primary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Secondary Cards στο cards section
+                await loadComponent('main/cards/card-secondary-cards.html', 'card-secondary-content-container');
+                console.log('✅ Card Secondary Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Success Cards στο cards section
+                await loadComponent('main/cards/card-success-cards.html', 'card-success-content-container');
+                console.log('✅ Card Success Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Warning Cards στο cards section
+                await loadComponent('main/cards/card-warning-cards.html', 'card-warning-content-container');
+                console.log('✅ Card Warning Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Danger Cards στο cards section
+                await loadComponent('main/cards/card-danger-cards.html', 'card-danger-content-container');
+                console.log('✅ Card Danger Cards component loaded successfully!');
+
+                // Φορτώνουμε το Card Info Cards στο cards section
+                await loadComponent('main/cards/card-info-cards.html', 'card-info-content-container');
+                console.log('✅ Card Info Cards component loaded successfully!');
+
+
+
+            } catch (error) {
+                console.error('❌ Error loading right sidebar components:', error);
+            }
+        }
+
+        // Φόρτωση όλων των components όταν φορτώσει η σελίδα
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Loading components...');
+
+            try {
+                // Φορτώνουμε το header πρώτα
+                await loadComponent('header/header.html', 'header-container');
+                console.log('✅ Header loaded successfully!');
+
+                // Φορτώνουμε το primary sidebar
+                await loadComponent('sidebar/primary-sidebar.html', 'primary-sidebar-container');
+                console.log('✅ Primary Sidebar loaded successfully!');
+
+                // Φορτώνουμε το left secondary sidebar
+                await loadComponent('sidebar/secondary-sidebar-left.html', 'secondary-sidebar-left-container');
+                console.log('✅ Left Secondary Sidebar loaded successfully!');
+
+                // Φορτώνουμε το right secondary sidebar
+                await loadComponent('sidebar/right-sidebar/secondary-sidebar-right.html', 'secondary-sidebar-right-container');
+                console.log('✅ Right Secondary Sidebar loaded successfully!');
+
+                // Φορτώνουμε τα components του right sidebar
+                await loadRightSidebarComponents();
+
+                // Αυτόματη ενεργοποίηση default tabs μετά τη φόρτωση
+                setTimeout(() => {
+                    // Cards default to primary
+                    const cardsContainer = document.querySelector('.cards-section .tabs-container');
+                    if (cardsContainer) {
+                        const primaryCardBtn = cardsContainer.querySelector('.tab-button');
+                        if (primaryCardBtn) {
+                            console.log('🎯 Activating default Cards tab...');
+                            primaryCardBtn.click();
+                        }
+                    }
+
+                    // Modals default to primary
+                    const modalsContainer = document.querySelector('.modals-section .tabs-container');
+                    if (modalsContainer) {
+                        const primaryModalBtn = modalsContainer.querySelector('.tab-button');
+                        if (primaryModalBtn) {
+                            console.log('🎯 Activating default Modals tab...');
+                            primaryModalBtn.click();
+                        }
+                    }
+
+
+                    // Tables default to primary
+                    const tablesContainer = document.querySelector('.tables-section .tabs-container');
+                    if (tablesContainer) {
+                        const primaryTableBtn = tablesContainer.querySelector('.tab-button');
+                        if (primaryTableBtn) {
+                            console.log('🎯 Activating default Tables tab...');
+                            primaryTableBtn.click();
+                        }
+                    } else {
+                        console.log('❌ Tables container not found for auto-activation');
+                    }
+                }, 1000); // Περίμένουμε 1 δευτερόλεπτο για να φορτωθούν όλα τα components
+
+                // Setup 6-Color System μετά τη φόρτωση των components
+                setTimeout(() => {
+                    setup6ColorSystem();
+                    console.log('🌈 6-Color System setup complete!');
+                }, 1200);
+
+                // Setup Typography Controls μετά τη φόρτωση των components
+                setTimeout(() => {
+                    setupTypographyControls();
+                    console.log('📝 Typography Controls setup complete!');
+                }, 1300);
+
+                // Setup Component Sizes μετά τη φόρτωση των components
+                setTimeout(() => {
+                    setupComponentSizes();
+                    console.log('📏 Component Sizes setup complete!');
+                }, 2000); // Αύξηση χρόνου για να φορτωθούν όλα τα cards
+
+            } catch (error) {
+                console.error('❌ Error loading components:', error);
+            }
+        });
+
+        // Sidebar Toggle Functions - Έξυπνο Dual System
+        function toggleSidebar(position) {
+            const leftSidebar = document.getElementById('leftSidebar');
+            const rightSidebar = document.getElementById('rightSidebar');
+
+            if (position === 'left') {
+                const isOpen = leftSidebar.classList.contains('open');
+                if (isOpen) {
+                    leftSidebar.classList.remove('open');
+                    updateToggleButton('left', false);
+                } else {
+                    leftSidebar.classList.add('open');
+                    updateToggleButton('left', true);
+                }
+            } else if (position === 'right') {
+                const isOpen = rightSidebar.classList.contains('open');
+                if (isOpen) {
+                    rightSidebar.classList.remove('open');
+                    updateToggleButton('right', false);
+                } else {
+                    rightSidebar.classList.add('open');
+                    updateToggleButton('right', true);
+                }
+            }
+        }
+
+        function updateToggleButton(position, isOpen) {
+            const button = document.querySelector(`button[onclick="toggleSidebar('${position}')"]`);
+            if (button) {
+                if (isOpen) {
+                    button.style.background = 'rgba(255,255,255,0.3)';
+                    button.style.borderColor = 'rgba(255,255,255,0.5)';
+                } else {
+                    button.style.background = 'rgba(255,255,255,0.15)';
+                    button.style.borderColor = 'rgba(255,255,255,0.3)';
+                }
+            }
+        }
+
+        // Layout Tab Switching Function
+        function showTab(tabName, clickedButton) {
+            console.log('showTab called:', tabName);
+
+            try {
+                // Βρες το layout container
+                const layoutContainer = document.querySelector('.layout-controls');
+                if (!layoutContainer) {
+                    alert('Layout container not found!');
+                    return;
+                }
+
+                // Κρύψε όλα τα tabs
+                const allTabs = layoutContainer.querySelectorAll('.tab-pane');
+                console.log('Found tabs:', allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active-pane');
+                    console.log('Hiding:', tab.id);
+                });
+
+                // Δείξε το επιλεγμένο tab
+                const targetTab = document.getElementById('layout-' + tabName);
+                if (targetTab) {
+                    targetTab.classList.add('active-pane');
+                    console.log('Showing:', targetTab.id);
+                } else {
+                    alert('Tab not found: layout-' + tabName);
+                    return;
+                }
+
+                // Ενημέρωσε τα buttons
+                const allButtons = layoutContainer.querySelectorAll('.tab-button');
+                allButtons.forEach(btn => btn.classList.remove('active-tab'));
+                clickedButton.classList.add('active-tab');
+
+                console.log('Tab switching complete');
+            } catch (error) {
+                console.error('Error in showTab:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Modal Tab Switching Function
+        function showModalTab(tabName, clickedButton) {
+            console.log('showModalTab called:', tabName);
+
+            try {
+                // Βρες το modals container
+                const modalsContainer = document.querySelector('.modals-section');
+                if (!modalsContainer) {
+                    alert('Modals container not found!');
+                    return;
+                }
+
+                // Κρύψε όλα τα modal tabs
+                const allTabs = modalsContainer.querySelectorAll('.tab-pane');
+                console.log('Found modal tabs:', allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active-pane');
+                    console.log('Hiding modal tab:', tab.id);
+                });
+
+                // Δείξε το επιλεγμένο modal tab
+                const targetTab = document.getElementById('modals-' + tabName);
+                if (targetTab) {
+                    targetTab.classList.add('active-pane');
+                    console.log('Showing modal tab:', targetTab.id);
+                } else {
+                    alert('Modal tab not found: modals-' + tabName);
+                    return;
+                }
+
+                // Ενημέρωσε τα buttons
+                const allButtons = modalsContainer.querySelectorAll('.tab-button');
+                allButtons.forEach(btn => btn.classList.remove('active-tab'));
+                clickedButton.classList.add('active-tab');
+
+                console.log('Modal tab switching complete');
+            } catch (error) {
+                console.error('Error in showModalTab:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Cards Tab Switching Function
+        function switchCardTab(tabName, clickedButton) {
+            console.log('switchCardTab called:', tabName);
+
+            try {
+                // Βρες το cards container
+                const cardsContainer = document.querySelector('.cards-section');
+                if (!cardsContainer) {
+                    console.error('Cards container not found!');
+                    return;
+                }
+
+                // Απόκρυψη όλων των card tabs
+                const allTabs = cardsContainer.querySelectorAll('.tab-pane');
+                console.log('Found card tabs:', allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active-pane');
+                    console.log('Hiding card tab:', tab.id);
+                });
+
+                // Εμφάνιση επιλεγμένης καρτέλας
+                const targetTab = document.getElementById('cards-' + tabName);
+                if (targetTab) {
+                    targetTab.classList.add('active-pane');
+                    console.log('Showing card tab:', targetTab.id);
+                } else {
+                    console.error('Card tab not found: cards-' + tabName);
+                    return;
+                }
+
+                // Ενημέρωση tab buttons
+                const allButtons = cardsContainer.querySelectorAll('.tab-button');
+                allButtons.forEach(btn => btn.classList.remove('active-tab'));
+
+                // Βρες το clicked button
+                const buttonToActivate = clickedButton || event.target;
+                buttonToActivate.classList.add('active-tab');
+
+                console.log('Card tab switching complete');
+            } catch (error) {
+                console.error('Error in switchCardTab:', error);
+            }
+        }
+
+// Tables Tab Navigation
+        function switchTableTab(tabName, clickedButton) {
+            console.log("switchTableTab called:", tabName);
+
+            try {
+                // Βρες το tables container
+                const tablesContainer = document.querySelector(".tables-section");
+                if (!tablesContainer) {
+                    console.error("Tables container not found!");
+                    return;
+                }
+
+                // Απόκρυψη όλων των table tabs
+                const allTabs = tablesContainer.querySelectorAll(".tab-pane");
+                console.log("Found table tabs:", allTabs.length);
+                allTabs.forEach(tab => {
+                    tab.classList.remove("active-pane");
+                    console.log("Hiding table tab:", tab.id);
+                });
+
+                // Εμφάνιση επιλεγμένης καρτέλας
+                const targetTab = document.getElementById("tables-" + tabName);
+                if (targetTab) {
+                    targetTab.classList.add("active-pane");
+                    console.log("Showing table tab:", targetTab.id);
+                } else {
+                    console.error("Table tab not found: tables-" + tabName);
+                    return;
+                }
+
+                // Ενημέρωση tab buttons
+                const allButtons = tablesContainer.querySelectorAll(".tab-button");
+                allButtons.forEach(btn => btn.classList.remove("active-tab"));
+
+                // Βρες το clicked button
+                const buttonToActivate = clickedButton || event.target;
+                buttonToActivate.classList.add("active-tab");
+
+                console.log("Table tab switching complete");
+            } catch (error) {
+                console.error("Error in switchTableTab:", error);
+            }
+        }
+
+        // Color mapping object για header buttons
+        const colors = {
+            primary: '#4A90E2',
+            secondary: '#9013FE',
+            success: '#4CAF50',
+            warning: '#FF9800',
+            danger: '#F44336',
+            info: '#2196F3'
+        };
+
+        // Header Color Change Function
+        function changeHeaderColor(colorName) {
+            const header = document.querySelector('.app-header');
+            header.style.background = colors[colorName];
+
+            // Update active state for header buttons
+            document.querySelectorAll('.header-buttons .color-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Κάνε τις functions global
+        window.showTab = showTab;
+        window.showModalTab = showModalTab;
+        window.switchCardTab = switchCardTab;
+        window.switchTableTab = switchTableTab;
+        window.changeHeaderColor = changeHeaderColor;
+        
+        // 🌈 6-Color System Functionality
+        let currentTarget = 'all';
+        
+        function setTargetComponent(target) {
+            currentTarget = target;
+            document.querySelectorAll('.target-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.borderColor = '#666';
+                btn.style.color = '#ccc';
+            });
+            const activeBtn = document.querySelector('[data-target="' + target + '"]');
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.style.background = '#4A90E2';
+                activeBtn.style.borderColor = '#4A90E2';
+                activeBtn.style.color = 'white';
+            }
+        }
+        
+        function updateAdvancedColor(colorType, newColor) {
+            console.log('Updating ' + colorType + ' to ' + newColor);
+            const targetSelectors = getTargetSelectors(currentTarget, colorType);
+            targetSelectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    applyColorToElement(el, colorType, newColor, currentTarget);
+                });
+            });
+        }
+        
+        function getTargetSelectors(target, colorType) {
+            const selectors = [];
+            if (target === 'all' || target === 'cards') {
+                selectors.push('.card-item');
+            }
+            if (target === 'all' || target === 'buttons') {
+                selectors.push('.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn');
+            }
+            if (target === 'all' || target === 'header') {
+                selectors.push('.app-header');
+            }
+            return selectors;
+        }
+        
+        function applyColorToElement(element, colorType, color, target) {
+            if (element.classList.contains('card-item')) {
+                element.style.borderColor = color;
+                element.style.backgroundColor = color + '15';
+            }
+            if (element.classList.contains('btn')) {
+                element.style.backgroundColor = color;
+                element.style.borderColor = color;
+                element.style.color = '#ffffff';
+            }
+            if (element.classList.contains('app-header')) {
+                element.style.background = color;
+            }
+        }
+        
+        function setup6ColorSystem() {
+            document.querySelectorAll('[data-color-type]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const colorType = this.getAttribute('data-color-type');
+                    const newColor = this.value;
+                    updateAdvancedColor(colorType, newColor);
+                    const textInput = document.querySelector('[data-color-input="' + colorType + '"]');
+                    if (textInput) textInput.value = newColor;
+                });
+            });
+            
+            document.querySelectorAll('[data-color-input]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const colorType = this.getAttribute('data-color-input');
+                    const newColor = this.value;
+                    updateAdvancedColor(colorType, newColor);
+                    const colorPicker = document.querySelector('[data-color-type="' + colorType + '"]');
+                    if (colorPicker) colorPicker.value = newColor;
+                });
+            });
+            
+            document.querySelectorAll('.target-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    setTargetComponent(target);
+                });
+            });
+        }
+        
+        window.updateAdvancedColor = updateAdvancedColor;
+        window.setTargetComponent = setTargetComponent;
+        window.setup6ColorSystem = setup6ColorSystem;
+        
+        // 📝 Typography Functionality
+        function updateAdvancedTypography(property, value) {
+            const targetElements = getTypographyTargets(currentTarget);
+            
+            targetElements.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    switch(property) {
+                        case 'font-family':
+                            el.style.fontFamily = value;
+                            break;
+                        case 'font-size':
+                            el.style.fontSize = value + 'px';
+                            break;
+                        case 'font-weight':
+                            el.style.fontWeight = value;
+                            break;
+                        case 'line-height':
+                            el.style.lineHeight = value;
+                            break;
+                        case 'text-color':
+                            el.style.color = value;
+                            break;
+                        case 'header-size':
+                            if (el.tagName && el.tagName.match(/^H[1-6]$/)) {
+                                el.style.fontSize = value + 'px';
+                            }
+                            break;
+                    }
+                });
+            });
+            
+            // Update display value
+            const displayElement = document.querySelector('[data-display="' + property + '"]');
+            if (displayElement) {
+                if (property === 'font-size' || property === 'header-size') {
+                    displayElement.textContent = value + 'px';
+                } else if (property === 'line-height') {
+                    displayElement.textContent = value;
+                } else {
+                    displayElement.textContent = value;
+                }
+            }
+        }
+        
+        function getTypographyTargets(target) {
+            const targets = [];
+            
+            switch(target) {
+                case 'all':
+                    targets.push(
+                        'body', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div',
+                        '.card-item', '.card-item h3', '.card-item p', '.card-item span',
+                        '.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn',
+                        '.modal-item', '.modal-item h3', '.modal-item p',
+                        '.app-header', '.app-header h1'
+                    );
+                    break;
+                case 'cards':
+                    targets.push(
+                        '.card-item', '.card-item h3', '.card-item p', '.card-item span'
+                    );
+                    break;
+                case 'buttons':
+                    targets.push(
+                        '.btn', '.primary-btn', '.secondary-btn', '.success-btn', '.warning-btn', '.danger-btn', '.info-btn'
+                    );
+                    break;
+                case 'header':
+                    targets.push(
+                        '.app-header', '.app-header h1', '.app-header span', '.app-header p'
+                    );
+                    break;
+                default:
+                    targets.push('body');
+            }
+            
+            return targets;
+        }
+        
+        function setupTypographyControls() {
+            document.querySelectorAll('[data-control]').forEach(control => {
+                const property = control.getAttribute('data-control');
+                
+                // Typography Properties
+                const typographyProps = ['font-family', 'font-size', 'font-weight', 'line-height', 'text-color', 'header-size'];
+                if (typographyProps.includes(property)) {
+                    control.addEventListener('input', function() {
+                        updateAdvancedTypography(property, this.value);
+                    });
+                    control.addEventListener('change', function() {
+                        updateAdvancedTypography(property, this.value);
+                    });
+                }
+            });
+            
+            // Text color input sync
+            document.querySelectorAll('[data-control-input]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const property = this.getAttribute('data-control-input');
+                    if (property === 'text-color') {
+                        updateAdvancedTypography('text-color', this.value);
+                        const colorPicker = document.querySelector('[data-control="text-color"]');
+                        if (colorPicker) colorPicker.value = this.value;
+                    }
+                });
+            });
+        }
+        
+        window.updateAdvancedTypography = updateAdvancedTypography;
+        window.setupTypographyControls = setupTypographyControls;
+    
+        // 📏 Component Sizes Functionality
+        function updateAdvancedLayout(property, value) {
+            console.log('🔧 Layout property:', property, 'New value:', value);
+
+            // Update display element
+            const display = document.querySelector('[data-display="' + property + '"]');
+            if (display) {
+                display.textContent = value + 'px';
+                console.log('✅ Updated display for:', property);
+            } else {
+                console.log('❌ Display element not found for:', property);
+            }
+
+            // Get all elements that should be affected (same as big file)
+            const targetElements = document.querySelectorAll('.card-item, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
+            console.log('🎯 Found', targetElements.length, 'elements for', property);
+
+            targetElements.forEach(el => {
+                switch(property) {
+                    case 'button-height':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.height = value + 'px';
+                            el.style.minHeight = value + 'px';
+                        }
+                        break;
+                    case 'button-padding':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.padding = '0 ' + value + 'px';
+                        }
+                        break;
+                    case 'button-font-size':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.fontSize = value + 'px';
+                        }
+                        break;
+                    case 'card-height':
+                        if (el.classList.contains('card-item')) {
+                            // Set exact height and hide overflow content
+                            el.style.setProperty('height', value + 'px', 'important');
+                            el.style.setProperty('min-height', value + 'px', 'important');
+                            el.style.setProperty('overflow', 'hidden', 'important');
+                            console.log('✅ Updated card height for element:', el.className, 'to', value + 'px (with overflow hidden)');
+                        }
+                        break;
+                    case 'modal-width':
+                        if (el.classList.contains('modal-item')) {
+                            el.style.width = value + 'px';
+                            el.style.maxWidth = value + 'px';
+                            el.style.minWidth = Math.min(value, 300) + 'px';
+                            el.style.flex = '0 0 auto';
+                            el.style.boxSizing = 'border-box';
+                        }
+                        break;
+                    case 'cards-border-radius':
+                        if (el.classList.contains('card-item')) {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated cards border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'buttons-border-radius':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated buttons border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'modals-border-radius':
+                        if (el.classList.contains('modal-item') || el.classList.contains('modal-header')) {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated modals border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'tables-border-radius':
+                        if (el.classList.contains('simple-table') || el.tagName === 'TABLE') {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated tables border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'header-border-radius':
+                        if (el.classList.contains('app-header') || el.classList.contains('header-section')) {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated header border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                }
+            });
+        }
+
+        function setupComponentSizes() {
+            console.log('🔧 Setting up Component Sizes controls...');
+
+            // Check if cards exist at this time
+            const allCards = document.querySelectorAll('.card-item');
+            console.log('🃏 Found', allCards.length, 'card elements at setup time');
+            allCards.forEach((card, index) => {
+                console.log(`🃏 Card ${index}:`, card.className);
+            });
+
+            // Component Sizes event listeners
+            const controls = document.querySelectorAll('[data-control]');
+            console.log('🎛️ Found', controls.length, 'controls total');
+
+            controls.forEach(control => {
+                const property = control.getAttribute('data-control');
+
+                // Component Size Properties (same as big file)
+                const layoutProps = ['component-gap', 'padding', 'border-radius', 'border-width', 'border-style', 'box-shadow', 'button-height', 'button-padding', 'button-font-size', 'card-height', 'modal-width', 'cards-border-radius', 'buttons-border-radius', 'modals-border-radius', 'tables-border-radius', 'header-border-radius'];
+                if (layoutProps.includes(property)) {
+                    console.log('✅ Setting up event listeners for:', property);
+                    control.addEventListener('input', function() {
+                        console.log('📤 Input event triggered for:', property, 'value:', this.value);
+                        updateAdvancedLayout(property, this.value);
+                    });
+                    control.addEventListener('change', function() {
+                        console.log('📤 Change event triggered for:', property, 'value:', this.value);
+                        updateAdvancedLayout(property, this.value);
+                    });
+                }
+            });
+
+            console.log('🔧 Component Sizes setup complete!');
+        }
+
+        window.updateAdvancedLayout = updateAdvancedLayout;
+        window.setupComponentSizes = setupComponentSizes;
+
+        // Manual test function for Card Height
+        window.testCardHeight = function() {
+            console.log('🧪 Testing card height manually...');
+            updateAdvancedLayout('card-height', '150');
+        };
+
+    </script>
+</body>
+</html>
