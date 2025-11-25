@@ -277,7 +277,7 @@
                 setTimeout(() => {
                     setupComponentSizes();
                     console.log('📏 Component Sizes setup complete!');
-                }, 1400);
+                }, 2000); // Αύξηση χρόνου για να φορτωθούν όλα τα cards
 
             } catch (error) {
                 console.error('❌ Error loading components:', error);
@@ -697,8 +697,8 @@
                 console.log('❌ Display element not found for:', property);
             }
 
-            // Get all elements that should be affected
-            const targetElements = document.querySelectorAll('.card-item, .card-primary, .card-secondary, .card-success, .card-warning, .card-danger, .card-info, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
+            // Get all elements that should be affected (same as big file)
+            const targetElements = document.querySelectorAll('.card-item, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
             console.log('🎯 Found', targetElements.length, 'elements for', property);
 
             targetElements.forEach(el => {
@@ -720,15 +720,10 @@
                         }
                         break;
                     case 'card-height':
-                        if (el.classList.contains('card-item') ||
-                            el.classList.contains('card-primary') ||
-                            el.classList.contains('card-secondary') ||
-                            el.classList.contains('card-success') ||
-                            el.classList.contains('card-warning') ||
-                            el.classList.contains('card-danger') ||
-                            el.classList.contains('card-info')) {
-                            el.style.minHeight = value + 'px';
-                            console.log('✅ Updated card height for element:', el.className, 'to', value + 'px');
+                        if (el.classList.contains('card-item')) {
+                            el.style.setProperty('min-height', value + 'px', 'important');
+                            el.style.setProperty('height', value + 'px', 'important');
+                            console.log('✅ Updated card height for element:', el.className, 'to', value + 'px (with !important)');
                         }
                         break;
                     case 'modal-width':
@@ -747,6 +742,13 @@
         function setupComponentSizes() {
             console.log('🔧 Setting up Component Sizes controls...');
 
+            // Check if cards exist at this time
+            const allCards = document.querySelectorAll('.card-item');
+            console.log('🃏 Found', allCards.length, 'card elements at setup time');
+            allCards.forEach((card, index) => {
+                console.log(`🃏 Card ${index}:`, card.className);
+            });
+
             // Component Sizes event listeners
             const controls = document.querySelectorAll('[data-control]');
             console.log('🎛️ Found', controls.length, 'controls total');
@@ -754,8 +756,8 @@
             controls.forEach(control => {
                 const property = control.getAttribute('data-control');
 
-                // Component Size Properties
-                const layoutProps = ['button-height', 'button-padding', 'button-font-size', 'card-height', 'modal-width'];
+                // Component Size Properties (same as big file)
+                const layoutProps = ['component-gap', 'padding', 'border-radius', 'border-width', 'border-style', 'box-shadow', 'button-height', 'button-padding', 'button-font-size', 'card-height', 'modal-width', 'cards-border-radius', 'buttons-border-radius', 'modals-border-radius', 'tables-border-radius', 'header-border-radius'];
                 if (layoutProps.includes(property)) {
                     console.log('✅ Setting up event listeners for:', property);
                     control.addEventListener('input', function() {
@@ -774,6 +776,12 @@
 
         window.updateAdvancedLayout = updateAdvancedLayout;
         window.setupComponentSizes = setupComponentSizes;
+
+        // Manual test function for Card Height
+        window.testCardHeight = function() {
+            console.log('🧪 Testing card height manually...');
+            updateAdvancedLayout('card-height', '150');
+        };
 
     </script>
 </body>

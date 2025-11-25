@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Card Height Debug Test</title>
+    <style>
+        .card-item {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin: 0.5rem;
+            background: white;
+            min-height: 120px;
+        }
+        .card-primary { border-left: 4px solid #4A90E2; }
+    </style>
+</head>
+<body>
+    <h3>Card Height Test</h3>
+
+    <label>Card Min Height:</label>
+    <input type="range" min="80" max="200" value="120" data-control="card-height">
+    <span data-display="card-height">120px</span>
+
+    <div class="card-item card-primary">
+        <h4>Test Card</h4>
+        <p>This card should change height when you move the slider above.</p>
+    </div>
+
+    <script>
+        function updateAdvancedLayout(property, value) {
+            console.log('🔧 Layout property:', property, 'New value:', value);
+
+            // Update display element
+            const display = document.querySelector('[data-display="' + property + '"]');
+            if (display) {
+                display.textContent = value + 'px';
+                console.log('✅ Updated display for:', property);
+            } else {
+                console.log('❌ Display element not found for:', property);
+            }
+
+            // Get all card elements
+            const targetElements = document.querySelectorAll('.card-item, .card-primary');
+            console.log('🎯 Found', targetElements.length, 'card elements');
+
+            targetElements.forEach(el => {
+                if (property === 'card-height') {
+                    if (el.classList.contains('card-item') || el.classList.contains('card-primary')) {
+                        el.style.minHeight = value + 'px';
+                        console.log('✅ Updated card height for element:', el.className, 'to', value + 'px');
+                    }
+                }
+            });
+        }
+
+        // Setup event listener
+        const cardHeightControl = document.querySelector('[data-control="card-height"]');
+        if (cardHeightControl) {
+            cardHeightControl.addEventListener('input', function() {
+                console.log('📤 Card height slider moved to:', this.value);
+                updateAdvancedLayout('card-height', this.value);
+            });
+            console.log('✅ Card height control found and setup');
+        } else {
+            console.log('❌ Card height control NOT found');
+        }
+    </script>
+</body>
+</html>
