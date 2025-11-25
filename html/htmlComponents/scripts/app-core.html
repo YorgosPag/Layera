@@ -59,50 +59,100 @@
             await loadComponent('main/layout/layout-tabs.html', 'layout-controls-container');
             console.log('✅ Layout Tabs component loaded successfully!');
 
-            // Φορτώνουμε τα Layout Cards
+            // Φορτώνουμε το Layout Primary Cards
             await loadComponent('main/layout/layout-primary-cards.html', 'layout-primary-content-container');
-            await loadComponent('main/layout/layout-secondary-cards.html', 'layout-secondary-content-container');
-            await loadComponent('main/layout/layout-success-cards.html', 'layout-success-content-container');
-            await loadComponent('main/layout/layout-warning-cards.html', 'layout-warning-content-container');
-            await loadComponent('main/layout/layout-danger-cards.html', 'layout-danger-content-container');
-            await loadComponent('main/layout/layout-info-cards.html', 'layout-info-content-container');
-            console.log('✅ All Layout Cards loaded successfully!');
+            console.log('✅ Layout Primary Cards component loaded successfully!');
 
-            // Φορτώνουμε το Modals Section
+            // Φορτώνουμε το Layout Secondary Cards
+            await loadComponent('main/layout/layout-secondary-cards.html', 'layout-secondary-content-container');
+            console.log('✅ Layout Secondary Cards component loaded successfully!');
+
+            // Φορτώνουμε το Layout Success Cards
+            await loadComponent('main/layout/layout-success-cards.html', 'layout-success-content-container');
+            console.log('✅ Layout Success Cards component loaded successfully!');
+
+            // Φορτώνουμε το Layout Warning Cards
+            await loadComponent('main/layout/layout-warning-cards.html', 'layout-warning-content-container');
+            console.log('✅ Layout Warning Cards component loaded successfully!');
+
+            // Φορτώνουμε το Layout Danger Cards
+            await loadComponent('main/layout/layout-danger-cards.html', 'layout-danger-content-container');
+            console.log('✅ Layout Danger Cards component loaded successfully!');
+
+            // Φορτώνουμε το Layout Info Cards
+            await loadComponent('main/layout/layout-info-cards.html', 'layout-info-content-container');
+            console.log('✅ Layout Info Cards component loaded successfully!');
+
+            // Φορτώνουμε το Modals Section στο main content
             await loadComponent('main/modals/modals-tabs.html', 'modals-section-container');
             console.log('✅ Modals Section component loaded successfully!');
 
-            // Φορτώνουμε τα Modal Cards
+            // Φορτώνουμε το Modal Primary Cards στο modals section
             await loadComponent('main/modals/modal-primary-cards.html', 'modal-primary-cards-container');
-            await loadComponent('main/modals/modal-secondary-cards.html', 'modal-secondary-cards-container');
-            await loadComponent('main/modals/modal-success-cards.html', 'modal-success-cards-container');
-            await loadComponent('main/modals/modal-warning-cards.html', 'modal-warning-cards-container');
-            await loadComponent('main/modals/modal-danger-cards.html', 'modal-danger-cards-container');
-            await loadComponent('main/modals/modal-info-cards.html', 'modal-info-cards-container');
-            console.log('✅ All Modal Cards loaded successfully!');
+            console.log('✅ Modal Primary Cards component loaded successfully!');
 
-            // Φορτώνουμε το Tables Section
+            // Φορτώνουμε το Modal Secondary Cards στο modals section
+            await loadComponent('main/modals/modal-secondary-cards.html', 'modal-secondary-cards-container');
+            console.log('✅ Modal Secondary Cards component loaded successfully!');
+
+            // Φορτώνουμε το Modal Success Cards στο modals section
+            await loadComponent('main/modals/modal-success-cards.html', 'modal-success-cards-container');
+            console.log('✅ Modal Success Cards component loaded successfully!');
+
+            // Φορτώνουμε το Modal Warning Cards στο modals section
+            await loadComponent('main/modals/modal-warning-cards.html', 'modal-warning-cards-container');
+            console.log('✅ Modal Warning Cards component loaded successfully!');
+
+            // Φορτώνουμε το Modal Danger Cards στο modals section
+            await loadComponent('main/modals/modal-danger-cards.html', 'modal-danger-cards-container');
+            console.log('✅ Modal Danger Cards component loaded successfully!');
+
+            // Φορτώνουμε το Modal Info Cards στο modals section
+            await loadComponent('main/modals/modal-info-cards.html', 'modal-info-cards-container');
+            console.log('✅ Modal Info Cards component loaded successfully!');
+
+            // Φορτώνουμε το Tables Section στο main content
             console.log('🔄 About to load Tables Section...');
+            console.log('📍 Tables container exists:', !!document.getElementById('tables-section-container'));
             await loadComponent('main/tables/tables-tabs.html', 'tables-section-container');
             console.log('✅ Tables Section component loaded successfully!');
+            console.log('📊 Tables section HTML after load:', document.getElementById('tables-section-container').innerHTML.substring(0, 100));
 
-            // Φορτώνουμε τα Table Cards
+            // Φορτώνουμε το Table Primary Cards στο tables section
             await loadComponent('main/tables/table-primary-cards.html', 'table-primary-content-container');
-            await loadComponent('main/tables/table-secondary-cards.html', 'table-secondary-content-container');
-            console.log('✅ Table Cards loaded successfully!');
+            console.log('✅ Table Primary Cards component loaded successfully!');
 
-            // Φορτώνουμε το Cards Section
+            // Φορτώνουμε το Table Secondary Cards στο tables section
+            await loadComponent('main/tables/table-secondary-cards.html', 'table-secondary-content-container');
+            console.log('✅ Table Secondary Cards component loaded successfully!');
+
+            // Φορτώνουμε το Cards Section στο main content
             await loadComponent('main/cards/cards-tabs.html', 'cards-section-container');
             console.log('✅ Cards Section component loaded successfully!');
 
-            // Φορτώνουμε τα Card Cards
+            // Φορτώνουμε το Card Primary Cards στο cards section
             await loadComponent('main/cards/card-primary-cards.html', 'card-primary-content-container');
+            console.log('✅ Card Primary Cards component loaded successfully!');
+
+            // Φορτώνουμε το Card Secondary Cards στο cards section
             await loadComponent('main/cards/card-secondary-cards.html', 'card-secondary-content-container');
+            console.log('✅ Card Secondary Cards component loaded successfully!');
+
+            // Φορτώνουμε το Card Success Cards στο cards section
             await loadComponent('main/cards/card-success-cards.html', 'card-success-content-container');
+            console.log('✅ Card Success Cards component loaded successfully!');
+
+            // Φορτώνουμε το Card Warning Cards στο cards section
             await loadComponent('main/cards/card-warning-cards.html', 'card-warning-content-container');
+            console.log('✅ Card Warning Cards component loaded successfully!');
+
+            // Φορτώνουμε το Card Danger Cards στο cards section
             await loadComponent('main/cards/card-danger-cards.html', 'card-danger-content-container');
+            console.log('✅ Card Danger Cards component loaded successfully!');
+
+            // Φορτώνουμε το Card Info Cards στο cards section
             await loadComponent('main/cards/card-info-cards.html', 'card-info-content-container');
-            console.log('✅ All Card Cards loaded successfully!');
+            console.log('✅ Card Info Cards component loaded successfully!');
 
         } catch (error) {
             console.error('❌ Error loading right sidebar components:', error);

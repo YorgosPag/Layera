@@ -1,15 +1,16 @@
 <style>
 /* Right Secondary Sidebar Styles */
 .sidebar-secondary {
-    width: 0;
+    width: 300px;
     background: #34495e;
     color: white;
-    padding: 0;
-    overflow: hidden;
+    padding: 1rem;
+    overflow-y: auto;
     transition: all 0.3s ease;
     border-left: 1px solid #4a5568;
     box-sizing: border-box;
     height: 100vh; /* Πλήρες ύψος οθόνης */
+    flex-shrink: 0; /* Δεν συρρικνώνεται */
 }
 
 .sidebar-secondary.open {
@@ -60,7 +61,7 @@
 </style>
 
 <!-- Right Secondary Sidebar (Style Controls) -->
-<aside class="sidebar-secondary" id="rightSidebar">
+<aside class="secondary-sidebar-right" id="rightSidebar">
     <h3>🎨 Style Controls</h3>
 
     <!-- Φόρτωση 6-Color System Component -->
