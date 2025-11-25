@@ -695,7 +695,7 @@
             }
 
             // Get all elements that should be affected
-            const targetElements = document.querySelectorAll('.card-item, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
+            const targetElements = document.querySelectorAll('.card-item, .card-primary, .card-secondary, .card-success, .card-warning, .card-danger, .card-info, .btn, .primary-btn, .secondary-btn, .success-btn, .warning-btn, .danger-btn, .info-btn, .modal-item');
 
             targetElements.forEach(el => {
                 switch(property) {
@@ -716,7 +716,13 @@
                         }
                         break;
                     case 'card-height':
-                        if (el.classList.contains('card-item')) {
+                        if (el.classList.contains('card-item') ||
+                            el.classList.contains('card-primary') ||
+                            el.classList.contains('card-secondary') ||
+                            el.classList.contains('card-success') ||
+                            el.classList.contains('card-warning') ||
+                            el.classList.contains('card-danger') ||
+                            el.classList.contains('card-info')) {
                             el.style.minHeight = value + 'px';
                         }
                         break;
