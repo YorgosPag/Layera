@@ -721,9 +721,11 @@
                         break;
                     case 'card-height':
                         if (el.classList.contains('card-item')) {
-                            el.style.setProperty('min-height', value + 'px', 'important');
+                            // Set exact height and hide overflow content
                             el.style.setProperty('height', value + 'px', 'important');
-                            console.log('✅ Updated card height for element:', el.className, 'to', value + 'px (with !important)');
+                            el.style.setProperty('min-height', value + 'px', 'important');
+                            el.style.setProperty('overflow', 'hidden', 'important');
+                            console.log('✅ Updated card height for element:', el.className, 'to', value + 'px (with overflow hidden)');
                         }
                         break;
                     case 'modal-width':
@@ -733,6 +735,36 @@
                             el.style.minWidth = Math.min(value, 300) + 'px';
                             el.style.flex = '0 0 auto';
                             el.style.boxSizing = 'border-box';
+                        }
+                        break;
+                    case 'cards-border-radius':
+                        if (el.classList.contains('card-item')) {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated cards border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'buttons-border-radius':
+                        if (el.classList.contains('btn') || el.tagName === 'BUTTON') {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated buttons border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'modals-border-radius':
+                        if (el.classList.contains('modal-item') || el.classList.contains('modal-header')) {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated modals border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'tables-border-radius':
+                        if (el.classList.contains('simple-table') || el.tagName === 'TABLE') {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated tables border-radius for element:', el.className, 'to', value + 'px');
+                        }
+                        break;
+                    case 'header-border-radius':
+                        if (el.classList.contains('app-header') || el.classList.contains('header-section')) {
+                            el.style.borderRadius = value + 'px';
+                            console.log('✅ Updated header border-radius for element:', el.className, 'to', value + 'px');
                         }
                         break;
                 }
