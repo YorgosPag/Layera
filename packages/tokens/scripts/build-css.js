@@ -21,7 +21,7 @@ import { CardsAdvancedBuilder } from './builders/CardsAdvancedBuilder.js';
 import { TypographyBuilder } from './builders/TypographyBuilder.js';
 import { SettingsBuilder } from './builders/SettingsBuilder.js';
 import { MainContentBuilder } from './builders/MainContentBuilder.js';
-import { PrimarySidebarBuilder } from './builders/PrimarySidebarBuilder.js';
+import { PrimarySidebarBuilder } from './builders/sidebar/primary-sidebar/PrimarySidebarBuilder.js';
 import { SecondarySidebarBuilder } from './builders/SecondarySidebarBuilder.js';
 import { CardsExtendedBuilder } from './builders/CardsExtendedBuilder.js';
 import { AppLayoutBuilder } from './builders/AppLayoutBuilder.js';
@@ -31,12 +31,25 @@ import { ColorSystemBuilder } from './builders/sidebar/right-sidebar/ColorSystem
 import { BorderRadiusBuilder } from './builders/sidebar/right-sidebar/BorderRadiusBuilder.js';
 import { ApplyToSelectorBuilder } from './builders/sidebar/right-sidebar/ApplyToSelectorBuilder.js';
 import { ComponentsBuilder as RightSidebarComponentsBuilder } from './builders/sidebar/right-sidebar/ComponentsBuilder.js';
+import { ComponentsBuilder as ScriptsComponentsBuilder } from './builders/scripts/ComponentsBuilder.js';
+import { NavigationBuilder } from './builders/scripts/NavigationBuilder.js';
+import { TypographyBuilder as ScriptsTypographyBuilder } from './builders/scripts/TypographyBuilder.js';
+import { LayoutDangerCardsBuilder } from './builders/main/layout/LayoutDangerCardsBuilder.js';
+import { LayoutInfoCardsBuilder } from './builders/main/layout/LayoutInfoCardsBuilder.js';
+import { LayoutPrimaryCardsBuilder } from './builders/main/layout/LayoutPrimaryCardsBuilder.js';
+import { LayoutSecondaryCardsBuilder } from './builders/main/layout/LayoutSecondaryCardsBuilder.js';
+import { LayoutSuccessCardsBuilder } from './builders/main/layout/LayoutSuccessCardsBuilder.js';
+import { LayoutTabsBuilder } from './builders/main/layout/LayoutTabsBuilder.js';
+import { LayoutWarningCardsBuilder } from './builders/main/layout/LayoutWarningCardsBuilder.js';
 import { ComponentSizesBuilder } from './builders/sidebar/right-sidebar/ComponentSizesBuilder.js';
 import { PresetThemesBuilder } from './builders/sidebar/right-sidebar/PresetThemesBuilder.js';
 import { QuickRadiusPresetsBuilder } from './builders/sidebar/right-sidebar/QuickRadiusPresetsBuilder.js';
 import { SecondarySidebarRightBuilder } from './builders/sidebar/right-sidebar/SecondarySidebarRightBuilder.js';
 import { SpacingLayoutBuilder } from './builders/sidebar/right-sidebar/SpacingLayoutBuilder.js';
 import { RightSidebarTypographyBuilder } from './builders/sidebar/right-sidebar/RightSidebarTypographyBuilder.js';
+import { SecondarySidebarLeftBuilder } from './builders/sidebar/secondary-sidebar-left/SecondarySidebarLeftBuilder.js';
+import { AppCoreBuilder } from './builders/scripts/AppCoreBuilder.js';
+import { ColorsBuilder } from './builders/scripts/ColorsBuilder.js';
 
 // Layout Classes νow managed by LayoutBuilder module
 
@@ -103,7 +116,7 @@ const settingsCSS = SettingsBuilder.generateAllSettingsCSS();
 // Generate main content CSS using MainContentBuilder (enterprise modular approach)
 const mainContentCSS = MainContentBuilder.generateAllMainContentCSS();
 
-// Generate primary sidebar CSS using PrimarySidebarBuilder (enterprise modular approach)
+// Generate primary sidebar CSS using PrimarySidebarBuilder (HTML-aligned enterprise modular approach)
 const primarySidebarCSS = PrimarySidebarBuilder.generateAllPrimarySidebarCSS();
 
 // Generate secondary sidebar CSS using SecondarySidebarBuilder (enterprise modular approach)
@@ -152,6 +165,45 @@ const spacingLayoutCSS = SpacingLayoutBuilder.generateAllSpacingLayoutCSS();
 // Generate right sidebar typography CSS using RightSidebarTypographyBuilder (enterprise modular approach)
 const rightSidebarTypographyCSS = RightSidebarTypographyBuilder.generateAllRightSidebarTypographyCSS();
 
+// Generate secondary sidebar left CSS using SecondarySidebarLeftBuilder (HTML-aligned enterprise modular approach)
+const secondarySidebarLeftCSS = SecondarySidebarLeftBuilder.generateAllSecondarySidebarLeftCSS();
+
+// Generate app core JavaScript UI states CSS using AppCoreBuilder (HTML-aligned enterprise modular approach)
+const appCoreCSS = AppCoreBuilder.generateAllAppCoreCSS();
+
+// Generate 6-color system JavaScript support CSS using ColorsBuilder (HTML-aligned enterprise modular approach)
+const colorsCSS = ColorsBuilder.generateAllColorsCSS();
+
+// Generate component sizes JavaScript support CSS using ScriptsComponentsBuilder (HTML-aligned enterprise modular approach)
+const scriptsComponentsCSS = ScriptsComponentsBuilder.generateAllComponentsCSS();
+
+// Generate navigation JavaScript support CSS using NavigationBuilder (HTML-aligned enterprise modular approach)
+const navigationCSS = NavigationBuilder.generateAllNavigationCSS();
+
+// Generate typography JavaScript support CSS using ScriptsTypographyBuilder (HTML-aligned enterprise modular approach)
+const scriptsTypographyCSS = ScriptsTypographyBuilder.generateAllTypographyCSS();
+
+// Generate layout danger cards CSS using LayoutDangerCardsBuilder (HTML-aligned enterprise modular approach)
+const layoutDangerCardsCSS = LayoutDangerCardsBuilder.generateAllLayoutDangerCardsCSS();
+
+// Generate layout info cards CSS using LayoutInfoCardsBuilder (HTML-aligned enterprise modular approach)
+const layoutInfoCardsCSS = LayoutInfoCardsBuilder.generateAllLayoutInfoCardsCSS();
+
+// Generate layout primary cards CSS using LayoutPrimaryCardsBuilder (HTML-aligned enterprise modular approach)
+const layoutPrimaryCardsCSS = LayoutPrimaryCardsBuilder.generateAllLayoutPrimaryCardsCSS();
+
+// Generate layout secondary cards CSS using LayoutSecondaryCardsBuilder (HTML-aligned enterprise modular approach)
+const layoutSecondaryCardsCSS = LayoutSecondaryCardsBuilder.generateAllLayoutSecondaryCardsCSS();
+
+// Generate layout success cards CSS using LayoutSuccessCardsBuilder (HTML-aligned enterprise modular approach)
+const layoutSuccessCardsCSS = LayoutSuccessCardsBuilder.generateAllLayoutSuccessCardsCSS();
+
+// Generate layout tabs CSS using LayoutTabsBuilder (HTML-aligned enterprise modular approach)
+const layoutTabsCSS = LayoutTabsBuilder.generateAllLayoutTabsCSS();
+
+// Generate layout warning cards CSS using LayoutWarningCardsBuilder (HTML-aligned enterprise modular approach)
+const layoutWarningCardsCSS = LayoutWarningCardsBuilder.generateAllLayoutWarningCardsCSS();
+
 // Generate raw CSS using RawCSSBuilder (enterprise modular approach)
 const rawCSS = RawCSSBuilder.generateAllRawCSS();
 
@@ -159,7 +211,7 @@ const rawCSS = RawCSSBuilder.generateAllRawCSS();
 const remainingCSS = generateCSS();
 
 // Combine όλα τα enterprise modules
-const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + secondarySidebarCSS + cardsExtendedCSS + appLayoutCSS + finalLayoutCSS + contentAlignmentCSS + colorSystemCSS + borderRadiusCSS + applyToSelectorCSS + rightSidebarComponentsCSS + componentSizesCSS + presetThemesCSS + quickRadiusPresetsCSS + secondarySidebarRightCSS + spacingLayoutCSS + rightSidebarTypographyCSS + rawCSS + remainingCSS;
+const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + secondarySidebarCSS + cardsExtendedCSS + appLayoutCSS + finalLayoutCSS + contentAlignmentCSS + colorSystemCSS + borderRadiusCSS + applyToSelectorCSS + rightSidebarComponentsCSS + componentSizesCSS + presetThemesCSS + quickRadiusPresetsCSS + secondarySidebarRightCSS + spacingLayoutCSS + rightSidebarTypographyCSS + secondarySidebarLeftCSS + appCoreCSS + colorsCSS + scriptsComponentsCSS + navigationCSS + scriptsTypographyCSS + layoutDangerCardsCSS + layoutInfoCardsCSS + layoutPrimaryCardsCSS + layoutSecondaryCardsCSS + layoutSuccessCardsCSS + layoutTabsCSS + layoutWarningCardsCSS + rawCSS + remainingCSS;
 const cssPath = path.join(distDir, 'tokens.css');
 fs.writeFileSync(cssPath, css);
 
