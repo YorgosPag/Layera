@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box } from '@layera/layout';
-import { Heading, Text } from '@layera/typography';
 import { getSidebarPositioning, LAYERA_SIDEBAR_COLORS, LAYERA_SIDEBAR_TYPOGRAPHY } from '@layera/tokens';
 
 /**
@@ -21,7 +20,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = () => {
       className="sidebar"
     >
       {/* Navigation Section - ακριβώς όπως HTML */}
-      <Heading as="h3">📂 Navigation</Heading>
+      <h3>📂 Navigation</h3>
 
       <Box className="layera-input--sidebar-filter">
         <input
@@ -49,12 +48,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = () => {
       ))}
 
       {/* Quick Actions Section - ακριβώς όπως HTML */}
-      <Heading
-        as="h3"
-        className="layera-sidebar-title"
-      >
-        ⚙️ Quick Actions
-      </Heading>
+      <h3 className="sidebar-h3-second">⚙️ Quick Actions</h3>
 
       <Box className="layera-input--sidebar-container">
         <input

@@ -536,8 +536,10 @@ function generateCSS() {
 }
 
 .sidebar h3 {
+  margin-top: 0;    /* ✅ Reset default margin - όπως στο HTML */
   margin-bottom: 1rem;
   color: #ecf0f1;
+  font-family: Arial, sans-serif; /* ✅ Ακριβώς όπως HTML: Arial, sans-serif */
 }
 
 .menu-item {
@@ -547,6 +549,7 @@ function generateCSS() {
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s;
+  font-family: Arial, sans-serif; /* ✅ FORCE Arial όπως HTML - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
 }
 
 .menu-item:hover {
@@ -618,6 +621,7 @@ function generateCSS() {
   color: white;
   justify-content: center;
   font-weight: var(--layera-font-weight-semibold);
+  width: 100%; /* ✅ ΑΚΡΙΒΩΣ όπως HTML: width: 100% - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
 }
 
 .layera-button--primary-sidebar:hover {
@@ -635,7 +639,8 @@ function generateCSS() {
   border: none;             /* ✅ Χωρίς border όπως HTML */
   border-radius: 4px;       /* ✅ Ακριβώς όπως HTML: border-radius: 4px */
   color: black;             /* ✅ Μαύρο κείμενο για λευκό φόντο */
-  font-size: inherit;       /* ✅ Ίδιο font-size με το περιβάλλον */
+  font-family: Arial, sans-serif;  /* ✅ Ακριβώς όπως HTML body */
+  font-size: 16px;          /* ✅ Default browser size όπως HTML */
   outline: none;
   box-sizing: border-box;
 }
@@ -650,6 +655,18 @@ function generateCSS() {
 
 .layera-input--sidebar-filter {
   margin-bottom: 1rem; /* ✅ Filter input έχει περισσότερο spacing - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
+}
+
+/* Sidebar h3 - ΑΚΡΙΒΩΣ όπως HTML */
+.sidebar-h3 {
+  margin-bottom: 1rem; /* ✅ Ακριβώς όπως HTML: margin-bottom: 1rem */
+  color: #ecf0f1;      /* ✅ Ακριβώς όπως HTML: color: #ecf0f1 */
+}
+
+.sidebar-h3-second {
+  margin-bottom: 1rem; /* ✅ Ακριβώς όπως HTML: margin-bottom: 1rem */
+  margin-top: 2rem;    /* ✅ Ακριβώς όπως HTML: margin-top: 2rem */
+  color: #ecf0f1;      /* ✅ Ακριβώς όπως HTML: color: #ecf0f1 */
 }
 
 /* ============================================= */
