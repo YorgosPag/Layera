@@ -10,9 +10,6 @@
     border-left: 1px solid #4a5568;
     box-sizing: border-box;
     height: calc(100vh - 65px);
-    max-height: calc(100vh - 65px);
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .sidebar-secondary.open {
@@ -20,6 +17,12 @@
     padding: 1rem;
     overflow-y: auto; /* Επιτρέπει vertical scrolling */
     overflow-x: hidden; /* Κρύβει horizontal scrolling */
+}
+
+.sidebar-secondary.left {
+    border-left: 1px solid #4a5568;
+    border-right: 1px solid #4a5568;
+    order: 1; /* Ανάμεσα στο Primary Sidebar και Main Content */
 }
 
 /* Custom Scrollbar για τα sidebars */

@@ -46,3 +46,27 @@ ZERO (0) ΣΚΛΗΡΕΣ ΤΙΜΕΣ
 Αυτοί οι κανόνες είναι **ΥΠΟΧΡΕΩΤΙΚΟΙ** και δεν παραβιάζονται ποτέ.
 
 ΜΗΝ παραβιάζεις κανέναν κανόνα (ΔΕΝ γράφεις κώδικα σε αρχεία .css. Αυτά δημιουργούνται ΜΟΝΟΝ αυτόματα. ΟΧΙ σκληρές τιμές, ΧΩΡΙΣ div/inline/any/@/, μόνο @layera/* και tokens), ΜΗΝ δημιουργείς νέο αρχείο και ΜΗΝ διαγράφεις αρχεία χωρίς ρητή άδεια και ΤΗΡΕΙΣ απολύτως CLAUDE.md + kanones_1.txt (React.ReactNode, React 19.1.1). Αν κάτι αποτύχει ή υπάρχει υποψία διπλότυπου, σταματάς και ενημερώνεις τον Γιώργο.
+
+## 🌐 Ports Configuration - Δύο Εφαρμογές
+
+### 📋 HTML Prototype Application
+- **Port:** `3008`
+- **Path:** `C:\layera\html\htmlComponents\index.html`
+- **URL:** `http://localhost:3008/`
+- **Σκοπός:** Prototype/Demo για testing designs και components
+- **Τεχνολογίες:** Pure HTML, CSS, JavaScript
+- **Χρήση:** Design testing, rapid prototyping πριν την υλοποίηση στο React
+
+### ⚛️ React Production Application
+- **Port:** `3002`
+- **Path:** `C:\layera\apps\layera\`
+- **URL:** `http://localhost:3002`
+- **Σκοπός:** Κύρια παραγωγική εφαρμογή
+- **Τεχνολογίες:** React 19.1.1, TypeScript, Vite, @layera/* packages
+- **Εκκίνηση:** `pnpm --filter @layera/layera dev`
+- **Χρήση:** Πραγματική εφαρμογή για τους χρήστες
+
+### 🔄 Workflow
+1. **Design → HTML Prototype** (file://) για γρήγορο testing
+2. **HTML → React Implementation** (localhost:3002) για production
+3. **Sync:** Τα HTML components πρέπει να ταιριάζουν με τα React components

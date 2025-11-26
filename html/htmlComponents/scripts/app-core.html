@@ -177,20 +177,20 @@
 
     // Sidebar Toggle Functions
     function toggleSidebar(position) {
-        const leftSidebar = document.getElementById('secondary-sidebar-left-container');
-        const rightSidebar = document.getElementById('secondary-sidebar-right-container');
+        const leftSidebar = document.getElementById('leftSidebar');
+        const rightSidebar = document.getElementById('rightSidebar');
 
         if (position === 'left') {
             if (!leftSidebar) {
                 console.error('Left sidebar not found!');
                 return;
             }
-            const isOpen = leftSidebar.style.display !== 'none';
+            const isOpen = leftSidebar.classList.contains('open');
             if (isOpen) {
-                leftSidebar.style.display = 'none';
+                leftSidebar.classList.remove('open');
                 updateToggleButton('left', false);
             } else {
-                leftSidebar.style.display = 'block';
+                leftSidebar.classList.add('open');
                 updateToggleButton('left', true);
             }
         } else if (position === 'right') {
@@ -198,12 +198,12 @@
                 console.error('Right sidebar not found!');
                 return;
             }
-            const isOpen = rightSidebar.style.display !== 'none';
+            const isOpen = rightSidebar.classList.contains('open');
             if (isOpen) {
-                rightSidebar.style.display = 'none';
+                rightSidebar.classList.remove('open');
                 updateToggleButton('right', false);
             } else {
-                rightSidebar.style.display = 'block';
+                rightSidebar.classList.add('open');
                 updateToggleButton('right', true);
             }
         }

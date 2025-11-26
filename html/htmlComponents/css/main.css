@@ -36,9 +36,9 @@ body {
     contain: layout style;
 }
 
-/* Secondary Left Sidebar */
+/* Secondary Left Sidebar - ⚠️ ΜΗΝ ΠΕΙΡΑΞΕΙΣ! Διορθώθηκε για toggle functionality */
 .secondary-sidebar-left {
-    flex: 0 0 180px;
+    flex: 0 0 auto; /* ✅ ΣΗΜΑΝΤΙΚΟ: auto για να δουλεύει το toggle - ΜΗΝ αλλάξεις σε σταθερό πλάτος */
     background: #34495e;
     color: white;
     overflow-y: scroll;
@@ -66,9 +66,9 @@ body {
     max-height: calc(100vh - 65px);
 }
 
-/* Right Secondary Sidebar - ΚΥΡΙΟ ΠΡΟΒΛΗΜΑ */
+/* Right Secondary Sidebar - ⚠️ ΜΗΝ ΠΕΙΡΑΞΕΙΣ! Διορθώθηκε για toggle functionality */
 .secondary-sidebar-right {
-    flex: 0 0 300px;
+    flex: 0 0 auto; /* ✅ ΣΗΜΑΝΤΙΚΟ: auto για να δουλεύει το toggle - ΜΗΝ αλλάξεις σε σταθερό πλάτος */
     background: #2c3e50;
     color: white;
     overflow-y: scroll;
