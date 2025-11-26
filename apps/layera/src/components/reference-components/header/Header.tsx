@@ -50,9 +50,8 @@ export const Header: React.FC<HeaderProps> = ({
           {HEADER_COLORS.map(({ name, label, color }) => (
             <button
               key={name}
-              className={`color-btn ${name}-btn ${activeHeaderColor === name ? 'active' : ''}`}
+              className={`color-btn ${name}-btn ${activeHeaderColor === name ? 'active' : ''} header-color-button`}
               onClick={() => handleColorChange(name)}
-              className="header-color-button"
               style={{ backgroundColor: color }}
             >
               {label}
@@ -66,17 +65,15 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Toggle Controls για Sidebars */}
         <Box className="sidebar-toggles header-sidebar-toggles">
           <button
-            className="btn toggle-btn"
+            className="btn toggle-btn header-toggle-button"
             onClick={() => onToggleSidebar?.('left')}
-            className="header-toggle-button"
             title="Toggle Left Sidebar"
           >
             ⚙️
           </button>
           <button
-            className="btn toggle-btn"
+            className="btn toggle-btn header-toggle-button"
             onClick={() => onToggleSidebar?.('right')}
-            className="header-toggle-button"
             title="Toggle Right Sidebar"
           >
             🎨
