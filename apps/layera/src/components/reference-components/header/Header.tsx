@@ -36,22 +36,11 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <Box
-      className="app-header"
+      className="layera-app-header"
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        zIndex: 1000,
-        background: '#4A90E2',
-        color: 'white',
-        padding: '0.75rem 1rem',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        minHeight: 'auto',
-        borderBottom: '1px solid rgba(255,255,255,0.1)',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        alignItems: 'center'
       }}
     >
       {/* Left Section: Title + Color Buttons - ακριβώς όπως HTML */}
