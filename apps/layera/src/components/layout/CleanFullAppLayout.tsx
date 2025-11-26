@@ -6,6 +6,7 @@ import { HeaderNav } from './header/HeaderNav';
 import { LeftSidebar } from './sidebar/LeftSidebar';
 import { RightSidebar } from './sidebar/RightSidebar';
 import { MainContent } from './main/MainContent';
+import { Header } from '../reference-components/header/Header';
 
 /**
  * 🎯 100% ARXES COMPLIANT FullAppLayout
@@ -24,35 +25,30 @@ export const CleanFullAppLayout: React.FC = () => {
 
   return (
     <Box className="layera-layout-main-container">
-      {/* Header Section - GROK AI Box/Flex ARXES COMPLIANT */}
-      <Box as="header" className="layera-app-header">
-        <Flex className="layera-header-content">
-          <Flex className="layera-header-left">
-            <Heading
-              className="layera-header-title"
-              data-size="xl"
-              data-weight="semibold"
-            >
-              🎨 Layera Design System Preview - Tables Ready
-            </Heading>
-
-            <ColorButtonGroup
-              activeColor={activeColor}
-              onColorChange={setActiveColor}
-            />
-          </Flex>
-
-          <HeaderNav
-            leftSidebarOpen={leftSidebarOpen}
-            rightSidebarOpen={rightSidebarOpen}
-            onToggleLeftSidebar={() => setLeftSidebarOpen(!leftSidebarOpen)}
-            onToggleRightSidebar={() => setRightSidebarOpen(!rightSidebarOpen)}
-          />
-        </Flex>
-      </Box>
+      <Header
+        onToggleSidebar={(position) => {
+          if (position === 'left') {
+            setLeftSidebarOpen(!leftSidebarOpen);
+          } else {
+            setRightSidebarOpen(!rightSidebarOpen);
+          }
+        }}
+        onHeaderColorChange={setActiveColor}
+        activeHeaderColor={activeColor}
+      />
 
       {/* Main Layout Container */}
-      <Flex className="layera-app-layout">
+      <Flex
+        className="layera-app-layout"
+        style={{
+          marginTop: '65px',
+          height: 'calc(100vh - 65px)',
+          minHeight: 'calc(100vh - 65px)',
+          maxHeight: 'calc(100vh - 65px)',
+          width: '100vw',
+          overflow: 'hidden'
+        }}
+      >
 
         <LeftSidebar leftSidebarOpen={leftSidebarOpen} />
 
