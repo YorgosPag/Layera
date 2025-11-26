@@ -20,6 +20,8 @@ import { TabSystemBuilder } from './builders/TabSystemBuilder.js';
 import { CardsAdvancedBuilder } from './builders/CardsAdvancedBuilder.js';
 import { TypographyBuilder } from './builders/TypographyBuilder.js';
 import { SettingsBuilder } from './builders/SettingsBuilder.js';
+import { MainContentBuilder } from './builders/MainContentBuilder.js';
+import { PrimarySidebarBuilder } from './builders/PrimarySidebarBuilder.js';
 
 // Layout Classes νow managed by LayoutBuilder module
 
@@ -44,156 +46,7 @@ function generateCSS() {
 /*  Ίδιες CSS κλάσεις και τιμές με primary-sidebar.html */
 /* ============================================= */
 
-.sidebar {
-  width: 250px;
-  background: #2c3e50;
-  color: white;
-  padding: 1rem;
-  order: 0;
-  height: calc(100vh - 65px);
-  min-height: calc(100vh - 65px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  position: fixed;
-  top: 57px;
-  left: 0;
-  z-index: 999;
-}
-
-.sidebar h3 {
-  margin-top: 0;    /* ✅ Reset default margin - όπως στο HTML */
-  margin-bottom: 1rem;
-  color: #ecf0f1;
-  font-family: Arial, sans-serif; /* ✅ Ακριβώς όπως HTML: Arial, sans-serif */
-}
-
-.menu-item {
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  background: #34495e;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-  font-family: Arial, sans-serif; /* ✅ FORCE Arial όπως HTML - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
-}
-
-.menu-item:hover {
-  background: #3498db;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn:hover {
-  opacity: 0.8;
-}
-
-.primary-btn {
-  background: #4A90E2;
-  color: white;
-}
-
-.layera-sidebar-title {
-  margin: 0 0 var(--layera-sidebar-title-margin);
-  font-size: var(--layera-font-size-lg);
-  font-weight: var(--layera-font-weight-semibold);
-  color: var(--layera-sidebar-title);
-  display: flex;
-  align-items: center;
-  gap: var(--layera-space-3);
-}
-
-.layera-sidebar-quick-actions {
-  margin-top: var(--layera-sidebar-section-gap);
-}
-
-/* Button variants για Sidebar */
-.layera-button {
-  display: flex;
-  align-items: center;
-  gap: var(--layera-space-3);
-  width: 100%;
-  padding: var(--layera-menu-item-padding);
-  margin-bottom: var(--layera-menu-item-margin-bottom);
-  border-radius: var(--layera-menu-item-radius);
-  font-size: var(--layera-font-size-base);
-  font-weight: var(--layera-font-weight-medium);
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
-  outline: none;
-}
-
-/* Menu Item Button (default = outline-like) */
-.layera-button--sidebar-menu {
-  background-color: var(--layera-sidebar-menu-item-bg);
-  color: var(--layera-sidebar-text);
-}
-
-.layera-button--sidebar-menu:hover {
-  background-color: var(--layera-sidebar-menu-item-hover);
-}
-
-/* Primary Login Button */
-.layera-button--primary-sidebar {
-  background-color: var(--layera-color-primary);
-  color: white;
-  justify-content: center;
-  font-weight: var(--layera-font-weight-semibold);
-  width: 100%; /* ✅ ΑΚΡΙΒΩΣ όπως HTML: width: 100% - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
-}
-
-.layera-button--primary-sidebar:hover {
-  background-color: var(--layera-color-primary);
-  opacity: 0.9;
-}
-
-/* Input styling για Sidebar */
-/* ⚠️ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΑΥΤΑ ΤΑ INPUT FIELDS! */
-/* Έχουν πανομοιότυπο μέγεθος και styling με την HTML εφαρμογή */
-.layera-input--sidebar {
-  width: 100%;              /* ✅ Ακριβώς όπως HTML: width: 100% */
-  padding: 0.5rem;          /* ✅ Ακριβώς όπως HTML: padding: 0.5rem */
-  background-color: white;  /* ✅ Λευκό φόντο όπως HTML */
-  border: none;             /* ✅ Χωρίς border όπως HTML */
-  border-radius: 4px;       /* ✅ Ακριβώς όπως HTML: border-radius: 4px */
-  color: black;             /* ✅ Μαύρο κείμενο για λευκό φόντο */
-  font-family: Arial, sans-serif;  /* ✅ Ακριβώς όπως HTML body */
-  font-size: 16px;          /* ✅ Default browser size όπως HTML */
-  outline: none;
-  box-sizing: border-box;
-}
-
-.layera-input--sidebar::placeholder {
-  color: rgba(0, 0, 0, 0.6); /* ✅ Σκούρα placeholders για λευκό φόντο - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
-}
-
-.layera-input--sidebar-container {
-  margin-bottom: 0.5rem; /* ✅ Spacing ακριβώς όπως HTML - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
-}
-
-.layera-input--sidebar-filter {
-  margin-bottom: 1rem; /* ✅ Filter input έχει περισσότερο spacing - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
-}
-
-/* Sidebar h3 - ΑΚΡΙΒΩΣ όπως HTML */
-.sidebar-h3 {
-  margin-bottom: 1rem; /* ✅ Ακριβώς όπως HTML: margin-bottom: 1rem */
-  color: #ecf0f1;      /* ✅ Ακριβώς όπως HTML: color: #ecf0f1 */
-}
-
-.sidebar-h3-second {
-  margin-bottom: 1rem; /* ✅ Ακριβώς όπως HTML: margin-bottom: 1rem */
-  margin-top: 2rem;    /* ✅ Ακριβώς όπως HTML: margin-top: 2rem */
-  color: #ecf0f1;      /* ✅ Ακριβώς όπως HTML: color: #ecf0f1 */
-}
+/* Primary Sidebar CSS νow handled by PrimarySidebarBuilder module */
 
 /* ============================================= */
 /*  SECONDARY LEFT SIDEBAR – ΠΑΝΟΜΟΙΟΤΥΠΟ ΜΕ HTML */
@@ -944,68 +797,7 @@ function generateCSS() {
 
 /* Settings Sidebar & App Header CSS νow handled by SettingsBuilder module */
 
-/* ===== MAIN CONTENT COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
-.main-content-container {
-  flex: 1;
-  background: var(--layera-color-surface);
-  min-height: 100vh;
-  order: 2;
-}
-
-.main-content-tab-button {
-  background: var(--layera-color-surface);
-  color: var(--layera-color-text);
-  border: 1px solid var(--layera-color-border);
-  padding: var(--layera-space-3);
-  border-radius: var(--layera-radius-sm);
-}
-
-.main-content-card {
-  background: white;
-  border: 1px solid var(--layera-color-border);
-  border-radius: var(--layera-radius-md);
-  padding: var(--layera-space-4);
-  margin-bottom: var(--layera-space-4);
-}
-
-.main-content-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--layera-color-border);
-  border-radius: var(--layera-radius-md);
-  overflow: hidden;
-}
-
-.main-content-table-header {
-  background: var(--live-primary-color);
-  color: white;
-  padding: var(--layera-space-3);
-  text-align: left;
-  font-weight: var(--layera-font-weight-semibold);
-}
-
-.main-content-table-cell {
-  padding: var(--layera-space-3);
-  border-bottom: 1px solid var(--layera-color-border);
-}
-
-.main-content-table-row {
-  border-bottom: 1px solid var(--layera-color-border);
-}
-
-.main-content-table-row:nth-child(even) {
-  background: var(--layera-color-surface);
-}
-
-.main-content-table-button {
-  background: var(--layera-color-primary);
-  color: white;
-  border: none;
-  padding: var(--layera-space-2) var(--layera-space-3);
-  border-radius: var(--layera-radius-sm);
-  cursor: pointer;
-  font-size: var(--layera-font-size-sm);
-}
+/* Main Content CSS νow handled by MainContentBuilder module */
 
 `;
 
@@ -1051,6 +843,12 @@ const typographyCSS = TypographyBuilder.generateAllTypographyCSS();
 // Generate settings & header CSS using SettingsBuilder (enterprise modular approach)
 const settingsCSS = SettingsBuilder.generateAllSettingsCSS();
 
+// Generate main content CSS using MainContentBuilder (enterprise modular approach)
+const mainContentCSS = MainContentBuilder.generateAllMainContentCSS();
+
+// Generate primary sidebar CSS using PrimarySidebarBuilder (enterprise modular approach)
+const primarySidebarCSS = PrimarySidebarBuilder.generateAllPrimarySidebarCSS();
+
 // Generate raw CSS using RawCSSBuilder (enterprise modular approach)
 const rawCSS = RawCSSBuilder.generateAllRawCSS();
 
@@ -1058,7 +856,7 @@ const rawCSS = RawCSSBuilder.generateAllRawCSS();
 const remainingCSS = generateCSS();
 
 // Combine όλα τα enterprise modules
-const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + rawCSS + remainingCSS;
+const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + rawCSS + remainingCSS;
 const cssPath = path.join(distDir, 'tokens.css');
 fs.writeFileSync(cssPath, css);
 
