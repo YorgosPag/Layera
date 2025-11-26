@@ -61,6 +61,7 @@
   --layera-sidebar-input-bg: #34495e;
   --layera-sidebar-input-border: transparent;
   --layera-sidebar-width: 250px;
+  --layera-sidebar-primary-width: 250px;
   --layera-sidebar-padding: var(--layera-space-4);
   --layera-sidebar-title-margin: var(--layera-space-6);
   --layera-sidebar-section-gap: var(--layera-space-8);
@@ -361,19 +362,60 @@
 }
 
 /* ============================================= */
-/*  PRIMARY SIDEBAR – ΣΥΜΒΑΤΟ ΜΕ @layera/* COMPONENTS */
-/*  Χρησιμοποιεί ΜΟΝΟ τις υπάρχουσες --layera-* variables */
+/*  PRIMARY SIDEBAR – ΠΑΝΟΜΟΙΟΤΥΠΟ ΜΕ HTML */
+/*  Ίδιες CSS κλάσεις και τιμές με primary-sidebar.html */
 /* ============================================= */
 
-.layera-sidebar-primary {
-  width: var(--layera-sidebar-width);
-  background-color: var(--layera-sidebar-bg);
-  color: var(--layera-sidebar-text);
-  padding: calc(var(--layera-space-8) + var(--layera-space-4)) var(--layera-space-4) var(--layera-space-4) var(--layera-space-4);
-  flex-shrink: 0;
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  padding: 1rem;
   order: 0;
-  overflow-y: auto;
+  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
+  overflow-y: scroll;
+  overflow-x: hidden;
   box-sizing: border-box;
+  position: fixed;
+  top: 57px;
+  left: 0;
+  z-index: 999;
+}
+
+.sidebar h3 {
+  margin-bottom: 1rem;
+  color: #ecf0f1;
+}
+
+.menu-item {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: #34495e;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu-item:hover {
+  background: #3498db;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.primary-btn {
+  background: #4A90E2;
+  color: white;
 }
 
 .layera-sidebar-title {
@@ -433,24 +475,27 @@
 
 /* Input styling για Sidebar */
 .layera-input--sidebar {
-  width: calc(100% - var(--layera-space-2));
-  max-width: 180px;
-  padding: var(--layera-space-3);
-  background-color: var(--layera-sidebar-input-bg);
-  border: 1px solid var(--layera-sidebar-input-border);
-  border-radius: var(--layera-radius-sm);
-  color: var(--layera-sidebar-text);
-  font-size: var(--layera-font-size-sm);
+  width: 100%;
+  padding: 0.5rem;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  font-size: inherit;
   outline: none;
   box-sizing: border-box;
 }
 
 .layera-input--sidebar::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.layera-input--sidebar-container {
+  margin-bottom: 0.5rem;
 }
 
 .layera-input--sidebar-filter {
-  margin-bottom: var(--layera-space-4);
+  margin-bottom: 1rem;
 }
 
 /* ============================================= */
@@ -1273,14 +1318,6 @@
 .layera-layout-sidebar-transition {
   transition: width 0.3s ease;
   overflow: hidden;
-}
-
-.layera-primary-sidebar {
-  width: 250px;
-  background: #2c3e50;
-  color: white;
-  height: 100vh;
-  order: 0;
 }
 
 .layera-settings-sidebar {

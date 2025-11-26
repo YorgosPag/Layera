@@ -8,4 +8,5 @@
 
 export * from './overlay';
 export * from './navigation';
+export * from './sidebars';
 export * from './utilities';

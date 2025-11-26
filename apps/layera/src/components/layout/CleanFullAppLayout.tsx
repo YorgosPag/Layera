@@ -7,6 +7,7 @@ import { LeftSidebar } from './sidebar/LeftSidebar';
 import { RightSidebar } from './sidebar/RightSidebar';
 import { MainContent } from './main/MainContent';
 import { Header } from '../reference-components/header/Header';
+import { PrimarySidebar } from '../reference-components/sidebar/PrimarySidebar';
 
 /**
  * 🎯 100% ARXES COMPLIANT FullAppLayout
@@ -50,7 +51,7 @@ export const CleanFullAppLayout: React.FC = () => {
         }}
       >
 
-        <LeftSidebar leftSidebarOpen={leftSidebarOpen} />
+        <PrimarySidebar />
 
         <MainContent
           activeTab={activeTab}

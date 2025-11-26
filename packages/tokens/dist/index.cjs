@@ -1,3 +1,136 @@
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.ts
+var src_exports = {};
+__export(src_exports, {
+  COLOR_VARIABLES: () => COLOR_VARIABLES,
+  COLOR_VARIANTS: () => COLOR_VARIANTS,
+  ColorComponentSystem: () => ColorComponentSystem,
+  LAYERA_BUTTON_LIVE_VARS: () => LAYERA_BUTTON_LIVE_VARS,
+  LAYERA_BUTTON_TOKENS: () => LAYERA_BUTTON_TOKENS,
+  LAYERA_CARD_LIVE_VARS: () => LAYERA_CARD_LIVE_VARS,
+  LAYERA_CARD_TOKENS: () => LAYERA_CARD_TOKENS,
+  LAYERA_COLOR_APPLICATION: () => LAYERA_COLOR_APPLICATION,
+  LAYERA_CORE_BORDERS: () => LAYERA_CORE_BORDERS,
+  LAYERA_CORE_COLORS: () => LAYERA_CORE_COLORS,
+  LAYERA_CORE_DIMENSIONS: () => LAYERA_CORE_DIMENSIONS,
+  LAYERA_CORE_SPACING: () => LAYERA_CORE_SPACING,
+  LAYERA_CORE_TYPOGRAPHY: () => LAYERA_CORE_TYPOGRAPHY,
+  LAYERA_DYNAMIC_TOKENS: () => LAYERA_DYNAMIC_TOKENS,
+  LAYERA_HEADER_LIVE_VARS: () => LAYERA_HEADER_LIVE_VARS,
+  LAYERA_HEADER_TOKENS: () => LAYERA_HEADER_TOKENS,
+  LAYERA_LAYOUT_NAVIGATION_CLASSES: () => LAYERA_LAYOUT_NAVIGATION_CLASSES,
+  LAYERA_LAYOUT_OVERLAY_CLASSES: () => LAYERA_LAYOUT_OVERLAY_CLASSES,
+  LAYERA_LAYOUT_UTILITY_CLASSES: () => LAYERA_LAYOUT_UTILITY_CLASSES,
+  LAYERA_LIVE_BORDER_VARS: () => LAYERA_LIVE_BORDER_VARS,
+  LAYERA_LIVE_COLOR_VARS: () => LAYERA_LIVE_COLOR_VARS,
+  LAYERA_LIVE_DIMENSION_VARS: () => LAYERA_LIVE_DIMENSION_VARS,
+  LAYERA_LIVE_SIDEBAR_VARS: () => LAYERA_LIVE_SIDEBAR_VARS,
+  LAYERA_LIVE_SPACING_VARS: () => LAYERA_LIVE_SPACING_VARS,
+  LAYERA_LIVE_TYPOGRAPHY_VARS: () => LAYERA_LIVE_TYPOGRAPHY_VARS,
+  LAYERA_LIVE_VARIABLES: () => LAYERA_LIVE_VARIABLES,
+  LAYERA_MODAL_LIVE_VARS: () => LAYERA_MODAL_LIVE_VARS,
+  LAYERA_MODAL_TOKENS: () => LAYERA_MODAL_TOKENS,
+  LAYERA_PRESET_THEMES: () => LAYERA_PRESET_THEMES,
+  LAYERA_RADIUS_PRESETS: () => LAYERA_RADIUS_PRESETS,
+  LAYERA_SIDEBAR_COLORS: () => LAYERA_SIDEBAR_COLORS,
+  LAYERA_SIDEBAR_DIMENSIONS: () => LAYERA_SIDEBAR_DIMENSIONS,
+  LAYERA_SIDEBAR_TYPOGRAPHY: () => LAYERA_SIDEBAR_TYPOGRAPHY,
+  LAYERA_TABLE_LIVE_VARS: () => LAYERA_TABLE_LIVE_VARS,
+  LAYERA_TABLE_TOKENS: () => LAYERA_TABLE_TOKENS,
+  LAYERA_TARGET_SELECTORS: () => LAYERA_TARGET_SELECTORS,
+  LAYERA_TOKENS_BUILD_DATE: () => LAYERA_TOKENS_BUILD_DATE,
+  LAYERA_TOKENS_SOURCE: () => LAYERA_TOKENS_SOURCE,
+  LAYERA_TOKENS_VERSION: () => LAYERA_TOKENS_VERSION,
+  LEGACY_COLOR_MAPPING: () => LEGACY_COLOR_MAPPING,
+  LEGACY_COMPONENT_MAPPING: () => LEGACY_COMPONENT_MAPPING,
+  LEGACY_CSS_CLASSES: () => LEGACY_CSS_CLASSES,
+  applyAllLiveVariables: () => applyAllLiveVariables,
+  applyColorToElement: () => applyColorToElement,
+  applyLegacyTokenMappings: () => applyLegacyTokenMappings,
+  applyPresetThemeToDOM: () => applyPresetThemeToDOM,
+  applyTheme: () => applyTheme,
+  ensureLegacyCSSCompatibility: () => ensureLegacyCSSCompatibility,
+  exportCSS: () => exportCSS,
+  exportThemeAsJSON: () => exportThemeAsJSON,
+  generateMigrationReport: () => generateMigrationReport,
+  getAllLiveVariables: () => getAllLiveVariables,
+  getBorderRadiusPreset: () => getBorderRadiusPreset,
+  getButtonStateCSS: () => getButtonStateCSS,
+  getButtonVariantCSS: () => getButtonVariantCSS,
+  getButtonVariants: () => getButtonVariants,
+  getCardShadowCSS: () => getCardShadowCSS,
+  getCardStateCSS: () => getCardStateCSS,
+  getCardVariantCSS: () => getCardVariantCSS,
+  getCardVariants: () => getCardVariants,
+  getColorTypes: () => getColorTypes,
+  getCurrentPresetTheme: () => getCurrentPresetTheme,
+  getCurrentTargetComponent: () => getCurrentTargetComponent,
+  getCurrentThemeState: () => getCurrentThemeState,
+  getDefaultDimension: () => getDefaultDimension,
+  getFullButtonCSS: () => getFullButtonCSS,
+  getFullCardCSS: () => getFullCardCSS,
+  getLayeraColor: () => getLayeraColor,
+  getLayeraFontFamily: () => getLayeraFontFamily,
+  getLayeraFontWeight: () => getLayeraFontWeight,
+  getLayeraSpacing: () => getLayeraSpacing,
+  getLiveBorderRadiusVar: () => getLiveBorderRadiusVar,
+  getLiveColorVar: () => getLiveColorVar,
+  getLiveDimensionVar: () => getLiveDimensionVar,
+  getLiveSidebarVar: () => getLiveSidebarVar,
+  getLiveSpacingVar: () => getLiveSpacingVar,
+  getLiveTypographyVar: () => getLiveTypographyVar,
+  getLiveVariable: () => getLiveVariable,
+  getModalOverlayCSS: () => getModalOverlayCSS,
+  getModalVariantCSS: () => getModalVariantCSS,
+  getModalVariants: () => getModalVariants,
+  getPresetTheme: () => getPresetTheme,
+  getPresetThemeNames: () => getPresetThemeNames,
+  getSidebarColors: () => getSidebarColors,
+  getSidebarPositioning: () => getSidebarPositioning,
+  getSidebarWidth: () => getSidebarWidth,
+  getTargetSelectors: () => getTargetSelectors,
+  getThemeAsLiveVariables: () => getThemeAsLiveVariables,
+  isValidPresetTheme: () => isValidPresetTheme,
+  loadThemeState: () => loadThemeState,
+  migrateLegacyTokenName: () => migrateLegacyTokenName,
+  resetLiveVariables: () => resetLiveVariables,
+  resetToDefaults: () => resetToDefaults,
+  saveThemeState: () => saveThemeState,
+  setLiveVariable: () => setLiveVariable,
+  setTargetComponent: () => setTargetComponent,
+  updateAdvancedColor: () => updateAdvancedColor,
+  updateAdvancedLayout: () => updateAdvancedLayout,
+  updateLiveColor: () => updateLiveColor,
+  updateLiveLayout: () => updateLiveLayout,
+  validateBorderRadius: () => validateBorderRadius,
+  validateBorderWidth: () => validateBorderWidth,
+  validateButtonHeight: () => validateButtonHeight,
+  validateCardHeight: () => validateCardHeight,
+  validateFontSize: () => validateFontSize,
+  validateLineHeight: () => validateLineHeight,
+  validateModalWidth: () => validateModalWidth,
+  validateSpacingValue: () => validateSpacingValue
+});
+module.exports = __toCommonJS(src_exports);
+
 // src/core/colors.ts
 var LAYERA_CORE_COLORS = {
   // Primary color system
@@ -1976,7 +2109,8 @@ function ensureLegacyCSSCompatibility() {
 var LAYERA_TOKENS_VERSION = "2.0.0";
 var LAYERA_TOKENS_BUILD_DATE = (/* @__PURE__ */ new Date()).toISOString();
 var LAYERA_TOKENS_SOURCE = "Dynamic Token System - FullAppPreview_Mockup.html analysis";
-export {
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
   COLOR_VARIABLES,
   COLOR_VARIANTS,
   ColorComponentSystem,
@@ -2085,4 +2219,4 @@ export {
   validateLineHeight,
   validateModalWidth,
   validateSpacingValue
-};
+});
