@@ -8,12 +8,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { TokensBuilder } from './builders/TokensBuilder.js';
+import { TokensBuilder } from './builders/core/TokensBuilder.js';
 import { LayoutBuilder } from './builders/LayoutBuilder.js';
 import { ComponentsBuilder } from './builders/ComponentsBuilder.js';
-import { UtilityBuilder } from './builders/UtilityBuilder.js';
-import { ThemeBuilder } from './builders/ThemeBuilder.js';
-import { HeaderBuilder } from './builders/HeaderBuilder.js';
+import { UtilityBuilder } from './builders/core/UtilityBuilder.js';
+import { ThemeBuilder } from './builders/core/ThemeBuilder.js';
+import { HeaderBuilder } from './builders/header/HeaderBuilder.js';
 import { RawCSSBuilder } from './builders/RawCSSBuilder.js';
 import { RightSidebarBuilder } from './builders/RightSidebarBuilder.js';
 import { TabSystemBuilder } from './builders/TabSystemBuilder.js';
@@ -25,9 +25,18 @@ import { PrimarySidebarBuilder } from './builders/PrimarySidebarBuilder.js';
 import { SecondarySidebarBuilder } from './builders/SecondarySidebarBuilder.js';
 import { CardsExtendedBuilder } from './builders/CardsExtendedBuilder.js';
 import { AppLayoutBuilder } from './builders/AppLayoutBuilder.js';
-import { HeaderExtendedBuilder } from './builders/HeaderExtendedBuilder.js';
 import { FinalLayoutBuilder } from './builders/FinalLayoutBuilder.js';
 import { ContentAlignmentBuilder } from './builders/ContentAlignmentBuilder.js';
+import { ColorSystemBuilder } from './builders/sidebar/right-sidebar/ColorSystemBuilder.js';
+import { BorderRadiusBuilder } from './builders/sidebar/right-sidebar/BorderRadiusBuilder.js';
+import { ApplyToSelectorBuilder } from './builders/sidebar/right-sidebar/ApplyToSelectorBuilder.js';
+import { ComponentsBuilder as RightSidebarComponentsBuilder } from './builders/sidebar/right-sidebar/ComponentsBuilder.js';
+import { ComponentSizesBuilder } from './builders/sidebar/right-sidebar/ComponentSizesBuilder.js';
+import { PresetThemesBuilder } from './builders/sidebar/right-sidebar/PresetThemesBuilder.js';
+import { QuickRadiusPresetsBuilder } from './builders/sidebar/right-sidebar/QuickRadiusPresetsBuilder.js';
+import { SecondarySidebarRightBuilder } from './builders/sidebar/right-sidebar/SecondarySidebarRightBuilder.js';
+import { SpacingLayoutBuilder } from './builders/sidebar/right-sidebar/SpacingLayoutBuilder.js';
+import { RightSidebarTypographyBuilder } from './builders/sidebar/right-sidebar/RightSidebarTypographyBuilder.js';
 
 // Layout Classes νow managed by LayoutBuilder module
 
@@ -106,14 +115,42 @@ const cardsExtendedCSS = CardsExtendedBuilder.generateAllCardsExtendedCSS();
 // Generate app layout CSS using AppLayoutBuilder (enterprise modular approach)
 const appLayoutCSS = AppLayoutBuilder.generateAllAppLayoutCSS();
 
-// Generate header extended CSS using HeaderExtendedBuilder (enterprise modular approach)
-const headerExtendedCSS = HeaderExtendedBuilder.generateAllHeaderExtendedCSS();
 
 // Generate final layout CSS using FinalLayoutBuilder (enterprise modular approach)
 const finalLayoutCSS = FinalLayoutBuilder.generateAllFinalLayoutCSS();
 
 // Generate content alignment CSS using ContentAlignmentBuilder (enterprise modular approach)
 const contentAlignmentCSS = ContentAlignmentBuilder.generateAllContentAlignmentCSS();
+
+// Generate color system CSS using ColorSystemBuilder (enterprise modular approach)
+const colorSystemCSS = ColorSystemBuilder.generateAllColorSystemCSS();
+
+// Generate border radius CSS using BorderRadiusBuilder (enterprise modular approach)
+const borderRadiusCSS = BorderRadiusBuilder.generateAllBorderRadiusCSS();
+
+// Generate apply to selector CSS using ApplyToSelectorBuilder (enterprise modular approach)
+const applyToSelectorCSS = ApplyToSelectorBuilder.generateAllApplyToSelectorCSS();
+
+// Generate components CSS using RightSidebarComponentsBuilder (enterprise modular approach)
+const rightSidebarComponentsCSS = RightSidebarComponentsBuilder.generateAllComponentsCSS();
+
+// Generate component sizes CSS using ComponentSizesBuilder (enterprise modular approach)
+const componentSizesCSS = ComponentSizesBuilder.generateAllComponentSizesCSS();
+
+// Generate preset themes CSS using PresetThemesBuilder (enterprise modular approach)
+const presetThemesCSS = PresetThemesBuilder.generateAllPresetThemesCSS();
+
+// Generate quick radius presets CSS using QuickRadiusPresetsBuilder (enterprise modular approach)
+const quickRadiusPresetsCSS = QuickRadiusPresetsBuilder.generateAllQuickRadiusPresetsCSS();
+
+// Generate secondary sidebar right CSS using SecondarySidebarRightBuilder (enterprise modular approach)
+const secondarySidebarRightCSS = SecondarySidebarRightBuilder.generateAllSecondarySidebarRightCSS();
+
+// Generate spacing layout CSS using SpacingLayoutBuilder (enterprise modular approach)
+const spacingLayoutCSS = SpacingLayoutBuilder.generateAllSpacingLayoutCSS();
+
+// Generate right sidebar typography CSS using RightSidebarTypographyBuilder (enterprise modular approach)
+const rightSidebarTypographyCSS = RightSidebarTypographyBuilder.generateAllRightSidebarTypographyCSS();
 
 // Generate raw CSS using RawCSSBuilder (enterprise modular approach)
 const rawCSS = RawCSSBuilder.generateAllRawCSS();
@@ -122,7 +159,7 @@ const rawCSS = RawCSSBuilder.generateAllRawCSS();
 const remainingCSS = generateCSS();
 
 // Combine όλα τα enterprise modules
-const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + secondarySidebarCSS + cardsExtendedCSS + appLayoutCSS + headerExtendedCSS + finalLayoutCSS + contentAlignmentCSS + rawCSS + remainingCSS;
+const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + secondarySidebarCSS + cardsExtendedCSS + appLayoutCSS + finalLayoutCSS + contentAlignmentCSS + colorSystemCSS + borderRadiusCSS + applyToSelectorCSS + rightSidebarComponentsCSS + componentSizesCSS + presetThemesCSS + quickRadiusPresetsCSS + secondarySidebarRightCSS + spacingLayoutCSS + rightSidebarTypographyCSS + rawCSS + remainingCSS;
 const cssPath = path.join(distDir, 'tokens.css');
 fs.writeFileSync(cssPath, css);
 
