@@ -1,15 +1,15 @@
-/**
- * LAYERA DYNAMIC TOKENS v2.0
- * Generated CSS Variables
- */
+/* === LAYERA DESIGN TOKENS === */
 
 :root {
+  /* COLORS TOKENS */
   --layera-color-primary: #4A90E2;
   --layera-color-secondary: #9013FE;
   --layera-color-success: #4CAF50;
   --layera-color-warning: #FF9800;
   --layera-color-danger: #F44336;
   --layera-color-info: #2196F3;
+
+  /* LIVE TOKENS */
   --live-primary-color: #4A90E2;
   --live-secondary-color: #9013FE;
   --live-success-color: #4CAF50;
@@ -21,12 +21,16 @@
   --live-button-padding: 16px;
   --live-font-size: 16px;
   --live-border-radius: 8px;
+
+  /* SPACING TOKENS */
   --layera-space-1: 4px;
   --layera-space-2: 8px;
   --layera-space-3: 12px;
   --layera-space-4: 16px;
   --layera-space-6: 24px;
   --layera-space-8: 32px;
+
+  /* HEADER TOKENS */
   --layera-color-active-border: #FBBF24;
   --layera-color-header-bg: #4A90E2;
   --layera-color-header-text: #ffffff;
@@ -37,6 +41,8 @@
   --layera-color-btn-size: 32px;
   --layera-input-height: 36px;
   --layera-toggle-btn-size: 36px;
+
+  /* TYPOGRAPHY TOKENS */
   --layera-font-size-xs: 0.75rem;
   --layera-font-size-sm: 0.875rem;
   --layera-font-size-base: 1rem;
@@ -49,28 +55,150 @@
   --layera-text-align-center: center;
   --layera-text-align-left: left;
   --layera-text-align-right: right;
+
+  /* RADIUS TOKENS */
   --layera-radius-sm: 4px;
   --layera-radius-md: 6px;
   --layera-radius-lg: 8px;
   --layera-shadow-header: 0 2px 10px rgba(0,0,0,0.12);
+
+  /* SIDEBAR TOKENS */
   --layera-sidebar-bg: #2c3e50;
   --layera-sidebar-text: #ffffff;
   --layera-sidebar-menu-item-bg: #34495e;
   --layera-sidebar-menu-item-hover: #3498db;
   --layera-sidebar-title: #ecf0f1;
   --layera-sidebar-input-bg: #34495e;
-  --layera-sidebar-input-border: transparent;
-  --layera-sidebar-width: 250px;
-  --layera-sidebar-primary-width: 250px;
-  --layera-sidebar-padding: var(--layera-space-4);
-  --layera-sidebar-title-margin: var(--layera-space-6);
-  --layera-sidebar-section-gap: var(--layera-space-8);
-  --layera-menu-item-padding: 0.75rem;
-  --layera-menu-item-margin-bottom: 0.5rem;
-  --layera-menu-item-radius: var(--layera-radius-md);
+  --layera-sidebar-input-border: #5a6c7d;
+  --layera-sidebar-input-text: #ffffff;
+  --layera-sidebar-button-bg: #3498db;
+  --layera-sidebar-button-hover: #2980b9;
+  --layera-sidebar-width: 280px;
+
 }
 
-/* Button variants */
+/* === LAYERA LAYOUT CLASSES === */
+
+/* OVERLAY CLASSES */
+.layera-layout-fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: white;
+}
+
+.layera-layout-close-button {
+  position: absolute;
+  top: var(--layera-space-2);
+  right: var(--layera-space-2);
+  background: var(--live-danger-color);
+  color: white;
+  padding: var(--layera-space-2);
+  border-radius: var(--live-border-radius);
+  cursor: pointer;
+  z-index: 10000;
+  border: none;
+}
+
+/* NAVIGATION CLASSES */
+.layera-layout-main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.layera-layout-flex-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.layera-layout-sidebar-transition {
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.layera-settings-sidebar {
+  width: 280px;
+  background: #34495e;
+  color: white;
+  height: 100vh;
+  order: 1;
+}
+
+/* UTILITY CLASSES */
+.layera-layout-full-width {
+  width: 100%;
+}
+
+.layera-layout-full-height {
+  height: 100%;
+}
+
+.layera-layout-bg-primary {
+  background: var(--live-primary-color);
+}
+
+.layera-layout-bg-white {
+  background: white;
+}
+
+.layera-layout-padding-md {
+  padding: var(--layera-space-4);
+}
+
+.layera-layout-margin-md {
+  margin: var(--layera-space-4);
+}
+
+.layera-center-text {
+  text-align: center !important;
+}
+
+.layera-force-center {
+  text-align: center !important;
+  display: block !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+.layera-ultra-center {
+  text-align: center !important;
+  display: block !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+.layera-center-flex {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.layera-center-flex-column {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.layera-center-content {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* === LAYERA COMPONENT CLASSES === */
+
+/* BUTTON VARIANTS */
 .layera-button-primary {
   background: var(--live-primary-color);
   color: white;
@@ -87,59 +215,6 @@
   padding: var(--live-button-padding);
 }
 
-/* Card variants */
-.layera-card-primary {
-  background: rgba(74, 144, 226, 0.1);
-  border: 1px solid var(--live-primary-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-secondary {
-  background: rgba(144, 19, 254, 0.1);
-  border: 1px solid var(--live-secondary-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Modal variants */
-.layera-modal-primary {
-  border-left: 4px solid var(--live-primary-color);
-  background: white;
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Card variants - ALL 6 COLORS */
-.layera-card-success {
-  background: rgba(76, 175, 80, 0.1);
-  border: 1px solid var(--live-success-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-warning {
-  background: rgba(255, 152, 0, 0.1);
-  border: 1px solid var(--live-warning-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-danger {
-  background: rgba(244, 67, 54, 0.1);
-  border: 1px solid var(--live-danger-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-info {
-  background: rgba(33, 150, 243, 0.1);
-  border: 1px solid var(--live-info-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Button variants - ALL 6 COLORS */
 .layera-button-success {
   background: var(--live-success-color);
   color: white;
@@ -172,7 +247,57 @@
   padding: var(--live-button-padding);
 }
 
-/* Modal variants - ALL 5 COLORS */
+/* CARD VARIANTS - ALL 6 COLORS */
+.layera-card-primary {
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px solid var(--live-primary-color);
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
+.layera-card-secondary {
+  background: rgba(144, 19, 254, 0.1);
+  border: 1px solid var(--live-secondary-color);
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
+.layera-card-success {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid var(--live-success-color);
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
+.layera-card-warning {
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid var(--live-warning-color);
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
+.layera-card-danger {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid var(--live-danger-color);
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
+.layera-card-info {
+  background: rgba(33, 150, 243, 0.1);
+  border: 1px solid var(--live-info-color);
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
+/* MODAL VARIANTS */
+.layera-modal-primary {
+  border-left: 4px solid var(--live-primary-color);
+  background: white;
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
+
 .layera-modal-secondary {
   border-left: 4px solid var(--live-secondary-color);
   background: white;
@@ -201,26 +326,67 @@
   padding: var(--live-padding);
 }
 
-/* Utility classes */
-.layera-gap { gap: var(--live-component-gap); }
-.layera-padding { padding: var(--live-padding); }
-.layera-font-size { font-size: var(--live-font-size); }
+.layera-modal-info {
+  border-left: 4px solid var(--live-info-color);
+  background: white;
+  border-radius: var(--live-border-radius);
+  padding: var(--live-padding);
+}
 
-/* Typography utilities */
-.layera-margin-bottom--xs { margin-bottom: var(--layera-space-1); }
-.layera-margin-bottom--sm { margin-bottom: var(--layera-space-2); }
-.layera-margin-bottom--md { margin-bottom: var(--layera-space-4); }
-.layera-margin-bottom--lg { margin-bottom: var(--layera-space-6); }
-.layera-margin-bottom--xl { margin-bottom: var(--layera-space-8); }
+/* === LAYERA UTILITY CLASSES === */
 
-.layera-margin-top--lg { margin-top: var(--layera-space-6); }
-.layera-margin-top--xl { margin-top: var(--layera-space-8); }
+/* BASIC UTILITIES */
+.layera-gap {
+  gap: var(--live-component-gap);
+}
 
-/* Padding utilities - ΓΙΑ HEADER ΑΚΡΙΒΕΙΑ */
-.layera-padding--sm { padding: var(--layera-space-3); }
-.layera-padding-header { padding: var(--layera-space-3) var(--layera-space-4); }
+.layera-padding {
+  padding: var(--live-padding);
+}
 
-/* Profile button - ΠΑΝΟΜΟΙΟΤΥΠΟ με HTML */
+.layera-font-size {
+  font-size: var(--live-font-size);
+}
+
+/* TYPOGRAPHY UTILITIES */
+.layera-margin-bottom--xs {
+  margin-bottom: var(--layera-space-1);
+}
+
+.layera-margin-bottom--sm {
+  margin-bottom: var(--layera-space-2);
+}
+
+.layera-margin-bottom--md {
+  margin-bottom: var(--layera-space-4);
+}
+
+.layera-margin-bottom--lg {
+  margin-bottom: var(--layera-space-6);
+}
+
+.layera-margin-bottom--xl {
+  margin-bottom: var(--layera-space-8);
+}
+
+.layera-margin-top--lg {
+  margin-top: var(--layera-space-6);
+}
+
+.layera-margin-top--xl {
+  margin-top: var(--layera-space-8);
+}
+
+/* PADDING UTILITIES - ΓΙΑ HEADER ΑΚΡΙΒΕΙΑ */
+.layera-padding--sm {
+  padding: var(--layera-space-3);
+}
+
+.layera-padding-header {
+  padding: var(--layera-space-3) var(--layera-space-4);
+}
+
+/* PROFILE BUTTON - ΠΑΝΟΜΟΙΟΤΥΠΟ με HTML */
 .layera-profile-btn {
   background: rgba(255,255,255,0.2);
   color: white;
@@ -231,23 +397,238 @@
   cursor: pointer;
 }
 
-/* Flex utilities */
-.layera-flex { display: flex; }
-.layera-flex--gap-xs { gap: var(--layera-space-1); }
-.layera-flex--gap-sm { gap: var(--layera-space-2); }
-.layera-flex--gap-md { gap: var(--layera-space-4); }
-.layera-flex--justify-between { justify-content: space-between; }
-.layera-flex--align-center { align-items: center; }
-.layera-flex--grow { flex: 1; }
-.layera-flex--wrap { flex-wrap: wrap; }
+/* FLEX UTILITIES */
+.layera-flex {
+  display: flex;
+}
 
-/* Width utilities */
-.layera-width--full { width: 100%; }
+.layera-flex--gap-xs {
+  gap: var(--layera-space-1);
+}
 
-/* ============================================= */
-/*  HEADER COMPONENT CLASSES από GROK AI        */
-/* ============================================= */
+.layera-flex--gap-sm {
+  gap: var(--layera-space-2);
+}
 
+.layera-flex--gap-md {
+  gap: var(--layera-space-4);
+}
+
+.layera-flex--justify-between {
+  justify-content: space-between;
+}
+
+.layera-flex--align-center {
+  align-items: center;
+}
+
+.layera-flex--grow {
+  flex: 1;
+}
+
+.layera-flex--wrap {
+  flex-wrap: wrap;
+}
+
+.layera-flex--direction-column {
+  flex-direction: column;
+}
+
+.layera-flex--direction-row {
+  flex-direction: row;
+}
+
+/* WIDTH UTILITIES */
+.layera-width--full {
+  width: 100%;
+}
+
+.layera-width--auto {
+  width: auto;
+}
+
+.layera-width--fit {
+  width: fit-content;
+}
+
+/* TEXT UTILITIES */
+.layera-text--align-left {
+  text-align: left;
+}
+
+.layera-text--align-center {
+  text-align: center;
+}
+
+.layera-text--align-right {
+  text-align: right;
+}
+
+/* BORDER UTILITIES */
+.layera-border {
+  border: 1px solid var(--layera-color-border);
+}
+
+.layera-border--none {
+  border: none;
+}
+
+.layera-border-radius {
+  border-radius: var(--layera-radius-md);
+}
+
+/* === LAYERA THEME CLASSES === */
+
+/* CARD TITLE THEME STYLES */
+.layera-primary-cards-title {
+  background-color: var(--layera-color-primary);
+  color: var(--layera-color-surface);
+  padding: var(--layera-space-3) var(--layera-space-4);
+  border-radius: var(--layera-radius-sm);
+  margin-bottom: var(--layera-space-4);
+}
+
+.layera-secondary-cards-title {
+  background-color: var(--layera-color-secondary);
+  color: var(--layera-color-surface);
+  padding: var(--layera-space-3) var(--layera-space-4);
+  border-radius: var(--layera-radius-sm);
+  margin-bottom: var(--layera-space-4);
+}
+
+.layera-success-cards-title {
+  background-color: var(--layera-color-success);
+  color: var(--layera-color-surface);
+  padding: var(--layera-space-3) var(--layera-space-4);
+  border-radius: var(--layera-radius-sm);
+  margin-bottom: var(--layera-space-4);
+}
+
+.layera-warning-cards-title {
+  background-color: var(--layera-color-warning);
+  color: var(--layera-color-surface);
+  padding: var(--layera-space-3) var(--layera-space-4);
+  border-radius: var(--layera-radius-sm);
+  margin-bottom: var(--layera-space-4);
+}
+
+.layera-danger-cards-title {
+  background-color: var(--layera-color-danger);
+  color: var(--layera-color-surface);
+  padding: var(--layera-space-3) var(--layera-space-4);
+  border-radius: var(--layera-radius-sm);
+  margin-bottom: var(--layera-space-4);
+}
+
+.layera-info-cards-title {
+  background-color: var(--layera-color-info);
+  color: var(--layera-color-surface);
+  padding: var(--layera-space-3) var(--layera-space-4);
+  border-radius: var(--layera-radius-sm);
+  margin-bottom: var(--layera-space-4);
+}
+
+/* LAYOUT THEME STYLES */
+.layera-theme-primary {
+  background-color: var(--layera-color-primary);
+  color: white;
+}
+
+.layera-theme-secondary {
+  background-color: var(--layera-color-secondary);
+  color: white;
+}
+
+.layera-theme-success {
+  background-color: var(--layera-color-success);
+  color: white;
+}
+
+.layera-theme-warning {
+  background-color: var(--layera-color-warning);
+  color: white;
+}
+
+.layera-theme-danger {
+  background-color: var(--layera-color-danger);
+  color: white;
+}
+
+.layera-theme-info {
+  background-color: var(--layera-color-info);
+  color: white;
+}
+
+.layera-theme-light {
+  background-color: var(--layera-color-surface);
+  color: var(--layera-color-text);
+}
+
+.layera-theme-dark {
+  background-color: #2c3e50;
+  color: white;
+}
+
+/* BUTTON THEME VARIANTS */
+.layera-button-outline {
+  background: transparent;
+  border: 2px solid var(--layera-color-primary);
+  color: var(--layera-color-primary);
+  padding: var(--layera-space-2) var(--layera-space-4);
+  border-radius: var(--layera-radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.layera-button-ghost {
+  background: transparent;
+  border: none;
+  color: var(--layera-color-primary);
+  padding: var(--layera-space-2) var(--layera-space-4);
+  border-radius: var(--layera-radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.layera-button-elevated {
+  background: var(--layera-color-primary);
+  color: white;
+  border: none;
+  padding: var(--layera-space-3) var(--layera-space-6);
+  border-radius: var(--layera-radius-lg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* CARD THEME VARIANTS */
+.layera-card-elevated {
+  background: var(--layera-color-surface);
+  border-radius: var(--layera-radius-lg);
+  padding: var(--layera-space-6);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: none;
+}
+
+.layera-card-outlined {
+  background: var(--layera-color-surface);
+  border: 1px solid var(--layera-color-border);
+  border-radius: var(--layera-radius-md);
+  padding: var(--layera-space-4);
+  box-shadow: none;
+}
+
+.layera-card-flat {
+  background: var(--layera-color-surface);
+  border: none;
+  border-radius: var(--layera-radius-sm);
+  padding: var(--layera-space-4);
+  box-shadow: none;
+}
+
+/* === LAYERA HEADER CLASSES === */
+
+/* APP HEADER COMPONENT STYLES */
 .layera-app-header {
   position: fixed;
   top: 0;
@@ -282,7 +663,7 @@
   gap: var(--layera-space-3);
 }
 
-/* Color Buttons (P S Su W D I) */
+/* HEADER COLOR BUTTON STYLES */
 .layera-color-btn {
   width: var(--layera-color-btn-size);
   height: var(--layera-color-btn-size);
@@ -298,12 +679,29 @@
   justify-content: center;
 }
 
-.layera-color-btn--primary { background-color: var(--layera-color-primary); }
-.layera-color-btn--secondary { background-color: var(--layera-color-secondary); }
-.layera-color-btn--success { background-color: var(--layera-color-success); }
-.layera-color-btn--warning { background-color: var(--layera-color-warning); }
-.layera-color-btn--danger { background-color: var(--layera-color-danger); }
-.layera-color-btn--info { background-color: var(--layera-color-info); }
+.layera-color-btn--primary {
+  background-color: var(--layera-color-primary);
+}
+
+.layera-color-btn--secondary {
+  background-color: var(--layera-color-secondary);
+}
+
+.layera-color-btn--success {
+  background-color: var(--layera-color-success);
+}
+
+.layera-color-btn--warning {
+  background-color: var(--layera-color-warning);
+}
+
+.layera-color-btn--danger {
+  background-color: var(--layera-color-danger);
+}
+
+.layera-color-btn--info {
+  background-color: var(--layera-color-info);
+}
 
 .layera-color-btn--active {
   border: 2px solid var(--layera-color-active-border);
@@ -311,7 +709,7 @@
   transform: scale(0.95);
 }
 
-/* Toggle Buttons (Settings / Palette) */
+/* HEADER TOGGLE BUTTON STYLES */
 .layera-toggle-btn {
   width: var(--layera-toggle-btn-size);
   height: var(--layera-toggle-btn-size);
@@ -331,14 +729,25 @@
   background-color: rgba(255,255,255,0.25);
 }
 
-/* Input Fields (Search & Location) */
+/* HEADER INPUT FIELD STYLES */
 .layera-input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.layera-input-search,
+.layera-input-search {
+  height: var(--layera-input-height);
+  padding: 0 var(--layera-space-4) 0 2.5rem;
+  background-color: var(--layera-color-header-input-bg);
+  border: 1px solid var(--layera-color-header-input-border);
+  border-radius: var(--layera-radius-sm);
+  color: var(--layera-color-header-text);
+  font-size: var(--layera-font-size-sm);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
 .layera-input-location {
   height: var(--layera-input-height);
   padding: 0 var(--layera-space-4) 0 2.5rem;
@@ -351,18 +760,516 @@
   transition: all 0.2s ease;
 }
 
-.layera-input-search::placeholder,
+.layera-input-search::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
 .layera-input-location::placeholder {
   color: rgba(255,255,255,0.6);
 }
 
-.layera-input-search:focus,
+.layera-input-search:focus {
+  background-color: rgba(255,255,255,0.30);
+}
+
 .layera-input-location:focus {
   background-color: rgba(255,255,255,0.30);
 }
 
+/* === RAW CSS SECTIONS === */
+
 /* ============================================= */
 /*  PRIMARY SIDEBAR – ΠΑΝΟΜΟΙΟΤΥΠΟ ΜΕ HTML */
+/*  Ίδιες CSS κλάσεις και τιμές με primary-sidebar.html */
+/* ============================================= */
+
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  padding: 1rem;
+  order: 0;
+  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  top: 57px;
+  left: 0;
+  z-index: 999;
+}
+
+.sidebar h3 {
+  margin-top: 0;    /* ✅ Reset default margin - όπως στο HTML */
+  margin-bottom: 1rem;
+  color: #ecf0f1;
+  font-family: Arial, sans-serif; /* ✅ Ακριβώς όπως HTML: Arial, sans-serif */
+}
+
+.menu-item {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: #34495e;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: Arial, sans-serif; /* ✅ FORCE Arial όπως HTML - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
+}
+
+.menu-item:hover {
+  background: #3498db;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.primary-btn {
+  background: #4A90E2;
+  color: white;
+}
+
+.layera-sidebar-title {
+  margin: 0 0 var(--layera-sidebar-title-margin);
+  font-size: var(--layera-font-size-lg);
+  font-weight: var(--layera-font-weight-semibold);
+  color: var(--layera-sidebar-title);
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-3);
+}
+
+.layera-sidebar-quick-actions {
+  margin-top: var(--layera-sidebar-section-gap);
+}
+
+/* Button variants για Sidebar */
+.layera-button {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-3);
+  width: 100%;
+  padding: var(--layera-menu-item-padding);
+  margin-bottom: var(--layera-menu-item-margin-bottom);
+  border-radius: var(--layera-menu-item-radius);
+  font-size: var(--layera-font-size-base);
+  font-weight: var(--layera-font-weight-medium);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+/* Menu Item Button (default = outline-like) */
+.layera-button--sidebar-menu {
+  background-color: var(--layera-sidebar-menu-item-bg);
+  color: var(--layera-sidebar-text);
+}
+
+.layera-button--sidebar-menu:hover {
+  background-color: var(--layera-sidebar-menu-item-hover);
+}
+
+.layera-button--sidebar-menu:focus {
+  background-color: var(--layera-sidebar-menu-item-active);
+}
+
+/* Primary Login Button */
+.layera-button--sidebar-primary {
+  background-color: var(--layera-sidebar-primary-bg);
+  color: var(--layera-sidebar-primary-text);
+  width: 100%; /* ✅ ΑΚΡΙΒΩΣ όπως HTML: width: 100% - ΜΗΝ ΑΛΛΑΞΕΙΣ! */
+}
+
+.layera-button--sidebar-primary:hover {
+  background-color: var(--layera-sidebar-primary-hover);
+}
+
+/* Input styling για Sidebar */
+/* ⚠️ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΑΥΤΑ ΤΑ INPUT FIELDS! */
+.layera-input--sidebar {
+  width: 100%;
+  padding: var(--layera-input-padding);
+  margin-bottom: var(--layera-input-margin-bottom);
+  background-color: var(--layera-sidebar-input-bg);
+  border: 1px solid var(--layera-sidebar-input-border);
+  border-radius: var(--layera-input-radius);
+  color: var(--layera-sidebar-text);
+  font-size: var(--layera-font-size-base);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.layera-input--sidebar:focus {
+  border-color: var(--layera-sidebar-input-border-focus);
+}
+
+.layera-input--sidebar::placeholder {
+  color: var(--layera-sidebar-text-muted);
+}
+
+/* Layers list container */
+.layers-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--layera-sidebar-input-border);
+  border-radius: var(--layera-input-radius);
+  background-color: var(--layera-sidebar-input-bg);
+  margin-bottom: var(--layera-space-4);
+}
+
+.layer-item {
+  padding: var(--layera-space-2) var(--layera-space-3);
+  border-bottom: 1px solid var(--layera-sidebar-input-border);
+  color: var(--layera-sidebar-text);
+  font-size: var(--layera-font-size-sm);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.layer-item:last-child {
+  border-bottom: none;
+}
+
+.layer-item:hover {
+  background-color: var(--layera-sidebar-menu-item-hover);
+}
+
+.layer-item.active {
+  background-color: var(--layera-sidebar-menu-item-active);
+  color: var(--layera-sidebar-primary-text);
+}
+
+/* Visibility toggle for layers */
+.layer-visibility {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: 2px solid var(--layera-sidebar-text-muted);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.layer-visibility.visible {
+  background-color: var(--layera-color-primary);
+  border-color: var(--layera-color-primary);
+}
+
+.layer-visibility.visible::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 1px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Export section styling */
+.export-section {
+  margin-top: var(--layera-sidebar-section-gap);
+  padding-top: var(--layera-space-4);
+  border-top: 1px solid var(--layera-sidebar-input-border);
+}
+
+.export-format {
+  display: flex;
+  gap: var(--layera-space-2);
+  margin-bottom: var(--layera-space-3);
+  flex-wrap: wrap;
+}
+
+.format-btn {
+  padding: var(--layera-space-1) var(--layera-space-3);
+  background-color: var(--layera-sidebar-input-bg);
+  border: 1px solid var(--layera-sidebar-input-border);
+  border-radius: var(--layera-input-radius);
+  color: var(--layera-sidebar-text);
+  font-size: var(--layera-font-size-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 60px;
+  text-align: center;
+}
+
+.format-btn:hover {
+  background-color: var(--layera-sidebar-menu-item-hover);
+}
+
+.format-btn.active {
+  background-color: var(--layera-color-primary);
+  border-color: var(--layera-color-primary);
+  color: white;
+}
+
+/* Quality slider styling */
+.quality-control {
+  margin-bottom: var(--layera-space-4);
+}
+
+.quality-label {
+  display: block;
+  margin-bottom: var(--layera-space-2);
+  color: var(--layera-sidebar-text);
+  font-size: var(--layera-font-size-sm);
+  font-weight: var(--layera-font-weight-medium);
+}
+
+.quality-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--layera-sidebar-input-border);
+  outline: none;
+  -webkit-appearance: none;
+  margin-bottom: var(--layera-space-2);
+}
+
+.quality-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--layera-color-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.quality-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--layera-color-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.quality-value {
+  color: var(--layera-sidebar-text-muted);
+  font-size: var(--layera-font-size-xs);
+  text-align: right;
+}
+
+/* Progress bar styling */
+.export-progress {
+  margin: var(--layera-space-3) 0;
+  background-color: var(--layera-sidebar-input-bg);
+  border-radius: var(--layera-input-radius);
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid var(--layera-sidebar-input-border);
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--layera-color-primary);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Status message styling */
+.status-message {
+  padding: var(--layera-space-2);
+  border-radius: var(--layera-input-radius);
+  font-size: var(--layera-font-size-sm);
+  text-align: center;
+  margin-top: var(--layera-space-3);
+}
+
+.status-message.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: #4caf50;
+}
+
+.status-message.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  color: #f44336;
+}
+
+.status-message.info {
+  background-color: rgba(33, 150, 243, 0.1);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  color: #2196f3;
+}
+
+/* Responsive adjustments για μικρές οθόνες */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: auto;
+  }
+
+  .format-btn {
+    min-width: 50px;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .export-format {
+    gap: 0.25rem;
+  }
+}
+
+/* Loading state styling */
+.sidebar.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.sidebar.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--layera-sidebar-input-border);
+  border-top: 3px solid var(--layera-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Scrollbar για layers container */
+.layers-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.layers-container::-webkit-scrollbar-track {
+  background: var(--layera-sidebar-input-bg);
+  border-radius: 4px;
+}
+
+.layers-container::-webkit-scrollbar-thumb {
+  background: var(--layera-sidebar-input-border);
+  border-radius: 4px;
+}
+
+.layers-container::-webkit-scrollbar-thumb:hover {
+  background: var(--layera-sidebar-text-muted);
+}
+
+/* Tooltip για layer items */
+.layer-item[title] {
+  position: relative;
+}
+
+/* Interactive hover effects για όλα τα στοιχεία */
+.layera-button,
+.format-btn,
+.layer-visibility,
+.quality-slider {
+  transition: all 0.2s ease;
+}
+
+/* Focus styles για accessibility */
+.layera-button:focus,
+.layera-input--sidebar:focus,
+.format-btn:focus,
+.quality-slider:focus {
+  outline: 2px solid var(--layera-color-primary);
+  outline-offset: 2px;
+}
+
+/* Card buttons με χρώματα */
+.btn-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  flex: 1;
+  min-width: 60px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-btn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.color-btn.primary { background-color: #4A90E2; }
+.color-btn.secondary { background-color: #9013FE; }
+.color-btn.success { background-color: #4CAF50; }
+.color-btn.warning { background-color: #FF9800; }
+.color-btn.danger { background-color: #F44336; }
+.color-btn.info { background-color: #2196F3; }
+
+/* Textarea για Warning Card */
+.warning-text {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #FF9800;
+  background-color: rgba(255, 152, 0, 0.1);
+}
+
+/* Checkbox container για Danger Card */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 8px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #F44336;
+}
+
+.checkbox-container label {
+  color: #666;
+}
+
+/* === REMAINING CSS - TO BE MODULARIZED === */
+
+/* Sidebar CSS νow handled by RawCSSBuilder module */
+/* Right Sidebar CSS νow handled by RawCSSBuilder module */
+/* Settings Sidebar CSS νow handled by RawCSSBuilder module */
+/* Typography CSS will be handled by TypographyBuilder module */
+/* Main Content CSS will be handled by MainContentBuilder module */
+
+/* TODO: Continue progressive modularization */
 /*  Ίδιες CSS κλάσεις και τιμές με primary-sidebar.html */
 /* ============================================= */
 
@@ -539,13 +1446,27 @@
 /* ===== SECONDARY LEFT SIDEBAR - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
 .secondary-sidebar-left {
   flex: 0 0 auto; /* ✅ ΣΗΜΑΝΤΙΚΟ: auto για να δουλεύει το toggle */
+  width: 0; /* ✅ Κλειστό by default */
   background: var(--layera-sidebar-menu-item-bg);
   color: var(--layera-sidebar-text);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease; /* ✅ Smooth transition */
+  border-left: 1px solid var(--layera-sidebar-menu-item-bg);
+  border-right: 1px solid var(--layera-sidebar-menu-item-bg);
+  box-sizing: border-box;
+  height: calc(100vh - var(--layera-header-height));
   position: relative;
   contain: layout style;
+  order: 1; /* ✅ Ανάμεσα στο Primary Sidebar και Main Content */
+}
+
+/* ✅ ΚΡΙΣΙΜΟΣ ΚΑΝΟΝΑΣ: Όταν το secondary sidebar ανοίγει */
+.secondary-sidebar-left.open {
+  width: 280px; /* ✅ Συγκεκριμένο πλάτος όπως στο HTML */
+  padding: var(--layera-space-4);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ===== MAIN CONTENT AREA - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
@@ -1661,120 +2582,6 @@
 }
 
 /* ENTERPRISE LAYOUT CLASSES */
-.layera-layout-fullscreen-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: white;
-}
-
-.layera-layout-close-button {
-  position: absolute;
-  top: var(--layera-space-2);
-  right: var(--layera-space-2);
-  background: var(--live-danger-color);
-  color: white;
-  padding: var(--layera-space-2);
-  border-radius: var(--live-border-radius);
-  cursor: pointer;
-  z-index: 10000;
-  border: none;
-}
-
-.layera-layout-main-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.layera-layout-flex-container {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-}
-
-.layera-layout-sidebar-transition {
-  transition: width 0.3s ease;
-  overflow: hidden;
-}
-
-.layera-settings-sidebar {
-  width: 280px;
-  background: #34495e;
-  color: white;
-  height: 100vh;
-  order: 1;
-}
-
-.layera-layout-full-width {
-  width: 100%;
-}
-
-.layera-layout-full-height {
-  height: 100%;
-}
-
-.layera-layout-bg-primary {
-  background: var(--live-primary-color);
-}
-
-.layera-layout-bg-white {
-  background: white;
-}
-
-.layera-layout-padding-md {
-  padding: var(--layera-space-4);
-}
-
-.layera-layout-margin-md {
-  margin: var(--layera-space-4);
-}
-
-.layera-center-text {
-  text-align: center !important;
-}
-
-.layera-force-center {
-  text-align: center !important;
-  display: block !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-}
-
-.layera-ultra-center {
-  text-align: center !important;
-  display: block !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-  position: relative !important;
-}
-
-.layera-center-flex {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-.layera-center-flex-column {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-.layera-center-content {
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
 
 /* THEMES SECTION CENTER ALIGNMENT */
 .layera-content-section {

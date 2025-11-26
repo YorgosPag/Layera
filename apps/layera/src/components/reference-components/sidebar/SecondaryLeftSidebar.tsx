@@ -20,7 +20,7 @@ export const SecondaryLeftSidebar: React.FC<SecondaryLeftSidebarProps> = ({
   return (
     <Box
       as="aside"
-      className={`secondary-sidebar-left sidebar-secondary left ${isOpen ? 'open' : ''}`}
+      className={`secondary-sidebar-left ${isOpen ? 'open' : ''}`}
       id="leftSidebar"
     >
       {/* System Settings Section - ακριβώς όπως HTML */}

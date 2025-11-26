@@ -8,513 +8,34 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { TokensBuilder } from './builders/TokensBuilder.js';
+import { LayoutBuilder } from './builders/LayoutBuilder.js';
+import { ComponentsBuilder } from './builders/ComponentsBuilder.js';
+import { UtilityBuilder } from './builders/UtilityBuilder.js';
+import { ThemeBuilder } from './builders/ThemeBuilder.js';
+import { HeaderBuilder } from './builders/HeaderBuilder.js';
+import { RawCSSBuilder } from './builders/RawCSSBuilder.js';
 
-// ENTERPRISE LAYOUT CLASSES - Embedded για build
-const LAYERA_LAYOUT_OVERLAY_CLASSES = {
-  'layera-layout-fullscreen-overlay': {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    width: '100vw',
-    height: '100vh',
-    zIndex: '9999',
-    background: 'white'
-  },
-  'layera-layout-close-button': {
-    position: 'absolute',
-    top: 'var(--layera-space-2)',
-    right: 'var(--layera-space-2)',
-    background: 'var(--live-danger-color)',
-    color: 'white',
-    padding: 'var(--layera-space-2)',
-    borderRadius: 'var(--live-border-radius)',
-    cursor: 'pointer',
-    zIndex: '10000',
-    border: 'none'
-  }
-};
+// Layout Classes νow managed by LayoutBuilder module
 
-const LAYERA_LAYOUT_NAVIGATION_CLASSES = {
-  'layera-layout-main-container': {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    width: '100vw',
-    overflow: 'hidden'
-  },
-  'layera-layout-flex-container': {
-    display: 'flex',
-    flex: '1',
-    minHeight: '0'
-  },
-  'layera-layout-sidebar-transition': {
-    transition: 'width 0.3s ease',
-    overflow: 'hidden'
-  },
-  'layera-settings-sidebar': {
-    width: '280px',
-    background: '#34495e',
-    color: 'white',
-    height: '100vh',
-    order: '1'
-  }
-};
-
-const LAYERA_LAYOUT_UTILITY_CLASSES = {
-  'layera-layout-full-width': {
-    width: '100%'
-  },
-  'layera-layout-full-height': {
-    height: '100%'
-  },
-  'layera-layout-bg-primary': {
-    background: 'var(--live-primary-color)'
-  },
-  'layera-layout-bg-white': {
-    background: 'white'
-  },
-  'layera-layout-padding-md': {
-    padding: 'var(--layera-space-4)'
-  },
-  'layera-layout-margin-md': {
-    margin: 'var(--layera-space-4)'
-  },
-  // ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ UTILITY CLASSES - ULTRA HIGH SPECIFICITY
-  'layera-center-text': {
-    textAlign: 'center !important'
-  },
-  'layera-force-center': {
-    textAlign: 'center !important',
-    display: 'block !important',
-    margin: '0 auto !important',
-    width: '100% !important'
-  },
-  'layera-ultra-center': {
-    textAlign: 'center !important',
-    display: 'block !important',
-    margin: '0 auto !important',
-    width: '100% !important',
-    position: 'relative !important'
-  },
-  'layera-center-flex': {
-    display: 'flex !important',
-    justifyContent: 'center !important',
-    alignItems: 'center !important'
-  },
-  'layera-center-flex-column': {
-    display: 'flex !important',
-    flexDirection: 'column !important',
-    justifyContent: 'center !important',
-    alignItems: 'center !important'
-  },
-  'layera-center-content': {
-    textAlign: 'center !important',
-    display: 'flex !important',
-    flexDirection: 'column !important',
-    justifyContent: 'center !important',
-    alignItems: 'center !important'
-  }
-};
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Simulate token values για CSS generation
-const tokens = {
-  colors: {
-    '--layera-color-primary': '#4A90E2',
-    '--layera-color-secondary': '#9013FE',
-    '--layera-color-success': '#4CAF50',
-    '--layera-color-warning': '#FF9800',
-    '--layera-color-danger': '#F44336',
-    '--layera-color-info': '#2196F3'
-  },
-
-  live: {
-    '--live-primary-color': '#4A90E2',
-    '--live-secondary-color': '#9013FE',
-    '--live-success-color': '#4CAF50',
-    '--live-warning-color': '#FF9800',
-    '--live-danger-color': '#F44336',
-    '--live-info-color': '#2196F3',
-    '--live-component-gap': '16px',
-    '--live-padding': '16px',
-    '--live-button-padding': '16px',
-    '--live-font-size': '16px',
-    '--live-border-radius': '8px'
-  },
-
-  spacing: {
-    '--layera-space-1': '4px',
-    '--layera-space-2': '8px',
-    '--layera-space-3': '12px',
-    '--layera-space-4': '16px',
-    '--layera-space-6': '24px',
-    '--layera-space-8': '32px'
-  },
-
-  // Header-specific tokens από Grok AI
-  header: {
-    '--layera-color-active-border': '#FBBF24',
-    '--layera-color-header-bg': '#4A90E2',
-    '--layera-color-header-text': '#ffffff',
-    '--layera-color-header-input-bg': 'rgba(255,255,255,0.20)',
-    '--layera-color-header-input-border': 'rgba(255,255,255,0.30)',
-    '--layera-color-header-toggle-bg': 'rgba(255,255,255,0.15)',
-    '--layera-header-height': '40px',
-    '--layera-color-btn-size': '32px',
-    '--layera-input-height': '36px',
-    '--layera-toggle-btn-size': '36px'
-  },
-
-  typography: {
-    '--layera-font-size-xs': '0.75rem',
-    '--layera-font-size-sm': '0.875rem',
-    '--layera-font-size-base': '1rem',
-    '--layera-font-size-lg': '1.125rem',
-    '--layera-font-size-xl': '1.25rem',
-    '--layera-font-size-2xl': '1.5rem',
-    '--layera-font-weight-normal': '400',
-    '--layera-font-weight-medium': '500',
-    '--layera-font-weight-semibold': '600',
-    '--layera-text-align-center': 'center',
-    '--layera-text-align-left': 'left',
-    '--layera-text-align-right': 'right'
-  },
-
-  radius: {
-    '--layera-radius-sm': '4px',
-    '--layera-radius-md': '6px',
-    '--layera-radius-lg': '8px',
-    '--layera-shadow-header': '0 2px 10px rgba(0,0,0,0.12)'
-  },
-
-  // Primary Sidebar tokens από Grok AI
-  sidebar: {
-    '--layera-sidebar-bg': '#2c3e50',
-    '--layera-sidebar-text': '#ffffff',
-    '--layera-sidebar-menu-item-bg': '#34495e',
-    '--layera-sidebar-menu-item-hover': '#3498db',
-    '--layera-sidebar-title': '#ecf0f1',
-    '--layera-sidebar-input-bg': '#34495e',
-    '--layera-sidebar-input-border': 'transparent',
-    '--layera-sidebar-width': '250px',
-    '--layera-sidebar-primary-width': '250px', // ⚠️ ΜΗΝ ΑΛΛΑΞΕΙΣ ΠΟΤΕ! Πανομοιότυπο με HTML: width: 250px
-    '--layera-sidebar-padding': 'var(--layera-space-4)',
-    '--layera-sidebar-title-margin': 'var(--layera-space-6)',
-    '--layera-sidebar-section-gap': 'var(--layera-space-8)',
-    '--layera-menu-item-padding': '0.75rem',
-    '--layera-menu-item-margin-bottom': '0.5rem',
-    '--layera-menu-item-radius': 'var(--layera-radius-md)'
-  }
-};
+// Tokens νow managed by TokensBuilder module
 
 function generateCSS() {
-  let css = '/**\n * LAYERA DYNAMIC TOKENS v2.0\n * Generated CSS Variables\n */\n\n:root {\n';
+  // MINIMAL CSS - Most content now handled by specialized builders
+  let css = `
+/* === REMAINING CSS - TO BE MODULARIZED === */
 
-  // Add all token categories
-  Object.values(tokens).forEach(category => {
-    Object.entries(category).forEach(([name, value]) => {
-      css += `  ${name}: ${value};\n`;
-    });
-  });
+/* Sidebar CSS νow handled by RawCSSBuilder module */
+/* Right Sidebar CSS νow handled by RawCSSBuilder module */
+/* Settings Sidebar CSS νow handled by RawCSSBuilder module */
+/* Typography CSS will be handled by TypographyBuilder module */
+/* Main Content CSS will be handled by MainContentBuilder module */
 
-  css += '}\n\n';
-
-  // Add component classes που χρησιμοποιούν τα tokens
-  css += `/* Button variants */
-.layera-button-primary {
-  background: var(--live-primary-color);
-  color: white;
-  border: 1px solid var(--live-primary-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-button-padding);
-}
-
-.layera-button-secondary {
-  background: var(--live-secondary-color);
-  color: white;
-  border: 1px solid var(--live-secondary-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-button-padding);
-}
-
-/* Card variants */
-.layera-card-primary {
-  background: rgba(74, 144, 226, 0.1);
-  border: 1px solid var(--live-primary-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-secondary {
-  background: rgba(144, 19, 254, 0.1);
-  border: 1px solid var(--live-secondary-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Modal variants */
-.layera-modal-primary {
-  border-left: 4px solid var(--live-primary-color);
-  background: white;
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Card variants - ALL 6 COLORS */
-.layera-card-success {
-  background: rgba(76, 175, 80, 0.1);
-  border: 1px solid var(--live-success-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-warning {
-  background: rgba(255, 152, 0, 0.1);
-  border: 1px solid var(--live-warning-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-danger {
-  background: rgba(244, 67, 54, 0.1);
-  border: 1px solid var(--live-danger-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-card-info {
-  background: rgba(33, 150, 243, 0.1);
-  border: 1px solid var(--live-info-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Button variants - ALL 6 COLORS */
-.layera-button-success {
-  background: var(--live-success-color);
-  color: white;
-  border: 1px solid var(--live-success-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-button-padding);
-}
-
-.layera-button-warning {
-  background: var(--live-warning-color);
-  color: white;
-  border: 1px solid var(--live-warning-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-button-padding);
-}
-
-.layera-button-danger {
-  background: var(--live-danger-color);
-  color: white;
-  border: 1px solid var(--live-danger-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-button-padding);
-}
-
-.layera-button-info {
-  background: var(--live-info-color);
-  color: white;
-  border: 1px solid var(--live-info-color);
-  border-radius: var(--live-border-radius);
-  padding: var(--live-button-padding);
-}
-
-/* Modal variants - ALL 5 COLORS */
-.layera-modal-secondary {
-  border-left: 4px solid var(--live-secondary-color);
-  background: white;
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-modal-success {
-  border-left: 4px solid var(--live-success-color);
-  background: white;
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-modal-warning {
-  border-left: 4px solid var(--live-warning-color);
-  background: white;
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-.layera-modal-danger {
-  border-left: 4px solid var(--live-danger-color);
-  background: white;
-  border-radius: var(--live-border-radius);
-  padding: var(--live-padding);
-}
-
-/* Utility classes */
-.layera-gap { gap: var(--live-component-gap); }
-.layera-padding { padding: var(--live-padding); }
-.layera-font-size { font-size: var(--live-font-size); }
-
-/* Typography utilities */
-.layera-margin-bottom--xs { margin-bottom: var(--layera-space-1); }
-.layera-margin-bottom--sm { margin-bottom: var(--layera-space-2); }
-.layera-margin-bottom--md { margin-bottom: var(--layera-space-4); }
-.layera-margin-bottom--lg { margin-bottom: var(--layera-space-6); }
-.layera-margin-bottom--xl { margin-bottom: var(--layera-space-8); }
-
-.layera-margin-top--lg { margin-top: var(--layera-space-6); }
-.layera-margin-top--xl { margin-top: var(--layera-space-8); }
-
-/* Padding utilities - ΓΙΑ HEADER ΑΚΡΙΒΕΙΑ */
-.layera-padding--sm { padding: var(--layera-space-3); }
-.layera-padding-header { padding: var(--layera-space-3) var(--layera-space-4); }
-
-/* Profile button - ΠΑΝΟΜΟΙΟΤΥΠΟ με HTML */
-.layera-profile-btn {
-  background: rgba(255,255,255,0.2);
-  color: white;
-  padding: var(--layera-space-1) var(--layera-space-2);
-  font-size: 0.85rem;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/* Flex utilities */
-.layera-flex { display: flex; }
-.layera-flex--gap-xs { gap: var(--layera-space-1); }
-.layera-flex--gap-sm { gap: var(--layera-space-2); }
-.layera-flex--gap-md { gap: var(--layera-space-4); }
-.layera-flex--justify-between { justify-content: space-between; }
-.layera-flex--align-center { align-items: center; }
-.layera-flex--grow { flex: 1; }
-.layera-flex--wrap { flex-wrap: wrap; }
-
-/* Width utilities */
-.layera-width--full { width: 100%; }
-
-/* ============================================= */
-/*  HEADER COMPONENT CLASSES από GROK AI        */
-/* ============================================= */
-
-.layera-app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  min-height: var(--layera-header-height);
-  background-color: var(--layera-color-header-bg);
-  color: var(--layera-color-header-text);
-  box-shadow: var(--layera-shadow-header);
-  padding: var(--layera-space-3) var(--layera-space-4);
-}
-
-.layera-header-left {
-  display: flex;
-  align-items: center;
-  gap: var(--layera-space-4);
-}
-
-.layera-header-title {
-  margin: 0;
-  font-size: var(--layera-font-size-xl);
-  font-weight: var(--layera-font-weight-semibold);
-  display: flex;
-  align-items: center;
-  gap: var(--layera-space-2);
-}
-
-.layera-header-nav {
-  display: flex;
-  align-items: center;
-  gap: var(--layera-space-3);
-}
-
-/* Color Buttons (P S Su W D I) */
-.layera-color-btn {
-  width: var(--layera-color-btn-size);
-  height: var(--layera-color-btn-size);
-  border-radius: var(--layera-radius-sm);
-  border: none;
-  color: #ffffff;
-  font-size: var(--layera-font-size-xs);
-  font-weight: var(--layera-font-weight-medium);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.layera-color-btn--primary { background-color: var(--layera-color-primary); }
-.layera-color-btn--secondary { background-color: var(--layera-color-secondary); }
-.layera-color-btn--success { background-color: var(--layera-color-success); }
-.layera-color-btn--warning { background-color: var(--layera-color-warning); }
-.layera-color-btn--danger { background-color: var(--layera-color-danger); }
-.layera-color-btn--info { background-color: var(--layera-color-info); }
-
-.layera-color-btn--active {
-  border: 2px solid var(--layera-color-active-border);
-  box-shadow: 0 0 0 2px var(--layera-color-active-border);
-  transform: scale(0.95);
-}
-
-/* Toggle Buttons (Settings / Palette) */
-.layera-toggle-btn {
-  width: var(--layera-toggle-btn-size);
-  height: var(--layera-toggle-btn-size);
-  background-color: var(--layera-color-header-toggle-bg);
-  border: 1px solid var(--layera-color-header-input-border);
-  border-radius: var(--layera-radius-sm);
-  color: var(--layera-color-header-text);
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.layera-toggle-btn:hover {
-  background-color: rgba(255,255,255,0.25);
-}
-
-/* Input Fields (Search & Location) */
-.layera-input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.layera-input-search,
-.layera-input-location {
-  height: var(--layera-input-height);
-  padding: 0 var(--layera-space-4) 0 2.5rem;
-  background-color: var(--layera-color-header-input-bg);
-  border: 1px solid var(--layera-color-header-input-border);
-  border-radius: var(--layera-radius-sm);
-  color: var(--layera-color-header-text);
-  font-size: var(--layera-font-size-sm);
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.layera-input-search::placeholder,
-.layera-input-location::placeholder {
-  color: rgba(255,255,255,0.6);
-}
-
-.layera-input-search:focus,
-.layera-input-location:focus {
-  background-color: rgba(255,255,255,0.30);
-}
-
-/* ============================================= */
-/*  PRIMARY SIDEBAR – ΠΑΝΟΜΟΙΟΤΥΠΟ ΜΕ HTML */
+/* TODO: Continue progressive modularization */
 /*  Ίδιες CSS κλάσεις και τιμές με primary-sidebar.html */
 /* ============================================= */
 
@@ -691,13 +212,27 @@ function generateCSS() {
 /* ===== SECONDARY LEFT SIDEBAR - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
 .secondary-sidebar-left {
   flex: 0 0 auto; /* ✅ ΣΗΜΑΝΤΙΚΟ: auto για να δουλεύει το toggle */
+  width: 0; /* ✅ Κλειστό by default */
   background: var(--layera-sidebar-menu-item-bg);
   color: var(--layera-sidebar-text);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease; /* ✅ Smooth transition */
+  border-left: 1px solid var(--layera-sidebar-menu-item-bg);
+  border-right: 1px solid var(--layera-sidebar-menu-item-bg);
+  box-sizing: border-box;
+  height: calc(100vh - var(--layera-header-height));
   position: relative;
   contain: layout style;
+  order: 1; /* ✅ Ανάμεσα στο Primary Sidebar και Main Content */
+}
+
+/* ✅ ΚΡΙΣΙΜΟΣ ΚΑΝΟΝΑΣ: Όταν το secondary sidebar ανοίγει */
+.secondary-sidebar-left.open {
+  width: 280px; /* ✅ Συγκεκριμένο πλάτος όπως στο HTML */
+  padding: var(--layera-space-4);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ===== MAIN CONTENT AREA - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
@@ -1815,20 +1350,7 @@ function generateCSS() {
 /* ENTERPRISE LAYOUT CLASSES */
 `;
 
-  // Add layout classes από τα TypeScript modules
-  const allLayoutClasses = {
-    ...LAYERA_LAYOUT_OVERLAY_CLASSES,
-    ...LAYERA_LAYOUT_NAVIGATION_CLASSES,
-    ...LAYERA_LAYOUT_UTILITY_CLASSES
-  };
-
-  Object.entries(allLayoutClasses).forEach(([className, styles]) => {
-    css += `.${className} {\n`;
-    Object.entries(styles).forEach(([property, value]) => {
-      css += `  ${property.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value};\n`;
-    });
-    css += '}\n\n';
-  });
+  // Layout classes νow handled by LayoutBuilder module
 
   // ΚΕΝΤΡΙΚΗ ΣΤΟΙΧΙΣΗ - CLEAN SOLUTION
   css += `
@@ -2081,8 +1603,32 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
-// Generate και save CSS
-const css = generateCSS();
+// Generate tokens CSS using TokensBuilder (enterprise modular approach)
+const tokensCSS = TokensBuilder.generateTokensCSS();
+
+// Generate layout CSS using LayoutBuilder (enterprise modular approach)
+const layoutCSS = LayoutBuilder.generateAllLayoutCSS();
+
+// Generate components CSS using ComponentsBuilder (enterprise modular approach)
+const componentsCSS = ComponentsBuilder.generateAllComponentsCSS();
+
+// Generate utilities CSS using UtilityBuilder (enterprise modular approach)
+const utilitiesCSS = UtilityBuilder.generateAllUtilitiesCSS();
+
+// Generate themes CSS using ThemeBuilder (enterprise modular approach)
+const themesCSS = ThemeBuilder.generateAllThemesCSS();
+
+// Generate header CSS using HeaderBuilder (enterprise modular approach)
+const headerCSS = HeaderBuilder.generateAllHeaderCSS();
+
+// Generate raw CSS using RawCSSBuilder (enterprise modular approach)
+const rawCSS = RawCSSBuilder.generateAllRawCSS();
+
+// Generate remaining CSS from old function (will be modularized progressively)
+const remainingCSS = generateCSS();
+
+// Combine όλα τα enterprise modules
+const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rawCSS + remainingCSS;
 const cssPath = path.join(distDir, 'tokens.css');
 fs.writeFileSync(cssPath, css);
 
