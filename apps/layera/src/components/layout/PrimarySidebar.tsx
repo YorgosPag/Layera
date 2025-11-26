@@ -55,7 +55,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = ({
         className="layera-typography layera-margin-bottom--md"
         data-size="md"
         data-weight="semibold"
-        style={{ color: '#ecf0f1' }}
+        className="primary-sidebar-heading"
       >
         📂 Navigation
       </Heading>
@@ -66,14 +66,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = ({
         placeholder="🔍 Filter menu..."
         value={filterText}
         onChange={(e) => setFilterText(e.target.value)}
-        className="layera-input layera-width--full layera-margin-bottom--md"
-        style={{
-          padding: 'var(--layera-space-3)',
-          border: 'none',
-          borderRadius: 'var(--live-border-radius)',
-          background: 'rgba(255, 255, 255, 0.1)',
-          color: 'white'
-        }}
+        className="layera-input layera-width--full layera-margin-bottom--md primary-sidebar-input"
       />
 
       {/* Menu Items */}
@@ -84,15 +77,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = ({
             variant={active ? 'primary' : 'outline'}
             size="md"
             onClick={() => handleMenuItemClick(id)}
-            className="layera-button layera-width--full layera-text--align-left layera-menu-item"
-            style={{
-              background: active ? '#3498db' : '#34495e',
-              color: 'white',
-              border: 'none',
-              borderRadius: 'var(--live-border-radius)',
-              transition: 'background 0.3s',
-              justifyContent: 'flex-start'
-            }}
+            className={`layera-button layera-width--full layera-text--align-left layera-menu-item primary-sidebar-menu-item ${active ? 'primary-sidebar-menu-item--active' : ''}`}
           >
             {label}
           </Button>
@@ -104,7 +89,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = ({
         className="layera-typography layera-margin-bottom--md"
         data-size="md"
         data-weight="semibold"
-        style={{ color: '#ecf0f1', marginTop: '2rem' }}
+        className="primary-sidebar-heading--actions"
       >
         ⚙️ Quick Actions
       </Heading>
@@ -116,14 +101,7 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = ({
           placeholder="📧 Email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="layera-input layera-width--full"
-          style={{
-            padding: 'var(--layera-space-3)',
-            border: 'none',
-            borderRadius: 'var(--live-border-radius)',
-            background: 'rgba(255, 255, 255, 0.1)',
-            color: 'white'
-          }}
+          className="layera-input layera-width--full primary-sidebar-login-input"
         />
 
         <input
@@ -131,25 +109,14 @@ export const PrimarySidebar: React.FC<PrimarySidebarProps> = ({
           placeholder="🔒 Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="layera-input layera-width--full"
-          style={{
-            padding: 'var(--layera-space-3)',
-            border: 'none',
-            borderRadius: 'var(--live-border-radius)',
-            background: 'rgba(255, 255, 255, 0.1)',
-            color: 'white'
-          }}
+          className="layera-input layera-width--full primary-sidebar-login-input"
         />
 
         <Button
           variant="primary"
           size="md"
           onClick={handleLogin}
-          className="layera-button layera-width--full"
-          style={{
-            background: 'var(--live-primary-color)',
-            border: 'none'
-          }}
+          className="layera-button layera-width--full primary-sidebar-login-button"
         >
           🔑 Login
         </Button>

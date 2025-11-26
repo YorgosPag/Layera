@@ -7,7 +7,7 @@ import { LeftSidebar } from './sidebar/LeftSidebar';
 import { RightSidebar } from './sidebar/RightSidebar';
 import { MainContent } from './main/MainContent';
 import { Header } from '../reference-components/header/Header';
-import { PrimarySidebar } from '../reference-components/sidebar/PrimarySidebar';
+import { PrimarySidebar, SecondaryLeftSidebar } from '../reference-components/sidebar';
 
 /**
  * 🎯 100% ARXES COMPLIANT FullAppLayout
@@ -38,20 +38,15 @@ export const CleanFullAppLayout: React.FC = () => {
         activeHeaderColor={activeColor}
       />
 
-      {/* Main Layout Container */}
-      <Flex
-        className="layera-app-layout"
-        style={{
-          marginTop: '65px',
-          height: 'calc(100vh - 65px)',
-          minHeight: 'calc(100vh - 65px)',
-          maxHeight: 'calc(100vh - 65px)',
-          width: '100vw',
-          overflow: 'hidden'
-        }}
-      >
+      {/* Main Layout Container - ΑΚΡΙΒΩΣ ΟΠΩΣ HTML app-container */}
+      <Flex className="app-container">
 
         <PrimarySidebar />
+
+        <SecondaryLeftSidebar
+          isOpen={leftSidebarOpen}
+          onToggle={() => setLeftSidebarOpen(!leftSidebarOpen)}
+        />
 
         <MainContent
           activeTab={activeTab}

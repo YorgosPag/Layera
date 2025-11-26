@@ -6,7 +6,6 @@
  */
 
 export { FullAppLayout } from './FullAppLayout';
-export { AppHeader } from './AppHeader';
 export { PrimarySidebar } from './PrimarySidebar';
 export { SettingsSidebar } from './SettingsSidebar';
 export { MainContent } from './MainContent';

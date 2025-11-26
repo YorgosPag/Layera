@@ -45,13 +45,7 @@ export const MainContent: React.FC<MainContentProps> = ({
 
   return (
     <Box
-      className="layera-main-content layera-padding--lg"
-      style={{
-        flex: 1,
-        background: '#f8f9fa',
-        minHeight: '100vh',
-        order: 2
-      }}
+      className="layera-main-content layera-padding--lg main-content-container"
     >
       {/* Tab Navigation */}
       <Flex className="layera-flex--gap-xs layera-margin-bottom--lg layera-tab-navigation">

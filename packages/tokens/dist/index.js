@@ -1042,14 +1042,16 @@ var LAYERA_SIDEBAR_DIMENSIONS = {
   // Primary sidebar (left navigation)
   primary: {
     width: {
-      default: 200,
-      // Συγχρονισμός με main.css: flex: 0 0 200px
+      default: 250,
+      // ⚠️ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΠΟΤΕ ΑΥΤΗ ΤΗΝ ΤΙΜΗ!
+      // Είναι ακριβώς συγχρονισμένη με HTML sidebar (250px)
+      // και τώρα έχουμε πανομοιότυπο πλάτος React ↔ HTML
       collapsed: 60,
       unit: "px"
     },
     positioning: {
-      top: 57,
-      // Συγχρονισμός με header
+      top: 65,
+      // Συγχρονισμός με HTML: calc(100vh - 65px)
       left: 0,
       zIndex: 999
     }
@@ -1079,8 +1081,8 @@ var LAYERA_SIDEBAR_DIMENSIONS = {
   },
   // Header integration
   header: {
-    height: 57,
-    // Ακριβής τιμή για sidebar positioning
+    height: 65,
+    // Συγχρονισμός με HTML: calc(100vh - 65px)
     zIndex: 1e3
   }
 };

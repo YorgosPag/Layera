@@ -70,14 +70,9 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
         <>
           {/* System Settings */}
           <Heading
-            className="layera-typography layera-margin-bottom--md"
+            className="layera-typography layera-margin-bottom--md settings-sidebar-heading"
             data-size="md"
             data-weight="semibold"
-            style={{
-              color: '#ecf0f1',
-              borderBottom: '1px solid #4a5568',
-              paddingBottom: 'var(--layera-space-2)'
-            }}
           >
             ⚙️ System Settings
           </Heading>
@@ -94,15 +89,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
             <select
               value={language}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="layera-select layera-width--full"
-              style={{
-                padding: 'var(--layera-space-3)',
-                border: 'none',
-                borderRadius: 'var(--live-border-radius)',
-                background: '#4a5568',
-                color: 'white',
-                width: '100%'
-              }}
+              className="layera-select layera-width--full settings-sidebar-select"
             >
               <option>🇬🇷 Ελληνικά</option>
               <option>🇺🇸 English</option>
@@ -124,12 +111,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
                 variant={themeMode === 'light' ? 'primary' : 'outline'}
                 size="sm"
                 onClick={() => handleThemeModeChange('light')}
-                className="layera-button layera-flex--grow"
-                style={{
-                  background: themeMode === 'light' ? 'var(--live-primary-color)' : '#666',
-                  color: 'white',
-                  border: 'none'
-                }}
+                className={`layera-button layera-flex--grow settings-sidebar-button-light ${themeMode === 'light' ? 'active' : ''}`}
               >
                 ☀️ Light
               </Button>
@@ -137,12 +119,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
                 variant={themeMode === 'dark' ? 'primary' : 'outline'}
                 size="sm"
                 onClick={() => handleThemeModeChange('dark')}
-                className="layera-button layera-flex--grow"
-                style={{
-                  background: themeMode === 'dark' ? 'var(--live-primary-color)' : '#666',
-                  color: 'white',
-                  border: 'none'
-                }}
+                className={`layera-button layera-flex--grow settings-sidebar-button-dark ${themeMode === 'dark' ? 'active' : ''}`}
               >
                 🌙 Dark
               </Button>
@@ -161,15 +138,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
             <select
               value={deviceMode}
               onChange={(e) => handleDeviceModeChange(e.target.value)}
-              className="layera-select layera-width--full"
-              style={{
-                padding: 'var(--layera-space-3)',
-                border: 'none',
-                borderRadius: 'var(--live-border-radius)',
-                background: '#4a5568',
-                color: 'white',
-                width: '100%'
-              }}
+              className="layera-select layera-width--full settings-sidebar-select"
             >
               <option>💻 Desktop</option>
               <option>📱 Mobile</option>
@@ -191,8 +160,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
                 type="checkbox"
                 checked={notifications}
                 onChange={(e) => handleNotificationsToggle(e.target.checked)}
-                className="layera-checkbox"
-                style={{ margin: 0 }}
+                className="layera-checkbox settings-sidebar-checkbox"
               />
               <Text className="layera-typography" data-size="sm">
                 Enable sound alerts
@@ -202,10 +170,9 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
 
           {/* Security Section */}
           <Heading
-            className="layera-typography layera-margin-bottom--md"
+            className="layera-typography layera-margin-bottom--md settings-sidebar-heading"
             data-size="md"
             data-weight="semibold"
-            style={{ color: '#ecf0f1' }}
           >
             🔐 Security
           </Heading>
@@ -222,15 +189,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
             <select
               value={autoLogout}
               onChange={(e) => handleAutoLogoutChange(e.target.value)}
-              className="layera-select layera-width--full"
-              style={{
-                padding: 'var(--layera-space-3)',
-                border: 'none',
-                borderRadius: 'var(--live-border-radius)',
-                background: '#4a5568',
-                color: 'white',
-                width: '100%'
-              }}
+              className="layera-select layera-width--full settings-sidebar-select"
             >
               <option>15 minutes</option>
               <option>30 minutes</option>
@@ -244,12 +203,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
             variant="danger"
             size="md"
             onClick={onLockScreen}
-            className="layera-button layera-width--full"
-            style={{
-              background: 'var(--live-danger-color)',
-              border: 'none',
-              marginTop: 'var(--layera-space-4)'
-            }}
+            className="layera-button layera-width--full settings-sidebar-lock-button"
           >
             🔒 Lock Screen
           </Button>

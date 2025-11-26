@@ -518,6 +518,370 @@
 }
 
 /* ============================================= */
+/*  SECONDARY LEFT SIDEBAR – ΠΑΝΟΜΟΙΟΤΥΠΟ ΜΕ HTML */
+/*  Ίδιες CSS κλάσεις και τιμές με secondary-sidebar-left.html */
+/* ============================================= */
+
+/* ===== MAIN CONTAINER - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.app-container {
+  display: flex;
+  height: calc(100vh - var(--layera-header-height));
+  min-height: calc(100vh - var(--layera-header-height));
+  max-height: calc(100vh - var(--layera-header-height));
+  width: 100vw;
+  margin-top: var(--layera-header-height);
+  overflow: hidden;
+}
+
+/* ===== PRIMARY SIDEBAR - ΚΡΑΤΗΜΑ ΤΗΝ ΑΡΧΙΚΗ ΚΛΑΣΗ .sidebar ===== */
+/* Η κλάση .sidebar ήδη υπάρχει και δουλεύει σωστά - δεν την αγγίζουμε */
+
+/* ===== SECONDARY LEFT SIDEBAR - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.secondary-sidebar-left {
+  flex: 0 0 auto; /* ✅ ΣΗΜΑΝΤΙΚΟ: auto για να δουλεύει το toggle */
+  background: var(--layera-sidebar-menu-item-bg);
+  color: var(--layera-sidebar-text);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  position: relative;
+  contain: layout style;
+}
+
+/* ===== MAIN CONTENT AREA - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+#main-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--layera-space-4);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: white;
+  height: calc(100vh - var(--layera-header-height));
+  max-height: calc(100vh - var(--layera-header-height));
+}
+
+/* ===== RIGHT SECONDARY SIDEBAR - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.secondary-sidebar-right {
+  flex: 0 0 auto; /* ✅ ΣΗΜΑΝΤΙΚΟ: auto για να δουλεύει το toggle */
+  background: var(--layera-sidebar-bg);
+  color: var(--layera-sidebar-text);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-left: 1px solid var(--layera-sidebar-menu-item-bg);
+  height: 100%;
+  position: relative;
+  contain: layout style;
+}
+
+.sidebar-secondary {
+  width: 0;
+  background: var(--layera-sidebar-menu-item-bg);
+  color: var(--layera-sidebar-text);
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-left: 1px solid var(--layera-sidebar-menu-item-bg);
+  box-sizing: border-box;
+  height: calc(100vh - var(--layera-header-height)); /* ✅ Χρήση token για header height */
+}
+
+.sidebar-secondary.open {
+  width: var(--layera-sidebar-width); /* ✅ Χρήση token αντί για σκληρή τιμή */
+  padding: var(--layera-space-4);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-secondary.left {
+  border-left: 1px solid var(--layera-sidebar-menu-item-bg);
+  border-right: 1px solid var(--layera-sidebar-menu-item-bg);
+  order: 1; /* ✅ Ανάμεσα στο Primary Sidebar και Main Content */
+}
+
+.sidebar-secondary::-webkit-scrollbar {
+  width: var(--layera-space-2);
+}
+
+.sidebar-secondary::-webkit-scrollbar-track {
+  background: var(--layera-sidebar-bg);
+  border-radius: var(--layera-radius-sm);
+}
+
+.sidebar-secondary::-webkit-scrollbar-thumb {
+  background: var(--layera-sidebar-menu-item-bg);
+  border-radius: var(--layera-radius-sm);
+  border: 1px solid var(--layera-sidebar-menu-item-bg);
+}
+
+.sidebar-secondary::-webkit-scrollbar-thumb:hover {
+  background: var(--layera-sidebar-menu-item-hover);
+}
+
+.sidebar-secondary h3 {
+  margin-top: 0;
+  margin-bottom: var(--layera-space-4);
+  color: var(--layera-sidebar-title);
+  font-size: var(--layera-font-size-base);
+  border-bottom: 1px solid var(--layera-sidebar-menu-item-bg);
+  padding-bottom: var(--layera-space-2);
+  font-family: Arial, sans-serif; /* ✅ Ακριβώς όπως HTML */
+}
+
+.setting-group {
+  margin-bottom: var(--layera-space-4);
+}
+
+.danger-btn {
+  background: var(--layera-color-danger);
+  color: var(--layera-sidebar-text);
+}
+
+/* ===== SECONDARY SIDEBAR COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.secondary-sidebar-setting-group {
+  margin-bottom: var(--layera-space-4);
+}
+
+.secondary-sidebar-label {
+  display: block;
+  margin-bottom: var(--layera-space-2);
+  font-size: var(--layera-font-size-sm);
+  color: var(--layera-sidebar-title);
+}
+
+.secondary-sidebar-select {
+  width: 100%;
+  padding: var(--layera-space-2);
+  border: none;
+  border-radius: var(--layera-radius-sm);
+  background: var(--layera-sidebar-input-bg);
+  color: var(--layera-sidebar-text);
+}
+
+.secondary-sidebar-button-group {
+  display: flex;
+  gap: var(--layera-space-2);
+}
+
+.secondary-sidebar-button {
+  flex: 1;
+  padding: var(--layera-space-2);
+  border: none;
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.secondary-sidebar-button:hover {
+  opacity: 0.8;
+}
+
+.secondary-sidebar-button--light {
+  background: var(--layera-color-primary);
+  color: var(--layera-sidebar-text);
+}
+
+.secondary-sidebar-button--dark {
+  background: var(--layera-sidebar-menu-item-bg);
+  color: var(--layera-sidebar-text);
+}
+
+.secondary-sidebar-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-2);
+}
+
+.secondary-sidebar-checkbox {
+  margin: 0;
+}
+
+.secondary-sidebar-checkbox-label {
+  font-size: var(--layera-font-size-sm);
+  margin: 0;
+}
+
+.secondary-sidebar-full-width-button {
+  width: 100%;
+  margin-top: var(--layera-space-4);
+}
+
+/* ===== HEADER COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--layera-color-header-bg);
+  color: var(--layera-color-header-text);
+  height: var(--layera-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--layera-space-4);
+  box-shadow: var(--layera-shadow-header);
+}
+
+.header-left-section {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-4);
+}
+
+.header-logo {
+  font-size: var(--layera-font-size-lg);
+  font-weight: var(--layera-font-weight-semibold);
+  margin: 0;
+}
+
+.header-buttons-group {
+  display: flex;
+  gap: var(--layera-space-2);
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.header-color-button {
+  width: var(--layera-color-btn-size);
+  height: var(--layera-color-btn-size);
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-color-button:hover {
+  border-color: var(--layera-color-header-text);
+}
+
+.header-nav {
+  display: flex;
+  gap: var(--layera-space-4);
+  align-items: center;
+}
+
+.header-sidebar-toggles {
+  display: flex;
+  gap: var(--layera-space-2);
+  margin-right: var(--layera-space-4);
+}
+
+.header-toggle-button {
+  background: var(--layera-color-header-toggle-bg);
+  color: var(--layera-color-header-text);
+  border: none;
+  padding: var(--layera-space-2);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  font-size: var(--layera-font-size-sm);
+}
+
+.header-toggle-button:hover {
+  opacity: 0.8;
+}
+
+.header-search-container {
+  position: relative;
+}
+
+.header-search-input {
+  background: var(--layera-color-header-input-bg);
+  border: 1px solid var(--layera-color-header-input-border);
+  color: var(--layera-color-header-text);
+  padding: var(--layera-space-2) var(--layera-space-6) var(--layera-space-2) var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  width: 200px;
+  outline: none;
+}
+
+.header-search-input::placeholder {
+  color: var(--layera-color-header-text);
+  opacity: 0.7;
+}
+
+.header-profile-button {
+  background: var(--layera-color-header-toggle-bg);
+  color: var(--layera-color-header-text);
+  padding: var(--layera-space-2) var(--layera-space-3);
+  font-size: var(--layera-font-size-sm);
+  border: none;
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.header-profile-button:hover {
+  opacity: 0.8;
+}
+
+/* ===== PRIMARY SIDEBAR COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.primary-sidebar-heading {
+  color: var(--layera-sidebar-title);
+}
+
+.primary-sidebar-heading--actions {
+  color: var(--layera-sidebar-title);
+  margin-top: var(--layera-space-8);
+}
+
+.primary-sidebar-input {
+  padding: var(--layera-space-3);
+  border: none;
+  border-radius: var(--layera-radius-sm);
+  background: var(--layera-sidebar-input-bg);
+  color: var(--layera-sidebar-text);
+  width: 100%;
+}
+
+.primary-sidebar-menu-item {
+  background: var(--layera-sidebar-menu-item-bg);
+  color: var(--layera-sidebar-text);
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.primary-sidebar-menu-item--active {
+  background: var(--layera-sidebar-menu-item-hover);
+}
+
+.primary-sidebar-login-button {
+  background: var(--layera-color-primary);
+  border: none;
+  width: 100%;
+  color: var(--layera-sidebar-text);
+  padding: var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.primary-sidebar-login-button:hover {
+  opacity: 0.9;
+}
+
+.primary-sidebar-login-input {
+  padding: var(--layera-space-3);
+  border: none;
+  border-radius: var(--live-border-radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 100%;
+  font-size: var(--layera-font-size-sm);
+}
+
+/* ============================================= */
 /*  FULL APP LAYOUT – CLEAN GROK (ARXES FIXED) */
 /*  Χρησιμοποιεί ΜΟΝΟ υπάρχουσες --layera-* vars */
 /* ============================================= */
@@ -1463,5 +1827,190 @@
 
 .layera-leading-relaxed {
   line-height: 1.625 !important;
+}
+
+/* ===== SETTINGS SIDEBAR COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.settings-sidebar-heading {
+  color: var(--layera-sidebar-text);
+  border-bottom: 1px solid var(--layera-color-border);
+  padding-bottom: var(--layera-space-2);
+  margin: 0;
+}
+
+.settings-sidebar-select {
+  padding: var(--layera-space-3);
+  border: none;
+  border-radius: var(--live-border-radius);
+  background: var(--layera-sidebar-menu-item-bg);
+  color: var(--layera-sidebar-text);
+  width: 100%;
+  font-size: var(--layera-font-size-sm);
+}
+
+.settings-sidebar-button-light,
+.settings-sidebar-button-dark {
+  border: none;
+  color: var(--layera-sidebar-text);
+  padding: var(--layera-space-2) var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-sidebar-button-light {
+  background: var(--layera-sidebar-menu-item-bg);
+}
+
+.settings-sidebar-button-dark {
+  background: var(--layera-sidebar-menu-item-bg);
+}
+
+.settings-sidebar-button-light.active {
+  background: var(--live-primary-color);
+}
+
+.settings-sidebar-button-dark.active {
+  background: var(--live-primary-color);
+}
+
+.settings-sidebar-checkbox {
+  margin: 0;
+  accent-color: var(--live-primary-color);
+}
+
+.settings-sidebar-lock-button {
+  background: var(--live-danger-color);
+  border: none;
+  margin-top: var(--layera-space-4);
+  color: white;
+  padding: var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  font-weight: var(--layera-font-weight-medium);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+/* ===== APP HEADER COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.app-header-container {
+  background: var(--live-primary-color);
+  color: white;
+  min-height: auto;
+}
+
+.app-header-title {
+  color: white;
+  margin: 0;
+  font-size: var(--layera-font-size-lg);
+  font-weight: var(--layera-font-weight-semibold);
+}
+
+.app-header-color-button {
+  min-width: 24px;
+  color: white;
+  border-radius: var(--layera-radius-sm);
+  font-size: var(--layera-font-size-xs);
+  font-weight: var(--layera-font-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-header-color-button.active {
+  border: 2px solid white;
+}
+
+.app-header-color-button:not(.active) {
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.app-header-toggle-button {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: var(--layera-space-2);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-header-search-input {
+  padding: var(--layera-space-2);
+  border: none;
+  border-radius: var(--live-border-radius);
+  font-size: var(--layera-font-size-sm);
+  background: white;
+  color: var(--layera-color-text);
+}
+
+.app-header-profile-button {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: var(--layera-space-2) var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* ===== MAIN CONTENT COMPONENTS - ΧΡΗΣΗ TOKENS ΜΟΝΟ ===== */
+.main-content-container {
+  flex: 1;
+  background: var(--layera-color-surface);
+  min-height: 100vh;
+  order: 2;
+}
+
+.main-content-tab-button {
+  background: var(--layera-color-surface);
+  color: var(--layera-color-text);
+  border: 1px solid var(--layera-color-border);
+  padding: var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+}
+
+.main-content-card {
+  background: white;
+  border: 1px solid var(--layera-color-border);
+  border-radius: var(--layera-radius-md);
+  padding: var(--layera-space-4);
+  margin-bottom: var(--layera-space-4);
+}
+
+.main-content-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--layera-color-border);
+  border-radius: var(--layera-radius-md);
+  overflow: hidden;
+}
+
+.main-content-table-header {
+  background: var(--live-primary-color);
+  color: white;
+  padding: var(--layera-space-3);
+  text-align: left;
+  font-weight: var(--layera-font-weight-semibold);
+}
+
+.main-content-table-cell {
+  padding: var(--layera-space-3);
+  border-bottom: 1px solid var(--layera-color-border);
+}
+
+.main-content-table-row {
+  border-bottom: 1px solid var(--layera-color-border);
+}
+
+.main-content-table-row:nth-child(even) {
+  background: var(--layera-color-surface);
+}
+
+.main-content-table-button {
+  background: var(--layera-color-primary);
+  color: white;
+  border: none;
+  padding: var(--layera-space-2) var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
+  cursor: pointer;
+  font-size: var(--layera-font-size-sm);
 }
 
