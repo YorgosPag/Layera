@@ -41,6 +41,13 @@ import { LayoutSecondaryCardsBuilder } from './builders/main/layout/LayoutSecond
 import { LayoutSuccessCardsBuilder } from './builders/main/layout/LayoutSuccessCardsBuilder.js';
 import { LayoutTabsBuilder } from './builders/main/layout/LayoutTabsBuilder.js';
 import { LayoutWarningCardsBuilder } from './builders/main/layout/LayoutWarningCardsBuilder.js';
+import { CardDangerCardsBuilder } from './builders/main/cards/CardDangerCardsBuilder.js';
+import { CardInfoCardsBuilder } from './builders/main/cards/CardInfoCardsBuilder.js';
+import { CardPrimaryCardsBuilder } from './builders/main/cards/CardPrimaryCardsBuilder.js';
+import { CardSecondaryCardsBuilder } from './builders/main/cards/CardSecondaryCardsBuilder.js';
+import { CardSuccessCardsBuilder } from './builders/main/cards/CardSuccessCardsBuilder.js';
+import { CardWarningCardsBuilder } from './builders/main/cards/CardWarningCardsBuilder.js';
+import { CardsTabsBuilder } from './builders/main/cards/CardsTabsBuilder.js';
 import { ComponentSizesBuilder } from './builders/sidebar/right-sidebar/ComponentSizesBuilder.js';
 import { PresetThemesBuilder } from './builders/sidebar/right-sidebar/PresetThemesBuilder.js';
 import { QuickRadiusPresetsBuilder } from './builders/sidebar/right-sidebar/QuickRadiusPresetsBuilder.js';
@@ -204,6 +211,27 @@ const layoutTabsCSS = LayoutTabsBuilder.generateAllLayoutTabsCSS();
 // Generate layout warning cards CSS using LayoutWarningCardsBuilder (HTML-aligned enterprise modular approach)
 const layoutWarningCardsCSS = LayoutWarningCardsBuilder.generateAllLayoutWarningCardsCSS();
 
+// Generate card danger cards CSS using CardDangerCardsBuilder (HTML-aligned enterprise modular approach)
+const cardDangerCardsCSS = CardDangerCardsBuilder.generateAllCardDangerCardsCSS();
+
+// Generate card info cards CSS using CardInfoCardsBuilder (HTML-aligned enterprise modular approach)
+const cardInfoCardsCSS = CardInfoCardsBuilder.generateAllCardInfoCardsCSS();
+
+// Generate card primary cards CSS using CardPrimaryCardsBuilder (HTML-aligned enterprise modular approach)
+const cardPrimaryCardsCSS = CardPrimaryCardsBuilder.generateAllCardPrimaryCardsCSS();
+
+// Generate card secondary cards CSS using CardSecondaryCardsBuilder (HTML-aligned enterprise modular approach)
+const cardSecondaryCardsCSS = CardSecondaryCardsBuilder.generateAllCardSecondaryCardsCSS();
+
+// Generate card success cards CSS using CardSuccessCardsBuilder (HTML-aligned enterprise modular approach)
+const cardSuccessCardsCSS = CardSuccessCardsBuilder.generateAllCardSuccessCardsCSS();
+
+// Generate card warning cards CSS using CardWarningCardsBuilder (HTML-aligned enterprise modular approach)
+const cardWarningCardsCSS = CardWarningCardsBuilder.generateAllCardWarningCardsCSS();
+
+// Generate cards tabs CSS using CardsTabsBuilder (HTML-aligned enterprise modular approach)
+const cardsTabsCSS = CardsTabsBuilder.generateAllCardsTabsCSS();
+
 // Generate raw CSS using RawCSSBuilder (enterprise modular approach)
 const rawCSS = RawCSSBuilder.generateAllRawCSS();
 
@@ -211,7 +239,7 @@ const rawCSS = RawCSSBuilder.generateAllRawCSS();
 const remainingCSS = generateCSS();
 
 // Combine όλα τα enterprise modules
-const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + secondarySidebarCSS + cardsExtendedCSS + appLayoutCSS + finalLayoutCSS + contentAlignmentCSS + colorSystemCSS + borderRadiusCSS + applyToSelectorCSS + rightSidebarComponentsCSS + componentSizesCSS + presetThemesCSS + quickRadiusPresetsCSS + secondarySidebarRightCSS + spacingLayoutCSS + rightSidebarTypographyCSS + secondarySidebarLeftCSS + appCoreCSS + colorsCSS + scriptsComponentsCSS + navigationCSS + scriptsTypographyCSS + layoutDangerCardsCSS + layoutInfoCardsCSS + layoutPrimaryCardsCSS + layoutSecondaryCardsCSS + layoutSuccessCardsCSS + layoutTabsCSS + layoutWarningCardsCSS + rawCSS + remainingCSS;
+const css = tokensCSS + layoutCSS + componentsCSS + utilitiesCSS + themesCSS + headerCSS + rightSidebarCSS + tabSystemCSS + cardsAdvancedCSS + typographyCSS + settingsCSS + mainContentCSS + primarySidebarCSS + secondarySidebarCSS + cardsExtendedCSS + appLayoutCSS + finalLayoutCSS + contentAlignmentCSS + colorSystemCSS + borderRadiusCSS + applyToSelectorCSS + rightSidebarComponentsCSS + componentSizesCSS + presetThemesCSS + quickRadiusPresetsCSS + secondarySidebarRightCSS + spacingLayoutCSS + rightSidebarTypographyCSS + secondarySidebarLeftCSS + appCoreCSS + colorsCSS + scriptsComponentsCSS + navigationCSS + scriptsTypographyCSS + layoutDangerCardsCSS + layoutInfoCardsCSS + layoutPrimaryCardsCSS + layoutSecondaryCardsCSS + layoutSuccessCardsCSS + layoutTabsCSS + layoutWarningCardsCSS + cardDangerCardsCSS + cardInfoCardsCSS + cardPrimaryCardsCSS + cardSecondaryCardsCSS + cardSuccessCardsCSS + cardWarningCardsCSS + cardsTabsCSS + rawCSS + remainingCSS;
 const cssPath = path.join(distDir, 'tokens.css');
 fs.writeFileSync(cssPath, css);
 
